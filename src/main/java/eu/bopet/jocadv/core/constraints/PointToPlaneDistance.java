@@ -7,12 +7,13 @@ import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointToPlaneDistance implements Constraint {
+public class PointToPlaneDistance extends ConstraintBase implements Constraint {
     private final JoPlane plane;
     private final JoPoint point;
     private final JoValue distance;
 
-    public PointToPlaneDistance(JoPlane plane, JoPoint point, JoValue distance) {
+    public PointToPlaneDistance(JoPlane plane, JoPoint point, JoValue distance, short status) {
+        super(status);
         this.plane = plane;
         this.point = point;
         this.distance = distance;

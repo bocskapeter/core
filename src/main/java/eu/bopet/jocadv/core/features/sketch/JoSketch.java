@@ -78,11 +78,19 @@ public class JoSketch extends Feature {
         }
 
         //DoF check
-        if (constraints.size() != variables.size()) {
+        int noConstraints = constraints.size();
+        int noVariables = variables.size();
+        if (noConstraints != noVariables) {
+
             System.out.println("Constraints and variables mismatch");
-            System.out.println(constraints.size() + " constraints");
-            System.out.println(variables.size() + " variables");
-            return;
+            System.out.println(noConstraints + " constraints");
+            System.out.println(noVariables + " variables");
+            if (noVariables > noConstraints) {
+                //TODO add constraint
+            } else {
+                //TODO remove unnecessary constraints
+            }
+            return; // TODO delete
         }
 
         double[] fx = new double[constraints.size()];

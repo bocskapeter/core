@@ -7,15 +7,17 @@ import eu.bopet.jocadv.core.features.sketch.JoLine;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointToLineDistance implements Constraint {
+public class PointToLineDistance extends ConstraintBase implements Constraint {
     private final JoLine line;
     private final JoPoint point;
     private final JoValue distance;
 
-    public PointToLineDistance(JoLine line, JoPoint point, JoValue distance) {
+    public PointToLineDistance(JoLine line, JoPoint point, JoValue distance, short status) {
+        super(status);
         this.line = line;
         this.point = point;
         this.distance = distance;
+
     }
 
     @Override

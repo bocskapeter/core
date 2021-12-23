@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.core.constraints;
 
+import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 
 import java.util.List;
@@ -14,6 +15,11 @@ public interface Constraint {
      */
     short getStatus();
 
+    /**
+     *
+     * @return list of geometries the constraint applied on
+     */
+    List<Geometry> getGeometries();
 
     /**
      * @return list of values - xn

@@ -3,6 +3,7 @@ package eu.bopet.jocadv.core.features.sketch;
 import eu.bopet.jocadv.core.constraints.Constraint;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.Geometry;
+import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -14,6 +15,7 @@ import org.apache.commons.math3.linear.SingularValueDecomposition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class JoSketch extends Feature {
@@ -22,10 +24,12 @@ public class JoSketch extends Feature {
     private final List<Geometry> geometries;
     private final List<Constraint> constraints;
     private JoPlane sketchPlane;
+    private JoCoSys coSys;
+
     private boolean edit;
 
-    public JoSketch(JoPlane plane) {
-        sketchPlane = plane;
+    public JoSketch(JoPlane sketchPlane) {
+        this.sketchPlane = sketchPlane;
         references = new ArrayList<>();
         geometries = new ArrayList<>();
         constraints = new ArrayList<>();
@@ -58,13 +62,20 @@ public class JoSketch extends Feature {
         geometries.add(geometry);
     }
 
-    public void addReference(Geometry reference) {
-        references.add(reference);
-    }
-
     public void addConstraint(Constraint newConstraint) {
         constraints.add(newConstraint);
+        List<Geometry> geometries = newConstraint.getGeometries();
+        for (Geometry geometry : geometries) {
+            if (!geometries.contains(geometry)) {
+                if (!references.contains(geometry)) {
+                    references.add(geometry);
+                }
+            }
+        }
+        solve();
+    }
 
+    private void solve() {
         List<JoValue> valueList = new ArrayList<>();
         for (Constraint constraint : constraints) {
             valueList.addAll(constraint.getValues());
@@ -85,12 +96,25 @@ public class JoSketch extends Feature {
             System.out.println("Constraints and variables mismatch");
             System.out.println(noConstraints + " constraints");
             System.out.println(noVariables + " variables");
-            if (noVariables > noConstraints) {
-                //TODO add constraint
-            } else {
-                //TODO remove unnecessary constraints
-            }
-            return; // TODO delete
+
+//            if (noVariables > noConstraints) {
+//                //TODO add AUTO constraint
+//                List<Geometry> constrainedGeometries = new ArrayList<>();
+//                for (Constraint constraint : constraints) {
+//                    constrainedGeometries.addAll(constraint.getGeometries());
+//                }
+//                List<Geometry> underConstrainedGeometries = new ArrayList<>();
+//                for (Geometry geometry : geometries) {
+//                    int DoF = Collections.frequency(constrainedGeometries, geometry);
+//                    if (DoF < 3) {
+//                        underConstrainedGeometries.add(geometry);
+//                    }
+//                }
+//
+//            } else {
+//                //TODO remove unnecessary constraints
+//            }
+//            return; // TODO delete
         }
 
         double[] fx = new double[constraints.size()];

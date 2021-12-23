@@ -36,18 +36,30 @@ public class JoVector {
         return new Vector3D(x.get(), y.get(), z.get());
     }
 
-    public Vector3D getMainAbsDirection() {
+    public Vector3D getMainDirection() {
         if (Math.abs(getVector3D().getY()) >= Math.abs(getVector3D().getZ())) {
             if (Math.abs(getVector3D().getX()) >= Math.abs(getVector3D().getY())) {
-                return Vector3D.PLUS_I;
+                if (getVector3D().getX() > 0) {
+                    return Vector3D.PLUS_I;
+                }
+                return Vector3D.MINUS_I;
             } else {
-                return Vector3D.PLUS_J;
+                if (getVector3D().getY() > 0) {
+                    return Vector3D.PLUS_J;
+                }
+                return Vector3D.MINUS_J;
             }
         } else {
             if (Math.abs(getVector3D().getX()) >= Math.abs(getVector3D().getZ())) {
-                return Vector3D.PLUS_I;
+                if (getVector3D().getX() > 0) {
+                    return Vector3D.PLUS_I;
+                }
+                return Vector3D.MINUS_I;
             } else {
-                return Vector3D.PLUS_K;
+                if (getVector3D().getZ() > 0) {
+                    return Vector3D.PLUS_K;
+                }
+                return Vector3D.MINUS_K;
             }
         }
     }

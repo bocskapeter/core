@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.core.constraints;
 
+import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
@@ -17,6 +18,14 @@ public class PointToPlaneDistance extends ConstraintBase implements Constraint {
         this.plane = plane;
         this.point = point;
         this.distance = distance;
+    }
+
+    @Override
+    public List<Geometry> getGeometries() {
+        List<Geometry> result = new ArrayList<>();
+        result.add(plane);
+        result.add(point);
+        return result;
     }
 
     @Override

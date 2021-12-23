@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.Constraint;
-import eu.bopet.jocadv.core.constraints.PointToPlaneDistance;
+import eu.bopet.jocadv.core.constraints.SketchConstraint;
+import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
@@ -24,8 +24,8 @@ class JoSketchTest {
         JoPoint point1 = new JoPoint(new JoVector(x1,y1,z1));
         JoPoint point2 = new JoPoint(new JoVector(x2,y2,z2));
 
-        PointToPlaneDistance pointToPlaneDistance1 = new PointToPlaneDistance(JoPlane.XY,point1,JoValue.ZERO, Constraint.USER_DEFINED);
-        PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(JoPlane.XY,point2,JoValue.ZERO,Constraint.USER_DEFINED);
+        PointToPlaneDistance pointToPlaneDistance1 = new PointToPlaneDistance(JoPlane.XY,point1,JoValue.ZERO, SketchConstraint.USER_DEFINED);
+        PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(JoPlane.XY,point2,JoValue.ZERO, SketchConstraint.USER_DEFINED);
 
         sketch.addGeometry(point1);
         sketch.addConstraint(pointToPlaneDistance1);

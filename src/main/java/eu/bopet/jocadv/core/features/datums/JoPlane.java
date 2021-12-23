@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.Base;
 import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
@@ -10,7 +10,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoPlane extends Feature implements Geometry {
+public class JoPlane extends Base implements Geometry {
     public final static JoPlane XY = new JoPlane(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO);
     public final static JoPlane XZ = new JoPlane(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO);
     public final static JoPlane YZ = new JoPlane(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO);

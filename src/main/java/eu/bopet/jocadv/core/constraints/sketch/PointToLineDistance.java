@@ -1,5 +1,7 @@
-package eu.bopet.jocadv.core.constraints;
+package eu.bopet.jocadv.core.constraints.sketch;
 
+import eu.bopet.jocadv.core.constraints.ConstraintBase;
+import eu.bopet.jocadv.core.constraints.SketchConstraint;
 import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
@@ -8,7 +10,7 @@ import eu.bopet.jocadv.core.features.sketch.JoLine;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointToLineDistance extends ConstraintBase implements Constraint {
+public class PointToLineDistance extends ConstraintBase implements SketchConstraint {
     private final JoLine line;
     private final JoPoint point;
     private final JoValue distance;

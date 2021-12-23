@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.Base;
 import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
@@ -8,7 +8,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoCoSys extends Feature implements Geometry {
+public class JoCoSys extends Base implements Geometry {
     public static final JoCoSys DEFAULT_COORDINATE_SYSTEM =
             new JoCoSys(JoPoint.ORIGIN,
                     JoAxis.X, JoAxis.Y, JoAxis.Z,

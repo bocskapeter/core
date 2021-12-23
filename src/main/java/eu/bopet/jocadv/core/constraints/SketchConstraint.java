@@ -5,18 +5,16 @@ import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 
 import java.util.List;
 
-public interface Constraint {
+public interface SketchConstraint {
     public final static short USER_DEFINED = 1;
     public final static short AUTO_CONSTRAINT = 2;
 
     /**
-     *
      * @return status
      */
     short getStatus();
 
     /**
-     *
      * @return list of geometries the constraint applied on
      */
     List<Geometry> getGeometries();

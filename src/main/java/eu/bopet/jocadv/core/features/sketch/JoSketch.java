@@ -1,28 +1,22 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.Constraint;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.constraints.SketchConstraint;
+import eu.bopet.jocadv.core.features.Base;
 import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.DecompositionSolver;
-import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
-import org.apache.commons.math3.linear.SingularValueDecomposition;
+import org.apache.commons.math3.linear.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class JoSketch extends Feature {
+public class JoSketch extends Base {
 
     private final List<Geometry> references;
     private final List<Geometry> geometries;
-    private final List<Constraint> constraints;
+    private final List<SketchConstraint> constraints;
     private JoPlane sketchPlane;
     private JoCoSys coSys;
 
@@ -62,7 +56,7 @@ public class JoSketch extends Feature {
         geometries.add(geometry);
     }
 
-    public void addConstraint(Constraint newConstraint) {
+    public void addConstraint(SketchConstraint newConstraint) {
         constraints.add(newConstraint);
         List<Geometry> geometries = newConstraint.getGeometries();
         for (Geometry geometry : geometries) {
@@ -77,7 +71,7 @@ public class JoSketch extends Feature {
 
     private void solve() {
         List<JoValue> valueList = new ArrayList<>();
-        for (Constraint constraint : constraints) {
+        for (SketchConstraint constraint : constraints) {
             valueList.addAll(constraint.getValues());
         }
 

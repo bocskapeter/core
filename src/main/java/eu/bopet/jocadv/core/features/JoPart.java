@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.core.features;
 
 import eu.bopet.jocadv.core.constraints.feature.Regenerative;
-import eu.bopet.jocadv.core.features.datums.JoCoSys;
 
 import java.util.ArrayList;
 import java.util.List;

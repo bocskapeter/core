@@ -30,4 +30,11 @@ public class JoSphere extends Base implements Geometry {
         result.add(radius);
         return result;
     }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        result.add(center);
+        return result;
+    }
 }

@@ -6,6 +6,7 @@ import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import eu.bopet.jocadv.core.features.datums.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JoPoint extends Base implements Geometry {
@@ -32,5 +33,12 @@ public class JoPoint extends Base implements Geometry {
     @Override
     public List<JoValue> getValues() {
         return vector.getValues();
+    }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        result.add(this);
+        return result;
     }
 }

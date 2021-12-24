@@ -34,4 +34,12 @@ public class JoLine extends Base implements Geometry {
         result.addAll(point2.getValues());
         return result;
     }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        result.add(point1);
+        result.add(point2);
+        return result;
+    }
 }

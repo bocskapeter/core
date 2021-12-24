@@ -49,4 +49,11 @@ public class JoCoSys extends Base implements Geometry {
         result.addAll(xz.getValues());
         return result;
     }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        result.add(origin);
+        return result;
+    }
 }

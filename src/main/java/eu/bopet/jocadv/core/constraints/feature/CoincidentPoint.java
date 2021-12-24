@@ -4,7 +4,7 @@ import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import eu.bopet.jocadv.core.features.datums.vector.JoVector;
 
-public class CoincidentPoint implements Regenerative{
+public class CoincidentPoint implements Regenerative {
     private final JoPoint referencePoint;
     private final JoPoint resultPoint;
 

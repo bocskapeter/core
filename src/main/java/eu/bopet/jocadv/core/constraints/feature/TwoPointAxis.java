@@ -5,12 +5,12 @@ import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import eu.bopet.jocadv.core.features.datums.vector.JoVector;
 
-public class TwoPointsAxis implements Regenerative {
+public class TwoPointAxis implements Regenerative {
     private final JoPoint point1;
     private final JoPoint point2;
     private final JoAxis resultAxis;
 
-    public TwoPointsAxis(JoPoint point1, JoPoint point2) {
+    public TwoPointAxis(JoPoint point1, JoPoint point2) {
         this.point1 = point1;
         this.point2 = point2;
         this.resultAxis = new JoAxis(

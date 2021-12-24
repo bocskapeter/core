@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.core.features;
 
+import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
@@ -17,4 +18,9 @@ public interface Geometry {
      * @return List of Values
      */
     List<JoValue> getValues();
+
+    /**
+     * @return List of Points
+     */
+    List<JoPoint> getPoints();
 }

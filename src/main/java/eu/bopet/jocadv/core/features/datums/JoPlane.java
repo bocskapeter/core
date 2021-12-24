@@ -66,4 +66,10 @@ public class JoPlane extends Base implements Geometry {
         result.add(z);
         return result;
     }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        return result;
+    }
 }

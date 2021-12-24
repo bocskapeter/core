@@ -3,6 +3,7 @@ package eu.bopet.jocadv.core.features.sketch;
 import eu.bopet.jocadv.core.features.Base;
 import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
+import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
@@ -28,6 +29,13 @@ public class JoCircle extends Base implements Geometry {
         List<JoValue> result = new ArrayList<>();
         result.addAll(sphere.getValues());
         result.addAll(plane.getValues());
+        return result;
+    }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        result.addAll(sphere.getPoints());
         return result;
     }
 }

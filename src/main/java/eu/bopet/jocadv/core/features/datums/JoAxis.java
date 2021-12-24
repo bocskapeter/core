@@ -41,4 +41,11 @@ public class JoAxis extends Base implements Geometry {
         result.addAll(direction.getValues());
         return result;
     }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        List<JoPoint> result = new ArrayList<>();
+        result.add(point);
+        return result;
+    }
 }

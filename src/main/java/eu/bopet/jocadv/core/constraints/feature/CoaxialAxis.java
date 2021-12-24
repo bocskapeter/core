@@ -5,7 +5,7 @@ import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import eu.bopet.jocadv.core.features.datums.vector.JoVector;
 
-public class CoaxialAxis implements Regenerative{
+public class CoaxialAxis implements Regenerative {
     private final JoAxis referenceAxis;
     private final JoAxis resultAxis;
 

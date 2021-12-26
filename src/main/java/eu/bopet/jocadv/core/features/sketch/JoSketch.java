@@ -5,7 +5,6 @@ import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.features.Base;
 import eu.bopet.jocadv.core.features.Geometry;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
-import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.datums.JoPoint;
 import eu.bopet.jocadv.core.features.datums.vector.JoValue;
 import org.apache.commons.math3.linear.*;
@@ -19,13 +18,11 @@ public class JoSketch extends Base {
     private final List<Geometry> references;
     private final List<Geometry> geometries;
     private final List<SketchConstraint> constraints;
-    private final JoPlane sketchPlane;
     private final JoCoSys coSys;
 
     private boolean edit;
 
-    public JoSketch(JoPlane sketchPlane, JoCoSys coSys) {
-        this.sketchPlane = sketchPlane;
+    public JoSketch(JoCoSys coSys) {
         this.coSys = coSys;
         references = new ArrayList<>();
         geometries = new ArrayList<>();
@@ -60,7 +57,7 @@ public class JoSketch extends Base {
         List<JoPoint> points = geometry.getPoints();
         for (JoPoint point : points) {
             PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
-                    sketchPlane,
+                    coSys.getXy(),
                     point,
                     new JoValue(JoValue.USER, 0.0),
                     SketchConstraint.USER_DEFINED);

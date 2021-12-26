@@ -32,6 +32,34 @@ public class JoCoSys extends Base implements Geometry {
         this.xz = zx;
     }
 
+    public JoPoint getOrigin() {
+        return origin;
+    }
+
+    public JoAxis getX() {
+        return x;
+    }
+
+    public JoAxis getY() {
+        return y;
+    }
+
+    public JoAxis getZ() {
+        return z;
+    }
+
+    public JoPlane getXy() {
+        return xy;
+    }
+
+    public JoPlane getYz() {
+        return yz;
+    }
+
+    public JoPlane getXz() {
+        return xz;
+    }
+
     @Override
     public double distance(Line pickingLine) {
         return pickingLine.distance(origin.getVector().getVector3D());

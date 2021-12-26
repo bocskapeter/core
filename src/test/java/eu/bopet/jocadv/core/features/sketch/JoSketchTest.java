@@ -13,7 +13,7 @@ class JoSketchTest {
 
     @Test
     void addConstraint() {
-        JoSketch sketch = new JoSketch(JoPlane.XY, JoCoSys.DEFAULT_COORDINATE_SYSTEM);
+        JoSketch sketch = new JoSketch(JoCoSys.DEFAULT_COORDINATE_SYSTEM);
         JoValue x1 = new JoValue(1.26);
         JoValue y1 = new JoValue(2.59);
         JoValue z1 = new JoValue(0.015);

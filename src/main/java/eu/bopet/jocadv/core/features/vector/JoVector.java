@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.features.datums.vector;
+package eu.bopet.jocadv.core.features.vector;
 
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 

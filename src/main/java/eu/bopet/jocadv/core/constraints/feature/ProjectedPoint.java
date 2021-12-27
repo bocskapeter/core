@@ -1,9 +1,9 @@
 package eu.bopet.jocadv.core.constraints.feature;
 
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.datums.JoPoint;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
-import eu.bopet.jocadv.core.features.datums.vector.JoVector;
+import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 public class ProjectedPoint implements Regenerative {

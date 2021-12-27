@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.constraints;
+package eu.bopet.jocadv.core.constraints.sketch;
 
 public abstract class ConstraintBase {
     private short status;

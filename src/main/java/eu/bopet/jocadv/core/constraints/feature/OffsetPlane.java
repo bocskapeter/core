@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.feature;
 
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 
 public class OffsetPlane implements Regenerative {
     private final JoPlane referencePlane;

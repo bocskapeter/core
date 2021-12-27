@@ -1,10 +1,8 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.constraints.ConstraintBase;
-import eu.bopet.jocadv.core.constraints.SketchConstraint;
-import eu.bopet.jocadv.core.features.Geometry;
-import eu.bopet.jocadv.core.features.datums.JoPoint;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
+import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.sketch.JoLine;
 
 import java.util.ArrayList;
@@ -24,8 +22,8 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
     }
 
     @Override
-    public List<Geometry> getGeometries() {
-        List<Geometry> result = new ArrayList<>();
+    public List<SketchGeometry> getGeometries() {
+        List<SketchGeometry> result = new ArrayList<>();
         result.add(line);
         result.add(point);
         return result;

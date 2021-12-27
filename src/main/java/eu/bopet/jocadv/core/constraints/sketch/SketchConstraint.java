@@ -1,7 +1,7 @@
-package eu.bopet.jocadv.core.constraints;
+package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.Geometry;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface SketchConstraint {
     /**
      * @return list of geometries the constraint applied on
      */
-    List<Geometry> getGeometries();
+    List<SketchGeometry> getGeometries();
 
     /**
      * @return list of values - xn

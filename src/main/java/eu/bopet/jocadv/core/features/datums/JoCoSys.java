@@ -1,14 +1,11 @@
 package eu.bopet.jocadv.core.features.datums;
 
 import eu.bopet.jocadv.core.features.Base;
-import eu.bopet.jocadv.core.features.Geometry;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.Selectable;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class JoCoSys extends Base implements Geometry {
+public class JoCoSys extends Base implements Selectable {
     public static final JoCoSys DEFAULT_COORDINATE_SYSTEM =
             new JoCoSys(JoPoint.ORIGIN,
                     JoAxis.X, JoAxis.Y, JoAxis.Z,
@@ -65,23 +62,4 @@ public class JoCoSys extends Base implements Geometry {
         return pickingLine.distance(origin.getVector().getVector3D());
     }
 
-    @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
-        result.addAll(origin.getValues());
-        result.addAll(x.getValues());
-        result.addAll(y.getValues());
-        result.addAll(z.getValues());
-        result.addAll(xy.getValues());
-        result.addAll(yz.getValues());
-        result.addAll(xz.getValues());
-        return result;
-    }
-
-    @Override
-    public List<JoPoint> getPoints() {
-        List<JoPoint> result = new ArrayList<>();
-        result.add(origin);
-        return result;
-    }
 }

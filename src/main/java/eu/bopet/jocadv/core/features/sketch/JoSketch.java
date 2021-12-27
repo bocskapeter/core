@@ -1,22 +1,23 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.SketchConstraint;
+import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.features.Base;
-import eu.bopet.jocadv.core.features.Geometry;
+import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
-import eu.bopet.jocadv.core.features.datums.JoPoint;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.linear.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class JoSketch extends Base {
+public class JoSketch extends Base implements Feature {
 
-    private final List<Geometry> references;
-    private final List<Geometry> geometries;
+    private final List<Feature> references;
+    private final List<SketchGeometry> geometries;
     private final List<SketchConstraint> constraints;
     private final JoCoSys coSys;
 
@@ -32,7 +33,7 @@ public class JoSketch extends Base {
 
     public void edit() {
         if (edit) return;
-        for (Geometry geometry : geometries) {
+        for (SketchGeometry geometry : geometries) {
             for (JoValue value : geometry.getValues()) {
                 value.setStatus(JoValue.VARIABLE);
             }
@@ -42,7 +43,7 @@ public class JoSketch extends Base {
 
     public void close() {
         if (edit) {
-            for (Geometry geometry : geometries) {
+            for (SketchGeometry geometry : geometries) {
                 for (JoValue value : geometry.getValues()) {
                     value.setStatus(JoValue.FIX);
                 }
@@ -52,7 +53,7 @@ public class JoSketch extends Base {
     }
 
 
-    public void addGeometry(Geometry geometry) {
+    public void addGeometry(SketchGeometry geometry) {
         geometries.add(geometry);
         List<JoPoint> points = geometry.getPoints();
         for (JoPoint point : points) {
@@ -67,14 +68,7 @@ public class JoSketch extends Base {
 
     public void addConstraint(SketchConstraint newConstraint) {
         constraints.add(newConstraint);
-        List<Geometry> geometries = newConstraint.getGeometries();
-        for (Geometry geometry : geometries) {
-            if (!geometries.contains(geometry)) {
-                if (!references.contains(geometry)) {
-                    references.add(geometry);
-                }
-            }
-        }
+
         solve();
     }
 
@@ -100,24 +94,23 @@ public class JoSketch extends Base {
             System.out.println(noConstraints + " constraints");
             System.out.println(noVariables + " variables");
 
-//            if (noVariables > noConstraints) {
-//                //TODO add AUTO constraint
-//                List<Geometry> constrainedGeometries = new ArrayList<>();
-//                for (Constraint constraint : constraints) {
-//                    constrainedGeometries.addAll(constraint.getGeometries());
-//                }
-//                List<Geometry> underConstrainedGeometries = new ArrayList<>();
-//                for (Geometry geometry : geometries) {
-//                    int DoF = Collections.frequency(constrainedGeometries, geometry);
-//                    if (DoF < 3) {
-//                        underConstrainedGeometries.add(geometry);
-//                    }
-//                }
-//
-//            } else {
-//                //TODO remove unnecessary constraints
-//            }
-//            return; // TODO delete
+            if (noVariables > noConstraints) {
+                //TODO add AUTO constraint
+                List<SketchGeometry> constrainedGeometries = new ArrayList<>();
+                for (SketchConstraint constraint : constraints) {
+                    constrainedGeometries.addAll(constraint.getGeometries());
+                }
+                List<SketchGeometry> underConstrainedGeometries = new ArrayList<>();
+                for (SketchGeometry geometry : geometries) {
+                    int DoF = Collections.frequency(constrainedGeometries, geometry);
+                    if (DoF < 3) {
+                        underConstrainedGeometries.add(geometry);
+                    }
+                }
+            } else {
+                //TODO remove unnecessary constraints
+            }
+            return; // TODO delete
         }
 
         double[] fx = new double[constraints.size()];
@@ -156,5 +149,10 @@ public class JoSketch extends Base {
             }
             System.out.println("x: " + variables);
         }
+    }
+
+    @Override
+    public List<Feature> getRegenerative() {
+        return null;
     }
 }

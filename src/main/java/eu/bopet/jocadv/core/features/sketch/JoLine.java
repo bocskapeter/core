@@ -1,15 +1,15 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.Base;
-import eu.bopet.jocadv.core.features.Geometry;
-import eu.bopet.jocadv.core.features.datums.JoPoint;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoLine extends Base implements Geometry {
+public class JoLine extends Base implements SketchGeometry, Selectable {
     private final JoPoint point1;
     private final JoPoint point2;
 

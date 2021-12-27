@@ -1,15 +1,14 @@
-package eu.bopet.jocadv.core.features.datums;
+package eu.bopet.jocadv.core.features;
 
-import eu.bopet.jocadv.core.features.Base;
-import eu.bopet.jocadv.core.features.Geometry;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
-import eu.bopet.jocadv.core.features.datums.vector.JoVector;
+import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
+import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoPoint extends Base implements Geometry {
+public class JoPoint extends Base implements SketchGeometry, Selectable, Feature {
     public final static JoPoint ORIGIN = new JoPoint(JoVector.ZERO);
     private final JoVector vector;
 
@@ -40,5 +39,10 @@ public class JoPoint extends Base implements Geometry {
         List<JoPoint> result = new ArrayList<>();
         result.add(this);
         return result;
+    }
+
+    @Override
+    public List<Feature> getRegenerative() {
+        return null;
     }
 }

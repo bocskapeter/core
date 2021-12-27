@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JoPart extends Base {
-    private final List<Regenerative> features;
+    private final List<Regenerative> regenerativeList;
+    private final List<Feature> features;
 
     public JoPart() {
+        regenerativeList = new ArrayList<>();
         features = new ArrayList<>();
 
     }

@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.features.datums.vector;
+package eu.bopet.jocadv.core.features.vector;
 
 public class JoValue {
     public final static short CONSTANT = 0;

@@ -1,16 +1,13 @@
 package eu.bopet.jocadv.core.features.datums;
 
 import eu.bopet.jocadv.core.features.Base;
-import eu.bopet.jocadv.core.features.Geometry;
-import eu.bopet.jocadv.core.features.datums.vector.JoValue;
+import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class JoPlane extends Base implements Geometry {
+public class JoPlane extends Base implements Selectable {
     public final static JoPlane XY = new JoPlane(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO);
     public final static JoPlane XZ = new JoPlane(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO);
     public final static JoPlane YZ = new JoPlane(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO);
@@ -56,20 +53,5 @@ public class JoPlane extends Base implements Geometry {
             return thisPlane.getOffset(pickingLine.getOrigin());
         }
         return pickingLine.distance(intersection);
-    }
-
-    @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
-        result.add(x);
-        result.add(y);
-        result.add(z);
-        return result;
-    }
-
-    @Override
-    public List<JoPoint> getPoints() {
-        List<JoPoint> result = new ArrayList<>();
-        return result;
     }
 }

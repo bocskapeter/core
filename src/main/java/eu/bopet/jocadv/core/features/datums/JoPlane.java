@@ -1,26 +1,33 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.Base;
+import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-public class JoPlane extends Base implements Selectable {
-    public final static JoPlane XY = new JoPlane(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO);
-    public final static JoPlane XZ = new JoPlane(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO);
-    public final static JoPlane YZ = new JoPlane(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO);
+public class JoPlane extends FeatureBase implements Selectable, Feature {
+    public final static JoPlane XY = new JoPlane(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
+    public final static JoPlane XZ = new JoPlane(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
+    public final static JoPlane YZ = new JoPlane(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
     private final JoValue x;
     private final JoValue y;
     private final JoValue z;
     private final JoValue d;
+    private final JoVector normal;
+    private final RegenerativeLink regenerativeLink;
 
-    public JoPlane(JoValue x, JoValue y, JoValue z, JoValue d) {
+    public JoPlane(JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.d = d;
+        this.regenerativeLink = regenerativeLink;
+        normal = new JoVector(x, y, z, null);
     }
 
     public JoValue getX() {
@@ -53,5 +60,14 @@ public class JoPlane extends Base implements Selectable {
             return thisPlane.getOffset(pickingLine.getOrigin());
         }
         return pickingLine.distance(intersection);
+    }
+
+    public JoVector getNormal() {
+        return normal;
+    }
+
+    @Override
+    public RegenerativeLink getRegenerativeLink() {
+        return regenerativeLink;
     }
 }

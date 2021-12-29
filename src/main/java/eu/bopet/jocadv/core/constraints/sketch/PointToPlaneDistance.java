@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
-import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.datums.JoPlane;
+import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
 import java.util.ArrayList;
@@ -30,9 +30,7 @@ public class PointToPlaneDistance extends ConstraintBase implements SketchConstr
 
     @Override
     public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
-        //result.addAll(plane.getValues());
-        result.addAll(point.getValues());
+        List<JoValue> result = new ArrayList<>(point.getValues());
         result.add(distance);
         return result;
     }

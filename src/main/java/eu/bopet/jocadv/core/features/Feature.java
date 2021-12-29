@@ -1,9 +1,10 @@
 package eu.bopet.jocadv.core.features;
 
-import java.util.List;
+import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
 
-public interface Feature{
-
-    List<Feature> getRegenerative();
-
+public interface Feature {
+    /**
+     * @return regenerative link
+     */
+    RegenerativeLink getRegenerativeLink();
 }

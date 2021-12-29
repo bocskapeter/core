@@ -1,23 +1,27 @@
 package eu.bopet.jocadv.core.features.vector;
 
+import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Feature;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoVector {
-    public final static JoVector ZERO = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ZERO);
-    public static final JoVector I = new JoVector(JoValue.ONE, JoValue.ZERO, JoValue.ZERO);
-    public static final JoVector J = new JoVector(JoValue.ZERO, JoValue.ONE, JoValue.ZERO);
-    public static final JoVector K = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ONE);
+public class JoVector implements Feature {
+    public final static JoVector ZERO = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
+    public static final JoVector I = new JoVector(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
+    public static final JoVector J = new JoVector(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
+    public static final JoVector K = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, null);
     private final JoValue x;
     private final JoValue y;
     private final JoValue z;
+    private final RegenerativeLink regenerativeLink;
 
-    public JoVector(JoValue x, JoValue y, JoValue z) {
+    public JoVector(JoValue x, JoValue y, JoValue z, RegenerativeLink regenerativeLink) {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.regenerativeLink = regenerativeLink;
     }
 
     public JoValue getX() {
@@ -70,5 +74,10 @@ public class JoVector {
         result.add(y);
         result.add(z);
         return result;
+    }
+
+    @Override
+    public RegenerativeLink getRegenerativeLink() {
+        return regenerativeLink;
     }
 }

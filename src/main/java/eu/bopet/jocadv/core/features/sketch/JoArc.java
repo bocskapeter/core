@@ -1,15 +1,15 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.Base;
-import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoArc extends Base implements SketchGeometry, Selectable {
+public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     private final JoCircle circle;
     private final JoPoint point1;
     private final JoPoint point2;
@@ -27,8 +27,7 @@ public class JoArc extends Base implements SketchGeometry, Selectable {
 
     @Override
     public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
-        result.addAll(circle.getValues());
+        List<JoValue> result = new ArrayList<>(circle.getValues());
         result.addAll(point1.getValues());
         result.addAll(point2.getValues());
         return result;
@@ -36,8 +35,7 @@ public class JoArc extends Base implements SketchGeometry, Selectable {
 
     @Override
     public List<JoPoint> getPoints() {
-        List<JoPoint> result = new ArrayList<>();
-        result.addAll(circle.getPoints());
+        List<JoPoint> result = new ArrayList<>(circle.getPoints());
         result.add(point1);
         result.add(point2);
         return result;

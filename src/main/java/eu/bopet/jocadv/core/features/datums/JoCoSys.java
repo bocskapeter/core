@@ -1,15 +1,17 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.Base;
+import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
-public class JoCoSys extends Base implements Selectable {
+public class JoCoSys extends FeatureBase implements Selectable, Feature {
     public static final JoCoSys DEFAULT_COORDINATE_SYSTEM =
             new JoCoSys(JoPoint.ORIGIN,
                     JoAxis.X, JoAxis.Y, JoAxis.Z,
-                    JoPlane.XY, JoPlane.YZ, JoPlane.XZ);
+                    JoPlane.XY, JoPlane.YZ, JoPlane.XZ, null);
 
     private final JoPoint origin;
     private final JoAxis x;
@@ -18,15 +20,17 @@ public class JoCoSys extends Base implements Selectable {
     private final JoPlane xy;
     private final JoPlane yz;
     private final JoPlane xz;
+    private final RegenerativeLink regenerative;
 
-    public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane zx) {
+    public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerative) {
         this.origin = origin;
         this.x = x;
         this.y = y;
         this.z = z;
         this.xy = xy;
         this.yz = yz;
-        this.xz = zx;
+        this.xz = xz;
+        this.regenerative = regenerative;
     }
 
     public JoPoint getOrigin() {
@@ -62,4 +66,8 @@ public class JoCoSys extends Base implements Selectable {
         return pickingLine.distance(origin.getVector().getVector3D());
     }
 
+    @Override
+    public RegenerativeLink getRegenerativeLink() {
+        return regenerative;
+    }
 }

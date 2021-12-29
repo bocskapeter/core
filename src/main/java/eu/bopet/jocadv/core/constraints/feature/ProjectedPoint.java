@@ -1,12 +1,13 @@
 package eu.bopet.jocadv.core.constraints.feature;
 
-import eu.bopet.jocadv.core.features.datums.JoPlane;
+import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-public class ProjectedPoint implements Regenerative {
+public class ProjectedPoint implements RegenerativeLink {
     private final JoPlane referencePlane;
     private final JoPoint referencePoint;
     private final JoPoint resultPoint;
@@ -19,8 +20,8 @@ public class ProjectedPoint implements Regenerative {
         this.resultPoint = new JoPoint(new JoVector(
                 new JoValue(projectedPoint.getX()),
                 new JoValue(projectedPoint.getY()),
-                new JoValue(projectedPoint.getZ())
-        ));
+                new JoValue(projectedPoint.getZ()), null),
+                this);
     }
 
     @Override
@@ -30,5 +31,10 @@ public class ProjectedPoint implements Regenerative {
         this.resultPoint.getVector().getX().set(projectedPoint.getX());
         this.resultPoint.getVector().getY().set(projectedPoint.getY());
         this.resultPoint.getVector().getZ().set(projectedPoint.getZ());
+    }
+
+    @Override
+    public Feature getResult() {
+        return resultPoint;
     }
 }

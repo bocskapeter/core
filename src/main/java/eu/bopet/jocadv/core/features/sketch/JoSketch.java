@@ -1,11 +1,12 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
+import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
-import eu.bopet.jocadv.core.features.Base;
+import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
 import eu.bopet.jocadv.core.features.Feature;
-import eu.bopet.jocadv.core.features.datums.JoCoSys;
+import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.linear.*;
 
@@ -14,21 +15,24 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class JoSketch extends Base implements Feature {
+public class JoSketch extends FeatureBase implements Feature {
 
     private final List<Feature> references;
     private final List<SketchGeometry> geometries;
     private final List<SketchConstraint> constraints;
     private final JoCoSys coSys;
+    private final RegenerativeLink regenerativeLink;
 
     private boolean edit;
 
-    public JoSketch(JoCoSys coSys) {
+    public JoSketch(JoCoSys coSys, RegenerativeLink regenerativeLink) {
         this.coSys = coSys;
+        this.regenerativeLink = regenerativeLink;
         references = new ArrayList<>();
         geometries = new ArrayList<>();
         constraints = new ArrayList<>();
         edit = true;
+
     }
 
     public void edit() {
@@ -152,7 +156,7 @@ public class JoSketch extends Base implements Feature {
     }
 
     @Override
-    public List<Feature> getRegenerative() {
+    public RegenerativeLink getRegenerativeLink() {
         return null;
     }
 }

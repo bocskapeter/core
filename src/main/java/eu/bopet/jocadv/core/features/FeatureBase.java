@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.features;
 
 import java.util.UUID;
 
-public abstract class Base {
+public abstract class FeatureBase {
     private UUID id;
     private String name;
     private boolean selected;

@@ -1,16 +1,16 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.Base;
+import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoCircle extends Base implements SketchGeometry, Selectable {
+public class JoCircle extends FeatureBase implements SketchGeometry, Selectable {
     private final JoSphere sphere;
     private final JoPlane plane;
 
@@ -26,15 +26,11 @@ public class JoCircle extends Base implements SketchGeometry, Selectable {
 
     @Override
     public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
-        result.addAll(sphere.getValues());
-        return result;
+        return new ArrayList<>(sphere.getValues());
     }
 
     @Override
     public List<JoPoint> getPoints() {
-        List<JoPoint> result = new ArrayList<>();
-        result.addAll(sphere.getPoints());
-        return result;
+        return new ArrayList<>(sphere.getPoints());
     }
 }

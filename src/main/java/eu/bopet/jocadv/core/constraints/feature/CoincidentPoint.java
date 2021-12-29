@@ -12,9 +12,9 @@ public class CoincidentPoint implements RegenerativeLink {
     public CoincidentPoint(JoPoint referencePoint) {
         this.referencePoint = referencePoint;
         this.resultPoint = new JoPoint(new JoVector(
-                new JoValue(referencePoint.getVector().getX().get()),
-                new JoValue(referencePoint.getVector().getY().get()),
-                new JoValue(referencePoint.getVector().getZ().get()), null),
+                new JoValue(JoValue.USER,referencePoint.getVector().getX().get()),
+                new JoValue(JoValue.USER,referencePoint.getVector().getY().get()),
+                new JoValue(JoValue.USER,referencePoint.getVector().getZ().get()), null),
                 this);
     }
 

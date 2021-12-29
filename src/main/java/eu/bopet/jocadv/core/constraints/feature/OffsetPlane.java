@@ -14,7 +14,7 @@ public class OffsetPlane implements RegenerativeLink {
         this.referencePlane = referencePlane;
         this.offsetValue = offsetValue;
         this.resultPlane = new JoPlane(referencePlane.getX(), referencePlane.getY(), referencePlane.getZ(),
-                new JoValue(referencePlane.getD().get() + offsetValue.get()), this);
+                new JoValue(JoValue.USER,referencePlane.getD().get() + offsetValue.get()), this);
     }
 
     @Override

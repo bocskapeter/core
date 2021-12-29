@@ -18,9 +18,9 @@ public class ProjectedPoint implements RegenerativeLink {
         Vector3D projectedPoint = (Vector3D)
                 referencePlane.getPlane().project(referencePoint.getVector().getVector3D());
         this.resultPoint = new JoPoint(new JoVector(
-                new JoValue(projectedPoint.getX()),
-                new JoValue(projectedPoint.getY()),
-                new JoValue(projectedPoint.getZ()), null),
+                new JoValue(JoValue.USER,projectedPoint.getX()),
+                new JoValue(JoValue.USER,projectedPoint.getY()),
+                new JoValue(JoValue.USER,projectedPoint.getZ()), null),
                 this);
     }
 

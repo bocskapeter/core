@@ -32,7 +32,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         geometries = new ArrayList<>();
         constraints = new ArrayList<>();
         edit = true;
-
     }
 
     public void edit() {

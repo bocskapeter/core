@@ -16,12 +16,6 @@ public class JoValue {
     private double value;
     private double stored;
 
-    public JoValue(double value) {
-        this.value = value;
-        this.stored = value;
-        this.status = VARIABLE;
-    }
-
     public JoValue(short status, double value) {
         this.status = status;
         this.value = value;

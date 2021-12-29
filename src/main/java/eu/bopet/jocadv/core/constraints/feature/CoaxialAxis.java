@@ -14,14 +14,14 @@ public class CoaxialAxis implements RegenerativeLink {
         this.referenceAxis = referenceAxis;
         this.resultAxis = new JoAxis(
                 new JoPoint(new JoVector(
-                        new JoValue(referenceAxis.getPoint().getVector().getX().get()),
-                        new JoValue(referenceAxis.getPoint().getVector().getY().get()),
-                        new JoValue(referenceAxis.getPoint().getVector().getZ().get()), null),
+                        new JoValue(JoValue.USER,referenceAxis.getPoint().getVector().getX().get()),
+                        new JoValue(JoValue.USER,referenceAxis.getPoint().getVector().getY().get()),
+                        new JoValue(JoValue.USER,referenceAxis.getPoint().getVector().getZ().get()), null),
                         null),
                 new JoVector(
-                        new JoValue(referenceAxis.getDirection().getX().get()),
-                        new JoValue(referenceAxis.getDirection().getY().get()),
-                        new JoValue(referenceAxis.getDirection().getZ().get()), null),
+                        new JoValue(JoValue.USER,referenceAxis.getDirection().getX().get()),
+                        new JoValue(JoValue.USER,referenceAxis.getDirection().getY().get()),
+                        new JoValue(JoValue.USER,referenceAxis.getDirection().getZ().get()), null),
                 this);
     }
 

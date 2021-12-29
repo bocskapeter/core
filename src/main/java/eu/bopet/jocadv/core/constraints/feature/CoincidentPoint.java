@@ -20,6 +20,7 @@ public class CoincidentPoint implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         this.resultPoint.getVector().getX().set(referencePoint.getVector().getX().get());
         this.resultPoint.getVector().getY().set(referencePoint.getVector().getY().get());
         this.resultPoint.getVector().getZ().set(referencePoint.getVector().getZ().get());

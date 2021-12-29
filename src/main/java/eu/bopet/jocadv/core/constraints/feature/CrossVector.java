@@ -24,6 +24,8 @@ public class CrossVector implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referenceVector1.getRegenerativeLink() != null) referenceVector1.getRegenerativeLink().regenerate();
+        if (referenceVector2.getRegenerativeLink() != null) referenceVector2.getRegenerativeLink().regenerate();
         Vector3D vector3D = referenceVector1.getVector3D().crossProduct(referenceVector2.getVector3D());
         resultVector.getX().set(vector3D.getX());
         resultVector.getY().set(vector3D.getY());

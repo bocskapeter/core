@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class JoSketch extends FeatureBase implements Feature {
+public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     private final List<Feature> references;
     private final List<SketchGeometry> geometries;
@@ -72,11 +72,11 @@ public class JoSketch extends FeatureBase implements Feature {
 
     public void addConstraint(SketchConstraint newConstraint) {
         constraints.add(newConstraint);
-
         solve();
     }
 
     private void solve() {
+        if (constraints.isEmpty()) return;
         List<JoValue> valueList = new ArrayList<>();
         for (SketchConstraint constraint : constraints) {
             valueList.addAll(constraint.getValues());
@@ -157,6 +157,17 @@ public class JoSketch extends FeatureBase implements Feature {
 
     @Override
     public RegenerativeLink getRegenerativeLink() {
-        return null;
+        return regenerativeLink;
+    }
+
+    @Override
+    public void regenerate() {
+        regenerativeLink.regenerate();
+        solve();
+    }
+
+    @Override
+    public Feature getResult() {
+        return this;
     }
 }

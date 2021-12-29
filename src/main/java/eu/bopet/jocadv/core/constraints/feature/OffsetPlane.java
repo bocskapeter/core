@@ -19,6 +19,7 @@ public class OffsetPlane implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         resultPlane.getX().set(referencePlane.getX().get());
         resultPlane.getY().set(referencePlane.getY().get());
         resultPlane.getZ().set(referencePlane.getZ().get());

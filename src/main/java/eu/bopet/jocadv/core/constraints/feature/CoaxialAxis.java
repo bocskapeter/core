@@ -27,6 +27,7 @@ public class CoaxialAxis implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referenceAxis.getRegenerativeLink() != null) referenceAxis.getRegenerativeLink().regenerate();
         this.resultAxis.getPoint().getVector().getX().set(referenceAxis.getPoint().getVector().getX().get());
         this.resultAxis.getPoint().getVector().getY().set(referenceAxis.getPoint().getVector().getY().get());
         this.resultAxis.getPoint().getVector().getZ().set(referenceAxis.getPoint().getVector().getZ().get());

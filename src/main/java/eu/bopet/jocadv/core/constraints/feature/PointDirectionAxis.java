@@ -18,6 +18,8 @@ public class PointDirectionAxis implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
+        if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();
         resultAxis.getPoint().getVector().getX().set(referencePoint.getVector().getX().get());
         resultAxis.getPoint().getVector().getY().set(referencePoint.getVector().getY().get());
         resultAxis.getPoint().getVector().getZ().set(referencePoint.getVector().getZ().get());

@@ -26,6 +26,8 @@ public class ProjectedPoint implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
+        if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         Vector3D projectedPoint = (Vector3D)
                 referencePlane.getPlane().project(referencePoint.getVector().getVector3D());
         this.resultPoint.getVector().getX().set(projectedPoint.getX());

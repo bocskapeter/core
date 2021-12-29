@@ -45,6 +45,9 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
+        if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
+        if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();
         x.getRegenerativeLink().regenerate();
         z.getRegenerativeLink().regenerate();
         y.getRegenerativeLink().regenerate();

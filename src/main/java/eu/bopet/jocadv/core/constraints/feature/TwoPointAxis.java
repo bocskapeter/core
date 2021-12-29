@@ -28,6 +28,8 @@ public class TwoPointAxis implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePoint1.getRegenerativeLink() != null) referencePoint1.getRegenerativeLink().regenerate();
+        if (referencePoint2.getRegenerativeLink() != null) referencePoint2.getRegenerativeLink().regenerate();
         this.resultAxis.getPoint().getVector().getX().set(referencePoint1.getVector().getX().get());
         this.resultAxis.getPoint().getVector().getY().set(referencePoint1.getVector().getY().get());
         this.resultAxis.getPoint().getVector().getZ().set(referencePoint1.getVector().getZ().get());

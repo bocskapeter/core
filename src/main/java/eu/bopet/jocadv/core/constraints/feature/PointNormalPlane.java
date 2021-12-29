@@ -32,6 +32,8 @@ public class PointNormalPlane implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
+        if (referenceNormal.getRegenerativeLink() != null) referenceNormal.getRegenerativeLink().regenerate();
         resultPlane.getX().set(referenceNormal.getX().get());
         resultPlane.getY().set(referenceNormal.getY().get());
         resultPlane.getZ().set(referenceNormal.getZ().get());

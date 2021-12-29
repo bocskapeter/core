@@ -27,6 +27,7 @@ public class OppositeVector implements RegenerativeLink {
 
     @Override
     public void regenerate() {
+        if (referenceVector.getRegenerativeLink() != null) referenceVector.getRegenerativeLink().regenerate();
         resultVector.getX().set(-1.0 * referenceVector.getX().get());
         resultVector.getX().set(-1.0 * referenceVector.getX().get());
         resultVector.getX().set(-1.0 * referenceVector.getX().get());

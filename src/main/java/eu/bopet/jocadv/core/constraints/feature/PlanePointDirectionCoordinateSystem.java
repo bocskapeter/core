@@ -5,7 +5,6 @@ import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
 public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
@@ -35,9 +34,12 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         CrossVector crossVector = new CrossVector(z.getDirection(), x.getDirection());
         PointDirectionAxis pointDirectionAxis3 = new PointDirectionAxis(point, (JoVector) crossVector.getResult());
         this.y = (JoAxis) pointDirectionAxis3.getResult();
-        this.xy = new JoPlane(JoValue.ONE, JoValue.ONE, JoValue.ONE, JoValue.ONE, null);
-        this.yz = new JoPlane(JoValue.ONE, JoValue.ONE, JoValue.ONE, JoValue.ONE, null);
-        this.xz = new JoPlane(JoValue.ONE, JoValue.ONE, JoValue.ONE, JoValue.ONE, null);
+        PointNormalPlane pointNormalPlane1 = new PointNormalPlane(referencePoint, this.z.getDirection());
+        this.xy = (JoPlane) pointNormalPlane1.getResult();
+        PointNormalPlane pointNormalPlane2 = new PointNormalPlane(referencePoint, this.x.getDirection());
+        this.yz = (JoPlane) pointNormalPlane2.getResult();
+        PointNormalPlane pointNormalPlane3 = new PointNormalPlane(referencePoint, this.y.getDirection());
+        this.xz = (JoPlane) pointNormalPlane3.getResult();
         this.resultCoordinateSystem = new JoCoSys(referencePoint, x, y, z, xy, yz, xz, this);
     }
 
@@ -46,8 +48,9 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         x.getRegenerativeLink().regenerate();
         z.getRegenerativeLink().regenerate();
         y.getRegenerativeLink().regenerate();
-
-
+        xy.getRegenerativeLink().regenerate();
+        yz.getRegenerativeLink().regenerate();
+        xz.getRegenerativeLink().regenerate();
     }
 
     @Override

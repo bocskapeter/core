@@ -10,11 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, Feature {
-    public final static JoPoint ORIGIN = new JoPoint(JoVector.ZERO, null);
+    public final static JoPoint ORIGIN = new JoPoint("Origin", JoVector.ZERO, null);
     private final JoVector vector;
     private final RegenerativeLink regenerativeLink;
 
     public JoPoint(JoVector vector, RegenerativeLink regenerativeLink) {
+        this.vector = vector;
+        this.regenerativeLink = regenerativeLink;
+    }
+
+    public JoPoint(String name, JoVector vector, RegenerativeLink regenerativeLink) {
+        super();
+        super.setName(name);
         this.vector = vector;
         this.regenerativeLink = regenerativeLink;
     }

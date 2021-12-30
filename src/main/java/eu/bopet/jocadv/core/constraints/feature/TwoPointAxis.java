@@ -16,17 +16,17 @@ public class TwoPointAxis implements RegenerativeLink {
         this.referencePoint2 = point2;
         this.resultAxis = new JoAxis(
                 new JoPoint(new JoVector(
-                        new JoValue(JoValue.USER,point1.getVector().getX().get()),
-                        new JoValue(JoValue.USER,point1.getVector().getY().get()),
-                        new JoValue(JoValue.USER,point1.getVector().getZ().get()), null),
+                        new JoValue(JoValue.USER, point1.getVector().getX().get()),
+                        new JoValue(JoValue.USER, point1.getVector().getY().get()),
+                        new JoValue(JoValue.USER, point1.getVector().getZ().get()), null),
                         null),
                 new JoVector(
                         new JoValue(
-                                JoValue.USER,point2.getVector().getX().get() - point1.getVector().getX().get()),
+                                JoValue.USER, point2.getVector().getX().get() - point1.getVector().getX().get()),
                         new JoValue(
-                                JoValue.USER,point2.getVector().getY().get() - point1.getVector().getY().get()),
+                                JoValue.USER, point2.getVector().getY().get() - point1.getVector().getY().get()),
                         new JoValue(
-                                JoValue.USER,point2.getVector().getZ().get() - point1.getVector().getZ().get()),
+                                JoValue.USER, point2.getVector().getZ().get() - point1.getVector().getZ().get()),
                         null),
                 this);
     }

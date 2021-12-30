@@ -31,7 +31,8 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         references = new ArrayList<>();
         geometries = new ArrayList<>();
         constraints = new ArrayList<>();
-        edit = true;
+        edit = false;
+        edit();
     }
 
     public void edit() {
@@ -161,6 +162,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     @Override
     public void regenerate() {
+        for (Feature feature : references) {
+            if (feature.getRegenerativeLink() != null) feature.getRegenerativeLink().regenerate();
+        }
         regenerativeLink.regenerate();
         solve();
     }

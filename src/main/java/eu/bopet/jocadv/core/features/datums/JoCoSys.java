@@ -9,7 +9,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 public class JoCoSys extends FeatureBase implements Selectable, Feature {
     public static final JoCoSys DEFAULT_COORDINATE_SYSTEM =
-            new JoCoSys(JoPoint.ORIGIN,
+            new JoCoSys("Default", JoPoint.ORIGIN,
                     JoAxis.X, JoAxis.Y, JoAxis.Z,
                     JoPlane.XY, JoPlane.YZ, JoPlane.XZ, null);
 
@@ -23,6 +23,19 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
     private final RegenerativeLink regenerative;
 
     public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerative) {
+        this.origin = origin;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.xy = xy;
+        this.yz = yz;
+        this.xz = xz;
+        this.regenerative = regenerative;
+    }
+
+    public JoCoSys(String name, JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerative) {
+        super();
+        super.setName(name);
         this.origin = origin;
         this.x = x;
         this.y = y;

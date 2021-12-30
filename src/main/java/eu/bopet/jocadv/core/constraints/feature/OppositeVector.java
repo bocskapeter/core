@@ -16,9 +16,9 @@ public class OppositeVector implements RegenerativeLink {
             return;
         }
         this.resultVector = new JoVector(
-                new JoValue(JoValue.USER,-1.0 * referenceVector.getX().get()),
-                new JoValue(JoValue.USER,-1.0 * referenceVector.getY().get()),
-                new JoValue(JoValue.USER,-1.0 * referenceVector.getZ().get()), this);
+                new JoValue(JoValue.USER, -1.0 * referenceVector.getX().get()),
+                new JoValue(JoValue.USER, -1.0 * referenceVector.getY().get()),
+                new JoValue(JoValue.USER, -1.0 * referenceVector.getZ().get()), this);
     }
 
     public JoVector getReferenceVector() {

@@ -15,10 +15,10 @@ public class PointNormalPlane implements RegenerativeLink {
         this.referencePoint = referencePoint;
         this.referenceNormal = referenceNormal;
         this.resultPlane = new JoPlane(
-                new JoValue(JoValue.USER,this.referenceNormal.getX().get()),
-                new JoValue(JoValue.USER,this.referenceNormal.getY().get()),
-                new JoValue(JoValue.USER,this.referenceNormal.getZ().get()),
-                new JoValue(JoValue.USER,getD()),
+                new JoValue(JoValue.USER, this.referenceNormal.getX().get()),
+                new JoValue(JoValue.USER, this.referenceNormal.getY().get()),
+                new JoValue(JoValue.USER, this.referenceNormal.getZ().get()),
+                new JoValue(JoValue.USER, getD()),
                 this
         );
     }

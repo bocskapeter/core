@@ -10,14 +10,22 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 public class JoAxis extends FeatureBase implements Selectable, Feature {
-    public static final JoAxis X = new JoAxis(JoPoint.ORIGIN, JoVector.I, null);
-    public static final JoAxis Y = new JoAxis(JoPoint.ORIGIN, JoVector.J, null);
-    public static final JoAxis Z = new JoAxis(JoPoint.ORIGIN, JoVector.K, null);
+    public static final JoAxis X = new JoAxis("X", JoPoint.ORIGIN, JoVector.I, null);
+    public static final JoAxis Y = new JoAxis("Y", JoPoint.ORIGIN, JoVector.J, null);
+    public static final JoAxis Z = new JoAxis("Z", JoPoint.ORIGIN, JoVector.K, null);
     private final JoPoint point;
     private final JoVector direction;
     private final RegenerativeLink regenerativeLink;
 
     public JoAxis(JoPoint point, JoVector direction, RegenerativeLink regenerativeLink) {
+        this.point = point;
+        this.direction = direction;
+        this.regenerativeLink = regenerativeLink;
+    }
+
+    public JoAxis(String name, JoPoint point, JoVector direction, RegenerativeLink regenerativeLink) {
+        super();
+        super.setName(name);
         this.point = point;
         this.direction = direction;
         this.regenerativeLink = regenerativeLink;

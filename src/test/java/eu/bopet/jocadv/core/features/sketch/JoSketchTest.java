@@ -33,13 +33,13 @@ class JoSketchTest {
         System.out.println(" regenerate compete");
 
 
-        JoValue x1 = new JoValue(1.26);
-        JoValue y1 = new JoValue(2.59);
-        JoValue z1 = new JoValue(0.015);
+        JoValue x1 = new JoValue(JoValue.VARIABLE,1.26);
+        JoValue y1 = new JoValue(JoValue.VARIABLE,2.59);
+        JoValue z1 = new JoValue(JoValue.VARIABLE,0.015);
 
-        JoValue x2 = new JoValue(8.26);
-        JoValue y2 = new JoValue(6.59);
-        JoValue z2 = new JoValue(0.06);
+        JoValue x2 = new JoValue(JoValue.VARIABLE,8.26);
+        JoValue y2 = new JoValue(JoValue.VARIABLE,6.59);
+        JoValue z2 = new JoValue(JoValue.VARIABLE,0.06);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         JoPoint point2 = new JoPoint(new JoVector(x2, y2, z2, null), null);

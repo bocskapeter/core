@@ -15,9 +15,9 @@ public class CrossVector implements RegenerativeLink {
         this.referenceVector2 = referenceVector2;
         Vector3D vector3D = referenceVector1.getVector3D().crossProduct(referenceVector2.getVector3D());
         resultVector = new JoVector(
-                new JoValue(JoValue.USER,vector3D.getX()),
-                new JoValue(JoValue.USER,vector3D.getY()),
-                new JoValue(JoValue.USER,vector3D.getZ()),
+                new JoValue(JoValue.USER, vector3D.getX()),
+                new JoValue(JoValue.USER, vector3D.getY()),
+                new JoValue(JoValue.USER, vector3D.getZ()),
                 null
         );
     }

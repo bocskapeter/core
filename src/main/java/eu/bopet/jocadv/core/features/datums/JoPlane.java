@@ -11,9 +11,9 @@ import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 public class JoPlane extends FeatureBase implements Selectable, Feature {
-    public final static JoPlane XY = new JoPlane(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
-    public final static JoPlane XZ = new JoPlane(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
-    public final static JoPlane YZ = new JoPlane(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
+    public final static JoPlane XY = new JoPlane("XY", JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
+    public final static JoPlane XZ = new JoPlane("XZ", JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
+    public final static JoPlane YZ = new JoPlane("YZ", JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
     private final JoValue x;
     private final JoValue y;
     private final JoValue z;
@@ -22,6 +22,17 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
     private final RegenerativeLink regenerativeLink;
 
     public JoPlane(JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.d = d;
+        this.regenerativeLink = regenerativeLink;
+        normal = new JoVector(x, y, z, null);
+    }
+
+    public JoPlane(String name, JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
+        super();
+        super.setName(name);
         this.x = x;
         this.y = y;
         this.z = z;

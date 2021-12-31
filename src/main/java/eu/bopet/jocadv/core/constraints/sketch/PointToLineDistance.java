@@ -40,13 +40,13 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
 
     @Override
     public double getFunctionValue() {
-        //TODO
+        //TODO calculate function value
         return 0;
     }
 
     @Override
     public double getDerivative(JoValue joValue) {
-        //TODO
+        //TODO calculate derivative value
         return 0;
     }
 }

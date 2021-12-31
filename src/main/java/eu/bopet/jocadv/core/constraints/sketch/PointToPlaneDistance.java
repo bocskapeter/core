@@ -23,7 +23,6 @@ public class PointToPlaneDistance extends ConstraintBase implements SketchConstr
     @Override
     public List<SketchGeometry> getGeometries() {
         List<SketchGeometry> result = new ArrayList<>();
-        //result.add(plane);
         result.add(point);
         return result;
     }

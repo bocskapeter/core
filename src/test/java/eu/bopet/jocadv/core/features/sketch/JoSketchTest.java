@@ -1,6 +1,8 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.constraints.feature.*;
+import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
+import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -26,12 +28,6 @@ class JoSketchTest {
         JoCoSys sketchCoordinateSystem = (JoCoSys) planePointDirectionCoordinateSystem.getResult();
         CoordinateSystemSketch coordinateSystemSketch = new CoordinateSystemSketch(sketchCoordinateSystem);
         JoSketch sketch = (JoSketch) coordinateSystemSketch.getResult();
-        System.out.println(" change offset ");
-        offset.set(1.0);
-        System.out.println(" start regenerate ");
-        sketch.regenerate();
-        System.out.println(" regenerate compete");
-
 
         JoValue x1 = new JoValue(JoValue.VARIABLE,1.26);
         JoValue y1 = new JoValue(JoValue.VARIABLE,2.59);
@@ -45,5 +41,21 @@ class JoSketchTest {
         JoPoint point2 = new JoPoint(new JoVector(x2, y2, z2, null), null);
         sketch.addGeometry(point1);
         sketch.addGeometry(point2);
+
+        System.out.println("--change offset ");
+        offset.set(1.0);
+        System.out.println("--start regenerate ");
+        sketch.regenerate();
+        System.out.println("--regenerate compete");
+
+        JoValue distance = new JoValue(JoValue.USER,6.0);
+
+        PointToPointDistance pointToPointDistance = new PointToPointDistance(point1,point2,distance, SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToPointDistance);
+        System.out.println("--change offset ");
+        offset.set(2.0);
+        System.out.println("--start regenerate ");
+        sketch.regenerate();
+        System.out.println("--regenerate compete");
     }
 }

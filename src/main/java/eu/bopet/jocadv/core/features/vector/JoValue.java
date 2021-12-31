@@ -3,14 +3,16 @@ package eu.bopet.jocadv.core.features.vector;
 public class JoValue {
     public final static short CONSTANT = 0;
     public final static short USER = 1;
-    public final static short FIX = 2;
-    public final static short VARIABLE = 3;
+    public final static short AUTO = 2;
+    public final static short FIX = 3;
+    public final static short VARIABLE = 4;
+
 
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
-    public static final double DEFAULT_TOLERANCE = 1.0e-10;
+    public static final double DEFAULT_TOLERANCE = 1.70e-12; //[mm] diameter of the nucleus for hydrogen
 
-    private static final String[] SYMBOLS = {"⏚", "🖳", "x", "↔"};
+    private static final String[] SYMBOLS = {"⏚", "🖳", "?", "✔", "↔"};
 
     private short status;
     private double value;
@@ -27,8 +29,11 @@ public class JoValue {
     }
 
     public void set(double newValue) {
-        if (status == VARIABLE || status == USER) {
-            this.value = newValue;
+        if (status == VARIABLE || status == USER || status == AUTO) {
+            double difference = Math.abs(newValue - value);
+            if (difference > JoValue.DEFAULT_TOLERANCE) {
+                this.value = newValue;
+            }
         }
     }
 

@@ -55,4 +55,11 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
     }
+
+    @Override
+    public String toString() {
+        return "JoPoint{" +
+                "vector=" + vector +
+                '}';
+    }
 }

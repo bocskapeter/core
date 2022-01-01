@@ -39,8 +39,10 @@ class JoSketchTest {
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         JoPoint point2 = new JoPoint(new JoVector(x2, y2, z2, null), null);
+        JoLine line = new JoLine(point1,point2);
         sketch.addGeometry(point1);
         sketch.addGeometry(point2);
+        sketch.addGeometry(line);
 
         System.out.println("--change offset ");
         offset.set(1.0);
@@ -57,5 +59,6 @@ class JoSketchTest {
         System.out.println("--start regenerate ");
         sketch.regenerate();
         System.out.println("--regenerate compete");
+        System.out.println("1: "+ point1 + "\n2: "+ point2);
     }
 }

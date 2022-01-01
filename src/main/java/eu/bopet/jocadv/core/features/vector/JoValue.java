@@ -57,6 +57,6 @@ public class JoValue {
 
     @Override
     public String toString() {
-        return "Value{ " + SYMBOLS[status] + " " + value + " / " + stored + '}';
+        return "{" + SYMBOLS[status] + " " + value + "/" + stored + '}';
     }
 }

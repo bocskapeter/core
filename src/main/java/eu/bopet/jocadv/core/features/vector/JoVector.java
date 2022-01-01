@@ -80,4 +80,13 @@ public class JoVector implements Feature {
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
     }
+
+    @Override
+    public String toString() {
+        return "JoVector{" +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                '}';
+    }
 }

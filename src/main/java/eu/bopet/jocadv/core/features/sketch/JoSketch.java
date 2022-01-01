@@ -66,14 +66,31 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         for (JoValue value : geometry.getValues()) {
             value.setStatus(JoValue.VARIABLE);
         }
+        if (geometry instanceof JoPoint){
+            JoPoint point = (JoPoint) geometry;
+            boolean alreadyOnPlane = false;
+            for (SketchConstraint constraint : constraints) {
+                if (constraint instanceof PointToPlaneDistance
+                        && constraint.getGeometries().contains(point)
+                        && constraint.getGeometries().contains(coSys.getXy())) {
+                    alreadyOnPlane = true;
+                }
+            }
+            if (!alreadyOnPlane) {
+                PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
+                        coSys.getXy(),
+                        point,
+                        new JoValue(JoValue.USER, 0.0),
+                        SketchConstraint.USER_DEFINED);
+                addConstraint(pointToPlaneDistance);
+            }
+            return;
+        }
         List<JoPoint> points = geometry.getPoints();
         for (JoPoint point : points) {
-            PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
-                    coSys.getXy(),
-                    point,
-                    new JoValue(JoValue.USER, 0.0),
-                    SketchConstraint.USER_DEFINED);
-            addConstraint(pointToPlaneDistance);
+            if (!geometries.contains(point)) {
+                addGeometry(point);
+            }
         }
     }
 
@@ -166,7 +183,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 for (SketchGeometry geometry : lastGeometries) {
                     for (SketchConstraint constraint : constraints) {
                         if (constraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT
-                                && constraint.getGeometries().contains(geometry)){
+                                && constraint.getGeometries().contains(geometry)) {
                             constraints.remove(constraint);
                             return true;
                         }

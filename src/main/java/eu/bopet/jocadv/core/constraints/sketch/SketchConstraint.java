@@ -6,8 +6,8 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import java.util.List;
 
 public interface SketchConstraint {
-    public final static short USER_DEFINED = 1;
-    public final static short AUTO_CONSTRAINT = 2;
+    short USER_DEFINED = 1;
+    short AUTO_CONSTRAINT = 2;
 
     /**
      * @return status

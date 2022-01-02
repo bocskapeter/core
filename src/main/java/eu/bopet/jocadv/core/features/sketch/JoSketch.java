@@ -11,7 +11,6 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.linear.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -66,7 +65,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         for (JoValue value : geometry.getValues()) {
             value.setStatus(JoValue.VARIABLE);
         }
-        if (geometry instanceof JoPoint){
+        if (geometry instanceof JoPoint) {
             JoPoint point = (JoPoint) geometry;
             boolean alreadyOnPlane = false;
             for (SketchConstraint constraint : constraints) {
@@ -120,7 +119,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     private boolean doubleCheck() {
         for (SketchConstraint constraint : constraints) {
-            if (constraint.getFunctionValue() > JoValue.DEFAULT_TOLERANCE){
+            if (constraint.getFunctionValue() > JoValue.DEFAULT_TOLERANCE) {
                 System.out.println("This constrain is still unsatisfied with function value: " + constraint.getFunctionValue());
                 return false;
             }
@@ -190,10 +189,10 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 }
                 for (SketchGeometry geometry : lastGeometries) {
                     List<JoPoint> points = geometry.getPoints();
-                    for (JoPoint point : points){
-                        for (SketchConstraint constraint : constraints){
+                    for (JoPoint point : points) {
+                        for (SketchConstraint constraint : constraints) {
                             if (constraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT
-                                    && constraint.getGeometries().contains(point)){
+                                    && constraint.getGeometries().contains(point)) {
                                 constraints.remove(constraint);
                                 return true;
                             }

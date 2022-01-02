@@ -8,6 +8,17 @@ public class JoPart extends FeatureBase {
 
     public JoPart() {
         features = new ArrayList<>();
+    }
 
+    public void addFeature(Feature feature){
+        if (!features.contains(feature)){
+            features.add(feature);
+        }
+    }
+
+    public void regenerate(){
+        for (Feature feature : features){
+            if (feature.getRegenerativeLink()!=null) feature.getRegenerativeLink().regenerate();
+        }
     }
 }

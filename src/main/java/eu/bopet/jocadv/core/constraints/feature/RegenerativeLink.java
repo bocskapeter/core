@@ -1,6 +1,9 @@
 package eu.bopet.jocadv.core.constraints.feature;
 
 import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.vector.JoValue;
+
+import java.util.List;
 
 public interface RegenerativeLink {
     /**
@@ -12,4 +15,9 @@ public interface RegenerativeLink {
      * @return result feature
      */
     Feature getResult();
+
+    /**
+     * @return list of values used for this regenerative link
+     */
+    List<JoValue> getValues();
 }

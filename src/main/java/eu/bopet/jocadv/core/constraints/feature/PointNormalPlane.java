@@ -6,6 +6,8 @@ import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.List;
+
 public class PointNormalPlane implements RegenerativeLink {
     private final JoPoint referencePoint;
     private final JoVector referenceNormal;
@@ -43,5 +45,10 @@ public class PointNormalPlane implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultPlane;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

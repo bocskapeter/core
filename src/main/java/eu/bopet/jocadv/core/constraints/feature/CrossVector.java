@@ -5,6 +5,8 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.List;
+
 public class CrossVector implements RegenerativeLink {
     private final JoVector referenceVector1;
     private final JoVector referenceVector2;
@@ -35,5 +37,10 @@ public class CrossVector implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultVector;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

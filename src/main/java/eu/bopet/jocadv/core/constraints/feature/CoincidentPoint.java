@@ -5,6 +5,8 @@ import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.List;
+
 public class CoincidentPoint implements RegenerativeLink {
     private final JoPoint referencePoint;
     private final JoPoint resultPoint;
@@ -29,5 +31,10 @@ public class CoincidentPoint implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultPoint;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

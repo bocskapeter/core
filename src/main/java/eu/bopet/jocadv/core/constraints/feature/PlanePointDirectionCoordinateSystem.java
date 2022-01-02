@@ -5,7 +5,10 @@ import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
+
+import java.util.List;
 
 public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     private final JoPlane referencePlane;
@@ -59,5 +62,10 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultCoordinateSystem;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

@@ -4,6 +4,9 @@ import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OffsetPlane implements RegenerativeLink {
     private final JoPlane referencePlane;
     private final JoValue offsetValue;
@@ -29,5 +32,12 @@ public class OffsetPlane implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultPlane;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        List<JoValue> result = new ArrayList<>();
+        result.add(offsetValue);
+        return result;
     }
 }

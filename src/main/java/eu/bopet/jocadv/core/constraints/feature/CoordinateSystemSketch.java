@@ -3,6 +3,9 @@ package eu.bopet.jocadv.core.constraints.feature;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
+import eu.bopet.jocadv.core.features.vector.JoValue;
+
+import java.util.List;
 
 public class CoordinateSystemSketch implements RegenerativeLink {
     private final JoCoSys referenceCoordinateSystem;
@@ -21,5 +24,10 @@ public class CoordinateSystemSketch implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultSketch;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

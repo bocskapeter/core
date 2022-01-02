@@ -4,6 +4,8 @@ import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.List;
+
 public class OppositeVector implements RegenerativeLink {
     private final JoVector referenceVector;
     private final JoVector resultVector;
@@ -36,5 +38,10 @@ public class OppositeVector implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultVector;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

@@ -6,6 +6,8 @@ import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.List;
+
 public class TwoPointAxis implements RegenerativeLink {
     private final JoPoint referencePoint1;
     private final JoPoint referencePoint2;
@@ -49,5 +51,10 @@ public class TwoPointAxis implements RegenerativeLink {
     @Override
     public Feature getResult() {
         return resultAxis;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return null;
     }
 }

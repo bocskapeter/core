@@ -130,7 +130,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private void prepareVariables() {
         valueList = new ArrayList<>();
         for (SketchConstraint constraint : constraints) {
-            valueList.addAll(constraint.getValues());
+            for (JoValue value: constraint.getValues()){
+                if (!valueList.contains(value))valueList.add(value);
+            }
         }
         variables = new ArrayList<>();
         for (JoValue value : valueList) {
@@ -260,5 +262,10 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     @Override
     public Feature getResult() {
         return this;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        return valueList;
     }
 }

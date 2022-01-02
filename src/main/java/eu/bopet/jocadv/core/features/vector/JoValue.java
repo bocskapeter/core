@@ -13,7 +13,7 @@ public class JoValue {
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
     public static final double DEFAULT_TOLERANCE = 1.70e-12; //[mm] diameter of the nucleus for hydrogen
-    public static final int NUMBER_OF_DIGITS_TO_SCALE = 11;
+    public static final int NUMBER_OF_DIGITS_TO_SCALE = 12;
 
     private static final String[] SYMBOLS = {"⏚", "🖳", "?", "✔", "↔"};
 

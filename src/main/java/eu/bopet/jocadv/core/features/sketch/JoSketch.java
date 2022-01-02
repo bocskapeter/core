@@ -173,10 +173,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                         constraints.add(pointToPlaneDistanceXZ);
                         return true;
                     }
-                    if (DoF == 2) {
-                        //TODO add AUTO constraint
-                        underConstrainedGeometries.add(geometry);
-                    }
                 }
             } else if (variables.size() < constraints.size()) {
                 List<SketchGeometry> lastGeometries = lastConstraint.getGeometries();
@@ -186,6 +182,18 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                                 && constraint.getGeometries().contains(geometry)) {
                             constraints.remove(constraint);
                             return true;
+                        }
+                    }
+                }
+                for (SketchGeometry geometry : lastGeometries) {
+                    List<JoPoint> points = geometry.getPoints();
+                    for (JoPoint point : points){
+                        for (SketchConstraint constraint : constraints){
+                            if (constraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT
+                                    && constraint.getGeometries().contains(point)){
+                                constraints.remove(constraint);
+                                return true;
+                            }
                         }
                     }
                 }
@@ -205,27 +213,16 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         RealVector solution;
 
         for (int k = 0; k < 10; k++) {
-            System.out.println("Iteration: " + k);
-
             for (int i = 0; i < constraints.size(); i++) {
                 fx[i] = -1.0 * constraints.get(i).getFunctionValue();
                 for (int j = 0; j < constraints.size(); j++) {
                     dfx[i][j] = constraints.get(i).getDerivative(variables.get(j));
                 }
             }
-
-            System.out.println("Fx: " + Arrays.toString(fx));
-            for (double[] line : dfx) {
-                System.out.println("dFx: " + Arrays.toString(line));
-            }
-
             coefficients = new Array2DRowRealMatrix(dfx, false);
             solver = new SingularValueDecomposition(coefficients).getSolver();
             constants = new ArrayRealVector(fx, false);
             solution = solver.solve(constants);
-
-            System.out.println("Solution (xn+1 - xn): " + solution.toString());
-
             boolean isSolved = true;
             for (int i = 0; i < solution.getDimension(); i++) {
                 if (Math.abs(solution.getEntry(i)) > JoValue.DEFAULT_TOLERANCE) {

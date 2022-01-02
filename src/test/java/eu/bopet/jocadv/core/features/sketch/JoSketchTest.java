@@ -1,6 +1,8 @@
 package eu.bopet.jocadv.core.features.sketch;
 
+
 import eu.bopet.jocadv.core.constraints.feature.*;
+import eu.bopet.jocadv.core.constraints.sketch.LineParallelToDirection;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
 import eu.bopet.jocadv.core.features.JoPoint;
@@ -37,12 +39,19 @@ class JoSketchTest {
         JoValue y2 = new JoValue(JoValue.VARIABLE,6.59);
         JoValue z2 = new JoValue(JoValue.VARIABLE,0.06);
 
+        JoValue x3 = new JoValue(JoValue.VARIABLE,0.16);
+        JoValue y3 = new JoValue(JoValue.VARIABLE,9.59);
+        JoValue z3 = new JoValue(JoValue.VARIABLE,-0.089);
+
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         JoPoint point2 = new JoPoint(new JoVector(x2, y2, z2, null), null);
-        JoLine line = new JoLine(point1,point2);
+        JoPoint point3 = new JoPoint(new JoVector(x3, y3, z3, null), null);
+        JoLine line1 = new JoLine(point1,point2);
+        JoLine line2 = new JoLine(point1,point3);
         sketch.addGeometry(point1);
         sketch.addGeometry(point2);
-        sketch.addGeometry(line);
+        sketch.addGeometry(line1);
+        sketch.addGeometry(line2);
 
         System.out.println("--change offset ");
         offset.set(1.0);
@@ -60,5 +69,16 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate compete");
         System.out.println("1: "+ point1 + "\n2: "+ point2);
+
+        LineParallelToDirection lineParallelToDirection1 = new LineParallelToDirection(SketchConstraint.USER_DEFINED,line1,sketchCoordinateSystem.getX().getDirection());
+        sketch.addConstraint(lineParallelToDirection1);
+        LineParallelToDirection lineParallelToDirection2 = new LineParallelToDirection(SketchConstraint.USER_DEFINED,line2,sketchCoordinateSystem.getY().getDirection());
+        sketch.addConstraint(lineParallelToDirection2);
+        System.out.println("--change offset ");
+        offset.set(-2.0);
+        System.out.println("--start regenerate ");
+        sketch.regenerate();
+        System.out.println("--regenerate compete");
+        System.out.println("1: "+ point1 + "\n2: "+ point2 + "\n3: " + point3);
     }
 }

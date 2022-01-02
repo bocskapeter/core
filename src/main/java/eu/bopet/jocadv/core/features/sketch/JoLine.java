@@ -18,6 +18,14 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         this.point2 = point2;
     }
 
+    public JoPoint get1stPoint() {
+        return point1;
+    }
+
+    public JoPoint get2ndPoint() {
+        return point2;
+    }
+
     @Override
     public double distance(Line pickingLine) {
         return pickingLine.distance(geLine());

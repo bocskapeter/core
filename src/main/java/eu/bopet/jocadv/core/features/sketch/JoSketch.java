@@ -2,6 +2,7 @@ package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
+import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
@@ -21,10 +22,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private final List<SketchConstraint> constraints;
     private final JoCoSys coSys;
     private final RegenerativeLink regenerativeLink;
-    private List<JoValue> valueList;
-    private List<JoValue> variables;
+    private final List<JoValue> valueList;
+    private final List<JoValue> variables;
     private SketchConstraint lastConstraint;
-
     private boolean edit;
 
     public JoSketch(JoCoSys coSys, RegenerativeLink regenerativeLink) {
@@ -33,6 +33,8 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         references = new ArrayList<>();
         geometries = new ArrayList<>();
         constraints = new ArrayList<>();
+        valueList = new ArrayList<>();
+        variables = new ArrayList<>();
         edit = false;
         edit();
     }
@@ -57,7 +59,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         edit = false;
     }
-
 
     public void addGeometry(SketchGeometry geometry) {
         if (geometries.contains(geometry)) return;
@@ -84,6 +85,22 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 addConstraint(pointToPlaneDistance);
             }
             return;
+        }
+        if (geometry instanceof JoArc) {
+            JoArc arc = (JoArc) geometry;
+            JoPoint point1 = arc.get1stPoint();
+            JoPoint point2 = arc.get2ndPoint();
+            JoPoint center = arc.getCircle().getSphere().getCenter();
+            double radius1 = point1.distance(center);
+            double radius2 = point2.distance(center);
+            double mainRadius = (radius1 + radius2) / 2.0;
+            JoValue radius = new JoValue(JoValue.USER, mainRadius);
+            PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
+                    point1, center, radius, SketchConstraint.USER_DEFINED);
+            PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
+                    point2, center, radius, SketchConstraint.USER_DEFINED);
+            addConstraint(pointToPointDistance1);
+            addConstraint(pointToPointDistance2);
         }
         List<JoPoint> points = geometry.getPoints();
         for (JoPoint point : points) {
@@ -128,13 +145,13 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     }
 
     private void prepareVariables() {
-        valueList = new ArrayList<>();
+        valueList.clear();
         for (SketchConstraint constraint : constraints) {
-            for (JoValue value: constraint.getValues()){
-                if (!valueList.contains(value))valueList.add(value);
+            for (JoValue value : constraint.getValues()) {
+                if (!valueList.contains(value)) valueList.add(value);
             }
         }
-        variables = new ArrayList<>();
+        variables.clear();
         for (JoValue value : valueList) {
             if (!variables.contains(value) && value.getStatus() == JoValue.VARIABLE) {
                 variables.add(value);

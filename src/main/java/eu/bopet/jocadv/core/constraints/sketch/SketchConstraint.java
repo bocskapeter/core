@@ -30,7 +30,19 @@ public interface SketchConstraint {
     double getFunctionValue();
 
     /**
-     * @return partial derivative - ∂f(xn)/∂xn
+     * @return partial derivative - ∂f(xn)/∂xn - default is numerical derivative
      */
-    double getDerivative(JoValue joValue);
+    default double getDerivative(JoValue joValue) {
+        if (getValues().contains(joValue)) {
+            double originalValue = joValue.get();
+            joValue.set(originalValue + JoValue.NUMERICAL_DERIVATIVE_RESOLUTION);
+            double functionValuePositiveDirection = getFunctionValue();
+            joValue.set(originalValue - JoValue.NUMERICAL_DERIVATIVE_RESOLUTION);
+            double functionValueNegativeDirection = getFunctionValue();
+            joValue.set(originalValue);
+            return (functionValuePositiveDirection - functionValueNegativeDirection)
+                    / (2.0 * JoValue.NUMERICAL_DERIVATIVE_RESOLUTION);
+        }
+        return 0.0;
+    }
 }

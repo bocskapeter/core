@@ -18,6 +18,14 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
         this.radius = radius;
     }
 
+    public JoPoint getCenter() {
+        return center;
+    }
+
+    public JoValue getRadius() {
+        return radius;
+    }
+
     @Override
     public double distance(Line pickingLine) {
         return pickingLine.distance(center.getVector().getVector3D()) - radius.get();

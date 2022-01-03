@@ -12,8 +12,18 @@ public class JoValue {
 
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
+    /**
+     * Under this value the values are considered the same. Like a kind of resolution.
+     */
     public static final double DEFAULT_TOLERANCE = 1.70e-12; //[mm] diameter of the nucleus for hydrogen
+    /**
+     * Rounding the values to this number of digits. Related to the default tolerance value.
+     */
     public static final int NUMBER_OF_DIGITS_TO_SCALE = 12;
+    /**
+     * Interval for the numerical derivative calculation.
+     */
+    public static final double NUMERICAL_DERIVATIVE_RESOLUTION = 3.14 * DEFAULT_TOLERANCE;
 
     private static final String[] SYMBOLS = {"⏚", "🖳", "?", "✔", "↔"};
 

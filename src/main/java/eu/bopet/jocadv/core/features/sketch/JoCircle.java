@@ -19,6 +19,14 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
         this.plane = plane;
     }
 
+    public JoSphere getSphere() {
+        return sphere;
+    }
+
+    public JoPlane getPlane() {
+        return plane;
+    }
+
     @Override
     public double distance(Line pickingLine) {
         return sphere.distance(pickingLine);

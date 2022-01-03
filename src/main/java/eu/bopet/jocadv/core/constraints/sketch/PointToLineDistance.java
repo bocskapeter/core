@@ -18,7 +18,6 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         this.line = line;
         this.point = point;
         this.distance = distance;
-
     }
 
     @Override
@@ -43,15 +42,12 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double x1 = line.get1stPoint().getVector().getX().get();
         double y1 = line.get1stPoint().getVector().getY().get();
         double z1 = line.get1stPoint().getVector().getZ().get();
-
         double x2 = line.get2ndPoint().getVector().getX().get();
         double y2 = line.get2ndPoint().getVector().getY().get();
         double z2 = line.get2ndPoint().getVector().getZ().get();
-
         double x3 = point.getVector().getX().get();
         double y3 = point.getVector().getY().get();
         double z3 = point.getVector().getZ().get();
-
         // x2-x1
         double a1 = (x2 - x1);
         double a2 = (y2 - y1);
@@ -60,21 +56,14 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double b1 = (x1 - x3);
         double b2 = (y1 - y3);
         double b3 = (z1 - z3);
-
+        // cross product
+        double c1 = (a2 * b3 - a3 * b2);
+        double c2 = (a3 * b1 - a1 * b3);
+        double c3 = (a1 * b2 - a2 * b1);
         // cross product length
-        double nominator = Math.sqrt(
-                ((y2 - y1) * (z1 - z3) - (z2 - z1) * (y1 - y3)) * ((y2 - y1) * (z1 - z3) - (z2 - z1) * (y1 - y3)) +
-                ((z2 - z1) * (x1 - x3) - (x2 - x1) * (z1 - z3)) * ((z2 - z1) * (x1 - x3) - (x2 - x1) * (z1 - z3)) +
-                ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) * ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)));
+        double nominator = Math.sqrt(c1 * c1 + c2 * c2 + c3 * c3);
         // denominator
-        double denominator = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
-
-        return nominator / denominator;
-    }
-
-    @Override
-    public double getDerivative(JoValue joValue) {
-        //TODO calculate derivative value
-        return 0;
+        double denominator = Math.sqrt(a1 * a1 + a2 * a2 + a3 * a3);
+        return (nominator / denominator) - distance.get();
     }
 }

@@ -137,7 +137,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private boolean doubleCheck() {
         for (SketchConstraint constraint : constraints) {
             if (constraint.getFunctionValue() > JoValue.DEFAULT_TOLERANCE) {
-                System.out.println("This constrain is still unsatisfied with function value: " + constraint.getFunctionValue());
+                System.out.println("A Constrain with unsatisfied function value of: " + constraint.getFunctionValue());
                 return false;
             }
         }

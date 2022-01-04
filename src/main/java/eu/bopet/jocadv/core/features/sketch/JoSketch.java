@@ -12,7 +12,6 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.linear.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
@@ -20,11 +19,11 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private final List<Feature> references;
     private final List<SketchGeometry> geometries;
     private final List<SketchConstraint> constraints;
+    private SketchConstraint lastConstraint;
     private final JoCoSys coSys;
     private final RegenerativeLink regenerativeLink;
     private final List<JoValue> valueList;
     private final List<JoValue> variables;
-    private SketchConstraint lastConstraint;
     private boolean edit;
 
     public JoSketch(JoCoSys coSys, RegenerativeLink regenerativeLink) {
@@ -60,57 +59,63 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         edit = false;
     }
 
-    public void addGeometry(SketchGeometry geometry) {
-        if (geometries.contains(geometry)) return;
-        geometries.add(geometry);
-        for (JoValue value : geometry.getValues()) {
+    public void addGeometry(SketchGeometry newGeometry) {
+        if (geometries.contains(newGeometry)) return;
+        geometries.add(newGeometry);
+        for (JoValue value : newGeometry.getValues()) {
             value.setStatus(JoValue.VARIABLE);
         }
-        if (geometry instanceof JoPoint) {
-            JoPoint point = (JoPoint) geometry;
-            boolean alreadyOnPlane = false;
-            for (SketchConstraint constraint : constraints) {
-                if (constraint instanceof PointToPlaneDistance
-                        && constraint.getGeometries().contains(point)
-                        && constraint.getGeometries().contains(coSys.getXy())) {
-                    alreadyOnPlane = true;
-                }
-            }
-            if (!alreadyOnPlane) {
-                PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
-                        coSys.getXy(),
-                        point,
-                        new JoValue(JoValue.USER, 0.0),
-                        SketchConstraint.USER_DEFINED);
-                addConstraint(pointToPlaneDistance);
-            }
+        if (newGeometry instanceof JoPoint) {
+            JoPoint point = (JoPoint) newGeometry;
+            // Z
+            PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
+                    coSys.getXy(),
+                    point,
+                    new JoValue(JoValue.USER, 0.0),
+                    SketchConstraint.USER_DEFINED);
+            addConstraint(pointToPlaneDistance);
+            // X
+            JoValue distanceX = new JoValue(JoValue.AUTO, 0.0);
+            PointToPlaneDistance pointToPlaneDistanceYZ = new PointToPlaneDistance(
+                    this.coSys.getYz(), point, distanceX, SketchConstraint.AUTO_CONSTRAINT);
+            double realDistanceX = pointToPlaneDistanceYZ.getFunctionValue();
+            distanceX.set(realDistanceX);
+            addConstraint(pointToPlaneDistanceYZ);
+            // Y
+            JoValue distanceY = new JoValue(JoValue.AUTO, 0.0);
+            PointToPlaneDistance pointToPlaneDistanceXZ = new PointToPlaneDistance(
+                    this.coSys.getXz(), point, distanceY, SketchConstraint.AUTO_CONSTRAINT);
+            double realDistanceY = pointToPlaneDistanceXZ.getFunctionValue();
+            distanceY.set(realDistanceY);
+            addConstraint(pointToPlaneDistanceXZ);
             return;
         }
-        if (geometry instanceof JoArc) {
-            JoArc arc = (JoArc) geometry;
+        for (JoPoint point : newGeometry.getPoints()) {
+            addGeometry(point);
+        }
+        if (newGeometry instanceof JoArc) {
+            JoArc arc = (JoArc) newGeometry;
             JoPoint point1 = arc.get1stPoint();
             JoPoint point2 = arc.get2ndPoint();
             JoPoint center = arc.getCircle().getSphere().getCenter();
-            double radius1 = point1.distance(center);
-            double radius2 = point2.distance(center);
-            double mainRadius = (radius1 + radius2) / 2.0;
-            JoValue radius = new JoValue(JoValue.USER, mainRadius);
             PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
-                    point1, center, radius, SketchConstraint.USER_DEFINED);
+                    point1, center, arc.getRadius(), SketchConstraint.USER_DEFINED);
             PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
-                    point2, center, radius, SketchConstraint.USER_DEFINED);
+                    point2, center, arc.getRadius(), SketchConstraint.USER_DEFINED);
             addConstraint(pointToPointDistance1);
             addConstraint(pointToPointDistance2);
-        }
-        List<JoPoint> points = geometry.getPoints();
-        for (JoPoint point : points) {
-            if (!geometries.contains(point)) {
-                addGeometry(point);
-            }
         }
     }
 
     public void addConstraint(SketchConstraint newConstraint) {
+        for (SketchConstraint constraint : constraints) {
+            if (constraint.getClass().equals(newConstraint.getClass())) {
+                if (constraint.getGeometries().containsAll(newConstraint.getGeometries())) {
+                    System.out.println("Constraint already existing.");
+                    return;
+                }
+            }
+        }
         constraints.add(newConstraint);
         lastConstraint = newConstraint;
         solve();
@@ -122,8 +127,16 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             prepareVariables();
             System.out.println(constraints.size() + " constraints");
             System.out.println(variables.size() + " variables");
-        } while (doDoFCheck());
+        } while (!isSolvable());
+
+        if (variables.size() < constraints.size()) {
+            System.out.println("Over constrained, removing last constraint: " + lastConstraint);
+            constraints.remove(lastConstraint);
+            return;
+        }
+
         solveEquations();
+
         if (doubleCheck()) {
             for (JoValue value : valueList) {
                 value.store();
@@ -132,16 +145,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         } else {
             System.out.println("No valid solution has been found");
         }
-    }
-
-    private boolean doubleCheck() {
-        for (SketchConstraint constraint : constraints) {
-            if (constraint.getFunctionValue() > JoValue.DEFAULT_TOLERANCE) {
-                System.out.println("A Constrain with unsatisfied function value of: " + constraint.getFunctionValue());
-                return false;
-            }
-        }
-        return true;
     }
 
     private void prepareVariables() {
@@ -159,69 +162,32 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
     }
 
-    private boolean doDoFCheck() {
+    private boolean isSolvable() {
         if (constraints.size() != variables.size()) {
-
-            System.out.println("Constraints and variables mismatch");
-
-            if (variables.size() > constraints.size()) {
-                System.out.println();
-                List<SketchGeometry> constrainedGeometries = new ArrayList<>();
-                for (SketchConstraint constraint : constraints) {
-                    for (SketchGeometry geometry : constraint.getGeometries()) {
-                        if (!constrainedGeometries.contains(geometry))
-                            constrainedGeometries.add(geometry);
-                    }
+            System.out.println("Constraints and variables mismatch.");
+            if (constraints.size() > variables.size()) {
+                System.out.println("Deleting auto constraints.");
+                if (lastConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
+                    constraints.remove(lastConstraint);
+                    return true;
                 }
-                List<SketchGeometry> underConstrainedGeometries = new ArrayList<>();
-                for (SketchGeometry geometry : geometries) {
-                    int DoF = Collections.frequency(constrainedGeometries, geometry);
-                    if (DoF == 1 && geometry instanceof JoPoint) {
-                        JoPoint point = (JoPoint) geometry;
-                        // X
-                        JoValue distanceX = new JoValue(JoValue.AUTO, 0.0);
-                        PointToPlaneDistance pointToPlaneDistanceYZ = new PointToPlaneDistance(
-                                this.coSys.getYz(), point, distanceX, SketchConstraint.AUTO_CONSTRAINT);
-                        double realDistanceX = pointToPlaneDistanceYZ.getFunctionValue();
-                        distanceX.set(realDistanceX);
-                        constraints.add(pointToPlaneDistanceYZ);
-                        // Y
-                        JoValue distanceY = new JoValue(JoValue.AUTO, 0.0);
-                        PointToPlaneDistance pointToPlaneDistanceXZ = new PointToPlaneDistance(
-                                this.coSys.getXz(), point, distanceY, SketchConstraint.AUTO_CONSTRAINT);
-                        double realDistanceY = pointToPlaneDistanceXZ.getFunctionValue();
-                        distanceY.set(realDistanceY);
-                        constraints.add(pointToPlaneDistanceXZ);
-                        return true;
-                    }
-                }
-            } else if (variables.size() < constraints.size()) {
-                List<SketchGeometry> lastGeometries = lastConstraint.getGeometries();
-                for (SketchGeometry geometry : lastGeometries) {
-                    for (SketchConstraint constraint : constraints) {
-                        if (constraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT
-                                && constraint.getGeometries().contains(geometry)) {
-                            constraints.remove(constraint);
+                List<SketchGeometry> geometryList = lastConstraint.getGeometries();
+                for (SketchGeometry sketchGeometry:geometryList){
+                    for (SketchConstraint sketchConstraint: constraints){
+                        if (sketchConstraint.getStatus()== SketchConstraint.AUTO_CONSTRAINT
+                                && sketchConstraint.getGeometries().contains(sketchGeometry)){
+                            constraints.remove(sketchConstraint);
                             return true;
                         }
                     }
                 }
-                for (SketchGeometry geometry : lastGeometries) {
-                    List<JoPoint> points = geometry.getPoints();
-                    for (JoPoint point : points) {
-                        for (SketchConstraint constraint : constraints) {
-                            if (constraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT
-                                    && constraint.getGeometries().contains(point)) {
-                                constraints.remove(constraint);
-                                return true;
-                            }
-                        }
-                    }
-                }
-                //TODO no AUTO constraint to remove user should remove unnecessary constraints
+            } else {
+                System.out.println("Adding auto constraints.");
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     private void solveEquations() {
@@ -261,6 +227,17 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             System.out.println("x: " + variables);
         }
     }
+
+    private boolean doubleCheck() {
+        for (SketchConstraint constraint : constraints) {
+            if (constraint.getFunctionValue() > JoValue.DEFAULT_TOLERANCE) {
+                System.out.println("A Constrain with unsatisfied function value of: " + constraint.getFunctionValue());
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public RegenerativeLink getRegenerativeLink() {

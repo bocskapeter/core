@@ -44,22 +44,36 @@ class JoSketchTest {
         JoValue y3 = new JoValue(JoValue.VARIABLE, 9.59);
         JoValue z3 = new JoValue(JoValue.VARIABLE, -0.089);
 
-        JoValue x4 = new JoValue(JoValue.VARIABLE, 9.16);
+        JoValue x4 = new JoValue(JoValue.VARIABLE, 6.16);
         JoValue y4 = new JoValue(JoValue.VARIABLE, 11.59);
         JoValue z4 = new JoValue(JoValue.VARIABLE, -0.2089);
+
+        JoValue x5 = new JoValue(JoValue.VARIABLE, 8.16);
+        JoValue y5 = new JoValue(JoValue.VARIABLE, 7.59);
+        JoValue z5 = new JoValue(JoValue.VARIABLE, 0.2089);
+
+        JoValue x6 = new JoValue(JoValue.VARIABLE, 6.16);
+        JoValue y6 = new JoValue(JoValue.VARIABLE, 7.59);
+        JoValue z6 = new JoValue(JoValue.VARIABLE, -0.109);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         JoPoint point2 = new JoPoint(new JoVector(x2, y2, z2, null), null);
         JoPoint point3 = new JoPoint(new JoVector(x3, y3, z3, null), null);
         JoPoint point4 = new JoPoint(new JoVector(x4, y4, z4, null), null);
+        JoPoint point5 = new JoPoint(new JoVector(x5, y5, z5, null), null);
+        JoPoint point6 = new JoPoint(new JoVector(x6, y6, z6, null), null);
         JoLine line1 = new JoLine(point1, point2);
         JoLine line2 = new JoLine(point1, point3);
         JoLine line3 = new JoLine(point3, point4);
-        JoLine line4 = new JoLine(point4, point2);
+        JoLine line4 = new JoLine(point5, point2);
+        double r = (point5.distance(point6) + point4.distance(point6)) / 2.0;
+        JoValue radius = new JoValue(JoValue.USER, r);
+        JoArc arc = new JoArc(new JoCircle(new JoSphere(point6, radius), sketchCoordinateSystem.getXy()), point5, point4);
         sketch.addGeometry(line1);
         sketch.addGeometry(line2);
         sketch.addGeometry(line3);
         sketch.addGeometry(line4);
+        sketch.addGeometry(arc);
 
         System.out.println("--change offset ");
         offset.set(1.0);
@@ -98,6 +112,6 @@ class JoSketchTest {
         System.out.println("--start regenerate ");
         sketch.regenerate();
         System.out.println("--regenerate compete");
-        System.out.println("1: " + point1 + "\n2: " + point2 + "\n3: " + point3 + "\n4: " + point4);
+        System.out.println("1: " + point1 + "\n2: " + point2 + "\n3: " + point3 + "\n4: " + point4 + "\n5: " + point5);
     }
 }

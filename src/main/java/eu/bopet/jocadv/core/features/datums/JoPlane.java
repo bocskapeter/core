@@ -3,14 +3,19 @@ package eu.bopet.jocadv.core.features.datums;
 import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-public class JoPlane extends FeatureBase implements Selectable, Feature {
+import java.util.ArrayList;
+import java.util.List;
+
+public class JoPlane extends FeatureBase implements Selectable, Feature, SketchGeometry {
     public final static JoPlane XY = new JoPlane("XY", JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
     public final static JoPlane XZ = new JoPlane("XZ", JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
     public final static JoPlane YZ = new JoPlane("YZ", JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
@@ -80,5 +85,20 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public List<JoValue> getValues() {
+        List<JoValue> result = new ArrayList<>();
+        result.add(x);
+        result.add(y);
+        result.add(z);
+        result.add(d);
+        return result;
+    }
+
+    @Override
+    public List<JoPoint> getPoints() {
+        return null;
     }
 }

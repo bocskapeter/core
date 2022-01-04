@@ -20,6 +20,10 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.point2 = point2;
     }
 
+    public JoValue getRadius() {
+        return circle.getSphere().getRadius();
+    }
+
     public JoCircle getCircle() {
         return circle;
     }

@@ -169,7 +169,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 System.out.println("Deleting auto constraints.");
                 if (lastConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
                     constraints.remove(lastConstraint);
-                    return true;
+                    return false;
                 }
                 List<SketchGeometry> geometryList = lastConstraint.getGeometries();
                 for (SketchGeometry sketchGeometry:geometryList){
@@ -177,13 +177,13 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                         if (sketchConstraint.getStatus()== SketchConstraint.AUTO_CONSTRAINT
                                 && sketchConstraint.getGeometries().contains(sketchGeometry)){
                             constraints.remove(sketchConstraint);
-                            return true;
+                            return false;
                         }
                     }
                 }
             } else {
                 System.out.println("Adding auto constraints.");
-                return false;
+                return true;
             }
             return false;
         }

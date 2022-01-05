@@ -6,6 +6,7 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import java.util.List;
 
 public interface SketchConstraint {
+    short SYSTEM = 0;
     short USER_DEFINED = 1;
     short AUTO_CONSTRAINT = 2;
 
@@ -15,9 +16,9 @@ public interface SketchConstraint {
     short getStatus();
 
     /**
-     * @return list of geometries the constraint applied on
+     * @return list of objects the constraint is using
      */
-    List<SketchGeometry> getGeometries();
+    List<Object> getComponents();
 
     /**
      * @return list of values - xn

@@ -99,9 +99,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             JoPoint point2 = arc.get2ndPoint();
             JoPoint center = arc.getCircle().getSphere().getCenter();
             PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
-                    point1, center, arc.getRadius(), SketchConstraint.USER_DEFINED);
+                    point1, center, arc.getRadius(), SketchConstraint.SYSTEM);
             PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
-                    point2, center, arc.getRadius(), SketchConstraint.USER_DEFINED);
+                    point2, center, arc.getRadius(), SketchConstraint.SYSTEM);
             addConstraint(pointToPointDistance1);
             addConstraint(pointToPointDistance2);
         }
@@ -110,8 +110,8 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     public void addConstraint(SketchConstraint newConstraint) {
         for (SketchConstraint constraint : constraints) {
             if (constraint.getClass().equals(newConstraint.getClass())) {
-                if (constraint.getGeometries().containsAll(newConstraint.getGeometries())) {
-                    System.out.println("Constraint already existing.");
+                if (constraint.getComponents().containsAll(newConstraint.getComponents())) {
+                    System.out.println("Constraint already exists.");
                     return;
                 }
             }
@@ -123,16 +123,30 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     private void solve() {
         if (constraints.isEmpty()) return;
-        do {
+        List<SketchConstraint> toBeDeleted = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+
             prepareVariables();
+
             System.out.println(constraints.size() + " constraints");
             System.out.println(variables.size() + " variables");
-        } while (!isSolvable());
 
-        if (variables.size() < constraints.size()) {
-            System.out.println("Over constrained, removing last constraint: " + lastConstraint);
-            constraints.remove(lastConstraint);
-            return;
+            if (constraints.size() == variables.size()) {
+                break;
+            }
+
+            System.out.println("Constraints and variables mismatch.");
+
+            if (constraints.size() > variables.size()) {
+                System.out.println("Deleting auto constraints.");
+                if (lastConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
+                    constraints.remove(lastConstraint);
+                    if (!toBeDeleted.contains(lastConstraint)){
+                        toBeDeleted.add( lastConstraint);
+                    }
+                }
+                //TODO remove auto constraints
+            }
         }
 
         solveEquations();
@@ -160,34 +174,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 variables.add(value);
             }
         }
-    }
-
-    private boolean isSolvable() {
-        if (constraints.size() != variables.size()) {
-            System.out.println("Constraints and variables mismatch.");
-            if (constraints.size() > variables.size()) {
-                System.out.println("Deleting auto constraints.");
-                if (lastConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
-                    constraints.remove(lastConstraint);
-                    return false;
-                }
-                List<SketchGeometry> geometryList = lastConstraint.getGeometries();
-                for (SketchGeometry sketchGeometry:geometryList){
-                    for (SketchConstraint sketchConstraint: constraints){
-                        if (sketchConstraint.getStatus()== SketchConstraint.AUTO_CONSTRAINT
-                                && sketchConstraint.getGeometries().contains(sketchGeometry)){
-                            constraints.remove(sketchConstraint);
-                            return false;
-                        }
-                    }
-                }
-            } else {
-                System.out.println("Adding auto constraints.");
-                return true;
-            }
-            return false;
-        }
-        return true;
     }
 
     private void solveEquations() {

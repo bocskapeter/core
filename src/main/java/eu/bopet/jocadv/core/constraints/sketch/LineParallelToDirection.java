@@ -19,9 +19,10 @@ public class LineParallelToDirection extends ConstraintBase implements SketchCon
     }
 
     @Override
-    public List<SketchGeometry> getGeometries() {
-        List<SketchGeometry> result = new ArrayList<>();
+    public List<Object> getComponents() {
+        List<Object> result = new ArrayList<>();
         result.add(line);
+        result.add(vector);
         return result;
     }
 

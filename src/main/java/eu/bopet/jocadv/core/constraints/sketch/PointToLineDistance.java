@@ -21,10 +21,11 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
     }
 
     @Override
-    public List<SketchGeometry> getGeometries() {
-        List<SketchGeometry> result = new ArrayList<>();
+    public List<Object> getComponents() {
+        List<Object> result = new ArrayList<>();
         result.add(line);
         result.add(point);
+        result.add(distance);
         return result;
     }
 

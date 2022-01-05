@@ -18,8 +18,8 @@ public class LineParallelToLine extends ConstraintBase implements SketchConstrai
     }
 
     @Override
-    public List<SketchGeometry> getGeometries() {
-        List<SketchGeometry> result = new ArrayList<>();
+    public List<Object> getComponents() {
+        List<Object> result = new ArrayList<>();
         result.add(line1);
         result.add(line2);
         return result;

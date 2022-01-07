@@ -89,4 +89,9 @@ public class LineParallelToDirection extends ConstraintBase implements SketchCon
         }
         return 0.0;
     }
+
+    @Override
+    public String toString() {
+        return "∥{" + line + " to " + vector + '}';
+    }
 }

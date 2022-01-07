@@ -41,4 +41,11 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
     public List<JoPoint> getPoints() {
         return new ArrayList<>(sphere.getPoints());
     }
+
+    @Override
+    public String toString() {
+        String name = "⨀";
+        if (this.getName() != null) name = this.getName();
+        return name + "{" + sphere + " ⤓ " + plane + '}';
+    }
 }

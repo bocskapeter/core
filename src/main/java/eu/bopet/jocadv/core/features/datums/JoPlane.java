@@ -82,4 +82,10 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
         return regenerativeLink;
     }
 
+    @Override
+    public String toString() {
+        String name = "□";
+        if (this.getName() != null) name = this.getName();
+        return name + "{x=" + x + ", y=" + y + ", z=" + z + ", d=" + d + '}';
+    }
 }

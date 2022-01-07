@@ -54,4 +54,9 @@ public class PointToPlaneDistance extends ConstraintBase implements SketchConstr
         if (joValue == distance) return 1.0;
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "⇤D⇥{" + plane + ", D=" + distance + ", " + point + '}';
+    }
 }

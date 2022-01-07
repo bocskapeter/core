@@ -44,4 +44,11 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
         result.add(center);
         return result;
     }
+
+    @Override
+    public String toString() {
+        String name = "⦿";
+        if (this.getName() != null) name = this.getName();
+        return name + "{" + "☉" + center + "R" + radius + '}';
+    }
 }

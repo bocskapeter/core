@@ -66,4 +66,9 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double denominator = Math.sqrt(a1 * a1 + a2 * a2 + a3 * a3);
         return (nominator / denominator) - distance.get();
     }
+
+    @Override
+    public String toString() {
+        return "⇤D⇥{" + line + ", D=" + distance + ", " + point + '}';
+    }
 }

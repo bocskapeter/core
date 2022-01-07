@@ -65,4 +65,9 @@ public class PointToPointDistance extends ConstraintBase implements SketchConstr
         if (joValue == distance) return -1.0;
         return 0.0;
     }
+
+    @Override
+    public String toString() {
+        return "⇤D⇥{" + point1 + ", D=" + distance + ", " + point2 + '}';
+    }
 }

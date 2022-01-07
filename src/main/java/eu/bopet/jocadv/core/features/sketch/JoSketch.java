@@ -21,6 +21,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private final List<Feature> references;
     private final List<SketchGeometry> geometries;
     private final List<SketchConstraint> constraints;
+    private final List<SketchConstraint> constraintsInSolver;
+    private int difference;
+    private final List<SketchConstraint> canBeRemoved;
     private final List<JoPoint> points;
     private SketchConstraint lastConstraint;
     private final JoCoSys coSys;
@@ -35,6 +38,8 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         references = new ArrayList<>();
         geometries = new ArrayList<>();
         constraints = new ArrayList<>();
+        canBeRemoved = new ArrayList<>();
+        constraintsInSolver = new ArrayList<>();
         points = new ArrayList<>();
         valueList = new ArrayList<>();
         variables = new ArrayList<>();
@@ -103,6 +108,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             JoPoint point1 = arc.get1stPoint();
             JoPoint point2 = arc.get2ndPoint();
             JoPoint center = arc.getCircle().getSphere().getCenter();
+            System.out.println(" Here Radius: " + arc.getRadius());
             PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
                     point1, center, arc.getRadius(), SketchConstraint.SYSTEM);
             PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
@@ -123,9 +129,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             }
         }
         constraints.add(newConstraint);
-        for (Object o : components) {
-            if (o instanceof Feature && !geometries.contains(o)) {
-                Feature feature = (Feature) o;
+        for (Object object : components) {
+            if (object instanceof Feature && !geometries.contains(object)) {
+                Feature feature = (Feature) object;
                 if (!references.contains(feature)) {
                     references.add(feature);
                 }
@@ -137,74 +143,95 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     private void solve() {
         if (constraints.isEmpty()) return;
-        if (!prepareConstraints()) return;
-        solveEquations();
-        if (doubleCheck()) {
-            for (JoValue value : valueList) {
-                value.store();
+        difference = prepareVariables();
+        System.out.println("Difference = " + difference);
+        if (difference < 0) {
+            System.out.println("Add constraints.");
+            return;
+        }
+        if (difference == 0) {
+            if (solveEquations(constraints, variables)) {
+                store();
+            } else {
+                System.out.println("No solution have found.");
+                restore();
             }
-            System.out.println("Valid solution stored in values");
         } else {
-            System.out.println("No valid solution has been found");
+            if (reduceConstraints()) {
+                store();
+            } else {
+                restore();
+                System.out.println("No solution have found with the reorganisation.");
+                System.out.println("Removing last constraint: " + lastConstraint);
+                constraints.remove(lastConstraint);
+            }
         }
     }
 
-    private boolean prepareConstraints() {
-        for (int i = 0; i < MAX_ITERATIONS; i++) {
-            prepareVariables();
+    private void store() {
+        for (JoValue value : valueList) {
+            value.store();
+        }
+        System.out.println("Valid solution stored in values.");
+    }
 
-            System.out.println(constraints.size() + " constraints");
-            System.out.println(variables.size() + " variables");
+    private void restore() {
+        for (JoValue value : valueList) {
+            value.restore();
+        }
+        System.out.println("Values have been restored.");
 
-            if (constraints.size() == variables.size()) {
-                return true;
+    }
+
+    private boolean reduceConstraints() {
+        List<JoPoint> toBeChecked = new ArrayList<>();
+        canBeRemoved.clear();
+        for (Object object : lastConstraint.getComponents()) {
+            if (object instanceof SketchGeometry) {
+                SketchGeometry sketchGeometry = (SketchGeometry) object;
+                toBeChecked.addAll(sketchGeometry.getPoints());
             }
-
-            System.out.println("Constraints and variables mismatch.");
-
-            if (constraints.size() < variables.size()) {
-                System.out.println("Add more constraints.");
-                break;
-            }
-
-            if (constraints.size() > variables.size()) {
-                System.out.println("Deleting auto constraints.");
-                List<SketchConstraint> toBeRemoved = new ArrayList<>();
-                List<JoPoint> toBeChecked = new ArrayList<>();
-                for (Object o : lastConstraint.getComponents()) {
-                    if (o instanceof SketchGeometry) {
-                        SketchGeometry sketchGeometry = (SketchGeometry) o;
-                        toBeChecked.addAll(sketchGeometry.getPoints());
-                    }
-                }
-                for (JoPoint point : toBeChecked) {
-                    for (SketchConstraint sketchConstraint : constraints) {
-                        if (sketchConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
-                            if (sketchConstraint.getComponents().contains(point)) {
-                                if (!toBeRemoved.contains(sketchConstraint)) {
-                                    toBeRemoved.add(sketchConstraint);
-                                }
-                            }
+        }
+        for (JoPoint point : toBeChecked) {
+            for (SketchConstraint sketchConstraint : constraints) {
+                if (sketchConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
+                    if (sketchConstraint.getComponents().contains(point)) {
+                        if (!canBeRemoved.contains(sketchConstraint)) {
+                            canBeRemoved.add(sketchConstraint);
                         }
                     }
                 }
-                System.out.println("Can be remove: " + toBeRemoved.size());
-                if (toBeRemoved.size() <= 0) {
-                    break;
-                }
-                int difference = constraints.size() - variables.size();
-                for (int j = 0; j < difference; j++) {
-                    SketchConstraint toRemove = toBeRemoved.get(j);
-                    constraints.remove(toRemove);
-                    System.out.println("ToRemove: " + toRemove);
-                }
             }
+        }
+        System.out.println("Can be remove: " + canBeRemoved.size());
+        System.out.println("Must be remove: " + difference);
+        if (canBeRemoved.size()<difference){
+            System.out.println("Too many constraints.");
+            return false;
+        }
+        if (difference == 1) {
+            SketchConstraint currentRemoved;
+            for (int i = 0; i < canBeRemoved.size(); i++) {
+                System.out.println("Remove " + i + ". auto constraint.");
+                constraintsInSolver.clear();
+                constraintsInSolver.addAll(constraints);
+                currentRemoved = canBeRemoved.get(i);
+                constraintsInSolver.remove(currentRemoved);
+                if (solveEquations(constraintsInSolver, variables)) {
+                    constraints.remove(currentRemoved);
+                    return true;
+                }
+                restore();
+            }
+            return false;
+        } else {
+            System.out.println("TODO! :o");
         }
         System.out.println("Can not organise constraints.");
         return false;
     }
 
-    private void prepareVariables() {
+    private int prepareVariables() {
         valueList.clear();
         for (SketchConstraint constraint : constraints) {
             for (JoValue value : constraint.getValues()) {
@@ -217,22 +244,25 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 variables.add(value);
             }
         }
+        System.out.println(constraints.size() + " constraints");
+        System.out.println(variables.size() + " variables");
+        return constraints.size() - variables.size();
     }
 
-    private void solveEquations() {
+    private boolean solveEquations(List<SketchConstraint> c, List<JoValue> v) {
         // Newton's method to solve systems of equations
-        double[] fx = new double[constraints.size()];
-        double[][] dfx = new double[constraints.size()][constraints.size()];
+        double[] fx = new double[c.size()];
+        double[][] dfx = new double[c.size()][c.size()];
         RealMatrix coefficients;
         DecompositionSolver solver;
         RealVector constants;
         RealVector solution;
 
         for (int k = 0; k < MAX_ITERATIONS; k++) {
-            for (int i = 0; i < constraints.size(); i++) {
-                fx[i] = -1.0 * constraints.get(i).getFunctionValue();
-                for (int j = 0; j < constraints.size(); j++) {
-                    dfx[i][j] = constraints.get(i).getDerivative(variables.get(j));
+            for (int i = 0; i < c.size(); i++) {
+                fx[i] = -1.0 * c.get(i).getFunctionValue();
+                for (int j = 0; j < c.size(); j++) {
+                    dfx[i][j] = c.get(i).getDerivative(v.get(j));
                 }
             }
             coefficients = new Array2DRowRealMatrix(dfx, false);
@@ -247,20 +277,21 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             }
             if (isSolved) {
                 System.out.println("Equations are solved in " + k + " steps.");
-                return;
+                return doubleCheck(c);
             }
-
-            for (int i = 0; i < variables.size(); i++) {
-                variables.get(i).set(variables.get(i).get() + solution.getEntry(i));
+            for (int i = 0; i < v.size(); i++) {
+                v.get(i).set(v.get(i).get() + solution.getEntry(i));
             }
-            System.out.println("x: " + variables);
         }
+        return false;
     }
 
-    private boolean doubleCheck() {
-        for (SketchConstraint constraint : constraints) {
+    private boolean doubleCheck(List<SketchConstraint> c) {
+        for (SketchConstraint constraint : c) {
             if (Math.abs(constraint.getFunctionValue()) > JoValue.DEFAULT_TOLERANCE) {
-                System.out.println("A Constrain with unsatisfied function value of: " + constraint.getFunctionValue());
+                System.out.println("Constrain with unsatisfied function!");
+                System.out.println("Value: " + constraint.getFunctionValue());
+                System.out.println("Constrain: " + constraint);
                 return false;
             }
         }

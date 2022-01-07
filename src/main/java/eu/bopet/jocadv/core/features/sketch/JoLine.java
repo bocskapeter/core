@@ -52,4 +52,11 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         result.add(point2);
         return result;
     }
+
+    @Override
+    public String toString() {
+        String name = "/";
+        if (this.getName() != null) name = this.getName();
+        return name + "{" + "↦ " + point1 + " ↤ " + point2 + '}';
+    }
 }

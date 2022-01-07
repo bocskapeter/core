@@ -55,4 +55,11 @@ public class JoAxis extends FeatureBase implements Selectable, Feature {
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
     }
+
+    @Override
+    public String toString() {
+        String name = "⤇";
+        if (this.getName() != null) name = this.getName();
+        return name +"{"+ point + ", " + direction + '}';
+    }
 }

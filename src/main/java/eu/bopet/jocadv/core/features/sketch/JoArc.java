@@ -3,6 +3,7 @@ package eu.bopet.jocadv.core.features.sketch;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
@@ -15,6 +16,14 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     private final JoPoint point2;
 
     public JoArc(JoCircle circle, JoPoint point1, JoPoint point2) {
+        this.circle = circle;
+        this.point1 = point1;
+        this.point2 = point2;
+    }
+
+    public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) {
+        JoSphere sphere = new JoSphere(center,radius);
+        JoCircle circle = new JoCircle(sphere,plane);
         this.circle = circle;
         this.point1 = point1;
         this.point2 = point2;
@@ -55,5 +64,12 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         result.add(point1);
         result.add(point2);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        String name = "⤺";
+        if (this.getName() != null) name = this.getName();
+        return name + "{" + circle + " ↤ " + point1 + " ↦ " + point2 + '}';
     }
 }

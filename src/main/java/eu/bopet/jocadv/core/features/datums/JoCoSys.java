@@ -83,4 +83,19 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
     public RegenerativeLink getRegenerativeLink() {
         return regenerative;
     }
+
+    @Override
+    public String toString() {
+        String name = "⟀";
+        if (this.getName() != null) name = this.getName();
+        return name+ "{" +
+                "origin=" + origin +
+                ", x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                ", xy=" + xy +
+                ", yz=" + yz +
+                ", xz=" + xz +
+                '}';
+    }
 }

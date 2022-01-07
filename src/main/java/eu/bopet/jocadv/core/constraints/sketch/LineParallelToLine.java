@@ -119,4 +119,9 @@ public class LineParallelToLine extends ConstraintBase implements SketchConstrai
         }
         return 0.0;
     }
+
+    @Override
+    public String toString() {
+        return "∥{" + line1 + " to " + line2 + '}';
+    }
 }

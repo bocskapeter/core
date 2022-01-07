@@ -2,13 +2,14 @@ package eu.bopet.jocadv.core.features.vector;
 
 import org.apache.commons.math3.util.Precision;
 
+import java.util.Arrays;
+
 public class JoValue {
     public final static short CONSTANT = 0;
     public final static short USER = 1;
     public final static short AUTO = 2;
     public final static short FIX = 3;
     public final static short VARIABLE = 4;
-
 
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
@@ -42,7 +43,7 @@ public class JoValue {
     }
 
     public void set(double newValue) {
-        if (status == VARIABLE || status == USER || status == AUTO) {
+        if (status == USER || status == AUTO || status == VARIABLE) {
             double difference = Math.abs(newValue - value);
             if (difference > JoValue.DEFAULT_TOLERANCE) {
                 this.value = Precision.round(newValue, NUMBER_OF_DIGITS_TO_SCALE);
@@ -55,7 +56,7 @@ public class JoValue {
     }
 
     public void setStatus(short status) {
-        if (status != CONSTANT) {
+        if (this.status == AUTO || this.status == FIX || this.status == VARIABLE) {
             this.status = status;
         }
     }

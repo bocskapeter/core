@@ -78,14 +78,15 @@ class JoSketchTest {
         line4.setName("L4");
         double r = (point5.distance(point6) + point4.distance(point6)) / 2.0;
         JoValue radius = new JoValue(JoValue.USER, r);
-        JoArc arc = new JoArc(new JoCircle(new JoSphere(point6, radius),
-                sketchCoordinateSystem.getXy()), point5, point4);
+        JoArc arc = new JoArc(point6, radius, sketchCoordinateSystem.getXy(), point5, point4);
         arc.setName("A1");
         sketch.addGeometry(line1);
         sketch.addGeometry(line2);
         sketch.addGeometry(line3);
         sketch.addGeometry(line4);
+        System.out.println("Radius: " + radius);
         sketch.addGeometry(arc);
+
 
         System.out.println("--change offset ");
         offset.set(1.0);

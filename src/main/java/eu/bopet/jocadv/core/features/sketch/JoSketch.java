@@ -47,6 +47,10 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         edit();
     }
 
+    public List<SketchConstraint> getConstraints() {
+        return constraints;
+    }
+
     public void edit() {
         if (edit) return;
         for (SketchGeometry geometry : geometries) {
@@ -108,7 +112,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             JoPoint point1 = arc.get1stPoint();
             JoPoint point2 = arc.get2ndPoint();
             JoPoint center = arc.getCircle().getSphere().getCenter();
-            System.out.println(" Here Radius: " + arc.getRadius());
             PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
                     point1, center, arc.getRadius(), SketchConstraint.SYSTEM);
             PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
@@ -168,6 +171,19 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
     }
 
+    public void removeAutoConstraints() {
+        canBeRemoved.clear();
+        for (SketchConstraint sketchConstraint : constraints) {
+            if (sketchConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT)
+                canBeRemoved.add(sketchConstraint);
+        }
+        for (SketchConstraint sketchConstraint : canBeRemoved) {
+            constraints.remove(sketchConstraint);
+        }
+        System.out.println("Difference: " + prepareVariables());
+
+    }
+
     private void store() {
         for (JoValue value : valueList) {
             value.store();
@@ -186,10 +202,12 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private boolean reduceConstraints() {
         List<JoPoint> toBeChecked = new ArrayList<>();
         canBeRemoved.clear();
-        for (Object object : lastConstraint.getComponents()) {
-            if (object instanceof SketchGeometry) {
-                SketchGeometry sketchGeometry = (SketchGeometry) object;
-                toBeChecked.addAll(sketchGeometry.getPoints());
+        for (SketchConstraint c : constraints) {
+            for (Object object : c.getComponents()) {
+                if (object instanceof SketchGeometry) {
+                    SketchGeometry sketchGeometry = (SketchGeometry) object;
+                    toBeChecked.addAll(sketchGeometry.getPoints());
+                }
             }
         }
         for (JoPoint point : toBeChecked) {
@@ -205,7 +223,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         System.out.println("Can be remove: " + canBeRemoved.size());
         System.out.println("Must be remove: " + difference);
-        if (canBeRemoved.size()<difference){
+        if (canBeRemoved.size() < difference) {
             System.out.println("Too many constraints.");
             return false;
         }

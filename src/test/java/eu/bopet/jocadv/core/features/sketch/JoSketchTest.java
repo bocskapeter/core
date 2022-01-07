@@ -81,7 +81,6 @@ class JoSketchTest {
         sketch.addGeometry(line2);
         sketch.addGeometry(line3);
         sketch.addGeometry(line4);
-        System.out.println("Radius: " + radius);
         sketch.addGeometry(arc);
 
         JoValue distance1 = new JoValue(JoValue.USER, 7.0);
@@ -98,12 +97,6 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate compete");
 
-
-        System.out.println("--change offset ");
-        offset.set(1.0);
-        System.out.println("--start regenerate ");
-        sketch.regenerate();
-        System.out.println("--regenerate complete");
 
         LineParallelToDirection lineParallelToDirection1 = new LineParallelToDirection(
                 SketchConstraint.USER_DEFINED, line1, sketchCoordinateSystem.getX().getDirection());
@@ -123,8 +116,29 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate compete");
 
+        JoValue distance3 = new JoValue(JoValue.USER,1.0);
+
+        PointToPlaneDistance pointToPlaneDistance1 = new PointToPlaneDistance(sketchCoordinateSystem.getYz(),point1,distance3,SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToPlaneDistance1);
+
+        JoValue distance4 = new JoValue(JoValue.USER,2.0);
+
+        PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(),point1,distance4,SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToPlaneDistance2);
+
+        sketch.removeAutoConstraints();
+
         PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3,point6,arc.getRadius(),SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance1);
+
+        PointToLineDistance pointToLineDistance2 = new PointToLineDistance(line4,point6,arc.getRadius(),SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToLineDistance2);
+
+        System.out.println("--change offset ");
+        offset.set(1.0);
+        System.out.println("--start regenerate ");
+        sketch.regenerate();
+        System.out.println("--regenerate complete");
 
         System.out.println("1: " + point1 +
                 "\n2: " + point2 +
@@ -132,5 +146,11 @@ class JoSketchTest {
                 "\n4: " + point4 +
                 "\n5: " + point5 +
                 "\n6: " + point6);
+
+
+        System.out.println(sketch.getConstraints().size() +" constraints:");
+        for (SketchConstraint sketchConstraint : sketch.getConstraints()) {
+            System.out.println(sketchConstraint);
+        }
     }
 }

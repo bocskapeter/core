@@ -58,8 +58,8 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
 
     @Override
     public String toString() {
-        return "JoPoint{" +
-                "vector=" + vector +
-                '}';
+        String name = "Point";
+        if (this.getName() != null) name = this.getName();
+        return name + "{" + vector + '}';
     }
 }

@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
 import eu.bopet.jocadv.core.features.sketch.JoLine;
-import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 

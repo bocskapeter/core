@@ -83,7 +83,7 @@ public class JoVector implements Feature {
 
     @Override
     public String toString() {
-        return "JoVector{" +
+        return "↗{" +
                 "x=" + x +
                 ", y=" + y +
                 ", z=" + z +

@@ -2,10 +2,7 @@ package eu.bopet.jocadv.core.features.sketch;
 
 
 import eu.bopet.jocadv.core.constraints.feature.*;
-import eu.bopet.jocadv.core.constraints.sketch.LineParallelToDirection;
-import eu.bopet.jocadv.core.constraints.sketch.LineParallelToLine;
-import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
-import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
+import eu.bopet.jocadv.core.constraints.sketch.*;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -87,6 +84,20 @@ class JoSketchTest {
         System.out.println("Radius: " + radius);
         sketch.addGeometry(arc);
 
+        JoValue distance1 = new JoValue(JoValue.USER, 7.0);
+        PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
+                point1, point2, distance1, SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToPointDistance1);
+        JoValue distance2 = new JoValue(JoValue.USER, 7.5);
+        PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
+                point1, point3, distance2, SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToPointDistance2);
+        System.out.println("--change offset ");
+        offset.set(2.0);
+        System.out.println("--start regenerate ");
+        sketch.regenerate();
+        System.out.println("--regenerate compete");
+
 
         System.out.println("--change offset ");
         offset.set(1.0);
@@ -112,19 +123,8 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate compete");
 
-        JoValue distance1 = new JoValue(JoValue.USER, 7.0);
-        PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
-                point1, point2, distance1, SketchConstraint.USER_DEFINED);
-        sketch.addConstraint(pointToPointDistance1);
-        JoValue distance2 = new JoValue(JoValue.USER, 7.5);
-        PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
-                point1, point3, distance2, SketchConstraint.USER_DEFINED);
-        sketch.addConstraint(pointToPointDistance2);
-        System.out.println("--change offset ");
-        offset.set(2.0);
-        System.out.println("--start regenerate ");
-        sketch.regenerate();
-        System.out.println("--regenerate compete");
+        PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3,point6,arc.getRadius(),SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToLineDistance1);
 
         System.out.println("1: " + point1 +
                 "\n2: " + point2 +

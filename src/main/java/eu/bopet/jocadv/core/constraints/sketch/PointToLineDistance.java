@@ -90,6 +90,9 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double c1 = (a2 * b3 - a3 * b2);
         double c2 = (a3 * b1 - a1 * b3);
         double c3 = (a1 * b2 - a2 * b1);
+        double sqrt = Math.sqrt(c3 * c3 + c2 * c2 + c1);
+        double v = a2 * a2 + a3 * a3 + a1 * a1;
+        double result;
 
         // ∂/∂x1
         // d/dx(
@@ -98,18 +101,32 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // ((x2 - x) * b2 - a2 * (x - x3))^2)) /
         // sqrt((x2 - x)^2 + a2^2 + a3^2)
         // )
-        // d/dx((sqrt(c1+(a3*(x-x3)-(x2-x)*b3)^2+((x2-x)*b2-a2*(x-x3))^2))/sqrt((x2-x)^2+a2^2+a3^2))
+        // d/dx((sqrt(c1+(a3*(x-x3)-(x2-x)*b3)^2+((x2-x)*b2-a2*(x-x3))^2))/sqrt((x2-x)^2+a2^2+a3^2)) =
         // d/dx(sqrt(c1 + (a3 (x - x3) - (x2 - x) b3)^2 + ((x2 - x) b2 - a2 (x - x3))^2)/sqrt((x2 - x)^2 + a2^2 + a3^2)) =
         // ((x2 - x) sqrt((b2 (x2 - x) - a2 (x - x3))^2 + (a3 (x - x3) - b3 (x2 - x))^2 + c1))/(a2^2 + a3^2 + (x2 - x)^2)^(3/2) + (2 (-a2 - b2) (b2 (x2 - x) - a2 (x - x3)) + 2 (a3 + b3) (a3 (x - x3) - b3 (x2 - x)))/(2 sqrt(a2^2 + a3^2 + (x2 - x)^2) sqrt((b2 (x2 - x) - a2 (x - x3))^2 + (a3 (x - x3) - b3 (x2 - x))^2 + c1))
         // (    a1   sqrt((b2 (   a1 ) - a2 (  b1  ))^2 + (a3 (  b1  ) - b3 (   a1 ))^2 + c1))/(a2^2 + a3^2 + (   a1 )^2)^(3/2) + (2 (-a2 - b2) (b2 (  a1  ) - a2 (  b1  )) + 2 (a3 + b3) (a3 (  b1  ) - b3 (   a1 )))/(2 sqrt(a2^2 + a3^2 + (   a1 )^2) sqrt((b2 (   a1 ) - a2 (  b1  ))^2 + (a3 (  b1  ) - b3 (   a1 ))^2 + c1))
         // (    a1   sqrt((            c3           )^2 + (            c2           )^2 + c1))/(a2^2 + a3^2 + (   a1 )^2)^(3/2) + (2 (-a2 - b2) (            c3           ) + 2 (a3 + b3) (            c2           ))/(2 sqrt(a2^2 + a3^2 + (   a1 )^2) sqrt((            c3           )^2 + (            c2           )^2 + c1))
         //
-        // (a1sqrt((c3)^2+(c2)^2+c1))/(a2^2+a3^2+(a1)^2)^(3/2) + (2(-a2-b2)(c3)+2(a3+b3)(c2)) / (2sqrt(a2^2+a3^2+(a1)^2)sqrt((c3)^2+(c2)^2+c1))
+        // (a1sqrt((c3)^2+(c2)^2+c1)) / (a2^2+a3^2+(a1)^2)^(3/2) + (2(-a2-b2)(c3)+2(a3+b3)(c2)) / (2sqrt(a2^2+a3^2+(a1)^2)sqrt((c3)^2+(c2)^2+c1))
         if (joValue == line.get1stPoint().getVector().getX()) {
-            double sqrt = Math.sqrt(c3 * c3 + c2 * c2 + c1);
-            double v = a2 * a2 + a3 * a3 + a1 * a1;
-            double result = (a1 * sqrt) / Math.pow(v, 3.0 / 2.0) +
-                    (2 * (-a2 - b2) * c3 + 2 * (a3 + b3) * c2) / (2 * Math.sqrt(v) * sqrt);
+            result = (a1 * sqrt) / Math.pow(v, 1.5) +
+                    (2.0 * (-a2 - b2) * c3 + 2.0 * (a3 + b3) * c2) / (2.0 * Math.sqrt(v) * sqrt);
+            return result;
+        }
+
+        // ∂/∂y1
+        // d/dy(
+        // sqrt(((y2-y)*b3-a3*(y-y3))^2+c2*c2+(a1*(y-y3)-(y2-y)*b1)^2)
+        // /
+        // sqrt(a1^2+(y2-y)^2+a3^2)
+        // )
+        // ((y2 - y) sqrt((a1 (y - y3) - b1 (y2 - y))^2 + (b3 (y2 - y) - a3 (y - y3))^2 + c2^2))/(a1^2 + a3^2 + (y2 - y)^2)^(3/2) + (2 (a1 + b1) (a1 (y - y3) - b1 (y2 - y)) + 2 (-a3 - b3) (b3 (y2 - y) - a3 (y - y3)))/(2 sqrt(a1^2 + a3^2 + (y2 - y)^2) sqrt((a1 (y - y3) - b1 (y2 - y))^2 + (b3 (y2 - y) - a3 (y - y3))^2 + c2^2))
+        // (    a2   sqrt((a1    b2    - b1     a2  )^2 + (b3     a2   - a3    b2   )^2 + c2^2))/(a1^2 + a3^2 +     a2  ^2)^(3/2) + (2 (a1 + b1) (a1    b2    - b1     a2  ) + 2 (-a3 - b3) (b3     a2   - a3    b2   ))/(2 sqrt(a1^2 + a3^2 +     a2  ^2) sqrt((a1    b2    - b1     a2  )^2 + (b3     a2   - a3    b2   )^2 + c2^2))
+        // (    a2   sqrt(             c3^2             +              c1^2             + c2^2))/(a1^2 + a3^2 +     a2  ^2)^(3/2) + (2 (a1 + b1)              c3             + 2 (-a3 - b3)               c1           )/(2 sqrt(a1^2 + a3^2 +     a2  ^2) sqrt(             c3^2             +              c1^2             + c2^2))
+        // (a2sqrt(c3^2+c1^2+c2^2)) / (a1^2+a3^2+a2^2)^(3/2) + (2(a1+b1)c3+2(-a3-b3)c1) / (2sqrt(a1^2+a3^2+a2^2)sqrt(c3^2+c1^2+c2^2))
+        if (joValue == line.get1stPoint().getVector().getY()) {
+            result = (a2 * sqrt) / Math.pow(v, 1.5) +
+                    (2.0 * (a1 + b1) * c3 + 2.0 * (-a3 - b3) * c1) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
         }
         return SketchConstraint.super.getDerivative(joValue);

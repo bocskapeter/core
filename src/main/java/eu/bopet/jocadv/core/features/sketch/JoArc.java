@@ -22,8 +22,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     }
 
     public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) {
-        JoSphere sphere = new JoSphere(center,radius);
-        this.circle = new JoCircle(sphere,plane);
+        JoSphere sphere = new JoSphere(center, radius);
+        this.circle = new JoCircle(sphere, plane);
         this.point1 = point1;
         this.point2 = point2;
     }

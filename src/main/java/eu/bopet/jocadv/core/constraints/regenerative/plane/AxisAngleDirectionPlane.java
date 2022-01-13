@@ -18,9 +18,9 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
     private final JoAxis referenceAxis;
     private final JoVector referenceDirection;
     private final JoValue angle;
+    private final JoPlane resultPlane;
     private JoVector normal;
     private PointNormalPlane pointNormalPlane;
-    private final JoPlane resultPlane;
 
     public AxisAngleDirectionPlane(JoAxis referenceAxis, JoVector referenceDirection, JoValue angle) throws Exception {
         this.referenceAxis = referenceAxis;
@@ -30,29 +30,29 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         Vector3D vector = referenceDirection.getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
         if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
-            throw new ParallelVectorException(referenceAxis.getDirection(),referenceDirection);
+            throw new ParallelVectorException(referenceAxis.getDirection(), referenceDirection);
         }
-        Rotation rotation = new Rotation(rotationAxis,angle.get(), RotationConvention.VECTOR_OPERATOR);
+        Rotation rotation = new Rotation(rotationAxis, angle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
-        JoValue x = new JoValue(JoValue.USER,newVector.getX());
-        JoValue y = new JoValue(JoValue.USER,newVector.getY());
-        JoValue z = new JoValue(JoValue.USER,newVector.getZ());
-        normal = new JoVector(x,y,z,null);
-        pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(),normal);
+        JoValue x = new JoValue(JoValue.USER, newVector.getX());
+        JoValue y = new JoValue(JoValue.USER, newVector.getY());
+        JoValue z = new JoValue(JoValue.USER, newVector.getZ());
+        normal = new JoVector(x, y, z, null);
+        pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(), normal);
         this.resultPlane = (JoPlane) pointNormalPlane.getResult();
     }
 
     @Override
     public void regenerate() throws Exception {
-        if (referenceAxis.getRegenerativeLink()!=null) referenceAxis.getRegenerativeLink().regenerate();
-        if (referenceDirection.getRegenerativeLink()!=null) referenceDirection.getRegenerativeLink().regenerate();
+        if (referenceAxis.getRegenerativeLink() != null) referenceAxis.getRegenerativeLink().regenerate();
+        if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
         Vector3D vector = referenceDirection.getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
         if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
-            throw new ParallelVectorException(referenceAxis.getDirection(),referenceDirection);
+            throw new ParallelVectorException(referenceAxis.getDirection(), referenceDirection);
         }
-        Rotation rotation = new Rotation(rotationAxis,angle.get(), RotationConvention.VECTOR_OPERATOR);
+        Rotation rotation = new Rotation(rotationAxis, angle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
         normal.getX().set(newVector.getX());
         normal.getY().set(newVector.getY());

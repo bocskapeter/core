@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -33,13 +32,14 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
         JoValue newX = new JoValue(JoValue.USER, newPoint.getX());
         JoValue newY = new JoValue(JoValue.USER, newPoint.getY());
         JoValue newZ = new JoValue(JoValue.USER, newPoint.getZ());
-        JoVector joVector = new JoVector(newX,newY,newZ,null);
-        this.resultPoint = new JoPoint(joVector,this);
+        JoVector joVector = new JoVector(newX, newY, newZ, null);
+        this.resultPoint = new JoPoint(joVector, this);
     }
 
     @Override
     public void regenerate() throws Exception {
-        if (referenceCoordinateSystem.getRegenerativeLink()!=null) referenceCoordinateSystem.getRegenerativeLink().regenerate();
+        if (referenceCoordinateSystem.getRegenerativeLink() != null)
+            referenceCoordinateSystem.getRegenerativeLink().regenerate();
         Vector3D origin = referenceCoordinateSystem.getOrigin().getVector().getVector3D();
         Vector3D vectorX = referenceCoordinateSystem.getX().getDirection().getVector3D().normalize().scalarMultiply(x.get());
         Vector3D vectorY = referenceCoordinateSystem.getY().getDirection().getVector3D().normalize().scalarMultiply(y.get());

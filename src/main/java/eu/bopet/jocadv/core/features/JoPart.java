@@ -1,7 +1,5 @@
 package eu.bopet.jocadv.core.features;
 
-import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
-
 import java.util.ArrayList;
 import java.util.List;
 

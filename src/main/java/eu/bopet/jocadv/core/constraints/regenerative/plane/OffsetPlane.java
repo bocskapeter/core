@@ -1,6 +1,5 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
-import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoPlane;

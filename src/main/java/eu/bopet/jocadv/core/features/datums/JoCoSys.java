@@ -88,7 +88,7 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
     public String toString() {
         String name = "⟀";
         if (this.getName() != null) name = this.getName();
-        return name+ "{" +
+        return name + "{" +
                 "origin=" + origin +
                 ", x=" + x +
                 ", y=" + y +

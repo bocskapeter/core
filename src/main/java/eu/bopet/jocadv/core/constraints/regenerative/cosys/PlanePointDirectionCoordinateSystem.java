@@ -35,8 +35,7 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         this.referencePoint = point;
         this.referenceDirection = direction;
 
-        //TODO check direction in plane
-        double checkOrthogonality = referencePlane.getNormal().getVector3D().dotProduct(direction.getVector3D());
+        double checkOrthogonality = referencePlane.getNormal().getVector3D().dotProduct(referenceDirection.getVector3D());
         if (checkOrthogonality < JoValue.DEFAULT_TOLERANCE)
             throw new NotOrthogonalVectorException(referencePlane.getNormal(), referenceDirection);
 
@@ -61,6 +60,9 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();
+        double checkOrthogonality = referencePlane.getNormal().getVector3D().dotProduct(referenceDirection.getVector3D());
+        if (checkOrthogonality < JoValue.DEFAULT_TOLERANCE)
+            throw new NotOrthogonalVectorException(referencePlane.getNormal(), referenceDirection);
         x.getRegenerativeLink().regenerate();
         z.getRegenerativeLink().regenerate();
         y.getRegenerativeLink().regenerate();

@@ -1,6 +1,5 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
@@ -10,7 +9,12 @@ import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.vector.JoValue;
-import org.apache.commons.math3.linear.*;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.DecompositionSolver;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.linear.SingularValueDecomposition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +27,14 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private final List<SketchGeometry> geometries;
     private final List<SketchConstraint> constraints;
     private final List<SketchConstraint> constraintsInSolver;
-    private int difference;
     private final List<SketchConstraint> canBeRemoved;
     private final List<JoPoint> points;
-    private SketchConstraint lastConstraint;
     private final JoCoSys coSys;
     private final RegenerativeLink regenerativeLink;
     private final List<JoValue> valueList;
     private final List<JoValue> variables;
+    private int difference;
+    private SketchConstraint lastConstraint;
     private boolean edit;
 
     public JoSketch(JoCoSys coSys, RegenerativeLink regenerativeLink) {

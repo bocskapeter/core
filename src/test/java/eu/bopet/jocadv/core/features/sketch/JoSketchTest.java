@@ -1,7 +1,11 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 
-import eu.bopet.jocadv.core.constraints.feature.*;
+import eu.bopet.jocadv.core.constraints.regenerative.*;
+import eu.bopet.jocadv.core.constraints.regenerative.axis.CoaxialAxis;
+import eu.bopet.jocadv.core.constraints.regenerative.cosys.PlanePointDirectionCoordinateSystem;
+import eu.bopet.jocadv.core.constraints.regenerative.point.ProjectedPoint;
+import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
 import eu.bopet.jocadv.core.constraints.sketch.*;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -14,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class JoSketchTest {
 
     @Test
-    void addConstraint() {
+    void addConstraint() throws Exception {
         System.out.println(" init sketch ");
         JoValue offset = new JoValue(JoValue.USER, 0.0);
         OffsetPlane offsetPlane = new OffsetPlane(JoPlane.XY, offset);

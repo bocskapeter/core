@@ -12,12 +12,10 @@ import java.util.List;
 public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
     private final JoPoint point1;
     private final JoPoint point2;
-    private boolean constructive;
 
     public JoLine(JoPoint point1, JoPoint point2) {
         this.point1 = point1;
         this.point2 = point2;
-        this.constructive = false;
     }
 
     public JoPoint get1stPoint() {

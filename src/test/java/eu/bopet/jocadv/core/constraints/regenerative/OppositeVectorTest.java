@@ -1,5 +1,7 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative;
 
+import eu.bopet.jocadv.core.constraints.regenerative.vector.CrossVector;
+import eu.bopet.jocadv.core.constraints.regenerative.vector.OppositeVector;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OppositeVectorTest {
     @Test
-    void oppositeVector() {
+    void oppositeVector() throws ParallelVectorException {
         CrossVector crossVector = new CrossVector(JoVector.I,JoVector.J);
         JoVector vector = (JoVector) crossVector.getResult();
         assertEquals(vector.getX().get(),0.0);

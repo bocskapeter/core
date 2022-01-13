@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.Selectable;

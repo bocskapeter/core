@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.vector;
 
-import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 

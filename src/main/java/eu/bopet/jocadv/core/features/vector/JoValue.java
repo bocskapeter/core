@@ -2,8 +2,6 @@ package eu.bopet.jocadv.core.features.vector;
 
 import org.apache.commons.math3.util.Precision;
 
-import java.util.Arrays;
-
 public class JoValue {
     public final static short CONSTANT = 0;
     public final static short USER = 1;

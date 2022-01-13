@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
@@ -323,7 +324,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         for (Feature feature : references) {
             if (feature.getRegenerativeLink() != null) feature.getRegenerativeLink().regenerate();
         }

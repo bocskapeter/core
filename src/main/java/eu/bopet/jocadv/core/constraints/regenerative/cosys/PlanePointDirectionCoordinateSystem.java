@@ -1,5 +1,10 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.cosys;
 
+import eu.bopet.jocadv.core.constraints.regenerative.NotOrthogonalVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.axis.PointDirectionAxis;
+import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
+import eu.bopet.jocadv.core.constraints.regenerative.vector.CrossVector;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -25,10 +30,15 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
 
     private final JoCoSys resultCoordinateSystem;
 
-    public PlanePointDirectionCoordinateSystem(JoPlane referencePlane, JoPoint point, JoVector direction) {
+    public PlanePointDirectionCoordinateSystem(JoPlane referencePlane, JoPoint point, JoVector direction) throws Exception {
         this.referencePlane = referencePlane;
         this.referencePoint = point;
         this.referenceDirection = direction;
+
+        //TODO check direction in plane
+        double checkOrthogonality = referencePlane.getNormal().getVector3D().dotProduct(direction.getVector3D());
+        if (checkOrthogonality < JoValue.DEFAULT_TOLERANCE)
+            throw new NotOrthogonalVectorException(referencePlane.getNormal(), referenceDirection);
 
         PointDirectionAxis pointDirectionAxis1 = new PointDirectionAxis(point, this.referenceDirection);
         this.x = (JoAxis) pointDirectionAxis1.getResult();
@@ -47,7 +57,7 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();

@@ -1,5 +1,6 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -28,7 +29,7 @@ public class CoaxialAxis implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referenceAxis.getRegenerativeLink() != null) referenceAxis.getRegenerativeLink().regenerate();
         this.resultAxis.getPoint().getVector().getX().set(referenceAxis.getPoint().getVector().getX().get());
         this.resultAxis.getPoint().getVector().getY().set(referenceAxis.getPoint().getVector().getY().get());

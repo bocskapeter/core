@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative;
 
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
@@ -9,7 +9,7 @@ public interface RegenerativeLink {
     /**
      * regenerate the feature based on the references stored in the list of regenerative links
      */
-    void regenerate();
+    void regenerate() throws Exception;
 
     /**
      * @return result feature

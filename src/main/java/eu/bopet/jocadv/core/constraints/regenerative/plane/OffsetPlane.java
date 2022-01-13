@@ -1,5 +1,7 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
+import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
@@ -21,7 +23,7 @@ public class OffsetPlane implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         resultPlane.getX().set(referencePlane.getX().get());
         resultPlane.getY().set(referencePlane.getY().get());

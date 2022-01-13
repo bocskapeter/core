@@ -1,5 +1,6 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -33,7 +34,7 @@ public class PointNormalPlane implements RegenerativeLink {
 
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         if (referenceNormal.getRegenerativeLink() != null) referenceNormal.getRegenerativeLink().regenerate();
         resultPlane.getX().set(referenceNormal.getX().get());

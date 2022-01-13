@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative;
 
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -17,7 +17,7 @@ public class CoordinateSystemSketch implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         referenceCoordinateSystem.getRegenerativeLink().regenerate();
     }
 

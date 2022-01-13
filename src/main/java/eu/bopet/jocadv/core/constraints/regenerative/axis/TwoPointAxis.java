@@ -1,5 +1,7 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -34,7 +36,7 @@ public class TwoPointAxis implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referencePoint1.getRegenerativeLink() != null) referencePoint1.getRegenerativeLink().regenerate();
         if (referencePoint2.getRegenerativeLink() != null) referencePoint2.getRegenerativeLink().regenerate();
         this.resultAxis.getPoint().getVector().getX().set(referencePoint1.getVector().getX().get());

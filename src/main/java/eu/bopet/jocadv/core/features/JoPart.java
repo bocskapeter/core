@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.core.features;
 
+import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class JoPart extends FeatureBase {
         }
     }
 
-    public void regenerate() {
+    public void regenerate() throws Exception {
         for (Feature feature : features) {
             if (feature.getRegenerativeLink() != null) feature.getRegenerativeLink().regenerate();
         }

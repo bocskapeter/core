@@ -1,5 +1,7 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
@@ -28,7 +30,7 @@ public class OppositeVector implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referenceVector.getRegenerativeLink() != null) referenceVector.getRegenerativeLink().regenerate();
         resultVector.getX().set(-1.0 * referenceVector.getX().get());
         resultVector.getX().set(-1.0 * referenceVector.getX().get());

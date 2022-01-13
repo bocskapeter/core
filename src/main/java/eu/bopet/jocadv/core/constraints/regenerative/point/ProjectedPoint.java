@@ -1,5 +1,7 @@
-package eu.bopet.jocadv.core.constraints.feature;
+package eu.bopet.jocadv.core.constraints.regenerative.point;
 
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -27,7 +29,7 @@ public class ProjectedPoint implements RegenerativeLink {
     }
 
     @Override
-    public void regenerate() {
+    public void regenerate() throws Exception {
         if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         Vector3D projectedPoint = (Vector3D)

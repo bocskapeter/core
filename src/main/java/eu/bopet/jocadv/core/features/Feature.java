@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features;
 
-import eu.bopet.jocadv.core.constraints.feature.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 
 public interface Feature {
     /**

@@ -25,16 +25,16 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     private static final int MAX_ITERATIONS = 31;
 
-    private final List<Feature> references;
-    private final List<SketchGeometry> geometries;
-    private final List<SketchConstraint> constraints;
-    private final List<SketchConstraint> constraintsInSolver;
-    private final List<SketchConstraint> canBeRemoved;
-    private final List<JoPoint> points;
+    private final Set<Feature> references;
+    private final Set<SketchGeometry> geometries;
+    private final Set<SketchConstraint> constraints;
+    private final Set<SketchConstraint> constraintsInSolver;
+    private final Set<SketchConstraint> canBeRemoved;
+    private final Set<JoPoint> points;
     private final JoCoSys coSys;
     private final RegenerativeLink regenerativeLink;
     private final Set<JoValue> valueList;
-    private final List<JoValue> variables;
+    private final Set<JoValue> variables;
     private int difference;
     private SketchConstraint lastConstraint;
     private boolean edit;
@@ -42,19 +42,19 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     public JoSketch(JoCoSys coSys, RegenerativeLink regenerativeLink) {
         this.coSys = coSys;
         this.regenerativeLink = regenerativeLink;
-        references = new ArrayList<>();
-        geometries = new ArrayList<>();
-        constraints = new ArrayList<>();
-        canBeRemoved = new ArrayList<>();
-        constraintsInSolver = new ArrayList<>();
-        points = new ArrayList<>();
+        references = new LinkedHashSet<>();
+        geometries = new LinkedHashSet<>();
+        constraints = new LinkedHashSet<>();
+        canBeRemoved = new LinkedHashSet<>();
+        constraintsInSolver = new LinkedHashSet<>();
+        points = new LinkedHashSet<>();
         valueList = new LinkedHashSet<>();
-        variables = new ArrayList<>();
+        variables = new LinkedHashSet<>();
         edit = false;
         edit();
     }
 
-    public List<SketchConstraint> getConstraints() {
+    public Set<SketchConstraint> getConstraints() {
         return constraints;
     }
 
@@ -112,7 +112,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         for (JoPoint point : newGeometry.getPoints()) {
             addGeometry(point);
-            if (!points.contains(point)) points.add(point);
+            points.add(point);
         }
         if (newGeometry instanceof JoArc) {
             JoArc arc = (JoArc) newGeometry;
@@ -142,9 +142,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         for (Object object : components) {
             if (object instanceof Feature && !geometries.contains(object)) {
                 Feature feature = (Feature) object;
-                if (!references.contains(feature)) {
-                    references.add(feature);
-                }
+                references.add(feature);
             }
         }
         lastConstraint = newConstraint;
@@ -221,9 +219,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             for (SketchConstraint sketchConstraint : constraints) {
                 if (sketchConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT) {
                     if (sketchConstraint.getComponents().contains(point)) {
-                        if (!canBeRemoved.contains(sketchConstraint)) {
-                            canBeRemoved.add(sketchConstraint);
-                        }
+                        canBeRemoved.add(sketchConstraint);
                     }
                 }
             }
@@ -236,11 +232,10 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         if (difference == 1) {
             SketchConstraint currentRemoved;
-            for (int i = 0; i < canBeRemoved.size(); i++) {
-                System.out.println("Remove " + i + ". auto constraint.");
+            for (SketchConstraint current : canBeRemoved) {
                 constraintsInSolver.clear();
                 constraintsInSolver.addAll(constraints);
-                currentRemoved = canBeRemoved.get(i);
+                currentRemoved = current;
                 constraintsInSolver.remove(currentRemoved);
                 if (solveEquations(constraintsInSolver, variables)) {
                     constraints.remove(currentRemoved);
@@ -272,7 +267,9 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         return constraints.size() - variables.size();
     }
 
-    private boolean solveEquations(List<SketchConstraint> c, List<JoValue> v) {
+    private boolean solveEquations(Set<SketchConstraint> co, Set<JoValue> va) {
+        List<SketchConstraint> c = new ArrayList<>(co);
+        List<JoValue> v = new ArrayList<>(va);
         // Newton's method to solve systems of equations
         double[] fx = new double[c.size()];
         double[][] dfx = new double[c.size()][c.size()];

@@ -20,7 +20,7 @@ class JoSketchTest {
     @Test
     void addConstraint() throws Exception {
         System.out.println(" init sketch ");
-        JoValue offset = new JoValue(JoValue.USER, 0.0);
+        JoValue offset = new JoValue(JoValue.USER, 0.5);
         OffsetPlane offsetPlane = new OffsetPlane(JoPlane.XY, offset);
         JoPlane sketchPlane = (JoPlane) offsetPlane.getResult();
         ProjectedPoint projectedPoint = new ProjectedPoint(sketchPlane, JoPoint.ORIGIN);

@@ -7,8 +7,8 @@ import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     private final JoCircle circle;
@@ -50,16 +50,16 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>(circle.getValues());
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = new LinkedHashSet<>(circle.getValues());
         result.addAll(point1.getValues());
         result.addAll(point2.getValues());
         return result;
     }
 
     @Override
-    public List<JoPoint> getPoints() {
-        List<JoPoint> result = new ArrayList<>(circle.getPoints());
+    public Set<JoPoint> getPoints() {
+        Set<JoPoint> result = new LinkedHashSet<>(circle.getPoints());
         result.add(point1);
         result.add(point2);
         return result;

@@ -9,6 +9,8 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
+import java.util.Set;
+
 public class JoAxis extends FeatureBase implements Selectable, Feature {
     public static final JoAxis X = new JoAxis("X", JoPoint.ORIGIN, JoVector.I, null);
     public static final JoAxis Y = new JoAxis("Y", JoPoint.ORIGIN, JoVector.J, null);
@@ -54,6 +56,21 @@ public class JoAxis extends FeatureBase implements Selectable, Feature {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = Feature.super.getValues();
+        result.addAll(point.getValues());
+        result.addAll(direction.getValues());
+        return result;
+    }
+
+    @Override
+    public void store() {
+        Feature.super.store();
+        point.store();
+        direction.store();
     }
 
     @Override

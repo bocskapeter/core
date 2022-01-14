@@ -8,7 +8,7 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-import java.util.List;
+import java.util.Set;
 
 public class ProjectedPoint implements RegenerativeLink {
     private final JoPlane referencePlane;
@@ -44,7 +44,9 @@ public class ProjectedPoint implements RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return null;
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = referencePlane.getValues();
+        result.addAll(referencePoint.getValues());
+        return result;
     }
 }

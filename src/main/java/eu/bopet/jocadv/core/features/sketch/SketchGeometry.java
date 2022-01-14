@@ -3,17 +3,17 @@ package eu.bopet.jocadv.core.features.sketch;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
-import java.util.List;
+import java.util.Set;
 
 public interface SketchGeometry {
 
     /**
      * @return List of Values
      */
-    List<JoValue> getValues();
+    Set<JoValue> getValues();
 
     /**
      * @return List of Points
      */
-    List<JoPoint> getPoints();
+    Set<JoPoint> getPoints();
 }

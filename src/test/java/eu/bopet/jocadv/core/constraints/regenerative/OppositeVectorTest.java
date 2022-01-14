@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OppositeVectorTest {
     @Test
-    void oppositeVector() throws ParallelVectorException {
+    void oppositeVector() throws Exception {
         CrossVector crossVector = new CrossVector(JoVector.I,JoVector.J);
         JoVector vector = (JoVector) crossVector.getResult();
         assertEquals(vector.getX().get(),0.0);

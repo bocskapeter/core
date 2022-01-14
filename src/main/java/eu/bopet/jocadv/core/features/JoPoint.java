@@ -6,8 +6,8 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, Feature {
     public final static JoPoint ORIGIN = new JoPoint("Origin", JoVector.ZERO, null);
@@ -40,13 +40,21 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return vector.getValues();
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = Feature.super.getValues();
+        result.addAll(vector.getValues());
+        return result;
     }
 
     @Override
-    public List<JoPoint> getPoints() {
-        List<JoPoint> result = new ArrayList<>();
+    public void store() {
+        Feature.super.store();
+        this.vector.store();
+    }
+
+    @Override
+    public Set<JoPoint> getPoints() {
+        Set<JoPoint> result = new LinkedHashSet<>();
         result.add(this);
         return result;
     }

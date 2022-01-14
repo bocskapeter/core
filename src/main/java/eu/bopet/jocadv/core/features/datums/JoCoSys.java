@@ -5,7 +5,10 @@ import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+
+import java.util.Set;
 
 public class JoCoSys extends FeatureBase implements Selectable, Feature {
     public static final JoCoSys DEFAULT_COORDINATE_SYSTEM =
@@ -82,6 +85,31 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerative;
+    }
+
+    @Override
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = Feature.super.getValues();
+        result.addAll(origin.getValues());
+        result.addAll(x.getValues());
+        result.addAll(y.getValues());
+        result.addAll(z.getValues());
+        result.addAll(xy.getValues());
+        result.addAll(yz.getValues());
+        result.addAll(xz.getValues());
+        return result;
+    }
+
+    @Override
+    public void store() {
+        Feature.super.store();
+        origin.store();
+        x.store();
+        y.store();
+        z.store();
+        xy.store();
+        yz.store();
+        xz.store();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
-import eu.bopet.jocadv.core.constraints.regenerative.ParallelVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.JoPoint;
@@ -12,7 +12,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-import java.util.List;
+import java.util.Set;
 
 public class TwoPlaneAxis implements RegenerativeLink {
     private final JoPlane referencePlane1;
@@ -62,7 +62,9 @@ public class TwoPlaneAxis implements RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return null;
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = referencePlane1.getValues();
+        result.addAll(referencePlane2.getValues());
+        return result;
     }
 }

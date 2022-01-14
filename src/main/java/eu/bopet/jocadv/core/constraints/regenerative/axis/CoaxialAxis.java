@@ -7,7 +7,7 @@ import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
-import java.util.List;
+import java.util.Set;
 
 public class CoaxialAxis implements RegenerativeLink {
     private final JoAxis referenceAxis;
@@ -45,7 +45,7 @@ public class CoaxialAxis implements RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return null;
+    public Set<JoValue> getValues() {
+        return referenceAxis.getValues();
     }
 }

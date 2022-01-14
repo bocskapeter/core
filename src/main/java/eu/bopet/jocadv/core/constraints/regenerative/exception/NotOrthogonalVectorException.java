@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.constraints.regenerative;
+package eu.bopet.jocadv.core.constraints.regenerative.exception;
 
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
@@ -17,5 +17,13 @@ public class NotOrthogonalVectorException extends Exception {
 
     public JoVector getVector2() {
         return vector2;
+    }
+
+    @Override
+    public String toString() {
+        return "NotOrthogonalVectorException{" +
+                "vector1=" + vector1 +
+                ", vector2=" + vector2 +
+                '}';
     }
 }

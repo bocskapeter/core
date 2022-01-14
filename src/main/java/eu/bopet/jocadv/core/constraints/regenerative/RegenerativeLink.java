@@ -3,7 +3,7 @@ package eu.bopet.jocadv.core.constraints.regenerative;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
-import java.util.List;
+import java.util.Set;
 
 public interface RegenerativeLink {
     /**
@@ -17,7 +17,7 @@ public interface RegenerativeLink {
     Feature getResult();
 
     /**
-     * @return list of values used for this regenerative link
+     * @return list of values used as reference for this regenerative link
      */
-    List<JoValue> getValues();
+    Set<JoValue> getValues();
 }

@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.constraints.regenerative;
+package eu.bopet.jocadv.core.constraints.regenerative.exception;
 
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
@@ -17,5 +17,13 @@ public class ParallelVectorException extends Exception {
 
     public JoVector getDirection2() {
         return direction2;
+    }
+
+    @Override
+    public String toString() {
+        return "ParallelVectorException{" +
+                "direction1=" + direction1 +
+                ", direction2=" + direction2 +
+                '}';
     }
 }

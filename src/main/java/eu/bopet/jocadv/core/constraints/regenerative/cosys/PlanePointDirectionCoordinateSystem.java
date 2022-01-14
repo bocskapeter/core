@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.constraints.regenerative.cosys;
 
-import eu.bopet.jocadv.core.constraints.regenerative.NotOrthogonalVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.axis.PointDirectionAxis;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
@@ -13,7 +13,7 @@ import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
-import java.util.List;
+import java.util.Set;
 
 public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     private final JoPlane referencePlane;
@@ -36,9 +36,8 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         this.referenceDirection = direction;
 
         double checkOrthogonality = referencePlane.getNormal().getVector3D().dotProduct(referenceDirection.getVector3D());
-        if (checkOrthogonality < JoValue.DEFAULT_TOLERANCE)
+        if (checkOrthogonality > JoValue.DEFAULT_TOLERANCE)
             throw new NotOrthogonalVectorException(referencePlane.getNormal(), referenceDirection);
-
         PointDirectionAxis pointDirectionAxis1 = new PointDirectionAxis(point, this.referenceDirection);
         this.x = (JoAxis) pointDirectionAxis1.getResult();
         PointDirectionAxis pointDirectionAxis2 = new PointDirectionAxis(point, this.referencePlane.getNormal());
@@ -61,7 +60,7 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         if (referencePoint.getRegenerativeLink() != null) referencePoint.getRegenerativeLink().regenerate();
         if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();
         double checkOrthogonality = referencePlane.getNormal().getVector3D().dotProduct(referenceDirection.getVector3D());
-        if (checkOrthogonality < JoValue.DEFAULT_TOLERANCE)
+        if (checkOrthogonality > JoValue.DEFAULT_TOLERANCE)
             throw new NotOrthogonalVectorException(referencePlane.getNormal(), referenceDirection);
         x.getRegenerativeLink().regenerate();
         z.getRegenerativeLink().regenerate();
@@ -77,7 +76,9 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return null;
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = referencePlane.getValues();
+        result.addAll(referencePoint.getValues());
+        return result;
     }
 }

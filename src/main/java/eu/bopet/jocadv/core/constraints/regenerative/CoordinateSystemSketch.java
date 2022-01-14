@@ -5,7 +5,7 @@ import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
-import java.util.List;
+import java.util.Set;
 
 public class CoordinateSystemSketch implements RegenerativeLink {
     private final JoCoSys referenceCoordinateSystem;
@@ -27,7 +27,7 @@ public class CoordinateSystemSketch implements RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return null;
+    public Set<JoValue> getValues() {
+        return referenceCoordinateSystem.getValues();
     }
 }

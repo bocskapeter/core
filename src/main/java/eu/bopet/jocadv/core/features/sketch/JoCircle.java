@@ -7,8 +7,8 @@ import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class JoCircle extends FeatureBase implements SketchGeometry, Selectable {
     private final JoSphere sphere;
@@ -33,13 +33,13 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
-    public List<JoValue> getValues() {
-        return new ArrayList<>(sphere.getValues());
+    public Set<JoValue> getValues() {
+        return new LinkedHashSet<>(sphere.getValues());
     }
 
     @Override
-    public List<JoPoint> getPoints() {
-        return new ArrayList<>(sphere.getPoints());
+    public Set<JoPoint> getPoints() {
+        return new LinkedHashSet<>(sphere.getPoints());
     }
 
     @Override

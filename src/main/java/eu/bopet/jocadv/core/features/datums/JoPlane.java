@@ -10,6 +10,8 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.Set;
+
 public class JoPlane extends FeatureBase implements Selectable, Feature {
     public final static JoPlane XY = new JoPlane("XY", JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
     public final static JoPlane XZ = new JoPlane("XZ", JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
@@ -80,6 +82,25 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = Feature.super.getValues();
+        result.add(x);
+        result.add(y);
+        result.add(z);
+        result.add(d);
+        return result;
+    }
+
+    @Override
+    public void store() {
+        Feature.super.store();
+        x.store();
+        y.store();
+        z.store();
+        d.store();
     }
 
     @Override

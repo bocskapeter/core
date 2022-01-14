@@ -8,8 +8,7 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class CoordinateSystemOffsetPoint implements RegenerativeLink {
     private final JoCoSys referenceCoordinateSystem;
@@ -57,8 +56,8 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
+    public Set<JoValue> getValues() {
+        Set<JoValue> result = referenceCoordinateSystem.getValues();
         result.add(x);
         result.add(y);
         result.add(z);

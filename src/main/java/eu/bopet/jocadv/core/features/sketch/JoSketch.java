@@ -17,7 +17,9 @@ import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.linear.SingularValueDecomposition;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
@@ -31,7 +33,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private final List<JoPoint> points;
     private final JoCoSys coSys;
     private final RegenerativeLink regenerativeLink;
-    private final List<JoValue> valueList;
+    private final Set<JoValue> valueList;
     private final List<JoValue> variables;
     private int difference;
     private SketchConstraint lastConstraint;
@@ -46,7 +48,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         canBeRemoved = new ArrayList<>();
         constraintsInSolver = new ArrayList<>();
         points = new ArrayList<>();
-        valueList = new ArrayList<>();
+        valueList = new LinkedHashSet<>();
         variables = new ArrayList<>();
         edit = false;
         edit();
@@ -189,7 +191,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     }
 
-    private void store() {
+    public void store() {
         for (JoValue value : valueList) {
             value.store();
         }
@@ -257,9 +259,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private int prepareVariables() {
         valueList.clear();
         for (SketchConstraint constraint : constraints) {
-            for (JoValue value : constraint.getValues()) {
-                if (!valueList.contains(value)) valueList.add(value);
-            }
+            valueList.addAll(constraint.getValues());
         }
         variables.clear();
         for (JoValue value : valueList) {
@@ -342,7 +342,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     }
 
     @Override
-    public List<JoValue> getValues() {
+    public Set<JoValue> getValues() {
         return valueList;
     }
 }

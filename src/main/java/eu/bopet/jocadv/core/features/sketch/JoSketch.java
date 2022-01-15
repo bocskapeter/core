@@ -58,6 +58,14 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         return constraints;
     }
 
+    public Set<SketchGeometry> getGeometries() {
+        return geometries;
+    }
+
+    public Set<JoPoint> getPoints() {
+        return points;
+    }
+
     public void edit() {
         if (edit) return;
         for (SketchGeometry geometry : geometries) {

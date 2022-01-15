@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 
-import eu.bopet.jocadv.core.constraints.regenerative.*;
+import eu.bopet.jocadv.core.constraints.regenerative.CoordinateSystemSketch;
 import eu.bopet.jocadv.core.constraints.regenerative.axis.CoaxialAxis;
 import eu.bopet.jocadv.core.constraints.regenerative.cosys.PlanePointDirectionCoordinateSystem;
-import eu.bopet.jocadv.core.constraints.regenerative.point.ProjectedPoint;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
+import eu.bopet.jocadv.core.constraints.regenerative.point.ProjectedPoint;
 import eu.bopet.jocadv.core.constraints.sketch.*;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -87,6 +87,9 @@ class JoSketchTest {
         sketch.addGeometry(line4);
         sketch.addGeometry(arc);
 
+        radius.set(2.0);
+        sketch.regenerate();
+
         JoValue distance1 = new JoValue(JoValue.USER, 7.0);
         PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
                 point1, point2, distance1, SketchConstraint.USER_DEFINED);
@@ -120,20 +123,20 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate compete");
 
-        JoValue distance3 = new JoValue(JoValue.USER,1.0);
+        JoValue distance3 = new JoValue(JoValue.USER, 1.0);
 
-        PointToPlaneDistance pointToPlaneDistance1 = new PointToPlaneDistance(sketchCoordinateSystem.getYz(),point1,distance3,SketchConstraint.USER_DEFINED);
+        PointToPlaneDistance pointToPlaneDistance1 = new PointToPlaneDistance(sketchCoordinateSystem.getYz(), point1, distance3, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance1);
 
-        JoValue distance4 = new JoValue(JoValue.USER,2.0);
+        JoValue distance4 = new JoValue(JoValue.USER, 2.0);
 
-        PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(),point1,distance4,SketchConstraint.USER_DEFINED);
+        PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(), point1, distance4, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance2);
 
-        PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3,point6,arc.getRadius(),SketchConstraint.USER_DEFINED);
+        PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance1);
 
-        PointToLineDistance pointToLineDistance2 = new PointToLineDistance(line4,point6,arc.getRadius(),SketchConstraint.USER_DEFINED);
+        PointToLineDistance pointToLineDistance2 = new PointToLineDistance(line4, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance2);
 
         System.out.println("--change offset ");
@@ -142,17 +145,19 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate complete");
 
-        System.out.println("1: " + point1 +
-                "\n2: " + point2 +
-                "\n3: " + point3 +
-                "\n4: " + point4 +
-                "\n5: " + point5 +
-                "\n6: " + point6);
+        System.out.println(sketch.getPoints().size() + " points:");
+        for (JoPoint point : sketch.getPoints()) {
+            System.out.println(point);
+        }
 
-
-        System.out.println(sketch.getConstraints().size() +" constraints:");
+        System.out.println(sketch.getConstraints().size() + " constraints:");
         for (SketchConstraint sketchConstraint : sketch.getConstraints()) {
             System.out.println(sketchConstraint);
+        }
+
+        System.out.println(sketch.getGeometries().size() + " geometries:");
+        for (SketchGeometry geometry : sketch.getGeometries()) {
+            System.out.println(geometry);
         }
     }
 }

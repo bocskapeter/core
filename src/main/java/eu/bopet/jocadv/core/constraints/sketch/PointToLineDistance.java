@@ -90,11 +90,11 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double c1 = (a2 * b3 - a3 * b2);
         double c2 = (a3 * b1 - a1 * b3);
         double c3 = (a1 * b2 - a2 * b1);
-        double sqrt = Math.sqrt(c3 * c3 + c2 * c2 + c1);
+        double sqrt = Math.sqrt(c3 * c3 + c2 * c2 + c1 * c1);
         double v = a2 * a2 + a3 * a3 + a1 * a1;
         double result;
 
-        //TODO other derivatives: 7x ; next is z1
+        //TODO other derivatives: 6x ; next is x2
 
         // ∂/∂x1
         // d/dx(
@@ -131,6 +131,24 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
                     (2.0 * (a1 + b1) * c3 + 2.0 * (-a3 - b3) * c1) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
         }
+
+        // ∂/∂z1
+        // d/dz1
+        // d/dz1( sqrt((a2 * b3 - a3 * b2)^2 + (a3 * b1 - a1 * b3)^2 + c3 * c3) / sqrt(a1 * a1 + a2 * a2 + (z2 - z1)^2) )
+        // d/dz1( sqrt((a2 * (z1 - z3) - (z2 - z1) * b2)^2 + ((z2 - z1) * b1 - a1 * (z1 - z3))^2 + c3 * c3) / sqrt(a1 * a1 + a2 * a2 + (z2 - z1)^2) )
+        // d/dz( sqrt((a2 * (z - z3) - (z2 - z) * b2)^2 + ((z2 - z) * b1 - a1 * (z - z3))^2 + c3 * c3) / sqrt(a1 * a1 + a2 * a2 + (z2 - z)^2) )
+        // d/dz(sqrt((a2*(z-z3)-(z2-z)*b2)^2+((z2-z)*b1-a1*(z-z3))^2+c3*c3)/sqrt(a1*a1+a2*a2+(z2-z)^2))
+        // d/dz(sqrt((a2 (z - z3) - (z2 - z) b2)^2 + ((z2 - z) b1 - a1 (z - z3))^2 + c3 c3)/sqrt(a1 a1 + a2 a2 + (z2 - z)^2)) =
+        // ((z2 - z1) sqrt((b1 (z2 - z1) - a1 (z1 - z3))^2 + (a2 (z1 - z3) - b2 (z2 - z1))^2 + c3^2))/(a1^2 + a2^2 + (z2 - z1)^2)^(3/2) + (2 (-a1 - b1) (b1 (z2 - z1) - a1 (z1 - z3)) + 2 (a2 + b2) (a2 (z1 - z3) - b2 (z2 - z1)))/(2 sqrt(a1^2 + a2^2 + (z2 - z1)^2) sqrt((b1 (z2 - z1) - a1 (z1 - z3))^2 + (a2 (z1 - z3) - b2 (z2 - z1))^2 + c3^2))
+        // (a3 sqrt((b1 a3 - a1 (z1 - z3))^2 + (a2 (z1 - z3) - b2 a3)^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2) + (2 (-a1 - b1) (b1 a3 - a1 (z1 - z3)) + 2 (a2 + b2) (a2 (z1 - z3) - b2 a3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((b1 a3 - a1 (z1 - z3))^2 + (a2 (z1 - z3) - b2 a3)^2 + c3^2))
+        // (a3 sqrt((b1 a3 - a1 b3)^2 + (a2 b3 - b2 a3)^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2) + (2 (-a1 - b1) (b1 a3 - a1 b3) + 2 (a2 + b2) (a2 b3 - b2 a3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((b1 a3 - a1 b3)^2 + (a2 b3 - b2 a3)^2 + c3^2))
+        //(a3 sqrt(c2^2 + c1^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2) + (2 (-a1 - b1) c2 + 2 (a2 + b2) c1)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c2^2 + c1^2 + c3^2))
+        if (joValue == line.get1stPoint().getVector().getZ()) {
+            result = (a3 * sqrt) / Math.pow(v, 1.5) +
+                    (2.0 * (-a1 - b1) * c2 + 2.0 * (a2 + b2) * c1) / (2.0 * Math.sqrt(v) * sqrt);
+            return result;
+        }
+
         return SketchConstraint.super.getDerivative(joValue);
     }
 

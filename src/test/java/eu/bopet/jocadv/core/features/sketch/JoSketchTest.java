@@ -130,8 +130,6 @@ class JoSketchTest {
         PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(),point1,distance4,SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance2);
 
-        sketch.removeAutoConstraints();
-
         PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3,point6,arc.getRadius(),SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance1);
 

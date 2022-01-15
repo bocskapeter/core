@@ -239,6 +239,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 constraintsInSolver.remove(currentRemoved);
                 if (solveEquations(constraintsInSolver, variables)) {
                     constraints.remove(currentRemoved);
+                    System.out.println("Removed constraint: " + currentRemoved);
                     return true;
                 }
                 restore();

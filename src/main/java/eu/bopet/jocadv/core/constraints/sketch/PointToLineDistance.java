@@ -94,6 +94,8 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double v = a2 * a2 + a3 * a3 + a1 * a1;
         double result;
 
+        //TODO other derivatives: 7x ; next is z1
+
         // ∂/∂x1
         // d/dx(
         // (sqrt(c1 +

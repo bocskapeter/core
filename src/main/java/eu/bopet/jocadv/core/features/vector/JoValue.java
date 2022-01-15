@@ -22,7 +22,7 @@ public class JoValue {
     /**
      * Interval for the numerical derivative calculation.
      */
-    public static final double NUMERICAL_DERIVATIVE_RESOLUTION = 2.00 * DEFAULT_TOLERANCE;
+    public static final double NUMERICAL_DERIVATIVE_RESOLUTION = 0.1 * DEFAULT_TOLERANCE;
 
     private static final String[] SYMBOLS = {"⏚", "🖳", "?", "✔", "↔"};
 

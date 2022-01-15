@@ -96,6 +96,24 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
 
         //TODO other derivatives: 6x ; next is x2
 
+
+        // ∂/∂x2
+        // d/dx2
+        // d/dx2 ( sqrt(c1^2 + c2^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dx2 ( sqrt(c1^2 + (a3 * b1 - (x2 - x1) * b3)^2 + ((x2 - x1) * b2 - a2 * b1)^2) / sqrt((x2 - x1)^2 + a2^2 + a3^2) )
+        // d/dx ( sqrt(c1^2 + (a3 * b1 - (x - x1) * b3)^2 + ((x - x1) * b2 - a2 * b1)^2) / sqrt((x - x1)^2 + a2^2 + a3^2) )
+        // d/dx(sqrt(c1^2+(a3*b1-(x-x1)*b3)^2+((x-x1)*b2-a2*b1)^2)/sqrt((x-x1)^2+a2^2+a3^2))
+        // (2 b2 (b2 (x - x1) - a2 b1) - 2 b3 (a3 b1 - b3 (x - x1)))/(2 sqrt(a2^2 + a3^2 + (x - x1)^2) sqrt((b2 (x - x1) - a2 b1)^2 + (a3 b1 - b3 (x - x1))^2 + c1^2)) - ((x - x1) sqrt((b2 (x - x1) - a2 b1)^2 + (a3 b1 - b3 (x - x1))^2 + c1^2))/(a2^2 + a3^2 + (x - x1)^2)^(3/2)
+        // (2 b2 (b2 (x2 - x1) - a2 b1) - 2 b3 (a3 b1 - b3 (x2 - x1)))/(2 sqrt(a2^2 + a3^2 + (x2 - x1)^2) sqrt((b2 (x2 - x1) - a2 b1)^2 + (a3 b1 - b3 (x2 - x1))^2 + c1^2)) - ((x2 - x1) sqrt((b2 (x2 - x1) - a2 b1)^2 + (a3 b1 - b3 (x2 - x1))^2 + c1^2))/(a2^2 + a3^2 + (x2 - x1)^2)^(3/2)
+        // (2 b2 (b2 a1 - a2 b1) - 2 b3 (a3 b1 - b3 a1))/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2)) - (a1 sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
+        // (2 b2 c3 - 2 b3 c2)/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt(c3^2 + c2^2 + c1^2)) - (a1 sqrt(c3^2 + c2^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
+
+        if (joValue == line.get2ndPoint().getVector().getX()) {
+            result = (2.0 * b2 * b3 - 2.0 * b3 * c2) / (2.0 * Math.sqrt(v) * sqrt) -
+                    (a1 *sqrt) / Math.pow(v,1.5);
+            return result;
+        }
+
         // ∂/∂x1
         // d/dx(
         // (sqrt(c1 +

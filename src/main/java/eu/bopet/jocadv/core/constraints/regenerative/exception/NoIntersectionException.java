@@ -11,19 +11,11 @@ public class NoIntersectionException extends Exception {
         this.vector2 = vector2;
     }
 
-    public JoVector getVector1() {
-        return vector1;
-    }
-
-    public JoVector getVector2() {
-        return vector2;
-    }
-
     @Override
     public String toString() {
-        return "NoIntersectionException{" +
-                "vector1=" + vector1 +
-                ", vector2=" + vector2 +
+        return "No Intersection Exception{" +
+                "1st vector=" + vector1 +
+                ", 2nd vector=" + vector2 +
                 '}';
     }
 }

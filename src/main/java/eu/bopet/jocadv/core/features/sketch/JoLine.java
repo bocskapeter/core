@@ -33,6 +33,10 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         return point2;
     }
 
+    public boolean isConstruction() {
+        return construction;
+    }
+
     @Override
     public double distance(Line pickingLine) {
         return pickingLine.distance(geLine());
@@ -56,6 +60,17 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         result.add(point1);
         result.add(point2);
         return result;
+    }
+
+    @Override
+    public JoPoint getIntersection(SketchGeometry geometry) {
+        if (this.isConstruction()) return null;
+        if (geometry instanceof JoLine){
+            JoLine otherLine = (JoLine) geometry;
+            if (otherLine.isConstruction()) return null;
+            // TODO calculate intersection with arc, circle and line
+        }
+        return null;
     }
 
     @Override

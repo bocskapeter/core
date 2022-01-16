@@ -16,4 +16,10 @@ public interface SketchGeometry {
      * @return List of Points
      */
     Set<JoPoint> getPoints();
+
+    /**
+     * @param geometry the other geometry
+     * @return the intersection point
+     */
+    JoPoint getIntersection(SketchGeometry geometry);
 }

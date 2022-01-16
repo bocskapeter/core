@@ -60,6 +60,11 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     }
 
     @Override
+    public JoPoint getIntersection(SketchGeometry geometry) {
+        return null;
+    }
+
+    @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
     }

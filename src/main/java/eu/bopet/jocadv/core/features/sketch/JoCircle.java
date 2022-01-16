@@ -43,6 +43,12 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
+    public JoPoint getIntersection(SketchGeometry geometry) {
+        // TODO calculate intersection with arc, circle and line
+        return null;
+    }
+
+    @Override
     public String toString() {
         String name = "⨀";
         if (this.getName() != null) name = this.getName();

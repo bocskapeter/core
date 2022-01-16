@@ -46,6 +46,11 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
+    public JoPoint getIntersection(SketchGeometry geometry) {
+        return null;
+    }
+
+    @Override
     public String toString() {
         String name = "⦿";
         if (this.getName() != null) name = this.getName();

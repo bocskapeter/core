@@ -14,11 +14,15 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     private final JoCircle circle;
     private final JoPoint point1;
     private final JoPoint point2;
+    private final JoLine line1;
+    private final JoLine line2;
 
     public JoArc(JoCircle circle, JoPoint point1, JoPoint point2) {
         this.circle = circle;
         this.point1 = point1;
         this.point2 = point2;
+        this.line1 = new JoLine(circle.getSphere().getCenter(),point1,true);
+        this.line2 = new JoLine(circle.getSphere().getCenter(),point2,true);
     }
 
     public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) {
@@ -26,6 +30,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.circle = new JoCircle(sphere, plane);
         this.point1 = point1;
         this.point2 = point2;
+        this.line1 = new JoLine(circle.getSphere().getCenter(),point1,true);
+        this.line2 = new JoLine(circle.getSphere().getCenter(),point2,true);
     }
 
     public JoValue getRadius() {
@@ -42,6 +48,14 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
 
     public JoPoint get2ndPoint() {
         return point2;
+    }
+
+    public JoLine getLine1() {
+        return line1;
+    }
+
+    public JoLine getLine2() {
+        return line2;
     }
 
     @Override

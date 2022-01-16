@@ -149,11 +149,11 @@ class JoSketchTest {
         PointToLineDistance pointToLineDistance4 = new PointToLineDistance(line1, point7, distance6, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance4);
 
-        PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
-        sketch.addConstraint(pointToLineDistance1);
+        LinePerpendicularToLine linePerpendicularToLine1 = new LinePerpendicularToLine(SketchConstraint.USER_DEFINED, arc.getLine1(), line4);
+        sketch.addConstraint(linePerpendicularToLine1);
 
-        PointToLineDistance pointToLineDistance2 = new PointToLineDistance(line4, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
-        sketch.addConstraint(pointToLineDistance2);
+        LinePerpendicularToLine linePerpendicularToLine2 = new LinePerpendicularToLine(SketchConstraint.USER_DEFINED, arc.getLine2(), line3);
+        sketch.addConstraint(linePerpendicularToLine2);
 
         System.out.println("--change offset ");
         offset.set(5.0);

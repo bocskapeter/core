@@ -54,7 +54,7 @@ class JoSketchTest {
         JoValue z5 = new JoValue(JoValue.VARIABLE, 0.2089);
 
         JoValue x6 = new JoValue(JoValue.VARIABLE, 6.86);
-        JoValue y6 = new JoValue(JoValue.VARIABLE, 7.59);
+        JoValue y6 = new JoValue(JoValue.VARIABLE, 7.49);
         JoValue z6 = new JoValue(JoValue.VARIABLE, -0.109);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
@@ -133,16 +133,16 @@ class JoSketchTest {
         PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(), point1, distance4, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance2);
 
+        sketch.removeAutoConstraints();
+
         PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance1);
 
         PointToLineDistance pointToLineDistance2 = new PointToLineDistance(line4, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance2);
 
-        sketch.addConstraint(pointToLineDistance1);
-
         System.out.println("--change offset ");
-        offset.set(1.0);
+        offset.set(5.0);
         System.out.println("--start regenerate ");
         sketch.regenerate();
         System.out.println("--regenerate complete");

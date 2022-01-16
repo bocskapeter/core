@@ -108,6 +108,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (    a1   sqrt((            c3           )^2 + (            c2           )^2 + c1))/(a2^2 + a3^2 + (   a1 )^2)^(3/2) + (2 (-a2 - b2) (            c3           ) + 2 (a3 + b3) (            c2           ))/(2 sqrt(a2^2 + a3^2 + (   a1 )^2) sqrt((            c3           )^2 + (            c2           )^2 + c1))
         //
         // (a1sqrt((c3)^2+(c2)^2+c1)) / (a2^2+a3^2+(a1)^2)^(3/2) + (2(-a2-b2)(c3)+2(a3+b3)(c2)) / (2sqrt(a2^2+a3^2+(a1)^2)sqrt((c3)^2+(c2)^2+c1))
+        // (a1 sqrt(c3^2 + c2^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2) + (2 (-a2 - b2) c3 + 2 (a3 + b3) c2)/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt(c3^2 + c2^2 + c1^2))
         if (joValue == line.get1stPoint().getVector().getX()) {
             result = (a1 * sqrt) / Math.pow(v, 1.5) +
                     (2.0 * (-a2 - b2) * c3 + 2.0 * (a3 + b3) * c2) / (2.0 * Math.sqrt(v) * sqrt);

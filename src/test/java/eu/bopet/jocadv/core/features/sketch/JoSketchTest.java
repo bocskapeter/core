@@ -45,7 +45,7 @@ class JoSketchTest {
         JoValue y3 = new JoValue(JoValue.VARIABLE, 9.59);
         JoValue z3 = new JoValue(JoValue.VARIABLE, -0.089);
 
-        JoValue x4 = new JoValue(JoValue.VARIABLE, 6.16);
+        JoValue x4 = new JoValue(JoValue.VARIABLE, 6.3);
         JoValue y4 = new JoValue(JoValue.VARIABLE, 10.29);
         JoValue z4 = new JoValue(JoValue.VARIABLE, -0.2089);
 
@@ -54,8 +54,12 @@ class JoSketchTest {
         JoValue z5 = new JoValue(JoValue.VARIABLE, 0.2089);
 
         JoValue x6 = new JoValue(JoValue.VARIABLE, 6.86);
-        JoValue y6 = new JoValue(JoValue.VARIABLE, 7.49);
+        JoValue y6 = new JoValue(JoValue.VARIABLE, 7.89);
         JoValue z6 = new JoValue(JoValue.VARIABLE, -0.109);
+
+        JoValue x7 = new JoValue(JoValue.VARIABLE, 2.86);
+        JoValue y7 = new JoValue(JoValue.VARIABLE, 3.49);
+        JoValue z7 = new JoValue(JoValue.VARIABLE, -1.09);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         point1.setName("P1");
@@ -69,6 +73,8 @@ class JoSketchTest {
         point5.setName("P5");
         JoPoint point6 = new JoPoint(new JoVector(x6, y6, z6, null), null);
         point6.setName("P6");
+        JoPoint point7 = new JoPoint(new JoVector(x7, y7, z7, null), null);
+        point7.setName("P7");
         JoLine line1 = new JoLine(point1, point2);
         line1.setName("L1");
         JoLine line2 = new JoLine(point1, point3);
@@ -86,6 +92,7 @@ class JoSketchTest {
         sketch.addGeometry(line3);
         sketch.addGeometry(line4);
         sketch.addGeometry(arc);
+        sketch.addGeometry(point7);
 
         radius.set(2.0);
         sketch.regenerate();
@@ -117,6 +124,7 @@ class JoSketchTest {
         LineParallelToLine lineParallelToLine2 = new LineParallelToLine(
                 SketchConstraint.USER_DEFINED, line2, line4);
         sketch.addConstraint(lineParallelToLine2);
+
         System.out.println("--change offset ");
         offset.set(-2.0);
         System.out.println("--start regenerate ");
@@ -133,7 +141,13 @@ class JoSketchTest {
         PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(), point1, distance4, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance2);
 
-        sketch.removeAutoConstraints();
+        JoValue distance5 = new JoValue(JoValue.USER, 1.0);
+        PointToLineDistance pointToLineDistance3 = new PointToLineDistance(line2, point7, distance5, SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToLineDistance3);
+
+        JoValue distance6 = new JoValue(JoValue.USER, 1.5);
+        PointToLineDistance pointToLineDistance4 = new PointToLineDistance(line1, point7, distance6, SketchConstraint.USER_DEFINED);
+        sketch.addConstraint(pointToLineDistance4);
 
         PointToLineDistance pointToLineDistance1 = new PointToLineDistance(line3, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance1);

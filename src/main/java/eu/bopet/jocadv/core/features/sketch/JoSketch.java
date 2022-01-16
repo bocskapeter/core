@@ -95,6 +95,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         if (newGeometry instanceof JoPoint) {
             JoPoint point = (JoPoint) newGeometry;
+            points.add(point);
             // Z
             PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
                     coSys.getXy(),
@@ -247,7 +248,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 constraintsInSolver.remove(currentRemoved);
                 if (solveEquations(constraintsInSolver, variables)) {
                     constraints.remove(currentRemoved);
-                    System.out.println("Removed constraint: " + currentRemoved);
+                    System.out.println("Removed auto constraint: " + currentRemoved);
                     return true;
                 }
                 restore();

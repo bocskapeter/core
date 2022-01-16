@@ -139,6 +139,8 @@ class JoSketchTest {
         PointToLineDistance pointToLineDistance2 = new PointToLineDistance(line4, point6, arc.getRadius(), SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance2);
 
+        sketch.addConstraint(pointToLineDistance1);
+
         System.out.println("--change offset ");
         offset.set(1.0);
         System.out.println("--start regenerate ");

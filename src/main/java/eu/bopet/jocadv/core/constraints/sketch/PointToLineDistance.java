@@ -94,26 +94,6 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         double v = a2 * a2 + a3 * a3 + a1 * a1;
         double result;
 
-        //TODO other derivatives: 6x ; next is x2
-
-
-        // ∂/∂x2
-        // d/dx2
-        // d/dx2 ( sqrt(c1^2 + c2^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
-        // d/dx2 ( sqrt(c1^2 + (a3 * b1 - (x2 - x1) * b3)^2 + ((x2 - x1) * b2 - a2 * b1)^2) / sqrt((x2 - x1)^2 + a2^2 + a3^2) )
-        // d/dx ( sqrt(c1^2 + (a3 * b1 - (x - x1) * b3)^2 + ((x - x1) * b2 - a2 * b1)^2) / sqrt((x - x1)^2 + a2^2 + a3^2) )
-        // d/dx(sqrt(c1^2+(a3*b1-(x-x1)*b3)^2+((x-x1)*b2-a2*b1)^2)/sqrt((x-x1)^2+a2^2+a3^2))
-        // (2 b2 (b2 (x - x1) - a2 b1) - 2 b3 (a3 b1 - b3 (x - x1)))/(2 sqrt(a2^2 + a3^2 + (x - x1)^2) sqrt((b2 (x - x1) - a2 b1)^2 + (a3 b1 - b3 (x - x1))^2 + c1^2)) - ((x - x1) sqrt((b2 (x - x1) - a2 b1)^2 + (a3 b1 - b3 (x - x1))^2 + c1^2))/(a2^2 + a3^2 + (x - x1)^2)^(3/2)
-        // (2 b2 (b2 (x2 - x1) - a2 b1) - 2 b3 (a3 b1 - b3 (x2 - x1)))/(2 sqrt(a2^2 + a3^2 + (x2 - x1)^2) sqrt((b2 (x2 - x1) - a2 b1)^2 + (a3 b1 - b3 (x2 - x1))^2 + c1^2)) - ((x2 - x1) sqrt((b2 (x2 - x1) - a2 b1)^2 + (a3 b1 - b3 (x2 - x1))^2 + c1^2))/(a2^2 + a3^2 + (x2 - x1)^2)^(3/2)
-        // (2 b2 (b2 a1 - a2 b1) - 2 b3 (a3 b1 - b3 a1))/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2)) - (a1 sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
-        // (2 b2 c3 - 2 b3 c2)/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt(c3^2 + c2^2 + c1^2)) - (a1 sqrt(c3^2 + c2^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
-
-        if (joValue == line.get2ndPoint().getVector().getX()) {
-            result = (2.0 * b2 * b3 - 2.0 * b3 * c2) / (2.0 * Math.sqrt(v) * sqrt) -
-                    (a1 *sqrt) / Math.pow(v,1.5);
-            return result;
-        }
-
         // ∂/∂x1
         // d/dx(
         // (sqrt(c1 +
@@ -167,7 +147,106 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
             return result;
         }
 
-        return SketchConstraint.super.getDerivative(joValue);
+        // ∂/∂x2
+        // d/dx2
+        // d/dx2 ( sqrt(c1^2 + c2^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dx2 ( sqrt(c1^2 + (a3 * b1 - (x2 - x1) * b3)^2 + ((x2 - x1) * b2 - a2 * b1)^2) / sqrt((x2 - x1)^2 + a2^2 + a3^2) )
+        // d/dx ( sqrt(c1^2 + (a3 * b1 - (x - x1) * b3)^2 + ((x - x1) * b2 - a2 * b1)^2) / sqrt((x - x1)^2 + a2^2 + a3^2) )
+        // d/dx(sqrt(c1^2+(a3*b1-(x-x1)*b3)^2+((x-x1)*b2-a2*b1)^2)/sqrt((x-x1)^2+a2^2+a3^2))
+        // (2 b2 (b2 (x - x1) - a2 b1) - 2 b3 (a3 b1 - b3 (x - x1)))/(2 sqrt(a2^2 + a3^2 + (x - x1)^2) sqrt((b2 (x - x1) - a2 b1)^2 + (a3 b1 - b3 (x - x1))^2 + c1^2)) - ((x - x1) sqrt((b2 (x - x1) - a2 b1)^2 + (a3 b1 - b3 (x - x1))^2 + c1^2))/(a2^2 + a3^2 + (x - x1)^2)^(3/2)
+        // (2 b2 (b2 (x2 - x1) - a2 b1) - 2 b3 (a3 b1 - b3 (x2 - x1)))/(2 sqrt(a2^2 + a3^2 + (x2 - x1)^2) sqrt((b2 (x2 - x1) - a2 b1)^2 + (a3 b1 - b3 (x2 - x1))^2 + c1^2)) - ((x2 - x1) sqrt((b2 (x2 - x1) - a2 b1)^2 + (a3 b1 - b3 (x2 - x1))^2 + c1^2))/(a2^2 + a3^2 + (x2 - x1)^2)^(3/2)
+        // (2 b2 (b2 a1 - a2 b1) - 2 b3 (a3 b1 - b3 a1))/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2)) - (a1 sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
+        // (2 b2 c3 - 2 b3 c2)/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt(c3^2 + c2^2 + c1^2)) - (a1 sqrt(c3^2 + c2^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
+
+        if (joValue == line.get2ndPoint().getVector().getX()) {
+            result = (2.0 * b2 * b3 - 2.0 * b3 * c2) / (2.0 * Math.sqrt(v) * sqrt) -
+                    (a1 * sqrt) / Math.pow(v, 1.5);
+            return result;
+        }
+
+        // ∂/∂y2
+        // d/dy2
+        // d/dy2 (sqrt(((y2 - y1) * b3 - a3 * b2)^2 + c2^2 + (a1 * b2 - (y2 - y1) * b1)^2) / sqrt(a1^2 + (y2 - y1)^2 + a3^2))
+        // d/dy (sqrt(((y - y1) * b3 - a3 * b2)^2 + c2^2 + (a1 * b2 - (y - y1) * b1)^2) / sqrt(a1^2 + (y - y1)^2 + a3^2))
+        // d/dy(sqrt(((y-y1)*b3-a3*b2)^2+c2^2+(a1*b2-(y-y1)*b1)^2)/sqrt(a1^2+(y-y1)^2+a3^2))
+        // d/dy(sqrt(((y - y1) b3 - a3 b2)^2 + c2^2 + (a1 b2 - (y - y1) b1)^2)/sqrt(a1^2 + (y - y1)^2 + a3^2))
+        // (2 b3 (b3 (y2 - y1) - a3 b2) - 2 b1 (a1 b2 - b1 (y2 - y1)))/(2 sqrt(a1^2 + a3^2 + (y2 - y1)^2) sqrt((a1 b2 - b1 (y2 - y1))^2 + (b3 (y2 - y1) - a3 b2)^2 + c2^2)) - ((y2 - y1) sqrt((a1 b2 - b1 (y2 - y1))^2 + (b3 (y2 - y1) - a3 b2)^2 + c2^2))/(a1^2 + a3^2 + (y2 - y1)^2)^(3/2)
+        // (2 b3 c1 - 2 b1 c3)/(2 sqrt(a1^2 + a3^2 + a2^2) sqrt(c3^2 + c1^2 + c2^2)) - (a2 sqrt(c3^2 + c1^2 + c2^2))/(a1^2 + a3^2 + a2^2)^(3/2)
+
+        if (joValue == line.get2ndPoint().getVector().getY()) {
+            result = (2.0 * b3 * c1 - 2.0 * b1 * c3) / (2.0 * Math.sqrt(v) * sqrt) -
+                    (a2 * sqrt) / Math.pow(v, 1.5);
+            return result;
+        }
+
+        // ∂/∂z2
+        // d/dz2
+        // d/dz2( (sqrt((a2 * b3 - a3 * b2)^2 + (a3 * b1 - a1 * b3)^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2)) )
+        // d/dz2( (sqrt((a2 * b3 - (z2 - z1) * b2)^2 + ((z2 - z1) * b1 - a1 * b3)^2 + c3^2) / sqrt(a1^2 + a2^2 + (z2 - z1)^2)) )
+        // d/dz( (sqrt((a2 * b3 - (z - z1) * b2)^2 + ((z - z1) * b1 - a1 * b3)^2 + c3^2) / sqrt(a1^2 + a2^2 + (z - z1)^2)) )
+        // d/dz((sqrt((a2*b3-(z-z1)*b2)^2+((z-z1)*b1-a1*b3)^2+c3^2)/sqrt(a1^2+a2^2+(z-z1)^2)))
+        // d/dz(sqrt((a2 b3 - (z - z1) b2)^2 + ((z - z1) b1 - a1 b3)^2 + c3^2)/sqrt(a1^2 + a2^2 + (z - z1)^2))
+        // (2 b1 (b1 (z - z1) - a1 b3) - 2 b2 (a2 b3 - b2 (z - z1)))/(2 sqrt(a1^2 + a2^2 + (z - z1)^2) sqrt((b1 (z - z1) - a1 b3)^2 + (a2 b3 - b2 (z - z1))^2 + c3^2)) - ((z - z1) sqrt((b1 (z - z1) - a1 b3)^2 + (a2 b3 - b2 (z - z1))^2 + c3^2))/(a1^2 + a2^2 + (z - z1)^2)^(3/2)
+        // (2 b1 (b1 (z2 - z1) - a1 b3) - 2 b2 (a2 b3 - b2 (z2 - z1)))/(2 sqrt(a1^2 + a2^2 + (z2 - z1)^2) sqrt((b1 (z2 - z1) - a1 b3)^2 + (a2 b3 - b2 (z2 - z1))^2 + c3^2)) - ((z2 - z1) sqrt((b1 (z2 - z1) - a1 b3)^2 + (a2 b3 - b2 (z2 - z1))^2 + c3^2))/(a1^2 + a2^2 + (z2 - z1)^2)^(3/2)
+        // (2 b1 (b1 a3 - a1 b3) - 2 b2 (a2 b3 - b2 a3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((b1 a3 - a1 b3)^2 + (a2 b3 - b2 a3)^2 + c3^2)) - (a3 sqrt((b1 a3 - a1 b3)^2 + (a2 b3 - b2 a3)^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2)
+        // (2 b1 c2 - 2 b2 c1)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c2^2 + c1^2 + c3^2)) - (a3 sqrt(c2^2 + c1^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2)
+        // (2b1c2-2b2c1)/(2sqrt(a1^2+a2^2+a3^2)sqrt(c2^2+c1^2+c3^2))-(a3sqrt(c2^2+c1^2+c3^2))/(a1^2+a2^2+a3^2)^(3/2)
+
+        if (joValue == line.get2ndPoint().getVector().getZ()) {
+            result = (2.0 * b1 * c2 - 2.0 * b2 * c1) / (2.0 * Math.sqrt(v) * sqrt) -
+                    (a3 * sqrt) / Math.pow(v, 1.5);
+            return result;
+        }
+
+        // ∂/∂x3
+        // d/dx3
+        // d/dx3(sqrt(c1^2 + c2^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2))
+        // d/dx3( sqrt(c1^2 + (a3 * b1 - a1 * b3)^2 + (a1 * b2 - a2 * b1)^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dx3( sqrt(c1^2 + (a3 * (x1 - x3) - a1 * b3)^2 + (a1 * b2 - a2 * (x1 - x3))^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dx(sqrt(c1^2+(a3*(x1-x)-a1*b3)^2+(a1*b2-a2*(x1-x))^2)/sqrt(a1^2+a2^2+a3^2))
+        // d/dx(sqrt(c1^2 + (a3 (x1 - x) - a1 b3)^2 + (a1 b2 - a2 (x1 - x))^2)/sqrt(a1^2 + a2^2 + a3^2))
+        // (2 a2 (a1 b2 - a2 (x1 - x)) - 2 a3 (a3 (x1 - x) - a1 b3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 (x1 - x))^2 + (a3 (x1 - x) - a1 b3)^2 + c1^2))
+        // (2 a2 (a1 b2 - a2 (x1 - x3)) - 2 a3 (a3 (x1 - x3) - a1 b3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 (x1 - x3))^2 + (a3 (x1 - x3) - a1 b3)^2 + c1^2))
+        // (2 a2 (a1 b2 - a2 b1) - 2 a3 (a3 b1 - a1 b3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 b1)^2 + (a3 b1 - a1 b3)^2 + c1^2))
+        // (2 a2 c3 - 2 a3 c2)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c3^2 + c2^2 + c1^2))
+        if (joValue == point.getVector().getX()) {
+            result = (2.0 * a2 * c3 - 2.0 * a3 * c2) / (2.0 * Math.sqrt(v) * sqrt);
+            return result;
+        }
+
+        // ∂/∂y3
+        // d/dy3
+        // d/dy3( sqrt(c1^2 + c2^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dy3( sqrt((a2 * b3 - a3 * b2)^2 + c2^2 + (a1 * b2 - a2 * b1)^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dy3( sqrt((a2 * b3 - a3 * (y1 - y3))^2 + c2^2 + (a1 * (y1 - y3) - a2 * b1)^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dy( sqrt((a2 * b3 - a3 * (y1 - y))^2 + c2^2 + (a1 * (y1 - y) - a2 * b1)^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dy(sqrt((a2*b3-a3*(y1-y))^2+c2^2+(a1*(y1-y)-a2*b1)^2)/sqrt(a1^2+a2^2+a3^2))
+        // d/dy(sqrt((a2 b3 - a3 (y1 - y))^2 + c2^2 + (a1 (y1 - y) - a2 b1)^2)/sqrt(a1^2 + a2^2 + a3^2))
+        // (2 a3 (a2 b3 - a3 (y1 - y3)) - 2 a1 (a1 (y1 - y3) - a2 b1))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 (y1 - y3) - a2 b1)^2 + (a2 b3 - a3 (y1 - y3))^2 + c2^2))
+        // (2 a3 (a2 b3 - a3 b2) - 2 a1 (a1 b2 - a2 b1))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 b1)^2 + (a2 b3 - a3 b2)^2 + c2^2))
+        // (2 a3 c1 - 2 a1 c3)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c3^2 + c1^2 + c2^2))
+        if (joValue == point.getVector().getY()) {
+            result = (2.0 * a3 * c1 - 2.0 * a1 * c3) / (2.0 * Math.sqrt(v) * sqrt);
+            return result;
+        }
+
+        // ∂/∂z3
+        // d/dz3( sqrt(c1^2 + c2^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dz3( sqrt((a2 * b3 - a3 * b2)^2 + (a3 * b1 - a1 * b3)^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dz3( sqrt((a2 * (z1 - z3) - a3 * b2)^2 + (a3 * b1 - a1 * (z1 - z3))^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dz( sqrt((a2 * (z1 - z) - a3 * b2)^2 + (a3 * b1 - a1 * (z1 - z))^2 + c3^2) / sqrt(a1^2 + a2^2 + a3^2) )
+        // d/dz(sqrt((a2*(z1-z)-a3*b2)^2+(a3*b1-a1*(z1-z))^2+c3^2)/sqrt(a1^2+a2^2+a3^2))
+        // d/dz(sqrt((a2 (z1 - z) - a3 b2)^2 + (a3 b1 - a1 (z1 - z))^2 + c3^2)/sqrt(a1^2 + a2^2 + a3^2))
+        // (2 a1 (a3 b1 - a1 (z1 - z)) - 2 a2 (a2 (z1 - z) - a3 b2))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a3 b1 - a1 (z1 - z))^2 + (a2 (z1 - z) - a3 b2)^2 + c3^2))
+        // (2 a1 (a3 b1 - a1 (z1 - z3)) - 2 a2 (a2 (z1 - z3) - a3 b2))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a3 b1 - a1 (z1 - z3))^2 + (a2 (z1 - z3) - a3 b2)^2 + c3^2))
+        // (2 a1 (a3 b1 - a1 b3) - 2 a2 (a2 b3 - a3 b2))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a3 b1 - a1 b3)^2 + (a2 b3 - a3 b2)^2 + c3^2))
+        // (2 a1 c2 - 2 a2 c1)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c2^2 + c1^2 + c3^2))
+        if (joValue == point.getVector().getZ()) {
+            result = (2.0 * a1 * c2 - 2.0 * a2 * c1) / (2.0 * Math.sqrt(v) * sqrt);
+            return result;
+        }
+
+        return 0.0;
     }
 
     @Override

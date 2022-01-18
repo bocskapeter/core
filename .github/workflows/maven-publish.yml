@@ -4,8 +4,8 @@
 name: JoCADv.core
 
 on:
-  release: 1.0-SNAPSHOT
-#    types: [created]
+  release:
+    types: [created]
 
 jobs:
   build:

@@ -9,12 +9,7 @@ import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.vector.JoValue;
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.DecompositionSolver;
-import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
-import org.apache.commons.math3.linear.SingularValueDecomposition;
+import org.apache.commons.math3.linear.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -149,9 +144,11 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         constraints.add(newConstraint);
         for (Object object : components) {
-            if (object instanceof Feature && !geometries.contains(object)) {
+            if (object instanceof Feature) {
                 Feature feature = (Feature) object;
-                references.add(feature);
+                if (!geometries.contains(feature)) {
+                    references.add(feature);
+                }
             }
         }
         lastConstraint = newConstraint;
@@ -183,19 +180,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
                 constraints.remove(lastConstraint);
             }
         }
-    }
-
-    public void removeAutoConstraints() {
-        canBeRemoved.clear();
-        for (SketchConstraint sketchConstraint : constraints) {
-            if (sketchConstraint.getStatus() == SketchConstraint.AUTO_CONSTRAINT)
-                canBeRemoved.add(sketchConstraint);
-        }
-        for (SketchConstraint sketchConstraint : canBeRemoved) {
-            constraints.remove(sketchConstraint);
-        }
-        System.out.println("Difference: " + prepareVariables());
-
     }
 
     public void store() {
@@ -327,7 +311,6 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         return true;
     }
-
 
     @Override
     public RegenerativeLink getRegenerativeLink() {

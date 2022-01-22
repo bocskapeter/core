@@ -13,8 +13,8 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class AxisPlaneIntersectionPoint implements RegenerativeLink {
-    private final JoAxis referenceAxis;
-    private final JoPlane referencePlane;
+    private JoAxis referenceAxis;
+    private JoPlane referencePlane;
     private final JoPoint resultPoint;
 
     public AxisPlaneIntersectionPoint(JoAxis referenceAxis, JoPlane referencePlane) throws Exception {
@@ -27,6 +27,16 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
         JoValue z = new JoValue(JoValue.USER, intersectionPoint.getZ());
         JoVector vector = new JoVector(x, y, z, null);
         this.resultPoint = new JoPoint(vector, this);
+    }
+
+    public void setReferenceAxis(JoAxis referenceAxis) throws Exception {
+        this.referenceAxis = referenceAxis;
+        regenerate();
+    }
+
+    public void setReferencePlane(JoPlane referencePlane) throws Exception {
+        this.referencePlane = referencePlane;
+        regenerate();
     }
 
     @Override
@@ -50,5 +60,14 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
         Set<JoValue> result = referenceAxis.getValues();
         result.addAll(referencePlane.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AxisPlaneIntersectionPoint{" +
+                "referenceAxis=" + referenceAxis +
+                ", referencePlane=" + referencePlane +
+                ", resultPoint=" + resultPoint +
+                '}';
     }
 }

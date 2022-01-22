@@ -8,7 +8,7 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import java.util.Set;
 
 public class OppositeVector implements RegenerativeLink {
-    private final JoVector referenceVector;
+    private JoVector referenceVector;
     private final JoVector resultVector;
 
     public OppositeVector(JoVector referenceVector) {
@@ -22,6 +22,11 @@ public class OppositeVector implements RegenerativeLink {
                 new JoValue(JoValue.USER, -1.0 * referenceVector.getX().get()),
                 new JoValue(JoValue.USER, -1.0 * referenceVector.getY().get()),
                 new JoValue(JoValue.USER, -1.0 * referenceVector.getZ().get()), this);
+    }
+
+    public void setReferenceVector(JoVector referenceVector) throws Exception {
+        this.referenceVector = referenceVector;
+        regenerate();
     }
 
     public JoVector getReferenceVector() {
@@ -44,5 +49,13 @@ public class OppositeVector implements RegenerativeLink {
     @Override
     public Set<JoValue> getValues() {
         return referenceVector.getValues();
+    }
+
+    @Override
+    public String toString() {
+        return "OppositeVector{" +
+                "referenceVector=" + referenceVector +
+                ", resultVector=" + resultVector +
+                '}';
     }
 }

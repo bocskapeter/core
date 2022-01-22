@@ -14,9 +14,9 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class AxisAngleDirectionPlane implements RegenerativeLink {
-    private final JoAxis referenceAxis;
-    private final JoVector referenceDirection;
-    private final JoValue referenceAngle;
+    private JoAxis referenceAxis;
+    private JoVector referenceDirection;
+    private JoValue referenceAngle;
     private final JoPlane resultPlane;
 
     private final JoVector normal;
@@ -26,6 +26,8 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         this.referenceAxis = referenceAxis;
         this.referenceDirection = referenceDirection;
         this.referenceAngle = angle;
+
+        //TODO remove duplicate code
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
         Vector3D vector = referenceDirection.getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
@@ -41,6 +43,21 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(), normal);
         JoPlane result = (JoPlane) pointNormalPlane.getResult();
         this.resultPlane = new JoPlane(result.getX(), result.getY(), result.getZ(), result.getD(), this);
+    }
+
+    public void setReferenceAxis(JoAxis referenceAxis) throws Exception {
+        this.referenceAxis = referenceAxis;
+        regenerate();
+    }
+
+    public void setReferenceDirection(JoVector referenceDirection) throws Exception {
+        this.referenceDirection = referenceDirection;
+        regenerate();
+    }
+
+    public void setReferenceAngle(JoValue referenceAngle) throws Exception {
+        this.referenceAngle = referenceAngle;
+        regenerate();
     }
 
     @Override
@@ -72,5 +89,15 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         result.addAll(referenceDirection.getValues());
         result.add(referenceAngle);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "AxisAngleDirectionPlane{" +
+                "referenceAxis=" + referenceAxis +
+                ", referenceDirection=" + referenceDirection +
+                ", referenceAngle=" + referenceAngle +
+                ", resultPlane=" + resultPlane +
+                '}';
     }
 }

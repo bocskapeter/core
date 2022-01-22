@@ -2,6 +2,7 @@ package eu.bopet.jocadv.core.features;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.vector.NotCompatibleRegenerativeLinkException;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -13,11 +14,23 @@ public interface Feature {
     RegenerativeLink getRegenerativeLink();
 
     /**
+     * @param newRegenerativeLink - the new regenerative link
+     */
+    default void replaceReferenceLink(RegenerativeLink newRegenerativeLink) throws Exception {
+        if (!(newRegenerativeLink.getResult().getClass() == getRegenerativeLink().getClass())) {
+            throw new NotCompatibleRegenerativeLinkException(getRegenerativeLink(), newRegenerativeLink);
+        }
+        setRegenerativeLink(newRegenerativeLink);
+    }
+
+    void setRegenerativeLink(RegenerativeLink newRegenerativeLink) throws Exception;
+
+    /**
      * @return list of values used in this feature
      */
     default Set<JoValue> getValues() {
         Set<JoValue> result = new LinkedHashSet<>();
-        if (getRegenerativeLink()!=null) {
+        if (getRegenerativeLink() != null) {
             result.addAll(getRegenerativeLink().getValues());
         }
         return result;
@@ -26,9 +39,9 @@ public interface Feature {
     /**
      * store all values
      */
-    default void store(){
+    default void store() {
         Set<JoValue> values = new LinkedHashSet<>();
-        if (getRegenerativeLink()!=null) {
+        if (getRegenerativeLink() != null) {
             values.addAll(getRegenerativeLink().getValues());
         }
         for (JoValue value : values) value.store();

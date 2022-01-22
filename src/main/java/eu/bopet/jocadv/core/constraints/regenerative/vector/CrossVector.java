@@ -10,8 +10,8 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class CrossVector implements RegenerativeLink {
-    private final JoVector referenceVector1;
-    private final JoVector referenceVector2;
+    private JoVector referenceVector1;
+    private JoVector referenceVector2;
     private final JoVector resultVector;
 
     public CrossVector(JoVector referenceVector1, JoVector referenceVector2) throws ParallelVectorException {
@@ -26,6 +26,16 @@ public class CrossVector implements RegenerativeLink {
                 new JoValue(JoValue.USER, vector3D.getZ()),
                 this
         );
+    }
+
+    public void setReferenceVector1(JoVector referenceVector1) throws Exception {
+        this.referenceVector1 = referenceVector1;
+        regenerate();
+    }
+
+    public void setReferenceVector2(JoVector referenceVector2) throws Exception {
+        this.referenceVector2 = referenceVector2;
+        regenerate();
     }
 
     @Override
@@ -48,5 +58,14 @@ public class CrossVector implements RegenerativeLink {
         Set<JoValue> result = referenceVector1.getValues();
         result.addAll(referenceVector2.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CrossVector{" +
+                "referenceVector1=" + referenceVector1 +
+                ", referenceVector2=" + referenceVector2 +
+                ", resultVector=" + resultVector +
+                '}';
     }
 }

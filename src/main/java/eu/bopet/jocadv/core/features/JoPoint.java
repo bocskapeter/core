@@ -12,7 +12,7 @@ import java.util.Set;
 public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, Feature {
     public final static JoPoint ORIGIN = new JoPoint("Origin", JoVector.ZERO, null);
     private final JoVector vector;
-    private final RegenerativeLink regenerativeLink;
+    private RegenerativeLink regenerativeLink;
 
     public JoPoint(JoVector vector, RegenerativeLink regenerativeLink) {
         this.vector = vector;
@@ -67,6 +67,11 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) throws Exception {
+        this.regenerativeLink = newRegenerativeLink;
     }
 
     @Override

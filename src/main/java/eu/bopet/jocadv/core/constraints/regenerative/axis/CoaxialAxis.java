@@ -10,7 +10,7 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import java.util.Set;
 
 public class CoaxialAxis implements RegenerativeLink {
-    private final JoAxis referenceAxis;
+    private JoAxis referenceAxis;
     private final JoAxis resultAxis;
 
     public CoaxialAxis(JoAxis referenceAxis) {
@@ -26,6 +26,17 @@ public class CoaxialAxis implements RegenerativeLink {
                         new JoValue(JoValue.USER, referenceAxis.getDirection().getY().get()),
                         new JoValue(JoValue.USER, referenceAxis.getDirection().getZ().get()), null),
                 this);
+    }
+
+    public CoaxialAxis(JoAxis referenceAxis, JoAxis resultAxis) throws Exception {
+        this.referenceAxis = referenceAxis;
+        this.resultAxis = resultAxis;
+        regenerate();
+    }
+
+    public void setReferenceAxis(JoAxis referenceAxis) throws Exception {
+        this.referenceAxis = referenceAxis;
+        regenerate();
     }
 
     @Override
@@ -47,5 +58,13 @@ public class CoaxialAxis implements RegenerativeLink {
     @Override
     public Set<JoValue> getValues() {
         return referenceAxis.getValues();
+    }
+
+    @Override
+    public String toString() {
+        return "CoaxialAxis{" +
+                "referenceAxis=" + referenceAxis +
+                ", resultAxis=" + resultAxis +
+                '}';
     }
 }

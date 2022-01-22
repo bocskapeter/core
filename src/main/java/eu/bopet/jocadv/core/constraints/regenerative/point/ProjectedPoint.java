@@ -11,8 +11,8 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class ProjectedPoint implements RegenerativeLink {
-    private final JoPlane referencePlane;
-    private final JoPoint referencePoint;
+    private JoPlane referencePlane;
+    private JoPoint referencePoint;
     private final JoPoint resultPoint;
 
     public ProjectedPoint(JoPlane referencePlane, JoPoint referencePoint) {
@@ -25,6 +25,16 @@ public class ProjectedPoint implements RegenerativeLink {
                 new JoValue(JoValue.USER, projectedPoint.getY()),
                 new JoValue(JoValue.USER, projectedPoint.getZ()), null),
                 this);
+    }
+
+    public void setReferencePlane(JoPlane referencePlane) throws Exception {
+        this.referencePlane = referencePlane;
+        regenerate();
+    }
+
+    public void setReferencePoint(JoPoint referencePoint) throws Exception {
+        this.referencePoint = referencePoint;
+        regenerate();
     }
 
     @Override
@@ -48,5 +58,14 @@ public class ProjectedPoint implements RegenerativeLink {
         Set<JoValue> result = referencePlane.getValues();
         result.addAll(referencePoint.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectedPoint{" +
+                "referencePlane=" + referencePlane +
+                ", referencePoint=" + referencePoint +
+                ", resultPoint=" + resultPoint +
+                '}';
     }
 }

@@ -14,7 +14,7 @@ public class JoVector implements Feature {
     private final JoValue x;
     private final JoValue y;
     private final JoValue z;
-    private final RegenerativeLink regenerativeLink;
+    private RegenerativeLink regenerativeLink;
 
     public JoVector(JoValue x, JoValue y, JoValue z, RegenerativeLink regenerativeLink) {
         this.x = x;
@@ -87,6 +87,13 @@ public class JoVector implements Feature {
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
     }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) throws Exception {
+        this.regenerativeLink = newRegenerativeLink;
+        regenerativeLink.regenerate();
+    }
+
 
     @Override
     public String toString() {

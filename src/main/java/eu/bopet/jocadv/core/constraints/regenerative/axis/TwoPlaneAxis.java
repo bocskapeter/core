@@ -15,8 +15,8 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class TwoPlaneAxis implements RegenerativeLink {
-    private final JoPlane referencePlane1;
-    private final JoPlane referencePlane2;
+    private JoPlane referencePlane1;
+    private JoPlane referencePlane2;
     private final JoAxis resultAxis;
 
     public TwoPlaneAxis(JoPlane referencePlane1, JoPlane referencePlane2) throws Exception {
@@ -38,6 +38,16 @@ public class TwoPlaneAxis implements RegenerativeLink {
         JoPoint joPoint = new JoPoint(joVector, null);
         JoVector joDirection = new JoVector(directionX, directionY, directionZ, null);
         this.resultAxis = new JoAxis(joPoint, joDirection, this);
+    }
+
+    public void setReferencePlane1(JoPlane referencePlane1) throws Exception {
+        this.referencePlane1 = referencePlane1;
+        regenerate();
+    }
+
+    public void setReferencePlane2(JoPlane referencePlane2) throws Exception {
+        this.referencePlane2 = referencePlane2;
+        regenerate();
     }
 
     @Override
@@ -66,5 +76,14 @@ public class TwoPlaneAxis implements RegenerativeLink {
         Set<JoValue> result = referencePlane1.getValues();
         result.addAll(referencePlane2.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "TwoPlaneAxis{" +
+                "referencePlane1=" + referencePlane1 +
+                ", referencePlane2=" + referencePlane2 +
+                ", resultAxis=" + resultAxis +
+                '}';
     }
 }

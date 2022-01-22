@@ -11,7 +11,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class CoordinateSystemOffsetPoint implements RegenerativeLink {
-    private final JoCoSys referenceCoordinateSystem;
+    private JoCoSys referenceCoordinateSystem;
     private final JoValue x;
     private final JoValue y;
     private final JoValue z;
@@ -33,6 +33,11 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
         JoValue newZ = new JoValue(JoValue.USER, newPoint.getZ());
         JoVector joVector = new JoVector(newX, newY, newZ, null);
         this.resultPoint = new JoPoint(joVector, this);
+    }
+
+    public void setReferenceCoordinateSystem(JoCoSys referenceCoordinateSystem) throws Exception {
+        this.referenceCoordinateSystem = referenceCoordinateSystem;
+        regenerate();
     }
 
     @Override
@@ -62,5 +67,13 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
         result.add(y);
         result.add(z);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CoordinateSystemOffsetPoint{" +
+                "referenceCoordinateSystem=" + referenceCoordinateSystem +
+                ", resultPoint=" + resultPoint +
+                '}';
     }
 }

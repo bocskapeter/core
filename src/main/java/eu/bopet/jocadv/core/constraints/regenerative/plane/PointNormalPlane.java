@@ -10,8 +10,8 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import java.util.Set;
 
 public class PointNormalPlane implements RegenerativeLink {
-    private final JoPoint referencePoint;
-    private final JoVector referenceNormal;
+    private JoPoint referencePoint;
+    private JoVector referenceNormal;
     private final JoPlane resultPlane;
 
     public PointNormalPlane(JoPoint referencePoint, JoVector referenceNormal) {
@@ -24,6 +24,16 @@ public class PointNormalPlane implements RegenerativeLink {
                 new JoValue(JoValue.USER, getD()),
                 this
         );
+    }
+
+    public void setReferencePoint(JoPoint referencePoint) throws Exception {
+        this.referencePoint = referencePoint;
+        regenerate();
+    }
+
+    public void setReferenceNormal(JoVector referenceNormal) throws Exception {
+        this.referenceNormal = referenceNormal;
+        regenerate();
     }
 
     private double getD() {
@@ -53,5 +63,14 @@ public class PointNormalPlane implements RegenerativeLink {
         Set<JoValue> result = referencePoint.getValues();
         result.addAll(referenceNormal.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PointNormalPlane{" +
+                "referencePoint=" + referencePoint +
+                ", referenceNormal=" + referenceNormal +
+                ", resultPlane=" + resultPlane +
+                '}';
     }
 }

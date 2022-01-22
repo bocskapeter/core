@@ -9,7 +9,7 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import java.util.Set;
 
 public class CoincidentPoint implements RegenerativeLink {
-    private final JoPoint referencePoint;
+    private JoPoint referencePoint;
     private final JoPoint resultPoint;
 
     public CoincidentPoint(JoPoint referencePoint) {
@@ -19,6 +19,11 @@ public class CoincidentPoint implements RegenerativeLink {
                 new JoValue(JoValue.USER, referencePoint.getVector().getY().get()),
                 new JoValue(JoValue.USER, referencePoint.getVector().getZ().get()), null),
                 this);
+    }
+
+    public void setReferencePoint(JoPoint referencePoint) throws Exception {
+        this.referencePoint = referencePoint;
+        regenerate();
     }
 
     @Override
@@ -37,5 +42,13 @@ public class CoincidentPoint implements RegenerativeLink {
     @Override
     public Set<JoValue> getValues() {
         return referencePoint.getValues();
+    }
+
+    @Override
+    public String toString() {
+        return "CoincidentPoint{" +
+                "referencePoint=" + referencePoint +
+                ", resultPoint=" + resultPoint +
+                '}';
     }
 }

@@ -8,7 +8,7 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import java.util.Set;
 
 public class OffsetPlane implements RegenerativeLink {
-    private final JoPlane referencePlane;
+    private JoPlane referencePlane;
     private final JoValue offsetValue;
     private final JoPlane resultPlane;
 
@@ -18,6 +18,11 @@ public class OffsetPlane implements RegenerativeLink {
         this.offsetValue = offsetValue;
         this.resultPlane = new JoPlane(referencePlane.getX(), referencePlane.getY(), referencePlane.getZ(),
                 new JoValue(JoValue.USER, referencePlane.getD().get() + offsetValue.get()), this);
+    }
+
+    public void setReferencePlane(JoPlane referencePlane) throws Exception {
+        this.referencePlane = referencePlane;
+        regenerate();
     }
 
     @Override
@@ -39,5 +44,14 @@ public class OffsetPlane implements RegenerativeLink {
         Set<JoValue> result = referencePlane.getValues();
         result.add(offsetValue);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "OffsetPlane{" +
+                "referencePlane=" + referencePlane +
+                ", offsetValue=" + offsetValue +
+                ", resultPlane=" + resultPlane +
+                '}';
     }
 }

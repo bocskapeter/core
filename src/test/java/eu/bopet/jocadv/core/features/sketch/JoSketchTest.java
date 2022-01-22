@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 
-import eu.bopet.jocadv.core.constraints.regenerative.CoordinateSystemSketch;
+import eu.bopet.jocadv.core.constraints.regenerative.sketch.CoordinateSystemSketch;
 import eu.bopet.jocadv.core.constraints.regenerative.axis.CoaxialAxis;
 import eu.bopet.jocadv.core.constraints.regenerative.cosys.PlanePointDirectionCoordinateSystem;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;

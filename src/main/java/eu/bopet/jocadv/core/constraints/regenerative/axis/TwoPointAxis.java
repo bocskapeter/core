@@ -10,8 +10,8 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import java.util.Set;
 
 public class TwoPointAxis implements RegenerativeLink {
-    private final JoPoint referencePoint1;
-    private final JoPoint referencePoint2;
+    private JoPoint referencePoint1;
+    private JoPoint referencePoint2;
     private final JoAxis resultAxis;
 
     public TwoPointAxis(JoPoint point1, JoPoint point2) {
@@ -32,6 +32,16 @@ public class TwoPointAxis implements RegenerativeLink {
                                 JoValue.USER, point2.getVector().getZ().get() - point1.getVector().getZ().get()),
                         null),
                 this);
+    }
+
+    public void setReferencePoint1(JoPoint referencePoint1) throws Exception {
+        this.referencePoint1 = referencePoint1;
+        regenerate();
+    }
+
+    public void setReferencePoint2(JoPoint referencePoint2) throws Exception {
+        this.referencePoint2 = referencePoint2;
+        regenerate();
     }
 
     @Override
@@ -59,5 +69,14 @@ public class TwoPointAxis implements RegenerativeLink {
         Set<JoValue> result = referencePoint1.getValues();
         result.addAll(referencePoint2.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "TwoPointAxis{" +
+                "referencePoint1=" + referencePoint1 +
+                ", referencePoint2=" + referencePoint2 +
+                ", resultAxis=" + resultAxis +
+                '}';
     }
 }

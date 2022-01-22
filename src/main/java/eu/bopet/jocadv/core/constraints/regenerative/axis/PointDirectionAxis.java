@@ -10,14 +10,24 @@ import eu.bopet.jocadv.core.features.vector.JoVector;
 import java.util.Set;
 
 public class PointDirectionAxis implements RegenerativeLink {
-    private final JoPoint referencePoint;
-    private final JoVector referenceDirection;
+    private JoPoint referencePoint;
+    private JoVector referenceDirection;
     private final JoAxis resultAxis;
 
     public PointDirectionAxis(JoPoint referencePoint, JoVector referenceDirection) {
         this.referencePoint = referencePoint;
         this.referenceDirection = referenceDirection;
         resultAxis = new JoAxis(referencePoint, referenceDirection, this);
+    }
+
+    public void setReferencePoint(JoPoint referencePoint) throws Exception {
+        this.referencePoint = referencePoint;
+        regenerate();
+    }
+
+    public void setReferenceDirection(JoVector referenceDirection) throws Exception {
+        this.referenceDirection = referenceDirection;
+        regenerate();
     }
 
     @Override
@@ -42,5 +52,14 @@ public class PointDirectionAxis implements RegenerativeLink {
         Set<JoValue> result = referencePoint.getValues();
         result.addAll(referenceDirection.getValues());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PointDirectionAxis{" +
+                "referencePoint=" + referencePoint +
+                ", referenceDirection=" + referenceDirection +
+                ", resultAxis=" + resultAxis +
+                '}';
     }
 }

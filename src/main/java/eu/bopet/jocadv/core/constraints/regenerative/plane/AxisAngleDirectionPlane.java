@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
-import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -22,12 +22,10 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
     private final JoVector normal;
     private final PointNormalPlane pointNormalPlane;
 
-    public AxisAngleDirectionPlane(JoAxis referenceAxis, JoVector referenceDirection, JoValue angle) throws Exception {
+    public AxisAngleDirectionPlane(JoAxis referenceAxis, JoVector referenceDirection, JoValue referenceAngle) throws Exception {
         this.referenceAxis = referenceAxis;
         this.referenceDirection = referenceDirection;
-        this.referenceAngle = angle;
-
-        //TODO remove duplicate code
+        this.referenceAngle = referenceAngle;
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
         Vector3D vector = referenceDirection.getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
@@ -43,6 +41,27 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(), normal);
         JoPlane result = (JoPlane) pointNormalPlane.getResult();
         this.resultPlane = new JoPlane(result.getX(), result.getY(), result.getZ(), result.getD(), this);
+    }
+
+    public AxisAngleDirectionPlane(JoAxis referenceAxis, JoVector referenceDirection, JoValue referenceAngle, JoPlane resultPlane) throws Exception {
+        this.referenceAxis = referenceAxis;
+        this.referenceDirection = referenceDirection;
+        this.referenceAngle = referenceAngle;
+        Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
+        Vector3D vector = referenceDirection.getVector3D();
+        double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
+        if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
+            throw new ParallelVectorException(referenceAxis.getDirection(), referenceDirection);
+        }
+        Rotation rotation = new Rotation(rotationAxis, referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
+        Vector3D newVector = rotation.applyTo(vector);
+        JoValue x = new JoValue(JoValue.USER, newVector.getX());
+        JoValue y = new JoValue(JoValue.USER, newVector.getY());
+        JoValue z = new JoValue(JoValue.USER, newVector.getZ());
+        normal = new JoVector(x, y, z, null);
+        pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(), normal);
+        this.resultPlane = resultPlane;
+        regenerate();
     }
 
     public void setReferenceAxis(JoAxis referenceAxis) throws Exception {

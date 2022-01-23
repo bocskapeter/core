@@ -21,7 +21,7 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
     private final JoValue z;
     private final JoValue d;
     private final JoVector normal;
-    private final RegenerativeLink regenerativeLink;
+    private RegenerativeLink regenerativeLink;
 
     public JoPlane(JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
         this.x = x;
@@ -82,6 +82,11 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+        this.regenerativeLink = newRegenerativeLink;
     }
 
     @Override

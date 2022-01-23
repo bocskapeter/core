@@ -29,7 +29,9 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
 
     private final JoCoSys resultCoordinateSystem;
 
-    public PlanePointDirectionCoordinateSystem(JoPlane referencePlane, JoPoint point, JoVector direction) throws Exception {
+    public PlanePointDirectionCoordinateSystem(JoPlane referencePlane,
+                                               JoPoint point,
+                                               JoVector direction) throws Exception {
         this.referencePlane = referencePlane;
         this.referencePoint = point;
         this.referenceDirection = direction;
@@ -38,7 +40,10 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         this.resultCoordinateSystem = new JoCoSys(referencePoint, x, y, z, xy, yz, xz, this);
     }
 
-    public PlanePointDirectionCoordinateSystem(JoPlane referencePlane, JoPoint referencePoint, JoVector referenceDirection, JoCoSys resultCoordinateSystem) throws Exception {
+    public PlanePointDirectionCoordinateSystem(JoPlane referencePlane,
+                                               JoPoint referencePoint,
+                                               JoVector referenceDirection,
+                                               JoCoSys resultCoordinateSystem) throws Exception {
         this.referencePlane = referencePlane;
         this.referencePoint = referencePoint;
         this.referenceDirection = referenceDirection;
@@ -57,10 +62,12 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     private void createAxesAndPlanes() throws Exception {
         PointDirectionAxis pointDirectionAxisX = new PointDirectionAxis(referencePoint, this.referenceDirection);
         this.x = (JoAxis) pointDirectionAxisX.getResult();
-        PointDirectionAxis pointDirectionAxisZ = new PointDirectionAxis(referencePoint, this.referencePlane.getNormal());
+        PointDirectionAxis pointDirectionAxisZ =
+                new PointDirectionAxis(referencePoint, this.referencePlane.getNormal());
         this.z = (JoAxis) pointDirectionAxisZ.getResult();
         CrossVector crossVector = new CrossVector(z.getDirection(), x.getDirection());
-        PointDirectionAxis pointDirectionAxisY = new PointDirectionAxis(referencePoint, (JoVector) crossVector.getResult());
+        PointDirectionAxis pointDirectionAxisY =
+                new PointDirectionAxis(referencePoint, (JoVector) crossVector.getResult());
         this.y = (JoAxis) pointDirectionAxisY.getResult();
         PointNormalPlane pointNormalPlane1 = new PointNormalPlane(referencePoint, this.z.getDirection());
         this.xy = (JoPlane) pointNormalPlane1.getResult();

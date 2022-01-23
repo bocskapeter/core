@@ -17,7 +17,7 @@ public class JoAxis extends FeatureBase implements Selectable, Feature {
     public static final JoAxis Z = new JoAxis("Z", JoPoint.ORIGIN, JoVector.K, null);
     private final JoPoint point;
     private final JoVector direction;
-    private final RegenerativeLink regenerativeLink;
+    private RegenerativeLink regenerativeLink;
 
     public JoAxis(JoPoint point, JoVector direction, RegenerativeLink regenerativeLink) {
         this.point = point;
@@ -56,6 +56,11 @@ public class JoAxis extends FeatureBase implements Selectable, Feature {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+        this.regenerativeLink = newRegenerativeLink;
     }
 
     @Override

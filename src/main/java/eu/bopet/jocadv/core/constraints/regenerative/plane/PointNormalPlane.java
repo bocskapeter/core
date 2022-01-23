@@ -26,6 +26,13 @@ public class PointNormalPlane implements RegenerativeLink {
         );
     }
 
+    public PointNormalPlane(JoPoint referencePoint, JoVector referenceNormal, JoPlane resultPlane) throws Exception {
+        this.referencePoint = referencePoint;
+        this.referenceNormal = referenceNormal;
+        this.resultPlane = resultPlane;
+        regenerate();
+    }
+
     public void setReferencePoint(JoPoint referencePoint) throws Exception {
         this.referencePoint = referencePoint;
         regenerate();

@@ -29,6 +29,13 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
         this.resultPoint = new JoPoint(vector, this);
     }
 
+    public AxisPlaneIntersectionPoint(JoAxis referenceAxis, JoPlane referencePlane, JoPoint resultPoint) throws Exception {
+        this.referenceAxis = referenceAxis;
+        this.referencePlane = referencePlane;
+        this.resultPoint = resultPoint;
+        regenerate();
+    }
+
     public void setReferenceAxis(JoAxis referenceAxis) throws Exception {
         this.referenceAxis = referenceAxis;
         regenerate();

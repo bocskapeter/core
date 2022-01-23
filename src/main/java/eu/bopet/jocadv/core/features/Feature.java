@@ -23,7 +23,7 @@ public interface Feature {
         setRegenerativeLink(newRegenerativeLink);
     }
 
-    void setRegenerativeLink(RegenerativeLink newRegenerativeLink) throws Exception;
+    void setRegenerativeLink(RegenerativeLink newRegenerativeLink);
 
     /**
      * @return list of values used in this feature

@@ -27,7 +27,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     private final Set<SketchConstraint> canBeRemoved;
     private final Set<JoPoint> points;
     private final JoCoSys coSys;
-    private final RegenerativeLink regenerativeLink;
+    private RegenerativeLink regenerativeLink;
     private final Set<JoValue> valueList;
     private final Set<JoValue> variables;
     private int difference;
@@ -315,6 +315,11 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     @Override
     public RegenerativeLink getRegenerativeLink() {
         return regenerativeLink;
+    }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+        this.regenerativeLink = newRegenerativeLink;
     }
 
     @Override

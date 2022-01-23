@@ -23,9 +23,9 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
     private final JoPlane xy;
     private final JoPlane yz;
     private final JoPlane xz;
-    private final RegenerativeLink regenerative;
+    private RegenerativeLink regenerativeLink;
 
-    public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerative) {
+    public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerativeLink) {
         this.origin = origin;
         this.x = x;
         this.y = y;
@@ -33,10 +33,10 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
         this.xy = xy;
         this.yz = yz;
         this.xz = xz;
-        this.regenerative = regenerative;
+        this.regenerativeLink = regenerativeLink;
     }
 
-    public JoCoSys(String name, JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerative) {
+    public JoCoSys(String name, JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerativeLink) {
         super();
         super.setName(name);
         this.origin = origin;
@@ -46,7 +46,7 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
         this.xy = xy;
         this.yz = yz;
         this.xz = xz;
-        this.regenerative = regenerative;
+        this.regenerativeLink = regenerativeLink;
     }
 
     public JoPoint getOrigin() {
@@ -84,10 +84,14 @@ public class JoCoSys extends FeatureBase implements Selectable, Feature {
 
     @Override
     public RegenerativeLink getRegenerativeLink() {
-        return regenerative;
+        return regenerativeLink;
     }
 
     @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+        this.regenerativeLink = newRegenerativeLink;
+    }
+
     public Set<JoValue> getValues() {
         Set<JoValue> result = Feature.super.getValues();
         result.addAll(origin.getValues());

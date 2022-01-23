@@ -22,6 +22,11 @@ public class JoFace extends FeatureBase implements Feature, RegenerativeLink {
     }
 
     @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+
+    }
+
+    @Override
     public Set<JoValue> getValues() {
         return Feature.super.getValues();
     }

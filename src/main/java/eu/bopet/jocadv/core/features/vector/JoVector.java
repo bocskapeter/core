@@ -89,9 +89,8 @@ public class JoVector implements Feature {
     }
 
     @Override
-    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) throws Exception {
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
         this.regenerativeLink = newRegenerativeLink;
-        regenerativeLink.regenerate();
     }
 
 

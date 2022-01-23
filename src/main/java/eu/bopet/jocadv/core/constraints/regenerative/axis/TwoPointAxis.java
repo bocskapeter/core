@@ -34,6 +34,13 @@ public class TwoPointAxis implements RegenerativeLink {
                 this);
     }
 
+    public TwoPointAxis(JoPoint referencePoint1, JoPoint referencePoint2, JoAxis resultAxis) throws Exception {
+        this.referencePoint1 = referencePoint1;
+        this.referencePoint2 = referencePoint2;
+        this.resultAxis = resultAxis;
+        regenerate();
+    }
+
     public void setReferencePoint1(JoPoint referencePoint1) throws Exception {
         this.referencePoint1 = referencePoint1;
         regenerate();

@@ -42,6 +42,11 @@ public class JoSolidExtrude extends FeatureBase implements Feature, Regenerative
     }
 
     @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+
+    }
+
+    @Override
     public Set<JoValue> getValues() {
         return Feature.super.getValues();
     }

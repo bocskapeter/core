@@ -20,6 +20,13 @@ public class OffsetPlane implements RegenerativeLink {
                 new JoValue(JoValue.USER, referencePlane.getD().get() + offsetValue.get()), this);
     }
 
+    public OffsetPlane(JoPlane referencePlane, JoValue offsetValue, JoPlane resultPlane) throws Exception {
+        this.referencePlane = referencePlane;
+        this.offsetValue = offsetValue;
+        this.resultPlane = resultPlane;
+        regenerate();
+    }
+
     public void setReferencePlane(JoPlane referencePlane) throws Exception {
         this.referencePlane = referencePlane;
         regenerate();

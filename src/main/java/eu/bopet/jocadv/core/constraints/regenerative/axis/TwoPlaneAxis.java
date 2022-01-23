@@ -40,6 +40,13 @@ public class TwoPlaneAxis implements RegenerativeLink {
         this.resultAxis = new JoAxis(joPoint, joDirection, this);
     }
 
+    public TwoPlaneAxis(JoPlane referencePlane1, JoPlane referencePlane2, JoAxis resultAxis) throws Exception {
+        this.referencePlane1 = referencePlane1;
+        this.referencePlane2 = referencePlane2;
+        this.resultAxis = resultAxis;
+        regenerate();
+    }
+
     public void setReferencePlane1(JoPlane referencePlane1) throws Exception {
         this.referencePlane1 = referencePlane1;
         regenerate();

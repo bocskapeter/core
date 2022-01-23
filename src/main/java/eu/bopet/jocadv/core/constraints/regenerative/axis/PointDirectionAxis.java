@@ -20,6 +20,13 @@ public class PointDirectionAxis implements RegenerativeLink {
         resultAxis = new JoAxis(referencePoint, referenceDirection, this);
     }
 
+    public PointDirectionAxis(JoPoint referencePoint, JoVector referenceDirection, JoAxis resultAxis) throws Exception {
+        this.referencePoint = referencePoint;
+        this.referenceDirection = referenceDirection;
+        this.resultAxis = resultAxis;
+        regenerate();
+    }
+
     public void setReferencePoint(JoPoint referencePoint) throws Exception {
         this.referencePoint = referencePoint;
         regenerate();

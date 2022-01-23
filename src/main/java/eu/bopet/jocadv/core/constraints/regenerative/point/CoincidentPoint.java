@@ -21,6 +21,12 @@ public class CoincidentPoint implements RegenerativeLink {
                 this);
     }
 
+    public CoincidentPoint(JoPoint referencePoint, JoPoint resultPoint) throws Exception {
+        this.referencePoint = referencePoint;
+        this.resultPoint = resultPoint;
+        regenerate();
+    }
+
     public void setReferencePoint(JoPoint referencePoint) throws Exception {
         this.referencePoint = referencePoint;
         regenerate();

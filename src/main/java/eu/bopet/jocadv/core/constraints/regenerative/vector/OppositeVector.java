@@ -24,6 +24,12 @@ public class OppositeVector implements RegenerativeLink {
                 new JoValue(JoValue.USER, -1.0 * referenceVector.getZ().get()), this);
     }
 
+    public OppositeVector(JoVector referenceVector, JoVector resultVector) throws Exception {
+        this.referenceVector = referenceVector;
+        this.resultVector = resultVector;
+        regenerate();
+    }
+
     public void setReferenceVector(JoVector referenceVector) throws Exception {
         this.referenceVector = referenceVector;
         regenerate();

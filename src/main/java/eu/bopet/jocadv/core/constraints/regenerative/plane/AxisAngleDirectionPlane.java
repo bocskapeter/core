@@ -22,7 +22,8 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
     private final JoVector normal;
     private final PointNormalPlane pointNormalPlane;
 
-    public AxisAngleDirectionPlane(JoAxis referenceAxis, JoVector referenceDirection, JoValue referenceAngle) throws Exception {
+    public AxisAngleDirectionPlane(JoAxis referenceAxis,
+                                   JoVector referenceDirection, JoValue referenceAngle) throws Exception {
         this.referenceAxis = referenceAxis;
         this.referenceDirection = referenceDirection;
         this.referenceAngle = referenceAngle;
@@ -43,7 +44,9 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         this.resultPlane = new JoPlane(result.getX(), result.getY(), result.getZ(), result.getD(), this);
     }
 
-    public AxisAngleDirectionPlane(JoAxis referenceAxis, JoVector referenceDirection, JoValue referenceAngle, JoPlane resultPlane) throws Exception {
+    public AxisAngleDirectionPlane(JoAxis referenceAxis,
+                                   JoVector referenceDirection,
+                                   JoValue referenceAngle, JoPlane resultPlane) throws Exception {
         this.referenceAxis = referenceAxis;
         this.referenceDirection = referenceDirection;
         this.referenceAngle = referenceAngle;

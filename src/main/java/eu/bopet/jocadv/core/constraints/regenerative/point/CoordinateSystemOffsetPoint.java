@@ -23,9 +23,12 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
         this.y = y;
         this.z = z;
         Vector3D origin = referenceCoordinateSystem.getOrigin().getVector().getVector3D();
-        Vector3D vectorX = referenceCoordinateSystem.getX().getDirection().getVector3D().normalize().scalarMultiply(x.get());
-        Vector3D vectorY = referenceCoordinateSystem.getY().getDirection().getVector3D().normalize().scalarMultiply(y.get());
-        Vector3D vectorZ = referenceCoordinateSystem.getZ().getDirection().getVector3D().normalize().scalarMultiply(z.get());
+        Vector3D vectorX =
+                referenceCoordinateSystem.getX().getDirection().getVector3D().normalize().scalarMultiply(x.get());
+        Vector3D vectorY =
+                referenceCoordinateSystem.getY().getDirection().getVector3D().normalize().scalarMultiply(y.get());
+        Vector3D vectorZ =
+                referenceCoordinateSystem.getZ().getDirection().getVector3D().normalize().scalarMultiply(z.get());
         Vector3D vector3D = (vectorX.add(vectorY)).add(vectorZ);
         Vector3D newPoint = origin.add(vector3D);
         JoValue newX = new JoValue(JoValue.USER, newPoint.getX());
@@ -33,6 +36,16 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
         JoValue newZ = new JoValue(JoValue.USER, newPoint.getZ());
         JoVector joVector = new JoVector(newX, newY, newZ, null);
         this.resultPoint = new JoPoint(joVector, this);
+    }
+
+    public CoordinateSystemOffsetPoint(JoCoSys referenceCoordinateSystem,
+                                       JoValue x, JoValue y, JoValue z, JoPoint resultPoint) throws Exception {
+        this.referenceCoordinateSystem = referenceCoordinateSystem;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.resultPoint = resultPoint;
+        regenerate();
     }
 
     public void setReferenceCoordinateSystem(JoCoSys referenceCoordinateSystem) throws Exception {
@@ -45,9 +58,12 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
         if (referenceCoordinateSystem.getRegenerativeLink() != null)
             referenceCoordinateSystem.getRegenerativeLink().regenerate();
         Vector3D origin = referenceCoordinateSystem.getOrigin().getVector().getVector3D();
-        Vector3D vectorX = referenceCoordinateSystem.getX().getDirection().getVector3D().normalize().scalarMultiply(x.get());
-        Vector3D vectorY = referenceCoordinateSystem.getY().getDirection().getVector3D().normalize().scalarMultiply(y.get());
-        Vector3D vectorZ = referenceCoordinateSystem.getZ().getDirection().getVector3D().normalize().scalarMultiply(z.get());
+        Vector3D vectorX =
+                referenceCoordinateSystem.getX().getDirection().getVector3D().normalize().scalarMultiply(x.get());
+        Vector3D vectorY =
+                referenceCoordinateSystem.getY().getDirection().getVector3D().normalize().scalarMultiply(y.get());
+        Vector3D vectorZ =
+                referenceCoordinateSystem.getZ().getDirection().getVector3D().normalize().scalarMultiply(z.get());
         Vector3D vector3D = (vectorX.add(vectorY)).add(vectorZ);
         Vector3D newPoint = origin.add(vector3D);
         resultPoint.getVector().getX().set(newPoint.getX());

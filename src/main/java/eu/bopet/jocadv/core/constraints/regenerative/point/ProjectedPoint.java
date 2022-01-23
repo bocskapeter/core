@@ -27,6 +27,13 @@ public class ProjectedPoint implements RegenerativeLink {
                 this);
     }
 
+    public ProjectedPoint(JoPlane referencePlane, JoPoint referencePoint, JoPoint resultPoint) throws Exception {
+        this.referencePlane = referencePlane;
+        this.referencePoint = referencePoint;
+        this.resultPoint = resultPoint;
+        regenerate();
+    }
+
     public void setReferencePlane(JoPlane referencePlane) throws Exception {
         this.referencePlane = referencePlane;
         regenerate();

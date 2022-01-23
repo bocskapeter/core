@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
-import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
@@ -26,6 +26,13 @@ public class CrossVector implements RegenerativeLink {
                 new JoValue(JoValue.USER, vector3D.getZ()),
                 this
         );
+    }
+
+    public CrossVector(JoVector referenceVector1, JoVector referenceVector2, JoVector resultVector) throws Exception {
+        this.referenceVector1 = referenceVector1;
+        this.referenceVector2 = referenceVector2;
+        this.resultVector = resultVector;
+        regenerate();
     }
 
     public void setReferenceVector1(JoVector referenceVector1) throws Exception {

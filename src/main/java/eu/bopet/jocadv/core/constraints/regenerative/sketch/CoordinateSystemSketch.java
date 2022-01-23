@@ -17,6 +17,12 @@ public class CoordinateSystemSketch implements RegenerativeLink {
         this.resultSketch = new JoSketch(referenceCoordinateSystem, this);
     }
 
+    public CoordinateSystemSketch(JoCoSys referenceCoordinateSystem, JoSketch resultSketch) throws Exception {
+        this.referenceCoordinateSystem = referenceCoordinateSystem;
+        this.resultSketch = resultSketch;
+        regenerate();
+    }
+
     public void setReferenceCoordinateSystem(JoCoSys referenceCoordinateSystem) throws Exception {
         this.referenceCoordinateSystem = referenceCoordinateSystem;
         regenerate();

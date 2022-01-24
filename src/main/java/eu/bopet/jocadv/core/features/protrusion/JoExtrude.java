@@ -8,16 +8,17 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 
 import java.util.Set;
 
-public class JoSolidExtrude extends FeatureBase implements Feature, RegenerativeLink {
+public class JoExtrude extends FeatureBase implements Feature, RegenerativeLink {
     private final JoFace face;
-    private final Feature direction;
+    private final Feature path;
     private final Feature start;
     private final Feature end;
     private final JoValue pitch;
+    private final RegenerativeLink regenerativeLink;
 
-    public JoSolidExtrude(JoFace face, Feature direction, Feature start, Feature end, JoValue pitch) {
+    public JoExtrude(JoFace face, Feature path, Feature start, Feature end, JoValue pitch, RegenerativeLink regenerativeLink) {
         this.face = face;
-        this.direction = direction;
+        this.path = path;
         this.start = start;
         this.end = end;
         if (pitch != null) {
@@ -25,6 +26,7 @@ public class JoSolidExtrude extends FeatureBase implements Feature, Regenerative
         } else {
             this.pitch = new JoValue(JoValue.AUTO, Double.POSITIVE_INFINITY);
         }
+        this.regenerativeLink = regenerativeLink;
     }
 
     @Override

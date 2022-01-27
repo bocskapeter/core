@@ -12,6 +12,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class TwoPlaneAxis implements RegenerativeLink {
@@ -80,7 +81,7 @@ public class TwoPlaneAxis implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referencePlane1.getValues();
+        Set<JoValue> result = new HashSet<>(referencePlane1.getValues());
         result.addAll(referencePlane2.getValues());
         return result;
     }

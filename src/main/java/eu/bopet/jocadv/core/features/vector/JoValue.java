@@ -3,11 +3,11 @@ package eu.bopet.jocadv.core.features.vector;
 import org.apache.commons.math3.util.Precision;
 
 public class JoValue {
-    public final static short CONSTANT = 0;
-    public final static short USER = 1;
-    public final static short AUTO = 2;
-    public final static short FIX = 3;
-    public final static short VARIABLE = 4;
+    public final static short CONSTANT = 0;   // no status no value change can be done
+    public final static short USER = 1;       // no status          change can be done
+    public final static short FIX = 2;        //           no value change can be done
+    public final static short VARIABLE = 3;   //                    change can be done
+    public final static short AUTO = 4;       //                    change can be done
 
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);

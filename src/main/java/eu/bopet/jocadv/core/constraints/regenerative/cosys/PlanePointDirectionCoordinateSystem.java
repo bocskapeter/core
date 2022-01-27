@@ -13,6 +13,7 @@ import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
@@ -114,7 +115,7 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referencePlane.getValues();
+        Set<JoValue> result = new HashSet<>(referencePlane.getValues());
         result.addAll(referencePoint.getValues());
         return result;
     }

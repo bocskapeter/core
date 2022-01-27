@@ -11,6 +11,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
 import org.apache.commons.math3.geometry.euclidean.threed.RotationConvention;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class AxisAngleDirectionPlane implements RegenerativeLink {
@@ -107,7 +108,7 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referenceAxis.getValues();
+        Set<JoValue> result = new HashSet<>(referenceAxis.getValues());
         result.addAll(referenceDirection.getValues());
         result.add(referenceAngle);
         return result;

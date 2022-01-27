@@ -7,6 +7,7 @@ import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class PointDirectionAxis implements RegenerativeLink {
@@ -56,7 +57,7 @@ public class PointDirectionAxis implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referencePoint.getValues();
+        Set<JoValue> result = new HashSet<>(referencePoint.getValues());
         result.addAll(referenceDirection.getValues());
         return result;
     }

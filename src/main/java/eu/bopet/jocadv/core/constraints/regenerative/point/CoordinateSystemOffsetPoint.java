@@ -8,6 +8,7 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class CoordinateSystemOffsetPoint implements RegenerativeLink {
@@ -78,7 +79,7 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referenceCoordinateSystem.getValues();
+        Set<JoValue> result = new HashSet<>(referenceCoordinateSystem.getValues());
         result.add(x);
         result.add(y);
         result.add(z);

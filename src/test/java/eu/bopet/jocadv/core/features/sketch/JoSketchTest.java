@@ -5,7 +5,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.sketch.CoordinateSystemSket
 import eu.bopet.jocadv.core.constraints.regenerative.axis.CoaxialAxis;
 import eu.bopet.jocadv.core.constraints.regenerative.cosys.PlanePointDirectionCoordinateSystem;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
-import eu.bopet.jocadv.core.constraints.regenerative.point.ProjectedPoint;
+import eu.bopet.jocadv.core.constraints.regenerative.point.ToPlaneProjectedPoint;
 import eu.bopet.jocadv.core.constraints.sketch.*;
 import eu.bopet.jocadv.core.features.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -23,8 +23,8 @@ class JoSketchTest {
         JoValue offset = new JoValue(JoValue.USER, 0.5);
         OffsetPlane offsetPlane = new OffsetPlane(JoPlane.XY, offset);
         JoPlane sketchPlane = (JoPlane) offsetPlane.getResult();
-        ProjectedPoint projectedPoint = new ProjectedPoint(sketchPlane, JoPoint.ORIGIN);
-        JoPoint sketchOrigin = (JoPoint) projectedPoint.getResult();
+        ToPlaneProjectedPoint toPlaneProjectedPoint = new ToPlaneProjectedPoint(sketchPlane, JoPoint.ORIGIN);
+        JoPoint sketchOrigin = (JoPoint) toPlaneProjectedPoint.getResult();
         CoaxialAxis coaxialAxis = new CoaxialAxis(JoAxis.X);
         JoVector xVector = ((JoAxis) coaxialAxis.getResult()).getDirection();
         PlanePointDirectionCoordinateSystem planePointDirectionCoordinateSystem =

@@ -5,6 +5,7 @@ import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class OffsetPlane implements RegenerativeLink {
@@ -48,7 +49,7 @@ public class OffsetPlane implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referencePlane.getValues();
+        Set<JoValue> result = new HashSet<>(referencePlane.getValues());
         result.add(offsetValue);
         return result;
     }

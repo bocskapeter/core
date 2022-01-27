@@ -8,14 +8,15 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class ProjectedPoint implements RegenerativeLink {
+public class ToPlaneProjectedPoint implements RegenerativeLink {
     private JoPlane referencePlane;
     private JoPoint referencePoint;
     private final JoPoint resultPoint;
 
-    public ProjectedPoint(JoPlane referencePlane, JoPoint referencePoint) {
+    public ToPlaneProjectedPoint(JoPlane referencePlane, JoPoint referencePoint) {
         this.referencePlane = referencePlane;
         this.referencePoint = referencePoint;
         Vector3D projectedPoint = (Vector3D)
@@ -27,7 +28,7 @@ public class ProjectedPoint implements RegenerativeLink {
                 this);
     }
 
-    public ProjectedPoint(JoPlane referencePlane, JoPoint referencePoint, JoPoint resultPoint) throws Exception {
+    public ToPlaneProjectedPoint(JoPlane referencePlane, JoPoint referencePoint, JoPoint resultPoint) throws Exception {
         this.referencePlane = referencePlane;
         this.referencePoint = referencePoint;
         this.resultPoint = resultPoint;
@@ -62,7 +63,7 @@ public class ProjectedPoint implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referencePlane.getValues();
+        Set<JoValue> result = new HashSet<>(referencePlane.getValues());
         result.addAll(referencePoint.getValues());
         return result;
     }

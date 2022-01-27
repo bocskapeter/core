@@ -24,6 +24,7 @@ public class SketchDirectionPlaneFace implements RegenerativeLink {
         this.referencePlane = referencePlane;
         this.loop = new HashSet<>();
 
+        // TODO complete class
         this.resultFace = new JoFace(referenceDirection, loop, this);
     }
 

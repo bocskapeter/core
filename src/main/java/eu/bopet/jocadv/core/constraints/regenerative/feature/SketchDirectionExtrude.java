@@ -29,6 +29,7 @@ public class SketchDirectionExtrude implements RegenerativeLink {
         statPlane = new OffsetPlane(referenceSketch.getCoordinateSystem().getXy(), referenceStart);
         endPlane = new OffsetPlane(referenceSketch.getCoordinateSystem().getXy(), referenceEnd);
 
+        //TODO complete class
 
     }
 

@@ -10,6 +10,7 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class AxisPlaneIntersectionPoint implements RegenerativeLink {
@@ -64,7 +65,7 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = referenceAxis.getValues();
+        Set<JoValue> result = new HashSet<>(referenceAxis.getValues());
         result.addAll(referencePlane.getValues());
         return result;
     }

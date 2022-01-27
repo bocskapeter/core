@@ -10,6 +10,7 @@ public class JoEdge extends FeatureBase implements Feature, Selectable{
     private RegenerativeLink regenerativeLink;
 
 
+    //TODO complete class
 
     @Override
     public RegenerativeLink getRegenerativeLink() {

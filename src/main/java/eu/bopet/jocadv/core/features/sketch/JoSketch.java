@@ -6,7 +6,7 @@ import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.linear.*;

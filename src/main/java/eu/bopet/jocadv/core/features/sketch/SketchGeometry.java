@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
 import java.util.Set;

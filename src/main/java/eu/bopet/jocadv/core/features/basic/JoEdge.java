@@ -1,20 +1,25 @@
-package eu.bopet.jocadv.core.features;
+package eu.bopet.jocadv.core.features.basic;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.Selectable;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.Set;
 
-public class JoEdge extends FeatureBase implements Feature, Selectable{
+public class JoEdge extends FeatureBase implements Feature, Selectable {
     private Set<JoPoint> points;
     private RegenerativeLink regenerativeLink;
 
-
-    //TODO complete class
+    public JoEdge(Set<JoPoint> points, RegenerativeLink regenerativeLink) {
+        this.points = points;
+        this.regenerativeLink = regenerativeLink;
+    }
 
     @Override
     public RegenerativeLink getRegenerativeLink() {
-        return null;
+        return regenerativeLink;
     }
 
     @Override
@@ -24,7 +29,7 @@ public class JoEdge extends FeatureBase implements Feature, Selectable{
 
     @Override
     public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
-
+        this.regenerativeLink = newRegenerativeLink;
     }
 
     @Override

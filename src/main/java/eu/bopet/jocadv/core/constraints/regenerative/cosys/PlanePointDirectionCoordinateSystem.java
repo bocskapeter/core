@@ -6,7 +6,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalVect
 import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
 import eu.bopet.jocadv.core.constraints.regenerative.vector.CrossVector;
 import eu.bopet.jocadv.core.features.Feature;
-import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;

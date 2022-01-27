@@ -3,7 +3,7 @@ package eu.bopet.jocadv.core.features.datums;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;

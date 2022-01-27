@@ -7,7 +7,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.cosys.PlanePointDirectionCo
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
 import eu.bopet.jocadv.core.constraints.regenerative.point.ToPlaneProjectedPoint;
 import eu.bopet.jocadv.core.constraints.sketch.*;
-import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;

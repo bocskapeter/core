@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative;
 
 import eu.bopet.jocadv.core.constraints.regenerative.point.ToPlaneProjectedPoint;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
-import eu.bopet.jocadv.core.features.JoPoint;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.junit.jupiter.api.Test;

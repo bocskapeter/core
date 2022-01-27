@@ -1,10 +1,14 @@
-package eu.bopet.jocadv.core.features;
+package eu.bopet.jocadv.core.features.basic;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class JoFace extends FeatureBase implements Feature, Selectable {
@@ -30,7 +34,12 @@ public class JoFace extends FeatureBase implements Feature, Selectable {
 
     @Override
     public Set<JoValue> getValues() {
-        return Feature.super.getValues();
+        Set<JoValue> result = Feature.super.getValues();
+        result.addAll(normal.getValues());
+        for (Feature feature : boundary) {
+            result.addAll(feature.getValues());
+        }
+        return result;
     }
 
     @Override

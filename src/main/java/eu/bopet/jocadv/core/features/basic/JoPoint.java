@@ -1,6 +1,9 @@
-package eu.bopet.jocadv.core.features;
+package eu.bopet.jocadv.core.features.basic;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;

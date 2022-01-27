@@ -3,7 +3,7 @@ package eu.bopet.jocadv.core.features.protrusion;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoFace;
+import eu.bopet.jocadv.core.features.basic.JoFace;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 
 import java.util.Set;

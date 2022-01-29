@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.features;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.vector.JoValue;
-import eu.bopet.jocadv.core.features.vector.NotCompatibleRegenerativeLinkException;
+import eu.bopet.jocadv.core.features.exception.NotCompatibleRegenerativeLinkException;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

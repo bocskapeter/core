@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.features.vector;
+package eu.bopet.jocadv.core.features.exception;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 

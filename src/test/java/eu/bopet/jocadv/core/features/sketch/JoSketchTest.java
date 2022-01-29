@@ -161,6 +161,8 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate complete");
 
+        sketch.close();
+
         System.out.println(sketch.getPoints().size() + " points:");
         for (JoPoint point : sketch.getPoints()) {
             System.out.println(point);

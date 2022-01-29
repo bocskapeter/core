@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
@@ -8,6 +9,7 @@ import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
+import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.linear.*;
 
@@ -86,7 +88,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         edit = false;
     }
 
-    public void addGeometry(SketchGeometry newGeometry) {
+    public void addGeometry(SketchGeometry newGeometry) throws Exception {
         if (geometries.contains(newGeometry)) return;
         geometries.add(newGeometry);
         for (JoValue value : newGeometry.getValues()) {
@@ -136,7 +138,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
     }
 
-    public void addConstraint(SketchConstraint newConstraint) {
+    public void addConstraint(SketchConstraint newConstraint) throws Exception {
         List<Object> components = newConstraint.getComponents();
         for (SketchConstraint constraint : constraints) {
             if (constraint.getClass().equals(newConstraint.getClass())) {
@@ -151,6 +153,16 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
             if (object instanceof Feature) {
                 Feature feature = (Feature) object;
                 if (!geometries.contains(feature)) {
+                    if (feature instanceof JoPlane) {
+                        JoPlane referencePlane = (JoPlane) feature;
+                        if (referencePlane != coSys.getXy()) {
+                            double crossProductLength = this.coSys.getXy().getNormal().getVector3D().crossProduct(
+                                    referencePlane.getNormal().getVector3D()).getNormSq();
+                            if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
+                                throw new ParallelFeatureException(this.coSys.getXy(), referencePlane);
+                            }
+                        }
+                    }
                     references.add(feature);
                 }
             }

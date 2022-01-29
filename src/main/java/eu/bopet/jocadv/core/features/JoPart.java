@@ -16,7 +16,7 @@ public class JoPart extends FeatureBase {
         }
     }
 
-    public void insertAfter(Feature feature){
+    public void insertAfter(Feature feature) {
 
     }
 

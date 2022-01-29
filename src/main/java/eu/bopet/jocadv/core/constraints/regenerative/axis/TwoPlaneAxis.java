@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
-import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -26,7 +26,7 @@ public class TwoPlaneAxis implements RegenerativeLink {
         Plane plane1 = referencePlane1.getPlane();
         Plane plane2 = referencePlane2.getPlane();
         Line line = plane1.intersection(plane2);
-        if (line == null) throw new ParallelVectorException(referencePlane1.getNormal(), referencePlane2.getNormal());
+        if (line == null) throw new ParallelFeatureException(referencePlane1, referencePlane2);
         Vector3D point3D = line.getOrigin();
         Vector3D direction3D = line.getDirection();
         JoValue pointX = new JoValue(JoValue.USER, point3D.getX());
@@ -63,7 +63,7 @@ public class TwoPlaneAxis implements RegenerativeLink {
         Plane plane1 = referencePlane1.getPlane();
         Plane plane2 = referencePlane2.getPlane();
         Line line = plane1.intersection(plane2);
-        if (line == null) throw new ParallelVectorException(referencePlane1.getNormal(), referencePlane2.getNormal());
+        if (line == null) throw new ParallelFeatureException(referencePlane1, referencePlane2);
         Vector3D point3D = line.getOrigin();
         Vector3D direction3D = line.getDirection();
         this.resultAxis.getPoint().getVector().getX().set(point3D.getX());

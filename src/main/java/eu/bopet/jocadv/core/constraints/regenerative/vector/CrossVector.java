@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
@@ -20,7 +20,7 @@ public class CrossVector implements RegenerativeLink {
         this.referenceVector2 = referenceVector2;
         Vector3D vector3D = referenceVector1.getVector3D().crossProduct(referenceVector2.getVector3D());
         if (vector3D.getNormSq() < JoValue.DEFAULT_TOLERANCE)
-            throw new ParallelVectorException(referenceVector1, referenceVector2);
+            throw new ParallelFeatureException(referenceVector1, referenceVector2);
         resultVector = new JoVector(
                 new JoValue(JoValue.USER, vector3D.getX()),
                 new JoValue(JoValue.USER, vector3D.getY()),
@@ -52,7 +52,7 @@ public class CrossVector implements RegenerativeLink {
         if (referenceVector2.getRegenerativeLink() != null) referenceVector2.getRegenerativeLink().regenerate();
         Vector3D vector3D = referenceVector1.getVector3D().crossProduct(referenceVector2.getVector3D());
         if (vector3D.getNormSq() < JoValue.DEFAULT_TOLERANCE)
-            throw new ParallelVectorException(referenceVector1, referenceVector2);
+            throw new ParallelFeatureException(referenceVector1, referenceVector2);
         resultVector.getX().set(vector3D.getX());
         resultVector.getY().set(vector3D.getY());
         resultVector.getZ().set(vector3D.getZ());

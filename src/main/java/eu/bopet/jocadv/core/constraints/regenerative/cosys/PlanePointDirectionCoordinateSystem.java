@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.cosys;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.axis.PointDirectionAxis;
-import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalException;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
 import eu.bopet.jocadv.core.constraints.regenerative.vector.CrossVector;
 import eu.bopet.jocadv.core.features.Feature;
@@ -54,10 +54,10 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
         regenerate();
     }
 
-    private void checkOrthogonality() throws NotOrthogonalVectorException {
+    private void checkOrthogonality() throws NotOrthogonalException {
         double dotProduct = referencePlane.getNormal().getVector3D().dotProduct(referenceDirection.getVector3D());
         if (dotProduct > JoValue.DEFAULT_TOLERANCE)
-            throw new NotOrthogonalVectorException(referencePlane.getNormal(), referenceDirection);
+            throw new NotOrthogonalException(referencePlane.getNormal(), referenceDirection);
     }
 
     private void createAxesAndPlanes() throws Exception {

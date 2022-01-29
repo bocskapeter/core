@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
-import eu.bopet.jocadv.core.constraints.regenerative.exception.NoIntersectionException;
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.NoIntersectionException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -22,7 +22,8 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
         this.referenceAxis = referenceAxis;
         this.referencePlane = referencePlane;
         Vector3D intersectionPoint = referencePlane.getPlane().intersection(referenceAxis.getLine());
-        if (intersectionPoint == null ) throw new NoIntersectionException(referenceAxis.getDirection(),referencePlane.getNormal());
+        if (intersectionPoint == null)
+            throw new NoIntersectionException(referenceAxis, referencePlane);
         JoValue x = new JoValue(JoValue.USER, intersectionPoint.getX());
         JoValue y = new JoValue(JoValue.USER, intersectionPoint.getY());
         JoValue z = new JoValue(JoValue.USER, intersectionPoint.getZ());
@@ -52,7 +53,8 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
         if (referenceAxis.getRegenerativeLink() != null) referenceAxis.getRegenerativeLink().regenerate();
         if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         Vector3D intersectionPoint = referencePlane.getPlane().intersection(referenceAxis.getLine());
-        if (intersectionPoint == null ) throw new NoIntersectionException(referenceAxis.getDirection(),referencePlane.getNormal());
+        if (intersectionPoint == null)
+            throw new NoIntersectionException(referenceAxis, referencePlane);
         resultPoint.getVector().getX().set(intersectionPoint.getX());
         resultPoint.getVector().getY().set(intersectionPoint.getY());
         resultPoint.getVector().getZ().set(intersectionPoint.getZ());

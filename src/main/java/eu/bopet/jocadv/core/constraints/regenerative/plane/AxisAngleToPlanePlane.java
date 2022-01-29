@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelVectorException;
+import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalException;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -14,25 +14,26 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AxisAngleDirectionPlane implements RegenerativeLink {
+public class AxisAngleToPlanePlane implements RegenerativeLink {
     private JoAxis referenceAxis;
-    private JoVector referenceDirection;
+    private JoPlane referencePlane;
     private JoValue referenceAngle;
-    private final JoPlane resultPlane;
 
     private final JoVector normal;
     private final PointNormalPlane pointNormalPlane;
 
-    public AxisAngleDirectionPlane(JoAxis referenceAxis,
-                                   JoVector referenceDirection, JoValue referenceAngle) throws Exception {
+    private final JoPlane resultPlane;
+
+    public AxisAngleToPlanePlane(JoAxis referenceAxis,
+                                 JoPlane referencePlane, JoValue referenceAngle) throws Exception {
         this.referenceAxis = referenceAxis;
-        this.referenceDirection = referenceDirection;
+        this.referencePlane = referencePlane;
         this.referenceAngle = referenceAngle;
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
-        Vector3D vector = referenceDirection.getVector3D();
+        Vector3D vector = referencePlane.getNormal().getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
         if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
-            throw new ParallelVectorException(referenceAxis.getDirection(), referenceDirection);
+            throw new NotOrthogonalException(referenceAxis, referencePlane);
         }
         Rotation rotation = new Rotation(rotationAxis, this.referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
@@ -45,17 +46,17 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         this.resultPlane = new JoPlane(result.getX(), result.getY(), result.getZ(), result.getD(), this);
     }
 
-    public AxisAngleDirectionPlane(JoAxis referenceAxis,
-                                   JoVector referenceDirection,
-                                   JoValue referenceAngle, JoPlane resultPlane) throws Exception {
+    public AxisAngleToPlanePlane(JoAxis referenceAxis,
+                                 JoPlane referencePlane,
+                                 JoValue referenceAngle, JoPlane resultPlane) throws Exception {
         this.referenceAxis = referenceAxis;
-        this.referenceDirection = referenceDirection;
+        this.referencePlane = referencePlane;
         this.referenceAngle = referenceAngle;
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
-        Vector3D vector = referenceDirection.getVector3D();
+        Vector3D vector = referencePlane.getNormal().getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
         if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
-            throw new ParallelVectorException(referenceAxis.getDirection(), referenceDirection);
+            throw new NotOrthogonalException(referenceAxis, referencePlane);
         }
         Rotation rotation = new Rotation(rotationAxis, referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
@@ -73,8 +74,8 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
         regenerate();
     }
 
-    public void setReferenceDirection(JoVector referenceDirection) throws Exception {
-        this.referenceDirection = referenceDirection;
+    public void setReferencePlane(JoPlane referencePlane) throws Exception {
+        this.referencePlane = referencePlane;
         regenerate();
     }
 
@@ -86,12 +87,12 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
     @Override
     public void regenerate() throws Exception {
         if (referenceAxis.getRegenerativeLink() != null) referenceAxis.getRegenerativeLink().regenerate();
-        if (referenceDirection.getRegenerativeLink() != null) referenceDirection.getRegenerativeLink().regenerate();
+        if (referencePlane.getRegenerativeLink() != null) referencePlane.getRegenerativeLink().regenerate();
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
-        Vector3D vector = referenceDirection.getVector3D();
+        Vector3D vector = referencePlane.getNormal().getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
         if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
-            throw new ParallelVectorException(referenceAxis.getDirection(), referenceDirection);
+            throw new NotOrthogonalException(referenceAxis, referencePlane);
         }
         Rotation rotation = new Rotation(rotationAxis, referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
@@ -109,7 +110,7 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
     @Override
     public Set<JoValue> getValues() {
         Set<JoValue> result = new HashSet<>(referenceAxis.getValues());
-        result.addAll(referenceDirection.getValues());
+        result.addAll(referencePlane.getValues());
         result.add(referenceAngle);
         return result;
     }
@@ -118,7 +119,7 @@ public class AxisAngleDirectionPlane implements RegenerativeLink {
     public String toString() {
         return "AxisAngleDirectionPlane{" +
                 "referenceAxis=" + referenceAxis +
-                ", referenceDirection=" + referenceDirection +
+                ", referencePlane=" + referencePlane +
                 ", referenceAngle=" + referenceAngle +
                 ", resultPlane=" + resultPlane +
                 '}';

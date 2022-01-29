@@ -8,7 +8,6 @@ import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class JoFace extends FeatureBase implements Feature, Selectable {

@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
@@ -21,8 +21,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.circle = circle;
         this.point1 = point1;
         this.point2 = point2;
-        this.line1 = new JoLine(circle.getSphere().getCenter(),point1,true);
-        this.line2 = new JoLine(circle.getSphere().getCenter(),point2,true);
+        this.line1 = new JoLine(circle.getSphere().getCenter(), point1, true);
+        this.line2 = new JoLine(circle.getSphere().getCenter(), point2, true);
     }
 
     public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) {
@@ -30,8 +30,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.circle = new JoCircle(sphere, plane);
         this.point1 = point1;
         this.point2 = point2;
-        this.line1 = new JoLine(circle.getSphere().getCenter(),point1,true);
-        this.line2 = new JoLine(circle.getSphere().getCenter(),point2,true);
+        this.line1 = new JoLine(circle.getSphere().getCenter(), point1, true);
+        this.line2 = new JoLine(circle.getSphere().getCenter(), point2, true);
     }
 
     public JoValue getRadius() {

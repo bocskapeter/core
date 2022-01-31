@@ -54,6 +54,9 @@ public class LineProjectedToPlaneEdge implements RegenerativeLink {
 
     @Override
     public Set<JoValue> getValues() {
-        return null;
+        Set<JoValue> result = new HashSet<>(referenceLine.getValues());
+        result.addAll(referencePlane.getValues());
+        result.addAll(referenceDirection.getValues());
+        return result;
     }
 }

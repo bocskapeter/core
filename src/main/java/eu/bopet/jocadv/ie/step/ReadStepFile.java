@@ -17,6 +17,8 @@ public class ReadStepFile {
     static final String P_CURVE = "PCURVE";
     static final String AXIS2_PLACEMENT_3D = "AXIS2_PLACEMENT_3D";
     static final String PLANE = "PLANE";
+    static final String ORIENTED_EDGE = "ORIENTED_EDGE";
+    static final String SURFACE_CURVE = "SURFACE_CURVE";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -151,6 +153,43 @@ public class ReadStepFile {
                         plane.setName(name);
                         result.add(plane);
                         System.out.println("Plane: " + plane);
+                    }
+
+                    if (secondTag.startsWith(ORIENTED_EDGE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int startId;
+                        if (values[0].contains("*")) startId = -1;
+                        else startId = Integer.parseInt(values[0].substring(1));
+                        int endId;
+                        if (values[1].contains("*")) endId = -1;
+                        else endId = Integer.parseInt(values[1].substring(1));
+                        int edgeId = Integer.parseInt(values[2].substring(1));
+                        boolean orientation = values[3].contains("T");
+                        OrientedEdge orientedEdge = new OrientedEdge(startId, endId, edgeId, orientation);
+                        orientedEdge.setId(id);
+                        orientedEdge.setName(name);
+                        result.add(orientedEdge);
+                        System.out.println("Oriented Edge: " + orientedEdge);
+                    }
+
+                    if (secondTag.startsWith(SURFACE_CURVE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int curveId = Integer.parseInt(values[0].substring(1));
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        String[] geometries = substring.split(",");
+                        List<Integer> associatedGeometry = new ArrayList<>();
+                        for (String geometry : geometries) {
+                            associatedGeometry.add(Integer.parseInt(geometry.substring(1)));
+                        }
+                        String last = values[values.length - 1].replace(".", "");
+                        PreferredSurfaceCurveRepresentation rep = PreferredSurfaceCurveRepresentation.valueOf(last);
+                        SurfaceCurve surfaceCurve = new SurfaceCurve(curveId, associatedGeometry, rep);
+                        surfaceCurve.setId(id);
+                        surfaceCurve.setName(name);
+                        result.add(surfaceCurve);
+                        System.out.println("Surface Curve: " + surfaceCurve);
                     }
 
                 }

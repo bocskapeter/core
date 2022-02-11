@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ReadStepFile {
     static final String CARTESIAN_POINT = "CARTESIAN_POINT";
@@ -19,6 +21,12 @@ public class ReadStepFile {
     static final String PLANE = "PLANE";
     static final String ORIENTED_EDGE = "ORIENTED_EDGE";
     static final String SURFACE_CURVE = "SURFACE_CURVE";
+    static final String EDGE_LOOP = "EDGE_LOOP";
+    static final String FACE_BOUND = "FACE_BOUND";
+    static final String ADVANCED_FACE = "ADVANCED_FACE";
+    static final String CLOSED_SHELL = "CLOSED_SHELL";
+    static final String MANIFOLD_SOLID_BREP = "MANIFOLD_SOLID_BREP";
+    static final String DEFINITIONAL_REPRESENTATION = "DEFINITIONAL_REPRESENTATION";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -29,7 +37,7 @@ public class ReadStepFile {
             for (String line; (line = br.readLine()) != null; ) {
                 stringBuilder.append(line);
             }
-            // process the parts
+            // process the lines
             String[] commands = stringBuilder.toString().split(";");
             for (String command : commands) {
                 if (command.startsWith("#")) {
@@ -190,6 +198,82 @@ public class ReadStepFile {
                         surfaceCurve.setName(name);
                         result.add(surfaceCurve);
                         System.out.println("Surface Curve: " + surfaceCurve);
+                    }
+
+                    if (secondTag.startsWith(EDGE_LOOP)) {
+                        String bracket = att[1];
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        String[] values = substring.split(",");
+                        List<Integer> edgeIdList = new ArrayList<>();
+                        for (String value : values) {
+                            int edgeId = Integer.parseInt(value.substring(1));
+                            edgeIdList.add(edgeId);
+                        }
+                        EdgeLoop edgeLoop = new EdgeLoop(edgeIdList);
+                        edgeLoop.setId(id);
+                        edgeLoop.setName(name);
+                        result.add(edgeLoop);
+                        System.out.println("Edge Loop: " + edgeLoop);
+                    }
+
+                    if (secondTag.startsWith(FACE_BOUND)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int loopId = Integer.parseInt(values[0].substring(1));
+                        boolean orientation = values[1].contains("T");
+                        FaceBound faceBound = new FaceBound(loopId, orientation);
+                        faceBound.setId(id);
+                        faceBound.setName(name);
+                        result.add(faceBound);
+                        System.out.println("Face bound: " + faceBound);
+                    }
+
+                    if (secondTag.startsWith(ADVANCED_FACE)) {
+                        String bracket = att[1];
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        String[] values = substring.split(",");
+                        Set<Integer> boundIds = new LinkedHashSet<>();
+                        for (String value : values) {
+                            boundIds.add(Integer.parseInt(value.substring(1)));
+                        }
+                        String[] rest = (bracket.substring(bracket.indexOf(")") + 1)).split(",");
+                        int surfaceId = Integer.parseInt(rest[1].substring(1));
+                        boolean sameSense = rest[2].contains("T");
+                        AdvancedFace advancedFace = new AdvancedFace(boundIds, surfaceId, sameSense);
+                        advancedFace.setId(id);
+                        advancedFace.setName(name);
+                        result.add(advancedFace);
+                        System.out.println("Advanced face: " + advancedFace);
+                    }
+
+                    if (secondTag.startsWith(CLOSED_SHELL)) {
+                        String bracket = att[1].substring(att[1].indexOf("(") + 1, att[1].lastIndexOf(")"))
+                                .replaceAll(" ", "");
+                        String[] values = bracket.split(",");
+                        Set<Integer> faceIds = new LinkedHashSet<>();
+                        for (String value : values) {
+                            int faceId = Integer.parseInt(value.substring(1));
+                            faceIds.add(faceId);
+                        }
+                        ClosedShell closedShell = new ClosedShell(faceIds);
+                        closedShell.setId(id);
+                        closedShell.setName(name);
+                        result.add(closedShell);
+                        System.out.println("Closed shell: " + closedShell);
+                    }
+
+                    if (secondTag.startsWith(MANIFOLD_SOLID_BREP)) {
+                        String bracket = att[1];
+                        int shellId = Integer.parseInt(bracket.substring(1));
+                        ManifoldSolidBRep manifoldSolidBRep = new ManifoldSolidBRep(shellId);
+                        manifoldSolidBRep.setId(id);
+                        manifoldSolidBRep.setName(name);
+                        result.add(manifoldSolidBRep);
+                        System.out.println("Manifold solid BRep: " + manifoldSolidBRep);
+                    }
+
+                    if (secondTag.startsWith(DEFINITIONAL_REPRESENTATION)) {
+
                     }
 
                 }

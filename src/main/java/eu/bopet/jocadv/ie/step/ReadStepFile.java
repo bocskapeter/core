@@ -27,6 +27,11 @@ public class ReadStepFile {
     static final String CLOSED_SHELL = "CLOSED_SHELL";
     static final String MANIFOLD_SOLID_BREP = "MANIFOLD_SOLID_BREP";
     static final String DEFINITIONAL_REPRESENTATION = "DEFINITIONAL_REPRESENTATION";
+    static final String CYLINDRICAL_SURFACE = "CYLINDRICAL_SURFACE";
+    static final String CIRCLE = "CIRCLE";
+    static final String TOROIDAL_SURFACE = "TOROIDAL_SURFACE";
+    static final String AXIS2_PLACEMENT_2D = "AXIS2_PLACEMENT_2D";
+    static final String B_SPLINE_CURVE_WITH_KNOTS = "B_SPLINE_CURVE_WITH_KNOTS";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -273,7 +278,76 @@ public class ReadStepFile {
                     }
 
                     if (secondTag.startsWith(DEFINITIONAL_REPRESENTATION)) {
+                        String bracket = att[1];
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        String[] items = substring.split(",");
+                        Set<Integer> itemIds = new LinkedHashSet<>();
+                        for (String item : items) {
+                            itemIds.add(Integer.parseInt(item.substring(1)));
+                        }
+                        String last = bracket.substring(bracket.lastIndexOf(",") + 1);
+                        int contextId = Integer.parseInt(last.substring(1));
+                        DefinitionalRepresentation definitionalRepresentation
+                                = new DefinitionalRepresentation(itemIds, contextId);
+                        definitionalRepresentation.setId(id);
+                        definitionalRepresentation.setName(name);
+                        result.add(definitionalRepresentation);
+                        System.out.println("Definitional representation: " + definitionalRepresentation);
+                    }
 
+                    if (secondTag.startsWith(CYLINDRICAL_SURFACE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int positionId = Integer.parseInt(values[0].substring(1));
+                        double radius = Double.parseDouble(values[1]);
+                        CylindricalSurface cylindricalSurface = new CylindricalSurface(positionId, radius);
+                        cylindricalSurface.setId(id);
+                        cylindricalSurface.setName(name);
+                        result.add(cylindricalSurface);
+                        System.out.println("Cylindrical surface: " + cylindricalSurface);
+                    }
+
+                    if (secondTag.startsWith(CIRCLE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int positionId = Integer.parseInt(values[0].substring(1));
+                        double radius = Double.parseDouble(values[1]);
+                        Circle circle = new Circle(positionId, radius);
+                        circle.setId(id);
+                        circle.setName(name);
+                        result.add(circle);
+                        System.out.println("Circle: " + circle);
+                    }
+
+                    if (secondTag.startsWith(TOROIDAL_SURFACE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int positionId = Integer.parseInt(values[0].substring(1));
+                        double majorRadius = Double.parseDouble(values[1]);
+                        double minorRadius = Double.parseDouble(values[2]);
+                        ToroidalSurface toroidalSurface = new ToroidalSurface(positionId, majorRadius, minorRadius);
+                        toroidalSurface.setId(id);
+                        toroidalSurface.setName(name);
+                        result.add(toroidalSurface);
+                        System.out.println("Toroidal surface: " + toroidalSurface);
+                    }
+
+                    if (secondTag.startsWith(AXIS2_PLACEMENT_2D)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int locationId = Integer.parseInt(values[0].substring(1));
+                        int refDirectionId = Integer.parseInt(values[1].substring(1));
+                        Axis2Placement2D axis2Placement2D = new Axis2Placement2D(locationId, refDirectionId);
+                        axis2Placement2D.setId(id);
+                        axis2Placement2D.setName(name);
+                        result.add(axis2Placement2D);
+                        System.out.println("Axis2 placement 2D: " + axis2Placement2D);
+                    }
+
+                    if (secondTag.startsWith(B_SPLINE_CURVE_WITH_KNOTS)) {
+                        String bracket = att[1];
+
+                        System.out.println("BSpline curve with knots: " + bracket);
                     }
 
                 }

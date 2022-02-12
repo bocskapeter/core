@@ -25,7 +25,7 @@ public class ReadStepFile {
     static final String FACE_BOUND = "FACE_BOUND";
     static final String ADVANCED_FACE = "ADVANCED_FACE";
     static final String CLOSED_SHELL = "CLOSED_SHELL";
-    static final String MANIFOLD_SOLID_BREP = "MANIFOLD_SOLID_BREP";
+    static final String MANIFOLD_SOLID_B_REP = "MANIFOLD_SOLID_BREP";
     static final String DEFINITIONAL_REPRESENTATION = "DEFINITIONAL_REPRESENTATION";
     static final String CYLINDRICAL_SURFACE = "CYLINDRICAL_SURFACE";
     static final String CIRCLE = "CIRCLE";
@@ -285,7 +285,7 @@ public class ReadStepFile {
                         continue;
                     }
 
-                    if (secondTag.startsWith(MANIFOLD_SOLID_BREP)) {
+                    if (secondTag.startsWith(MANIFOLD_SOLID_B_REP)) {
                         String bracket = att[1];
                         int shellId = Integer.parseInt(bracket.substring(1));
                         ManifoldSolidBRep manifoldSolidBRep = new ManifoldSolidBRep(shellId);

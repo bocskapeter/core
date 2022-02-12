@@ -32,6 +32,7 @@ public class ReadStepFile {
     static final String TOROIDAL_SURFACE = "TOROIDAL_SURFACE";
     static final String AXIS2_PLACEMENT_2D = "AXIS2_PLACEMENT_2D";
     static final String B_SPLINE_CURVE_WITH_KNOTS = "B_SPLINE_CURVE_WITH_KNOTS";
+    static final String SEAM_CURVE = "SEAM_CURVE";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -346,8 +347,52 @@ public class ReadStepFile {
 
                     if (secondTag.startsWith(B_SPLINE_CURVE_WITH_KNOTS)) {
                         String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int degree = Integer.parseInt(values[0]);
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.indexOf(")"))
+                                .replaceAll(" ", "");
+                        String[] pointIDs = substring.split(",");
+                        List<Integer> pointIdList = new ArrayList<>();
+                        for (String pointId : pointIDs) {
+                            int pId = Integer.parseInt(pointId.substring(1));
+                            pointIdList.add(pId);
+                        }
+                        substring = bracket.substring(bracket.indexOf(")") + 1);
+                        String[] parts = substring.split(",");
+                        BSplineCurveForm curveForm =
+                                BSplineCurveForm.valueOf(parts[1].replace(".", ""));
+                        boolean closedCurve = parts[2].contains("T");
+                        boolean selfIntersect = parts[3].contains("T");
+                        String knotStrings = substring.substring(substring.indexOf("(") + 1, substring.indexOf(")"));
+                        String[] knotStringArray = knotStrings.split(",");
+                        List<Integer> knotMultiplicities = new ArrayList<>();
+                        for (String knotString : knotStringArray) {
+                            int knotInt = Integer.parseInt(knotString);
+                            knotMultiplicities.add(knotInt);
+                        }
+                        substring = substring.substring(substring.indexOf(")") + 1);
+                        knotStrings = substring.substring(substring.indexOf("(") + 1, substring.indexOf(")"));
+                        knotStringArray = knotStrings.split(",");
+                        List<Double> knots = new ArrayList<>();
+                        for (String knotString : knotStringArray) {
+                            double knot = Double.parseDouble(knotString);
+                            knots.add(knot);
+                        }
+                        substring = substring.substring(substring.indexOf(")") + 1);
+                        parts = substring.split(",");
+                        KnotType knotType = KnotType.valueOf(parts[1].replace(".", ""));
+                        BSplineCurveWithKnots bSplineCurveWithKnots
+                                = new BSplineCurveWithKnots(degree, pointIdList, curveForm, closedCurve, selfIntersect,
+                                knotMultiplicities, knots, knotType);
+                        bSplineCurveWithKnots.setId(id);
+                        bSplineCurveWithKnots.setName(name);
+                        System.out.println("BSpline curve with knots: " + bSplineCurveWithKnots);
+                    }
 
-                        System.out.println("BSpline curve with knots: " + bracket);
+                    if (secondTag.startsWith(SEAM_CURVE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        System.out.println("Seam curve: " + bracket);
                     }
 
                 }

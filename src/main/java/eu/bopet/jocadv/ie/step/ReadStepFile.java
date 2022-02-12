@@ -33,6 +33,9 @@ public class ReadStepFile {
     static final String AXIS2_PLACEMENT_2D = "AXIS2_PLACEMENT_2D";
     static final String B_SPLINE_CURVE_WITH_KNOTS = "B_SPLINE_CURVE_WITH_KNOTS";
     static final String SEAM_CURVE = "SEAM_CURVE";
+    static final String ELLIPSE = "ELLIPSE";
+    static final String SURFACE_OF_LINEAR_EXTRUSION = "SURFACE_OF_LINEAR_EXTRUSION";
+    static final String CONICAL_SURFACE = "CONICAL_SURFACE";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -47,7 +50,6 @@ public class ReadStepFile {
             String[] commands = stringBuilder.toString().split(";");
             for (String command : commands) {
                 if (command.startsWith("#")) {
-                    System.out.println(command);
                     String[] tags = command.split("=");
                     String idString = tags[0].substring(1).replaceAll("\\s+", "");
                     int id = Integer.parseInt(idString);
@@ -70,6 +72,7 @@ public class ReadStepFile {
                         point.setName(name);
                         result.add(point);
                         System.out.println("Cartesian Point: " + point);
+                        continue;
                     }
 
                     if (secondTag.startsWith(DIRECTION)) {
@@ -85,6 +88,7 @@ public class ReadStepFile {
                         direction.setName(name);
                         result.add(direction);
                         System.out.println("Direction: " + direction);
+                        continue;
                     }
 
                     if (secondTag.startsWith(VECTOR)) {
@@ -97,6 +101,7 @@ public class ReadStepFile {
                         vector.setName(name);
                         result.add(vector);
                         System.out.println("Vector: " + vector);
+                        continue;
                     }
 
                     if (secondTag.startsWith(LINE)) {
@@ -109,6 +114,7 @@ public class ReadStepFile {
                         line.setName(name);
                         result.add(line);
                         System.out.println("Line: " + line);
+                        continue;
                     }
 
                     if (secondTag.startsWith(VERTEX_POINT)) {
@@ -119,6 +125,7 @@ public class ReadStepFile {
                         vertexPoint.setName(name);
                         result.add(vertexPoint);
                         System.out.println("Vertex Point: " + vertexPoint);
+                        continue;
                     }
 
                     if (secondTag.startsWith(EDGE_CURVE)) {
@@ -133,6 +140,7 @@ public class ReadStepFile {
                         edgeCurve.setName(name);
                         result.add(edgeCurve);
                         System.out.println("Edge Curve: " + edgeCurve);
+                        continue;
                     }
 
                     if (secondTag.startsWith(P_CURVE)) {
@@ -145,6 +153,7 @@ public class ReadStepFile {
                         pCurve.setName(name);
                         result.add(pCurve);
                         System.out.println("PCurve: " + pCurve);
+                        continue;
                     }
 
                     if (secondTag.startsWith(AXIS2_PLACEMENT_3D)) {
@@ -158,6 +167,7 @@ public class ReadStepFile {
                         axis2Placement3D.setName(name);
                         result.add(axis2Placement3D);
                         System.out.println("Axis2 Placement 3D: " + axis2Placement3D);
+                        continue;
                     }
 
                     if (secondTag.startsWith(PLANE)) {
@@ -167,6 +177,7 @@ public class ReadStepFile {
                         plane.setName(name);
                         result.add(plane);
                         System.out.println("Plane: " + plane);
+                        continue;
                     }
 
                     if (secondTag.startsWith(ORIENTED_EDGE)) {
@@ -185,6 +196,7 @@ public class ReadStepFile {
                         orientedEdge.setName(name);
                         result.add(orientedEdge);
                         System.out.println("Oriented Edge: " + orientedEdge);
+                        continue;
                     }
 
                     if (secondTag.startsWith(SURFACE_CURVE)) {
@@ -204,6 +216,7 @@ public class ReadStepFile {
                         surfaceCurve.setName(name);
                         result.add(surfaceCurve);
                         System.out.println("Surface Curve: " + surfaceCurve);
+                        continue;
                     }
 
                     if (secondTag.startsWith(EDGE_LOOP)) {
@@ -220,6 +233,7 @@ public class ReadStepFile {
                         edgeLoop.setName(name);
                         result.add(edgeLoop);
                         System.out.println("Edge Loop: " + edgeLoop);
+                        continue;
                     }
 
                     if (secondTag.startsWith(FACE_BOUND)) {
@@ -232,6 +246,7 @@ public class ReadStepFile {
                         faceBound.setName(name);
                         result.add(faceBound);
                         System.out.println("Face bound: " + faceBound);
+                        continue;
                     }
 
                     if (secondTag.startsWith(ADVANCED_FACE)) {
@@ -250,6 +265,7 @@ public class ReadStepFile {
                         advancedFace.setName(name);
                         result.add(advancedFace);
                         System.out.println("Advanced face: " + advancedFace);
+                        continue;
                     }
 
                     if (secondTag.startsWith(CLOSED_SHELL)) {
@@ -266,6 +282,7 @@ public class ReadStepFile {
                         closedShell.setName(name);
                         result.add(closedShell);
                         System.out.println("Closed shell: " + closedShell);
+                        continue;
                     }
 
                     if (secondTag.startsWith(MANIFOLD_SOLID_BREP)) {
@@ -276,6 +293,7 @@ public class ReadStepFile {
                         manifoldSolidBRep.setName(name);
                         result.add(manifoldSolidBRep);
                         System.out.println("Manifold solid BRep: " + manifoldSolidBRep);
+                        continue;
                     }
 
                     if (secondTag.startsWith(DEFINITIONAL_REPRESENTATION)) {
@@ -294,6 +312,7 @@ public class ReadStepFile {
                         definitionalRepresentation.setName(name);
                         result.add(definitionalRepresentation);
                         System.out.println("Definitional representation: " + definitionalRepresentation);
+                        continue;
                     }
 
                     if (secondTag.startsWith(CYLINDRICAL_SURFACE)) {
@@ -306,6 +325,7 @@ public class ReadStepFile {
                         cylindricalSurface.setName(name);
                         result.add(cylindricalSurface);
                         System.out.println("Cylindrical surface: " + cylindricalSurface);
+                        continue;
                     }
 
                     if (secondTag.startsWith(CIRCLE)) {
@@ -318,6 +338,7 @@ public class ReadStepFile {
                         circle.setName(name);
                         result.add(circle);
                         System.out.println("Circle: " + circle);
+                        continue;
                     }
 
                     if (secondTag.startsWith(TOROIDAL_SURFACE)) {
@@ -331,6 +352,7 @@ public class ReadStepFile {
                         toroidalSurface.setName(name);
                         result.add(toroidalSurface);
                         System.out.println("Toroidal surface: " + toroidalSurface);
+                        continue;
                     }
 
                     if (secondTag.startsWith(AXIS2_PLACEMENT_2D)) {
@@ -343,6 +365,7 @@ public class ReadStepFile {
                         axis2Placement2D.setName(name);
                         result.add(axis2Placement2D);
                         System.out.println("Axis2 placement 2D: " + axis2Placement2D);
+                        continue;
                     }
 
                     if (secondTag.startsWith(B_SPLINE_CURVE_WITH_KNOTS)) {
@@ -386,14 +409,80 @@ public class ReadStepFile {
                                 knotMultiplicities, knots, knotType);
                         bSplineCurveWithKnots.setId(id);
                         bSplineCurveWithKnots.setName(name);
+                        result.add(bSplineCurveWithKnots);
                         System.out.println("BSpline curve with knots: " + bSplineCurveWithKnots);
+                        continue;
                     }
 
                     if (secondTag.startsWith(SEAM_CURVE)) {
                         String bracket = att[1];
                         String[] values = bracket.split(",");
-                        System.out.println("Seam curve: " + bracket);
+
+                        int curveId = Integer.parseInt(values[0].substring(1));
+
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        values = substring.split(",");
+                        List<Integer> associatedGeometryIds = new ArrayList<>();
+                        for (String value : values) {
+                            int associatedGeometryId = Integer.parseInt(value.substring(1));
+                            associatedGeometryIds.add(associatedGeometryId);
+                        }
+                        String masterRepString = bracket.substring(bracket.lastIndexOf(",") + 1)
+                                .replace(".", "");
+                        PreferredSurfaceCurveRepresentation masterRep =
+                                PreferredSurfaceCurveRepresentation.valueOf(masterRepString);
+                        SeamCurve seamCurve = new SeamCurve(curveId, associatedGeometryIds, masterRep);
+                        seamCurve.setId(id);
+                        seamCurve.setName(name);
+                        result.add(seamCurve);
+                        System.out.println("Seam curve: " + seamCurve);
+                        continue;
                     }
+
+                    if (secondTag.startsWith(ELLIPSE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int positionId = Integer.parseInt(values[0].substring(1));
+                        double axis1 = Double.parseDouble(values[1]);
+                        double axis2 = Double.parseDouble(values[2]);
+                        Ellipse ellipse = new Ellipse(positionId, axis1, axis2);
+                        ellipse.setId(id);
+                        ellipse.setName(name);
+                        result.add(ellipse);
+                        System.out.println("Ellipse: " + ellipse);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(SURFACE_OF_LINEAR_EXTRUSION)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int curveId = Integer.parseInt(values[0].substring(1));
+                        int axisId = Integer.parseInt(values[1].substring(1));
+                        SurfaceOfLinearExtrusion surfaceOfLinearExtrusion =
+                                new SurfaceOfLinearExtrusion(curveId, axisId);
+                        surfaceOfLinearExtrusion.setId(id);
+                        surfaceOfLinearExtrusion.setName(name);
+                        result.add(surfaceOfLinearExtrusion);
+                        System.out.println("Surface of linear extrusion: " + surfaceOfLinearExtrusion);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(CONICAL_SURFACE)) {
+                        System.out.println(command);
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int positionId = Integer.parseInt(values[0].substring(1));
+                        double radius = Double.parseDouble(values[1]);
+                        double angle = Double.parseDouble(values[2]);
+                        ConicalSurface conicalSurface = new ConicalSurface(positionId, radius, angle);
+                        conicalSurface.setId(id);
+                        conicalSurface.setName(name);
+                        result.add(conicalSurface);
+                        System.out.println("Conical surface: " + conicalSurface);
+                        continue;
+                    }
+
+                    System.out.println("!!! not processed: " + command);
 
                 }
             }

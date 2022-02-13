@@ -65,67 +65,36 @@ public class ReadStepFile {
                 System.out.println(command);
                 if (command.startsWith("#")) {
                     String[] tags = command.split("=");
-                    String idString = tags[0].substring(1).replaceAll("\\s+", "");
-                    int id = Integer.parseInt(idString);
+                    int id = Integer.parseInt(tags[0].substring(1).replace(" ", ""));
 
                     String secondTag = tags[1].stripLeading();
                     String attribute = secondTag.substring(secondTag.indexOf("(") + 1, secondTag.lastIndexOf(")"));
                     String[] att = attribute.split(",", 2);
-                    String name = att[0].replaceAll("'", "");
+                    String name = att[0].replace("'", "");
 
                     if (secondTag.startsWith(CARTESIAN_POINT)) {
-                        String bracket = att[1];
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] values = substring.split(",");
-                        double[] coordinates = new double[values.length];
-                        for (int i = 0; i < coordinates.length; i++) {
-                            coordinates[i] = Double.parseDouble(values[i]);
-                        }
-                        CartesianPoint point = new CartesianPoint(coordinates);
-                        point.setId(id);
-                        point.setName(name);
+                        CartesianPoint point = CartesianPoint.getInstance(id, name, att[1]);
                         result.add(point);
                         System.out.println(point);
                         continue;
                     }
 
                     if (secondTag.startsWith(DIRECTION)) {
-                        String bracket = att[1];
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] values = substring.split(",");
-                        double[] coordinates = new double[values.length];
-                        for (int i = 0; i < coordinates.length; i++) {
-                            coordinates[i] = Double.parseDouble(values[i]);
-                        }
-                        Direction direction = new Direction(coordinates);
-                        direction.setId(id);
-                        direction.setName(name);
+                        Direction direction = Direction.getInstance(id, name, att[1]);
                         result.add(direction);
                         System.out.println(direction);
                         continue;
                     }
 
                     if (secondTag.startsWith(VECTOR)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int directionId = Integer.parseInt(values[0].substring(1));
-                        double length = Double.parseDouble(values[1]);
-                        Vector vector = new Vector(directionId, length);
-                        vector.setId(id);
-                        vector.setName(name);
+                        Vector vector = Vector.getInstance(id, name, att[1]);
                         result.add(vector);
                         System.out.println(vector);
                         continue;
                     }
 
                     if (secondTag.startsWith(LINE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int cartesianPointId = Integer.parseInt(values[0].substring(1));
-                        int vectorId = Integer.parseInt(values[1].substring(1));
-                        Line line = new Line(cartesianPointId, vectorId);
-                        line.setId(id);
-                        line.setName(name);
+                        Line line = Line.getInstance(id, name, att[1]);
                         result.add(line);
                         System.out.println(line);
                         continue;

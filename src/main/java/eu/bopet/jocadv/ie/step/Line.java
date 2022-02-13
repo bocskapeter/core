@@ -9,6 +9,16 @@ public class Line extends StepEntity {
         this.vectorId = vectorId;
     }
 
+    public static Line getInstance(int id, String name, String attributes) {
+        String[] values = attributes.split(",");
+        int cartesianPointId = Integer.parseInt(values[0].substring(1));
+        int vectorId = Integer.parseInt(values[1].substring(1));
+        Line line = new Line(cartesianPointId, vectorId);
+        line.setId(id);
+        line.setName(name);
+        return line;
+    }
+
     @Override
     public String toString() {
         return "Line{" + super.toString() +

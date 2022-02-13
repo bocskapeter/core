@@ -12,6 +12,6 @@ class ReadStepFileTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("test.step").getFile());
         List<StepEntity> entityList = ReadStepFile.readStepFile(file);
-        System.out.println("Entities: " + entityList);
+        System.out.println("\n----****----\n\nEntities:\n" + entityList);
     }
 }

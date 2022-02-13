@@ -39,10 +39,19 @@ public class ReadStepFile {
     static final String ADVANCED_BREP_SHAPE_REPRESENTATION = "ADVANCED_BREP_SHAPE_REPRESENTATION";
     static final String PRODUCT_DEFINITION_CONTEXT = "PRODUCT_DEFINITION_CONTEXT";
     static final String PRODUCT_CONTEXT = "PRODUCT_CONTEXT";
+    static final String PRODUCT = "PRODUCT(";
+    static final String PRODUCT_DEFINITION_FORMATION = "PRODUCT_DEFINITION_FORMATION";
+    static final String PRODUCT_DEFINITION = "PRODUCT_DEFINITION";
+    static final String PRODUCT_DEFINITION_SHAPE = "PRODUCT_DEFINITION_SHAPE";
+    static final String SHAPE_DEFINITION_REPRESENTATION = "SHAPE_DEFINITION_REPRESENTATION";
+    static final String APPLICATION_CONTEXT = "APPLICATION_CONTEXT";
+    static final String APPLICATION_PROTOCOL_DEFINITION = "APPLICATION_PROTOCOL_DEFINITION";
+    static final String PRODUCT_CATEGORY = "PRODUCT_CATEGORY";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
         System.out.println("Starting with file: " + file.getPath() + " - " + file.getName());
+        String errorLine = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             StringBuilder stringBuilder = new StringBuilder();
             // get the whole file
@@ -52,6 +61,7 @@ public class ReadStepFile {
             // process the lines
             String[] commands = stringBuilder.toString().split(";");
             for (String command : commands) {
+                errorLine = command;
                 if (command.startsWith("#")) {
                     String[] tags = command.split("=");
                     String idString = tags[0].substring(1).replaceAll("\\s+", "");
@@ -74,7 +84,6 @@ public class ReadStepFile {
                         point.setId(id);
                         point.setName(name);
                         result.add(point);
-                        System.out.println("Cartesian Point: " + point);
                         continue;
                     }
 
@@ -90,7 +99,6 @@ public class ReadStepFile {
                         direction.setId(id);
                         direction.setName(name);
                         result.add(direction);
-                        System.out.println("Direction: " + direction);
                         continue;
                     }
 
@@ -103,7 +111,6 @@ public class ReadStepFile {
                         vector.setId(id);
                         vector.setName(name);
                         result.add(vector);
-                        System.out.println("Vector: " + vector);
                         continue;
                     }
 
@@ -116,7 +123,6 @@ public class ReadStepFile {
                         line.setId(id);
                         line.setName(name);
                         result.add(line);
-                        System.out.println("Line: " + line);
                         continue;
                     }
 
@@ -127,7 +133,6 @@ public class ReadStepFile {
                         vertexPoint.setId(id);
                         vertexPoint.setName(name);
                         result.add(vertexPoint);
-                        System.out.println("Vertex Point: " + vertexPoint);
                         continue;
                     }
 
@@ -142,7 +147,6 @@ public class ReadStepFile {
                         edgeCurve.setId(id);
                         edgeCurve.setName(name);
                         result.add(edgeCurve);
-                        System.out.println("Edge Curve: " + edgeCurve);
                         continue;
                     }
 
@@ -155,7 +159,6 @@ public class ReadStepFile {
                         pCurve.setId(id);
                         pCurve.setName(name);
                         result.add(pCurve);
-                        System.out.println("PCurve: " + pCurve);
                         continue;
                     }
 
@@ -169,7 +172,6 @@ public class ReadStepFile {
                         axis2Placement3D.setId(id);
                         axis2Placement3D.setName(name);
                         result.add(axis2Placement3D);
-                        System.out.println("Axis2 Placement 3D: " + axis2Placement3D);
                         continue;
                     }
 
@@ -179,7 +181,6 @@ public class ReadStepFile {
                         plane.setId(id);
                         plane.setName(name);
                         result.add(plane);
-                        System.out.println("Plane: " + plane);
                         continue;
                     }
 
@@ -198,7 +199,6 @@ public class ReadStepFile {
                         orientedEdge.setId(id);
                         orientedEdge.setName(name);
                         result.add(orientedEdge);
-                        System.out.println("Oriented Edge: " + orientedEdge);
                         continue;
                     }
 
@@ -218,7 +218,6 @@ public class ReadStepFile {
                         surfaceCurve.setId(id);
                         surfaceCurve.setName(name);
                         result.add(surfaceCurve);
-                        System.out.println("Surface Curve: " + surfaceCurve);
                         continue;
                     }
 
@@ -235,7 +234,6 @@ public class ReadStepFile {
                         edgeLoop.setId(id);
                         edgeLoop.setName(name);
                         result.add(edgeLoop);
-                        System.out.println("Edge Loop: " + edgeLoop);
                         continue;
                     }
 
@@ -248,7 +246,6 @@ public class ReadStepFile {
                         faceBound.setId(id);
                         faceBound.setName(name);
                         result.add(faceBound);
-                        System.out.println("Face bound: " + faceBound);
                         continue;
                     }
 
@@ -267,7 +264,6 @@ public class ReadStepFile {
                         advancedFace.setId(id);
                         advancedFace.setName(name);
                         result.add(advancedFace);
-                        System.out.println("Advanced face: " + advancedFace);
                         continue;
                     }
 
@@ -284,7 +280,6 @@ public class ReadStepFile {
                         closedShell.setId(id);
                         closedShell.setName(name);
                         result.add(closedShell);
-                        System.out.println("Closed shell: " + closedShell);
                         continue;
                     }
 
@@ -295,7 +290,6 @@ public class ReadStepFile {
                         manifoldSolidBRep.setId(id);
                         manifoldSolidBRep.setName(name);
                         result.add(manifoldSolidBRep);
-                        System.out.println("Manifold solid BRep: " + manifoldSolidBRep);
                         continue;
                     }
 
@@ -314,7 +308,6 @@ public class ReadStepFile {
                         definitionalRepresentation.setId(id);
                         definitionalRepresentation.setName(name);
                         result.add(definitionalRepresentation);
-                        System.out.println("Definitional representation: " + definitionalRepresentation);
                         continue;
                     }
 
@@ -327,7 +320,6 @@ public class ReadStepFile {
                         cylindricalSurface.setId(id);
                         cylindricalSurface.setName(name);
                         result.add(cylindricalSurface);
-                        System.out.println("Cylindrical surface: " + cylindricalSurface);
                         continue;
                     }
 
@@ -340,7 +332,6 @@ public class ReadStepFile {
                         circle.setId(id);
                         circle.setName(name);
                         result.add(circle);
-                        System.out.println("Circle: " + circle);
                         continue;
                     }
 
@@ -354,7 +345,6 @@ public class ReadStepFile {
                         toroidalSurface.setId(id);
                         toroidalSurface.setName(name);
                         result.add(toroidalSurface);
-                        System.out.println("Toroidal surface: " + toroidalSurface);
                         continue;
                     }
 
@@ -367,7 +357,6 @@ public class ReadStepFile {
                         axis2Placement2D.setId(id);
                         axis2Placement2D.setName(name);
                         result.add(axis2Placement2D);
-                        System.out.println("Axis2 placement 2D: " + axis2Placement2D);
                         continue;
                     }
 
@@ -413,7 +402,6 @@ public class ReadStepFile {
                         bSplineCurveWithKnots.setId(id);
                         bSplineCurveWithKnots.setName(name);
                         result.add(bSplineCurveWithKnots);
-                        System.out.println("BSpline curve with knots: " + bSplineCurveWithKnots);
                         continue;
                     }
 
@@ -438,7 +426,6 @@ public class ReadStepFile {
                         seamCurve.setId(id);
                         seamCurve.setName(name);
                         result.add(seamCurve);
-                        System.out.println("Seam curve: " + seamCurve);
                         continue;
                     }
 
@@ -452,7 +439,6 @@ public class ReadStepFile {
                         ellipse.setId(id);
                         ellipse.setName(name);
                         result.add(ellipse);
-                        System.out.println("Ellipse: " + ellipse);
                         continue;
                     }
 
@@ -466,7 +452,6 @@ public class ReadStepFile {
                         surfaceOfLinearExtrusion.setId(id);
                         surfaceOfLinearExtrusion.setName(name);
                         result.add(surfaceOfLinearExtrusion);
-                        System.out.println("Surface of linear extrusion: " + surfaceOfLinearExtrusion);
                         continue;
                     }
 
@@ -480,7 +465,6 @@ public class ReadStepFile {
                         conicalSurface.setId(id);
                         conicalSurface.setName(name);
                         result.add(conicalSurface);
-                        System.out.println("Conical surface: " + conicalSurface);
                         continue;
                     }
 
@@ -500,7 +484,6 @@ public class ReadStepFile {
                         advancedBRepShapeRepresentation.setId(id);
                         advancedBRepShapeRepresentation.setName(name);
                         result.add(advancedBRepShapeRepresentation);
-                        System.out.println("Advanced BRep Shape Representation: " + advancedBRepShapeRepresentation);
                         continue;
                     }
 
@@ -514,7 +497,6 @@ public class ReadStepFile {
                         productDefinitionContext.setId(id);
                         productDefinitionContext.setName(name);
                         result.add(productDefinitionContext);
-                        System.out.println("Product definition context: " + productDefinitionContext);
                         continue;
                     }
 
@@ -528,7 +510,108 @@ public class ReadStepFile {
                         productContext.setId(id);
                         productContext.setName(name);
                         result.add(productContext);
-                        System.out.println("Product context: " + productContext);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(PRODUCT_DEFINITION_SHAPE)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        String description = values[0].replace("'", "");
+                        int definition = Integer.parseInt(values[1].substring(1));
+                        ProductDefinitionShape productDefinitionShape =
+                                new ProductDefinitionShape(description, definition);
+                        productDefinitionShape.setId(id);
+                        productDefinitionShape.setName(name);
+                        result.add(productDefinitionShape);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(PRODUCT_DEFINITION_FORMATION)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        String description = values[0].replace("'", "");
+                        int productId = Integer.parseInt(values[1].substring(1));
+                        ProductDefinitionFormation productDefinitionFormation =
+                                new ProductDefinitionFormation(description, productId);
+                        productDefinitionFormation.setId(id);
+                        productDefinitionFormation.setName(name);
+                        result.add(productDefinitionFormation);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(PRODUCT_DEFINITION)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        String description = values[0].replace("'", "");
+                        int formationId = Integer.parseInt(values[1].substring(1));
+                        int contextID = Integer.parseInt(values[2].substring(1));
+                        ProductDefinition productDefinition =
+                                new ProductDefinition(description, formationId, contextID);
+                        productDefinition.setId(id);
+                        productDefinition.setName(name);
+                        result.add(productDefinition);
+                        continue;
+                    }
+                    if (secondTag.startsWith(PRODUCT_CATEGORY)) {
+                        String bracket = att[1];
+                        String description = bracket.replace("'", "").stripLeading();
+                        ProductCategory productCategory = new ProductCategory(description);
+                        productCategory.setId(id);
+                        productCategory.setName(name);
+                        result.add(productCategory);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(PRODUCT)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        String secondName = values[0].replace("'", "");
+                        String description = values[1].replace("'", "");
+                        Set<Integer> contextIds = new LinkedHashSet<>();
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        String[] contextIdStrings = substring.split(",");
+                        for (String contextIdString : contextIdStrings) {
+                            int contextId = Integer.parseInt(contextIdString.substring(1));
+                            contextIds.add(contextId);
+                        }
+                        Product product = new Product(secondName, description, contextIds);
+                        product.setId(id);
+                        product.setName(name);
+                        result.add(product);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(SHAPE_DEFINITION_REPRESENTATION)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int definition = Integer.parseInt(name.substring(1));
+                        int representationId = Integer.parseInt(values[0].substring(1));
+                        ShapeDefinitionRepresentation shapeDefinitionRepresentation =
+                                new ShapeDefinitionRepresentation(definition, representationId);
+                        shapeDefinitionRepresentation.setId(id);
+                        result.add(shapeDefinitionRepresentation);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(APPLICATION_CONTEXT)) {
+                        ApplicationContext applicationContext = new ApplicationContext();
+                        applicationContext.setId(id);
+                        applicationContext.setName(name.stripLeading());
+                        result.add(applicationContext);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(APPLICATION_PROTOCOL_DEFINITION)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        String modelSchemaName = values[0].replace("'", "").stripLeading();
+                        int year = Integer.parseInt(values[1]);
+                        int contextId = Integer.parseInt(values[2].substring(1));
+                        ApplicationProtocolDefinition applicationProtocolDefinition =
+                                new ApplicationProtocolDefinition(modelSchemaName, year, contextId);
+                        applicationProtocolDefinition.setId(id);
+                        applicationProtocolDefinition.setName(name);
+                        result.add(applicationProtocolDefinition);
                         continue;
                     }
 
@@ -543,6 +626,7 @@ public class ReadStepFile {
             }
 
         } catch (IOException e) {
+            System.out.println("Error in line: " + errorLine);
             e.printStackTrace();
         }
         return result;

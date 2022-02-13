@@ -36,6 +36,9 @@ public class ReadStepFile {
     static final String ELLIPSE = "ELLIPSE";
     static final String SURFACE_OF_LINEAR_EXTRUSION = "SURFACE_OF_LINEAR_EXTRUSION";
     static final String CONICAL_SURFACE = "CONICAL_SURFACE";
+    static final String ADVANCED_BREP_SHAPE_REPRESENTATION = "ADVANCED_BREP_SHAPE_REPRESENTATION";
+    static final String PRODUCT_DEFINITION_CONTEXT = "PRODUCT_DEFINITION_CONTEXT";
+    static final String PRODUCT_CONTEXT = "PRODUCT_CONTEXT";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -468,7 +471,6 @@ public class ReadStepFile {
                     }
 
                     if (secondTag.startsWith(CONICAL_SURFACE)) {
-                        System.out.println(command);
                         String bracket = att[1];
                         String[] values = bracket.split(",");
                         int positionId = Integer.parseInt(values[0].substring(1));
@@ -480,6 +482,59 @@ public class ReadStepFile {
                         result.add(conicalSurface);
                         System.out.println("Conical surface: " + conicalSurface);
                         continue;
+                    }
+
+                    if (secondTag.startsWith(ADVANCED_BREP_SHAPE_REPRESENTATION)) {
+                        String bracket = att[1];
+                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
+                        String[] itemIdStrings = substring.split(",");
+                        Set<Integer> itemIds = new LinkedHashSet<>();
+                        for (String itemIdString : itemIdStrings) {
+                            int itemId = Integer.parseInt(itemIdString.substring(1));
+                            itemIds.add(itemId);
+                        }
+                        String contextIdString = bracket.substring(bracket.lastIndexOf(",") + 1);
+                        int contextId = Integer.parseInt(contextIdString.substring(1));
+                        AdvancedBRepShapeRepresentation advancedBRepShapeRepresentation = new
+                                AdvancedBRepShapeRepresentation(itemIds, contextId);
+                        advancedBRepShapeRepresentation.setId(id);
+                        advancedBRepShapeRepresentation.setName(name);
+                        result.add(advancedBRepShapeRepresentation);
+                        System.out.println("Advanced BRep Shape Representation: " + advancedBRepShapeRepresentation);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(PRODUCT_DEFINITION_CONTEXT)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int applicationContextId = Integer.parseInt(values[0].substring(1));
+                        String lifeCycleStage = values[1].replace("'", "");
+                        ProductDefinitionContext productDefinitionContext =
+                                new ProductDefinitionContext(applicationContextId, lifeCycleStage);
+                        productDefinitionContext.setId(id);
+                        productDefinitionContext.setName(name);
+                        result.add(productDefinitionContext);
+                        System.out.println("Product definition context: " + productDefinitionContext);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(PRODUCT_CONTEXT)) {
+                        String bracket = att[1];
+                        String[] values = bracket.split(",");
+                        int applicationContextId = Integer.parseInt(values[0].substring(1));
+                        String lifeCycleStage = values[1].replace("'", "");
+                        ProductContext productContext =
+                                new ProductContext(applicationContextId, lifeCycleStage);
+                        productContext.setId(id);
+                        productContext.setName(name);
+                        result.add(productContext);
+                        System.out.println("Product context: " + productContext);
+                        continue;
+                    }
+
+                    if (tags[1].startsWith("(")) {
+                        System.out.println("*** current  command: " + command);
+                        System.out.println("Set of : " + tags[1]);
                     }
 
                     System.out.println("!!! not processed: " + command);

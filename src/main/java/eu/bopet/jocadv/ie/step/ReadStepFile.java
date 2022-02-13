@@ -39,7 +39,7 @@ public class ReadStepFile {
     static final String ADVANCED_BREP_SHAPE_REPRESENTATION = "ADVANCED_BREP_SHAPE_REPRESENTATION";
     static final String PRODUCT_DEFINITION_CONTEXT = "PRODUCT_DEFINITION_CONTEXT";
     static final String PRODUCT_CONTEXT = "PRODUCT_CONTEXT";
-    static final String PRODUCT = "PRODUCT(";
+    static final String PRODUCT = "PRODUCT";
     static final String PRODUCT_DEFINITION_FORMATION = "PRODUCT_DEFINITION_FORMATION";
     static final String PRODUCT_DEFINITION = "PRODUCT_DEFINITION";
     static final String PRODUCT_DEFINITION_SHAPE = "PRODUCT_DEFINITION_SHAPE";
@@ -62,6 +62,7 @@ public class ReadStepFile {
             String[] commands = stringBuilder.toString().split(";");
             for (String command : commands) {
                 errorLine = command;
+                System.out.println(command);
                 if (command.startsWith("#")) {
                     String[] tags = command.split("=");
                     String idString = tags[0].substring(1).replaceAll("\\s+", "");
@@ -84,6 +85,7 @@ public class ReadStepFile {
                         point.setId(id);
                         point.setName(name);
                         result.add(point);
+                        System.out.println(point);
                         continue;
                     }
 
@@ -99,6 +101,7 @@ public class ReadStepFile {
                         direction.setId(id);
                         direction.setName(name);
                         result.add(direction);
+                        System.out.println(direction);
                         continue;
                     }
 
@@ -111,6 +114,7 @@ public class ReadStepFile {
                         vector.setId(id);
                         vector.setName(name);
                         result.add(vector);
+                        System.out.println(vector);
                         continue;
                     }
 
@@ -123,6 +127,7 @@ public class ReadStepFile {
                         line.setId(id);
                         line.setName(name);
                         result.add(line);
+                        System.out.println(line);
                         continue;
                     }
 
@@ -562,7 +567,7 @@ public class ReadStepFile {
                         continue;
                     }
 
-                    if (secondTag.startsWith(PRODUCT)) {
+                    if (secondTag.startsWith(PRODUCT + "(")) {
                         String bracket = att[1];
                         String[] values = bracket.split(",");
                         String secondName = values[0].replace("'", "");

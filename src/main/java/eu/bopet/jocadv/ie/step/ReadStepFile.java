@@ -66,7 +66,6 @@ public class ReadStepFile {
                 if (command.startsWith("#")) {
                     String[] tags = command.split("=");
                     int id = Integer.parseInt(tags[0].substring(1).replace(" ", ""));
-
                     String secondTag = tags[1].stripLeading();
                     String attribute = secondTag.substring(secondTag.indexOf("(") + 1, secondTag.lastIndexOf(")"));
                     String[] att = attribute.split(",", 2);
@@ -78,166 +77,82 @@ public class ReadStepFile {
                         System.out.println(point);
                         continue;
                     }
-
-                    if (secondTag.startsWith(DIRECTION)) {
+                    if (secondTag.startsWith(DIRECTION + "(")) {
                         Direction direction = Direction.getInstance(id, name, att[1]);
                         result.add(direction);
                         System.out.println(direction);
                         continue;
                     }
-
-                    if (secondTag.startsWith(VECTOR)) {
+                    if (secondTag.startsWith(VECTOR + "(")) {
                         Vector vector = Vector.getInstance(id, name, att[1]);
                         result.add(vector);
                         System.out.println(vector);
                         continue;
                     }
-
-                    if (secondTag.startsWith(LINE)) {
+                    if (secondTag.startsWith(LINE + "(")) {
                         Line line = Line.getInstance(id, name, att[1]);
                         result.add(line);
                         System.out.println(line);
                         continue;
                     }
-
                     if (secondTag.startsWith(VERTEX_POINT)) {
-                        String bracket = att[1];
-                        int pointId = Integer.parseInt(bracket.substring(1));
-                        VertexPoint vertexPoint = new VertexPoint(pointId);
-                        vertexPoint.setId(id);
-                        vertexPoint.setName(name);
+                        VertexPoint vertexPoint = VertexPoint.getInstance(id, name, att[1]);
                         result.add(vertexPoint);
+                        System.out.println(vertexPoint);
                         continue;
                     }
-
                     if (secondTag.startsWith(EDGE_CURVE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int startId = Integer.parseInt(values[0].substring(1));
-                        int endId = Integer.parseInt(values[1].substring(1));
-                        int curveId = Integer.parseInt(values[2].substring(1));
-                        boolean sameSense = values[3].contains("T");
-                        EdgeCurve edgeCurve = new EdgeCurve(startId, endId, curveId, sameSense);
-                        edgeCurve.setId(id);
-                        edgeCurve.setName(name);
+                        EdgeCurve edgeCurve = EdgeCurve.getInstance(id, name, att[1]);
                         result.add(edgeCurve);
+                        System.out.println(edgeCurve);
                         continue;
                     }
-
                     if (secondTag.startsWith(P_CURVE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int basisSurfaceId = Integer.parseInt(values[0].substring(1));
-                        int referenceToCurveId = Integer.parseInt(values[1].substring(1));
-                        PCurve pCurve = new PCurve(basisSurfaceId, referenceToCurveId);
-                        pCurve.setId(id);
-                        pCurve.setName(name);
+                        PCurve pCurve = PCurve.getInstance(id, name, att[1]);
                         result.add(pCurve);
+                        System.out.println(pCurve);
                         continue;
                     }
-
                     if (secondTag.startsWith(AXIS2_PLACEMENT_3D)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int locationId = Integer.parseInt(values[0].substring(1));
-                        int axisId = Integer.parseInt(values[1].substring(1));
-                        int refDirectionId = Integer.parseInt(values[2].substring(1));
-                        Axis2Placement3D axis2Placement3D = new Axis2Placement3D(locationId, axisId, refDirectionId);
-                        axis2Placement3D.setId(id);
-                        axis2Placement3D.setName(name);
+                        Axis2Placement3D axis2Placement3D = Axis2Placement3D.getInstance(id, name, att[1]);
                         result.add(axis2Placement3D);
+                        System.out.println(axis2Placement3D);
                         continue;
                     }
-
-                    if (secondTag.startsWith(PLANE)) {
-                        int axis2Placement3DId = Integer.parseInt(att[1].substring(1));
-                        Plane plane = new Plane(axis2Placement3DId);
-                        plane.setId(id);
-                        plane.setName(name);
+                    if (secondTag.startsWith(PLANE + "(")) {
+                        Plane plane = Plane.getInstance(id, name, att[1]);
                         result.add(plane);
+                        System.out.println(plane);
                         continue;
                     }
-
                     if (secondTag.startsWith(ORIENTED_EDGE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int startId;
-                        if (values[0].contains("*")) startId = -1;
-                        else startId = Integer.parseInt(values[0].substring(1));
-                        int endId;
-                        if (values[1].contains("*")) endId = -1;
-                        else endId = Integer.parseInt(values[1].substring(1));
-                        int edgeId = Integer.parseInt(values[2].substring(1));
-                        boolean orientation = values[3].contains("T");
-                        OrientedEdge orientedEdge = new OrientedEdge(startId, endId, edgeId, orientation);
-                        orientedEdge.setId(id);
-                        orientedEdge.setName(name);
+                        OrientedEdge orientedEdge = OrientedEdge.getInstance(id, name, att[1]);
                         result.add(orientedEdge);
+                        System.out.println(orientedEdge);
                         continue;
                     }
-
-                    if (secondTag.startsWith(SURFACE_CURVE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int curveId = Integer.parseInt(values[0].substring(1));
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] geometries = substring.split(",");
-                        List<Integer> associatedGeometry = new ArrayList<>();
-                        for (String geometry : geometries) {
-                            associatedGeometry.add(Integer.parseInt(geometry.substring(1)));
-                        }
-                        String last = values[values.length - 1].replace(".", "");
-                        PreferredSurfaceCurveRepresentation rep = PreferredSurfaceCurveRepresentation.valueOf(last);
-                        SurfaceCurve surfaceCurve = new SurfaceCurve(curveId, associatedGeometry, rep);
-                        surfaceCurve.setId(id);
-                        surfaceCurve.setName(name);
+                    if (secondTag.startsWith(SURFACE_CURVE + "(")) {
+                        SurfaceCurve surfaceCurve = SurfaceCurve.getInstance(id, name, att[1]);
                         result.add(surfaceCurve);
+                        System.out.println(surfaceCurve);
                         continue;
                     }
-
                     if (secondTag.startsWith(EDGE_LOOP)) {
-                        String bracket = att[1];
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] values = substring.split(",");
-                        List<Integer> edgeIdList = new ArrayList<>();
-                        for (String value : values) {
-                            int edgeId = Integer.parseInt(value.substring(1));
-                            edgeIdList.add(edgeId);
-                        }
-                        EdgeLoop edgeLoop = new EdgeLoop(edgeIdList);
-                        edgeLoop.setId(id);
-                        edgeLoop.setName(name);
+                        EdgeLoop edgeLoop = EdgeLoop.getInstance(id, name, att[1]);
                         result.add(edgeLoop);
+                        System.out.println(edgeLoop);
                         continue;
                     }
-
                     if (secondTag.startsWith(FACE_BOUND)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int loopId = Integer.parseInt(values[0].substring(1));
-                        boolean orientation = values[1].contains("T");
-                        FaceBound faceBound = new FaceBound(loopId, orientation);
-                        faceBound.setId(id);
-                        faceBound.setName(name);
+                        FaceBound faceBound = FaceBound.getInstance(id, name, att[1]);
                         result.add(faceBound);
+                        System.out.println(faceBound);
                         continue;
                     }
-
                     if (secondTag.startsWith(ADVANCED_FACE)) {
-                        String bracket = att[1];
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] values = substring.split(",");
-                        Set<Integer> boundIds = new LinkedHashSet<>();
-                        for (String value : values) {
-                            boundIds.add(Integer.parseInt(value.substring(1)));
-                        }
-                        String[] rest = (bracket.substring(bracket.indexOf(")") + 1)).split(",");
-                        int surfaceId = Integer.parseInt(rest[1].substring(1));
-                        boolean sameSense = rest[2].contains("T");
-                        AdvancedFace advancedFace = new AdvancedFace(boundIds, surfaceId, sameSense);
-                        advancedFace.setId(id);
-                        advancedFace.setName(name);
+                        AdvancedFace advancedFace = AdvancedFace.getInstance(id, name, att[1]);
                         result.add(advancedFace);
+                        System.out.println(advancedFace);
                         continue;
                     }
 

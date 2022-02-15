@@ -7,6 +7,14 @@ public class VertexPoint extends StepEntity {
         this.pointId = pointId;
     }
 
+    public static VertexPoint getInstance(int id, String name, String attributes) {
+        int pointId = Integer.parseInt(attributes.substring(1));
+        VertexPoint vertexPoint = new VertexPoint(pointId);
+        vertexPoint.setId(id);
+        vertexPoint.setName(name);
+        return vertexPoint;
+    }
+
     @Override
     public String toString() {
         return "VertexPoint{" + super.toString() +

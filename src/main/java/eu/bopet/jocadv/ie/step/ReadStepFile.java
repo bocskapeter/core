@@ -45,6 +45,9 @@ public class ReadStepFile {
     static final String APPLICATION_CONTEXT = "APPLICATION_CONTEXT";
     static final String APPLICATION_PROTOCOL_DEFINITION = "APPLICATION_PROTOCOL_DEFINITION";
     static final String PRODUCT_CATEGORY = "PRODUCT_CATEGORY";
+    static final String GEOMETRIC_REPRESENTATION_CONTEXT = "GEOMETRIC_REPRESENTATION_CONTEXT";
+    static final String PARAMETRIC_REPRESENTATION_CONTEXT = "PARAMETRIC_REPRESENTATION_CONTEXT";
+    static final String REPRESENTATION_CONTEXT = "REPRESENTATION_CONTEXT";
 
     public static List<StepEntity> readStepFile(File file) {
         List<StepEntity> result = new ArrayList<>();
@@ -297,10 +300,10 @@ public class ReadStepFile {
                         System.out.println(applicationProtocolDefinition);
                         continue;
                     }
-
-                    if (tags[1].startsWith("(")) {
+                    if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);
-                        System.out.println("Set of : " + tags[1]);
+                        System.out.println("Set of : " + tags[1].stripLeading().stripTrailing());
+
                     }
 
                     System.out.println("!!! not processed: " + command);

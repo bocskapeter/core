@@ -11,6 +11,17 @@ public class Ellipse extends StepEntity {
         this.axis2 = axis2;
     }
 
+    public static Ellipse getInstance(int id, String name, String attribute) {
+        String[] values = attribute.split(",");
+        int positionId = Integer.parseInt(values[0].substring(1));
+        double axis1 = Double.parseDouble(values[1]);
+        double axis2 = Double.parseDouble(values[2]);
+        Ellipse ellipse = new Ellipse(positionId, axis1, axis2);
+        ellipse.setId(id);
+        ellipse.setName(name);
+        return ellipse;
+    }
+
     @Override
     public String toString() {
         return "Ellipse{" + super.toString() +

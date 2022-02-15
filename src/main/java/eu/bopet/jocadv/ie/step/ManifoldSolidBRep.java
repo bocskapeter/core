@@ -7,6 +7,14 @@ public class ManifoldSolidBRep extends StepEntity {
         this.shellId = shellId;
     }
 
+    public static ManifoldSolidBRep getInstance(int id, String name, String attribute) {
+        int shellId = Integer.parseInt(attribute.substring(1));
+        ManifoldSolidBRep manifoldSolidBRep = new ManifoldSolidBRep(shellId);
+        manifoldSolidBRep.setId(id);
+        manifoldSolidBRep.setName(name);
+        return manifoldSolidBRep;
+    }
+
     @Override
     public String toString() {
         return "ManifoldSolidBRep{" + super.toString() +

@@ -9,6 +9,17 @@ public class ProductContext extends StepEntity {
         this.disciplineType = disciplineType;
     }
 
+    public static ProductContext getInstance(int id, String name, String attribute) {
+        String[] values = attribute.split(",");
+        int applicationContextId = Integer.parseInt(values[0].substring(1));
+        String lifeCycleStage = values[1].replace("'", "");
+        ProductContext productContext =
+                new ProductContext(applicationContextId, lifeCycleStage);
+        productContext.setId(id);
+        productContext.setName(name);
+        return productContext;
+    }
+
     @Override
     public String toString() {
         return "ProductDefinitionContext{" + super.toString() +

@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ReadStepFile {
     static final String CARTESIAN_POINT = "CARTESIAN_POINT";
@@ -54,11 +52,9 @@ public class ReadStepFile {
         String errorLine = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             StringBuilder stringBuilder = new StringBuilder();
-            // get the whole file
             for (String line; (line = br.readLine()) != null; ) {
                 stringBuilder.append(line);
             }
-            // process the lines
             String[] commands = stringBuilder.toString().split(";");
             for (String command : commands) {
                 errorLine = command;
@@ -70,7 +66,6 @@ public class ReadStepFile {
                     String attribute = secondTag.substring(secondTag.indexOf("(") + 1, secondTag.lastIndexOf(")"));
                     String[] att = attribute.split(",", 2);
                     String name = att[0].replace("'", "");
-
                     if (secondTag.startsWith(CARTESIAN_POINT)) {
                         CartesianPoint point = CartesianPoint.getInstance(id, name, att[1]);
                         result.add(point);
@@ -155,352 +150,151 @@ public class ReadStepFile {
                         System.out.println(advancedFace);
                         continue;
                     }
-
                     if (secondTag.startsWith(CLOSED_SHELL)) {
-                        String bracket = att[1].substring(att[1].indexOf("(") + 1, att[1].lastIndexOf(")"))
-                                .replaceAll(" ", "");
-                        String[] values = bracket.split(",");
-                        Set<Integer> faceIds = new LinkedHashSet<>();
-                        for (String value : values) {
-                            int faceId = Integer.parseInt(value.substring(1));
-                            faceIds.add(faceId);
-                        }
-                        ClosedShell closedShell = new ClosedShell(faceIds);
-                        closedShell.setId(id);
-                        closedShell.setName(name);
+                        ClosedShell closedShell = ClosedShell.getInstance(id, name, att[1]);
                         result.add(closedShell);
+                        System.out.println(closedShell);
                         continue;
                     }
-
                     if (secondTag.startsWith(MANIFOLD_SOLID_B_REP)) {
-                        String bracket = att[1];
-                        int shellId = Integer.parseInt(bracket.substring(1));
-                        ManifoldSolidBRep manifoldSolidBRep = new ManifoldSolidBRep(shellId);
-                        manifoldSolidBRep.setId(id);
-                        manifoldSolidBRep.setName(name);
+                        ManifoldSolidBRep manifoldSolidBRep = ManifoldSolidBRep.getInstance(id, name, att[1]);
                         result.add(manifoldSolidBRep);
+                        System.out.println(manifoldSolidBRep);
                         continue;
                     }
-
-                    if (secondTag.startsWith(DEFINITIONAL_REPRESENTATION)) {
-                        String bracket = att[1];
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] items = substring.split(",");
-                        Set<Integer> itemIds = new LinkedHashSet<>();
-                        for (String item : items) {
-                            itemIds.add(Integer.parseInt(item.substring(1)));
-                        }
-                        String last = bracket.substring(bracket.lastIndexOf(",") + 1);
-                        int contextId = Integer.parseInt(last.substring(1));
+                    if (secondTag.startsWith(DEFINITIONAL_REPRESENTATION + "(")) {
                         DefinitionalRepresentation definitionalRepresentation
-                                = new DefinitionalRepresentation(itemIds, contextId);
-                        definitionalRepresentation.setId(id);
-                        definitionalRepresentation.setName(name);
+                                = DefinitionalRepresentation.getInstance(id, name, att[1]);
                         result.add(definitionalRepresentation);
+                        System.out.println(definitionalRepresentation);
                         continue;
                     }
-
                     if (secondTag.startsWith(CYLINDRICAL_SURFACE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int positionId = Integer.parseInt(values[0].substring(1));
-                        double radius = Double.parseDouble(values[1]);
-                        CylindricalSurface cylindricalSurface = new CylindricalSurface(positionId, radius);
-                        cylindricalSurface.setId(id);
-                        cylindricalSurface.setName(name);
+                        CylindricalSurface cylindricalSurface = CylindricalSurface.getInstance(id, name, att[1]);
                         result.add(cylindricalSurface);
+                        System.out.println(cylindricalSurface);
                         continue;
                     }
-
                     if (secondTag.startsWith(CIRCLE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int positionId = Integer.parseInt(values[0].substring(1));
-                        double radius = Double.parseDouble(values[1]);
-                        Circle circle = new Circle(positionId, radius);
-                        circle.setId(id);
-                        circle.setName(name);
+                        Circle circle = Circle.getInstance(id, name, att[1]);
                         result.add(circle);
+                        System.out.println(circle);
                         continue;
                     }
-
                     if (secondTag.startsWith(TOROIDAL_SURFACE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int positionId = Integer.parseInt(values[0].substring(1));
-                        double majorRadius = Double.parseDouble(values[1]);
-                        double minorRadius = Double.parseDouble(values[2]);
-                        ToroidalSurface toroidalSurface = new ToroidalSurface(positionId, majorRadius, minorRadius);
-                        toroidalSurface.setId(id);
-                        toroidalSurface.setName(name);
+                        ToroidalSurface toroidalSurface = ToroidalSurface.getInstance(id, name, att[1]);
                         result.add(toroidalSurface);
+                        System.out.println(toroidalSurface);
                         continue;
                     }
-
                     if (secondTag.startsWith(AXIS2_PLACEMENT_2D)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int locationId = Integer.parseInt(values[0].substring(1));
-                        int refDirectionId = Integer.parseInt(values[1].substring(1));
-                        Axis2Placement2D axis2Placement2D = new Axis2Placement2D(locationId, refDirectionId);
-                        axis2Placement2D.setId(id);
-                        axis2Placement2D.setName(name);
+                        Axis2Placement2D axis2Placement2D = Axis2Placement2D.getInstance(id, name, att[1]);
                         result.add(axis2Placement2D);
+                        System.out.println(axis2Placement2D);
                         continue;
                     }
-
                     if (secondTag.startsWith(B_SPLINE_CURVE_WITH_KNOTS)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int degree = Integer.parseInt(values[0]);
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.indexOf(")"))
-                                .replaceAll(" ", "");
-                        String[] pointIDs = substring.split(",");
-                        List<Integer> pointIdList = new ArrayList<>();
-                        for (String pointId : pointIDs) {
-                            int pId = Integer.parseInt(pointId.substring(1));
-                            pointIdList.add(pId);
-                        }
-                        substring = bracket.substring(bracket.indexOf(")") + 1);
-                        String[] parts = substring.split(",");
-                        BSplineCurveForm curveForm =
-                                BSplineCurveForm.valueOf(parts[1].replace(".", ""));
-                        boolean closedCurve = parts[2].contains("T");
-                        boolean selfIntersect = parts[3].contains("T");
-                        String knotStrings = substring.substring(substring.indexOf("(") + 1, substring.indexOf(")"));
-                        String[] knotStringArray = knotStrings.split(",");
-                        List<Integer> knotMultiplicities = new ArrayList<>();
-                        for (String knotString : knotStringArray) {
-                            int knotInt = Integer.parseInt(knotString);
-                            knotMultiplicities.add(knotInt);
-                        }
-                        substring = substring.substring(substring.indexOf(")") + 1);
-                        knotStrings = substring.substring(substring.indexOf("(") + 1, substring.indexOf(")"));
-                        knotStringArray = knotStrings.split(",");
-                        List<Double> knots = new ArrayList<>();
-                        for (String knotString : knotStringArray) {
-                            double knot = Double.parseDouble(knotString);
-                            knots.add(knot);
-                        }
-                        substring = substring.substring(substring.indexOf(")") + 1);
-                        parts = substring.split(",");
-                        KnotType knotType = KnotType.valueOf(parts[1].replace(".", ""));
                         BSplineCurveWithKnots bSplineCurveWithKnots
-                                = new BSplineCurveWithKnots(degree, pointIdList, curveForm, closedCurve, selfIntersect,
-                                knotMultiplicities, knots, knotType);
-                        bSplineCurveWithKnots.setId(id);
-                        bSplineCurveWithKnots.setName(name);
+                                = BSplineCurveWithKnots.getInstance(id, name, att[1]);
                         result.add(bSplineCurveWithKnots);
+                        System.out.println(bSplineCurveWithKnots);
                         continue;
                     }
-
                     if (secondTag.startsWith(SEAM_CURVE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-
-                        int curveId = Integer.parseInt(values[0].substring(1));
-
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        values = substring.split(",");
-                        List<Integer> associatedGeometryIds = new ArrayList<>();
-                        for (String value : values) {
-                            int associatedGeometryId = Integer.parseInt(value.substring(1));
-                            associatedGeometryIds.add(associatedGeometryId);
-                        }
-                        String masterRepString = bracket.substring(bracket.lastIndexOf(",") + 1)
-                                .replace(".", "");
-                        PreferredSurfaceCurveRepresentation masterRep =
-                                PreferredSurfaceCurveRepresentation.valueOf(masterRepString);
-                        SeamCurve seamCurve = new SeamCurve(curveId, associatedGeometryIds, masterRep);
-                        seamCurve.setId(id);
-                        seamCurve.setName(name);
+                        SeamCurve seamCurve = SeamCurve.getInstance(id, name, att[1]);
                         result.add(seamCurve);
+                        System.out.println(seamCurve);
                         continue;
                     }
-
                     if (secondTag.startsWith(ELLIPSE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int positionId = Integer.parseInt(values[0].substring(1));
-                        double axis1 = Double.parseDouble(values[1]);
-                        double axis2 = Double.parseDouble(values[2]);
-                        Ellipse ellipse = new Ellipse(positionId, axis1, axis2);
-                        ellipse.setId(id);
-                        ellipse.setName(name);
+                        Ellipse ellipse = Ellipse.getInstance(id, name, att[1]);
                         result.add(ellipse);
+                        System.out.println(ellipse);
                         continue;
                     }
-
                     if (secondTag.startsWith(SURFACE_OF_LINEAR_EXTRUSION)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int curveId = Integer.parseInt(values[0].substring(1));
-                        int axisId = Integer.parseInt(values[1].substring(1));
                         SurfaceOfLinearExtrusion surfaceOfLinearExtrusion =
-                                new SurfaceOfLinearExtrusion(curveId, axisId);
-                        surfaceOfLinearExtrusion.setId(id);
-                        surfaceOfLinearExtrusion.setName(name);
+                                SurfaceOfLinearExtrusion.getInstance(id, name, att[1]);
                         result.add(surfaceOfLinearExtrusion);
+                        System.out.println(surfaceOfLinearExtrusion);
                         continue;
                     }
-
                     if (secondTag.startsWith(CONICAL_SURFACE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int positionId = Integer.parseInt(values[0].substring(1));
-                        double radius = Double.parseDouble(values[1]);
-                        double angle = Double.parseDouble(values[2]);
-                        ConicalSurface conicalSurface = new ConicalSurface(positionId, radius, angle);
-                        conicalSurface.setId(id);
-                        conicalSurface.setName(name);
+                        ConicalSurface conicalSurface = ConicalSurface.getInstance(id, name, att[1]);
                         result.add(conicalSurface);
+                        System.out.println(conicalSurface);
                         continue;
                     }
-
                     if (secondTag.startsWith(ADVANCED_BREP_SHAPE_REPRESENTATION)) {
-                        String bracket = att[1];
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] itemIdStrings = substring.split(",");
-                        Set<Integer> itemIds = new LinkedHashSet<>();
-                        for (String itemIdString : itemIdStrings) {
-                            int itemId = Integer.parseInt(itemIdString.substring(1));
-                            itemIds.add(itemId);
-                        }
-                        String contextIdString = bracket.substring(bracket.lastIndexOf(",") + 1);
-                        int contextId = Integer.parseInt(contextIdString.substring(1));
-                        AdvancedBRepShapeRepresentation advancedBRepShapeRepresentation = new
-                                AdvancedBRepShapeRepresentation(itemIds, contextId);
-                        advancedBRepShapeRepresentation.setId(id);
-                        advancedBRepShapeRepresentation.setName(name);
+                        AdvancedBRepShapeRepresentation advancedBRepShapeRepresentation =
+                                AdvancedBRepShapeRepresentation.getInstance(id, name, att[1]);
                         result.add(advancedBRepShapeRepresentation);
+                        System.out.println(advancedBRepShapeRepresentation);
                         continue;
                     }
-
-                    if (secondTag.startsWith(PRODUCT_DEFINITION_CONTEXT)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int applicationContextId = Integer.parseInt(values[0].substring(1));
-                        String lifeCycleStage = values[1].replace("'", "");
+                    if (secondTag.startsWith(PRODUCT_DEFINITION_CONTEXT + "(")) {
                         ProductDefinitionContext productDefinitionContext =
-                                new ProductDefinitionContext(applicationContextId, lifeCycleStage);
-                        productDefinitionContext.setId(id);
-                        productDefinitionContext.setName(name);
+                                ProductDefinitionContext.getInstance(id, name, att[1]);
                         result.add(productDefinitionContext);
+                        System.out.println(productDefinitionContext);
                         continue;
                     }
-
                     if (secondTag.startsWith(PRODUCT_CONTEXT)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int applicationContextId = Integer.parseInt(values[0].substring(1));
-                        String lifeCycleStage = values[1].replace("'", "");
-                        ProductContext productContext =
-                                new ProductContext(applicationContextId, lifeCycleStage);
-                        productContext.setId(id);
-                        productContext.setName(name);
+                        ProductContext productContext = ProductContext.getInstance(id, name, att[1]);
                         result.add(productContext);
+                        System.out.println(productContext);
                         continue;
                     }
-
                     if (secondTag.startsWith(PRODUCT_DEFINITION_SHAPE)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        String description = values[0].replace("'", "");
-                        int definition = Integer.parseInt(values[1].substring(1));
                         ProductDefinitionShape productDefinitionShape =
-                                new ProductDefinitionShape(description, definition);
-                        productDefinitionShape.setId(id);
-                        productDefinitionShape.setName(name);
+                                ProductDefinitionShape.getInstance(id, name, att[1]);
                         result.add(productDefinitionShape);
+                        System.out.println(productDefinitionShape);
                         continue;
                     }
-
-                    if (secondTag.startsWith(PRODUCT_DEFINITION_FORMATION)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        String description = values[0].replace("'", "");
-                        int productId = Integer.parseInt(values[1].substring(1));
+                    if (secondTag.startsWith(PRODUCT_DEFINITION_FORMATION + "(")) {
                         ProductDefinitionFormation productDefinitionFormation =
-                                new ProductDefinitionFormation(description, productId);
-                        productDefinitionFormation.setId(id);
-                        productDefinitionFormation.setName(name);
+                                ProductDefinitionFormation.getInstance(id, name, att[1]);
                         result.add(productDefinitionFormation);
+                        System.out.println(productDefinitionFormation);
                         continue;
                     }
-
-                    if (secondTag.startsWith(PRODUCT_DEFINITION)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        String description = values[0].replace("'", "");
-                        int formationId = Integer.parseInt(values[1].substring(1));
-                        int contextID = Integer.parseInt(values[2].substring(1));
-                        ProductDefinition productDefinition =
-                                new ProductDefinition(description, formationId, contextID);
-                        productDefinition.setId(id);
-                        productDefinition.setName(name);
+                    if (secondTag.startsWith(PRODUCT_DEFINITION + "(")) {
+                        ProductDefinition productDefinition = ProductDefinition.getInstance(id, name, att[1]);
                         result.add(productDefinition);
+                        System.out.println(productDefinition);
                         continue;
                     }
-                    if (secondTag.startsWith(PRODUCT_CATEGORY)) {
-                        String bracket = att[1];
-                        String description = bracket.replace("'", "").stripLeading();
-                        ProductCategory productCategory = new ProductCategory(description);
-                        productCategory.setId(id);
-                        productCategory.setName(name);
+                    if (secondTag.startsWith(PRODUCT_CATEGORY + "(")) {
+                        ProductCategory productCategory = ProductCategory.getInstance(id, name, att[1]);
                         result.add(productCategory);
+                        System.out.println(productCategory);
                         continue;
                     }
-
                     if (secondTag.startsWith(PRODUCT + "(")) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        String secondName = values[0].replace("'", "");
-                        String description = values[1].replace("'", "");
-                        Set<Integer> contextIds = new LinkedHashSet<>();
-                        String substring = bracket.substring(bracket.indexOf("(") + 1, bracket.lastIndexOf(")"));
-                        String[] contextIdStrings = substring.split(",");
-                        for (String contextIdString : contextIdStrings) {
-                            int contextId = Integer.parseInt(contextIdString.substring(1));
-                            contextIds.add(contextId);
-                        }
-                        Product product = new Product(secondName, description, contextIds);
-                        product.setId(id);
-                        product.setName(name);
+                        Product product = Product.getInstance(id, name, att[1]);
                         result.add(product);
+                        System.out.println(product);
                         continue;
                     }
-
                     if (secondTag.startsWith(SHAPE_DEFINITION_REPRESENTATION)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        int definition = Integer.parseInt(name.substring(1));
-                        int representationId = Integer.parseInt(values[0].substring(1));
                         ShapeDefinitionRepresentation shapeDefinitionRepresentation =
-                                new ShapeDefinitionRepresentation(definition, representationId);
-                        shapeDefinitionRepresentation.setId(id);
+                                ShapeDefinitionRepresentation.getInstance(id, name, att[1]);
                         result.add(shapeDefinitionRepresentation);
+                        System.out.println(shapeDefinitionRepresentation);
                         continue;
                     }
-
-                    if (secondTag.startsWith(APPLICATION_CONTEXT)) {
-                        ApplicationContext applicationContext = new ApplicationContext();
-                        applicationContext.setId(id);
-                        applicationContext.setName(name.stripLeading());
+                    if (secondTag.startsWith(APPLICATION_CONTEXT + "(")) {
+                        ApplicationContext applicationContext = ApplicationContext.getInstance(id, name.stripLeading());
                         result.add(applicationContext);
+                        System.out.println(applicationContext);
                         continue;
                     }
-
                     if (secondTag.startsWith(APPLICATION_PROTOCOL_DEFINITION)) {
-                        String bracket = att[1];
-                        String[] values = bracket.split(",");
-                        String modelSchemaName = values[0].replace("'", "").stripLeading();
-                        int year = Integer.parseInt(values[1]);
-                        int contextId = Integer.parseInt(values[2].substring(1));
                         ApplicationProtocolDefinition applicationProtocolDefinition =
-                                new ApplicationProtocolDefinition(modelSchemaName, year, contextId);
-                        applicationProtocolDefinition.setId(id);
-                        applicationProtocolDefinition.setName(name);
+                                ApplicationProtocolDefinition.getInstance(id, name, att[1]);
                         result.add(applicationProtocolDefinition);
+                        System.out.println(applicationProtocolDefinition);
                         continue;
                     }
 

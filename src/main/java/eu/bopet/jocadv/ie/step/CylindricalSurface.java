@@ -9,6 +9,16 @@ public class CylindricalSurface extends StepEntity {
         this.radius = radius;
     }
 
+    public static CylindricalSurface getInstance(int id, String name, String attribute) {
+        String[] values = attribute.split(",");
+        int positionId = Integer.parseInt(values[0].substring(1));
+        double radius = Double.parseDouble(values[1]);
+        CylindricalSurface cylindricalSurface = new CylindricalSurface(positionId, radius);
+        cylindricalSurface.setId(id);
+        cylindricalSurface.setName(name);
+        return cylindricalSurface;
+    }
+
     @Override
     public String toString() {
         return "CylindricalSurface{" + super.toString() +

@@ -7,6 +7,14 @@ public class ProductCategory extends StepEntity {
         this.description = description;
     }
 
+    public static ProductCategory getInstance(int id, String name, String attribute) {
+        String description = attribute.replace("'", "").stripLeading();
+        ProductCategory productCategory = new ProductCategory(description);
+        productCategory.setId(id);
+        productCategory.setName(name);
+        return productCategory;
+    }
+
     @Override
     public String toString() {
         return "ProductCategory{" + super.toString() +

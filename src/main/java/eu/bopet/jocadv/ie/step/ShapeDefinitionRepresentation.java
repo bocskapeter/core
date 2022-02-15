@@ -9,6 +9,16 @@ public class ShapeDefinitionRepresentation extends StepEntity {
         this.representationId = representationId;
     }
 
+    public static ShapeDefinitionRepresentation getInstance(int id, String name, String attribute) {
+        String[] values = attribute.split(",");
+        int definition = Integer.parseInt(name.substring(1));
+        int representationId = Integer.parseInt(values[0].substring(1));
+        ShapeDefinitionRepresentation shapeDefinitionRepresentation =
+                new ShapeDefinitionRepresentation(definition, representationId);
+        shapeDefinitionRepresentation.setId(id);
+        return shapeDefinitionRepresentation;
+    }
+
     @Override
     public String toString() {
         return "ShapeDefinitionRepresentation{" + super.toString() +

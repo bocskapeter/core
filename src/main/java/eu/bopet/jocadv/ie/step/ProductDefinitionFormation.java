@@ -9,6 +9,17 @@ public class ProductDefinitionFormation extends StepEntity {
         this.productId = productId;
     }
 
+    public static ProductDefinitionFormation getInstance(int id, String name, String attribute) {
+        String[] values = attribute.split(",");
+        String description = values[0].replace("'", "");
+        int productId = Integer.parseInt(values[1].substring(1));
+        ProductDefinitionFormation productDefinitionFormation =
+                new ProductDefinitionFormation(description, productId);
+        productDefinitionFormation.setId(id);
+        productDefinitionFormation.setName(name);
+        return productDefinitionFormation;
+    }
+
     @Override
     public String toString() {
         return "ProductDefinitionFormation{" + super.toString() +

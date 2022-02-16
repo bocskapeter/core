@@ -302,7 +302,7 @@ public class ReadStepFile {
                     }
                     if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);
-                        System.out.println("Set of : " + tags[1].stripLeading().stripTrailing());
+                        System.out.println("Set of : " + tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") - 1));
 
                     }
 

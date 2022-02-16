@@ -40,14 +40,14 @@ public class BSplineCurveWithKnots extends StepEntity {
         substring = attribute.substring(attribute.indexOf(")") + 1);
         String[] parts = substring.split(",");
         BSplineCurveForm curveForm =
-                BSplineCurveForm.valueOf(parts[1].replace(".", ""));
+                BSplineCurveForm.valueOf(parts[1].replace(".", "").stripLeading().stripTrailing());
         boolean closedCurve = parts[2].contains("T");
         boolean selfIntersect = parts[3].contains("T");
         String knotStrings = substring.substring(substring.indexOf("(") + 1, substring.indexOf(")"));
         String[] knotStringArray = knotStrings.split(",");
         List<Integer> knotMultiplicities = new ArrayList<>();
         for (String knotString : knotStringArray) {
-            int knotInt = Integer.parseInt(knotString);
+            int knotInt = Integer.parseInt(knotString.stripLeading());
             knotMultiplicities.add(knotInt);
         }
         substring = substring.substring(substring.indexOf(")") + 1);
@@ -60,7 +60,7 @@ public class BSplineCurveWithKnots extends StepEntity {
         }
         substring = substring.substring(substring.indexOf(")") + 1);
         parts = substring.split(",");
-        KnotType knotType = KnotType.valueOf(parts[1].replace(".", ""));
+        KnotType knotType = KnotType.valueOf(parts[1].replace(".", "").stripLeading().stripTrailing());
         BSplineCurveWithKnots bSplineCurveWithKnots
                 = new BSplineCurveWithKnots(degree, pointIdList, curveForm, closedCurve, selfIntersect,
                 knotMultiplicities, knots, knotType);

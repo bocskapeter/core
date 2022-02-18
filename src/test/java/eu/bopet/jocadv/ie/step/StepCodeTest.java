@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class StepCodeTest {
@@ -15,16 +16,20 @@ class StepCodeTest {
     void ReadStepCodeTest() {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("step_nodes").getFile());
-        List<StepEntity> result = new ArrayList<>();
         System.out.println("Starting with file: " + file.getPath() + " - " + file.getName());
-        String errorLine = "";
+        List<String> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             for (String line; (line = br.readLine()) != null; ) {
-                System.out.println(line);
+                result.add(line.substring(line.indexOf("\"") + 1, line.lastIndexOf("\"")));
             }
         } catch (IOException e) {
-            System.out.println("Error in line: " + errorLine);
             e.printStackTrace();
+        }
+        if (!result.isEmpty()) {
+            Collections.sort(result);
+        }
+        for (String s : result) {
+            System.out.println("static final String " + s + " = \"" + s + "\";");
         }
     }
 }

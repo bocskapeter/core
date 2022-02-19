@@ -65,7 +65,7 @@ public class ReadStepFile {
                         System.out.println(edgeCurve);
                         continue;
                     }
-                    if (secondTag.startsWith(StepCode.P_CURVE)) {
+                    if (secondTag.startsWith(StepCode.PCURVE)) {
                         PCurve pCurve = PCurve.getInstance(id, name, att[1]);
                         result.add(pCurve);
                         System.out.println(pCurve);
@@ -119,7 +119,7 @@ public class ReadStepFile {
                         System.out.println(closedShell);
                         continue;
                     }
-                    if (secondTag.startsWith(StepCode.MANIFOLD_SOLID_B_REP)) {
+                    if (secondTag.startsWith(StepCode.MANIFOLD_SOLID_BREP)) {
                         ManifoldSolidBRep manifoldSolidBRep = ManifoldSolidBRep.getInstance(id, name, att[1]);
                         result.add(manifoldSolidBRep);
                         System.out.println(manifoldSolidBRep);

@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ReadStepFile {
 
@@ -27,8 +25,8 @@ public class ReadStepFile {
                     String[] tags = command.split("=");
                     int id = Integer.parseInt(tags[0].substring(1).replace(" ", ""));
                     String secondTag = tags[1].stripLeading();
-                    String attribute = secondTag.substring(secondTag.indexOf("(") + 1, secondTag.lastIndexOf(")"));
-                    String[] att = attribute.split(",", 2);
+                    String attributes = secondTag.substring(secondTag.indexOf("(") + 1, secondTag.lastIndexOf(")"));
+                    String[] att = attributes.split(",", 2);
                     String name = att[0].replace("'", "");
                     if (secondTag.startsWith(StepCode.CARTESIAN_POINT)) {
                         CartesianPoint point = CartesianPoint.getInstance(id, name, att[1]);
@@ -128,7 +126,7 @@ public class ReadStepFile {
                     }
                     if (secondTag.startsWith(StepCode.DEFINITIONAL_REPRESENTATION + "(")) {
                         DefinitionalRepresentation definitionalRepresentation
-                                = DefinitionalRepresentation.getInstance(id, name, att[1]);
+                                = (DefinitionalRepresentation) DefinitionalRepresentation.getInstance(id, name, att[1]);
                         result.add(definitionalRepresentation);
                         System.out.println(definitionalRepresentation);
                         continue;
@@ -261,6 +259,22 @@ public class ReadStepFile {
                         System.out.println(applicationProtocolDefinition);
                         continue;
                     }
+
+                    if (secondTag.startsWith(StepCode.GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION)) {
+                        System.out.println("Attributes: " + attributes);
+                        String attribute = att[1];
+                        String substring = attribute.substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"));
+                        String[] items = substring.split(",");
+                        Set<Integer> itemIds = new LinkedHashSet<>();
+                        for (String item : items) {
+                            itemIds.add(Integer.parseInt(item.substring(1)));
+                        }
+                        String last = attribute.substring(attribute.lastIndexOf(",") + 1);
+                        int contextId = Integer.parseInt(last.substring(1));
+
+
+                    }
+
                     if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);
                         System.out.println("Set of : " + tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") + 1));

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReadStepFile {
@@ -262,11 +263,18 @@ public class ReadStepFile {
                     }
                     if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);
-                        System.out.println("Set of : " + tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") - 1));
+                        System.out.println("Set of : " + tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") + 1));
 
                     }
 
-                    System.out.println("!!! not processed: " + command);
+                    System.out.println("---> Not processed: " + command);
+                    String code = secondTag.substring(0, secondTag.indexOf("("));
+                    System.out.println("- Code: " + code);
+                    if (Arrays.asList(StepCode.ALL).contains(code)) {
+                        System.out.println("- Code have found!");
+                    } else {
+                        System.out.println(" !!! Code not found!");
+                    }
 
                 }
             }

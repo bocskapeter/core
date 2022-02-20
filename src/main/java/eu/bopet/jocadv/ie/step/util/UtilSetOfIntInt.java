@@ -21,6 +21,6 @@ public class UtilSetOfIntInt extends StepEntity {
 
     @Override
     public String toString() {
-        return "(" + set + "), id=" + id;
+        return super.toString() + ", set=" + set + ", id=" + id;
     }
 }

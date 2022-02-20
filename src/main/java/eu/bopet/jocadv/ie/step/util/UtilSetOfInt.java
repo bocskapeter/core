@@ -20,6 +20,6 @@ public class UtilSetOfInt extends StepEntity {
 
     @Override
     public String toString() {
-        return ids.toString();
+        return super.toString() + ", array=" + ids.toString();
     }
 }

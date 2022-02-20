@@ -17,6 +17,6 @@ public class UtilsDoubleArray extends StepEntity {
 
     @Override
     public String toString() {
-        return Arrays.toString(doubles);
+        return super.toString() + ", array=" + Arrays.toString(doubles);
     }
 }

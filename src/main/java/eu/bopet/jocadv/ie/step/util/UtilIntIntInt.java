@@ -15,6 +15,6 @@ public class UtilIntIntInt extends StepEntity {
 
     @Override
     public String toString() {
-        return "id1=" + id1 + ", id2=" + id2 + ", id3=" + id3;
+        return super.toString() + ", id1=" + id1 + ", id2=" + id2 + ", id3=" + id3;
     }
 }

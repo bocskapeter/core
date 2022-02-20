@@ -13,6 +13,6 @@ public class UtilStringInt extends StepEntity {
 
     @Override
     public String toString() {
-        return "'" + string + '\'' + ", " + id + '}';
+        return super.toString() + ", '" + string + '\'' + ", id=" + id;
     }
 }

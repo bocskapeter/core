@@ -10,6 +10,6 @@ public class ProductContext extends UtilIntString {
 
     @Override
     public String toString() {
-        return "ProductDefinitionContext{" + super.toString() + '}';
+        return "ProductContext{" + super.toString() + '}';
     }
 }

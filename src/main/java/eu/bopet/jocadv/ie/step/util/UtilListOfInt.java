@@ -19,6 +19,6 @@ public class UtilListOfInt extends StepEntity {
 
     @Override
     public String toString() {
-        return list.toString();
+        return super.toString() + ", list=" + list.toString();
     }
 }

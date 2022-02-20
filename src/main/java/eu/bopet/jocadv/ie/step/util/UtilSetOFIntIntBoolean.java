@@ -23,6 +23,6 @@ public class UtilSetOFIntIntBoolean extends StepEntity {
 
     @Override
     public String toString() {
-        return "{" + set + ", " + id + ", " + aBoolean + '}';
+        return super.toString() + ", set=" + set + ", id=" + id + ", T/F=" + aBoolean;
     }
 }

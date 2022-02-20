@@ -13,6 +13,6 @@ public class UtilIntDouble extends StepEntity {
 
     @Override
     public String toString() {
-        return "id=" + id + ", value=" + aDouble;
+        return super.toString() + ", id=" + id + ", value=" + aDouble;
     }
 }

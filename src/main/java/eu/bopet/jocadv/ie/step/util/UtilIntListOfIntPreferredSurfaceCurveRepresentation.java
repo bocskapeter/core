@@ -30,6 +30,6 @@ public class UtilIntListOfIntPreferredSurfaceCurveRepresentation extends StepEnt
 
     @Override
     public String toString() {
-        return "curveId=" + curveId + ", associatedGeometryIds=" + associatedGeometryIds + ", masterRep=" + masterRep;
+        return super.toString() + ", curveId=" + curveId + ", associatedGeometryIds=" + associatedGeometryIds + ", masterRep=" + masterRep;
     }
 }

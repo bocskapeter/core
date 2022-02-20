@@ -241,6 +241,9 @@ public class ReadStepFile {
                         result.add(representation);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.UNCERTAINTY_MEASURE_WITH_UNIT)){
+
+                    }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);

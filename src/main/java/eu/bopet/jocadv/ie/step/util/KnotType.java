@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.ie.step;
+package eu.bopet.jocadv.ie.step.util;
 
 public enum KnotType {
     UNIFORM_KNOTS,

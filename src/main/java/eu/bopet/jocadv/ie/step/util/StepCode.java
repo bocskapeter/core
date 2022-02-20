@@ -1131,15 +1131,43 @@ public class StepCode {
     };
 
     public static final String[] UNITS = {
-            NAMED_UNIT,
-            SI_UNIT,
             CONVERSION_BASED_UNIT,
             LENGTH_UNIT,
             MASS_UNIT,
-            TIME_UNIT,
-            THERMODYNAMIC_TEMPERATURE_UNIT,
+            NAMED_UNIT,
             PLANE_ANGLE_UNIT,
+            RATIO_UNIT,
+            SI_UNIT,
             SOLID_ANGLE_UNIT,
-            RATIO_UNIT
+            THERMODYNAMIC_TEMPERATURE_UNIT,
+            TIME_UNIT,
+    };
+
+    public static final String[] CURVES = {
+            B_SPLINE_CURVE,
+            B_SPLINE_CURVE_WITH_KNOTS,
+            BEZIER_CURVE,
+            BOUNDARY_CURVE,
+            BOUNDED_CURVE,
+            CIRCLE,
+            COMPOSITE_CURVE,
+            COMPOSITE_CURVE_ON_SURFACE,
+            CONIC,
+            CURVE_REPLICA,
+            ELLIPSE,
+            HYPERBOLA,
+            INTERSECTION_CURVE,
+            LINE,
+            OFFSET_CURVE_3D,
+            OUTER_BOUNDARY_CURVE,
+            PARABOLA,
+            PCURVE,
+            POLYLINE,
+            QUASI_UNIFORM_CURVE,
+            RATIONAL_B_SPLINE_CURVE,
+            SEAM_CURVE,
+            SURFACE_CURVE,
+            TRIMMED_CURVE,
+            UNIFORM_CURVE
     };
 }

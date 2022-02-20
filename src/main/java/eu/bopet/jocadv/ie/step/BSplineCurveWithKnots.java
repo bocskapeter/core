@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.ie.step.util.BSplineCurveForm;
+import eu.bopet.jocadv.ie.step.util.KnotType;
 import eu.bopet.jocadv.ie.step.util.StepEntity;
 
 import java.util.ArrayList;

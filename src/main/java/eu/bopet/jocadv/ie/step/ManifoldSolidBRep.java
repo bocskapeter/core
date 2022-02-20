@@ -1,24 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-public class ManifoldSolidBRep extends StepEntity {
-    private int shellId;
+import eu.bopet.jocadv.ie.step.util.UtilInt;
 
-    public ManifoldSolidBRep(int shellId) {
-        this.shellId = shellId;
-    }
+public class ManifoldSolidBRep extends UtilInt {
 
-    public static ManifoldSolidBRep getInstance(int id, String name, String attribute) {
-        int shellId = Integer.parseInt(attribute.substring(1));
-        ManifoldSolidBRep manifoldSolidBRep = new ManifoldSolidBRep(shellId);
-        manifoldSolidBRep.setId(id);
-        manifoldSolidBRep.setName(name);
-        return manifoldSolidBRep;
+    public ManifoldSolidBRep(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "ManifoldSolidBRep{" + super.toString() +
-                " shellId=" + shellId +
-                '}';
+        return "ManifoldSolidBRep{" + super.toString() + '}';
     }
 }

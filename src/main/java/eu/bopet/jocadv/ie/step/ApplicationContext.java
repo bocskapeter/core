@@ -1,12 +1,11 @@
 package eu.bopet.jocadv.ie.step;
 
+import eu.bopet.jocadv.ie.step.util.StepEntity;
+
 public class ApplicationContext extends StepEntity {
 
-    public static ApplicationContext getInstance(int id, String name) {
-        ApplicationContext applicationContext = new ApplicationContext();
-        applicationContext.setId(id);
-        applicationContext.setName(name.stripLeading());
-        return applicationContext;
+    public ApplicationContext(int id, String name) {
+        super(id, name);
     }
 
     @Override

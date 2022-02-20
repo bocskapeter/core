@@ -29,7 +29,7 @@ class StepCodeTest {
             Collections.sort(result);
         }
         for (String s : result) {
-            System.out.println( s + ",");
+            System.out.println( "public static final String " + s + "\"" + s + "\";");
         }
     }
 }

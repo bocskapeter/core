@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step;
 
-import java.util.Set;
+import eu.bopet.jocadv.ie.step.util.UtilSetOfIntInt;
 
 public class DefinitionalRepresentation extends UtilSetOfIntInt {
 
-    public DefinitionalRepresentation(Set<Integer> set, int id) {
-        super(set, id);
+    public DefinitionalRepresentation(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override

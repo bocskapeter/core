@@ -1,8 +1,13 @@
-package eu.bopet.jocadv.ie.step;
+package eu.bopet.jocadv.ie.step.util;
 
 public abstract class StepEntity {
     private int id;
     private String name;
+
+    public StepEntity(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return id;

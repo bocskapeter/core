@@ -1,16 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-public class RepresentationContext extends StepEntity {
-    private String contextType;
+import eu.bopet.jocadv.ie.step.util.UtilString;
 
-    public RepresentationContext(String contextType) {
-        this.contextType = contextType;
+public class RepresentationContext extends UtilString {
+
+    public RepresentationContext(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "RepresentationContext{" + super.toString() +
-                " contextType='" + contextType + '\'' +
-                '}';
+        return "RepresentationContext{" + super.toString() + '}';
     }
 }

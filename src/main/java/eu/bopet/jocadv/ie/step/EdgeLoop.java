@@ -1,33 +1,14 @@
 package eu.bopet.jocadv.ie.step;
 
-import java.util.ArrayList;
-import java.util.List;
+import eu.bopet.jocadv.ie.step.util.UtilListOfInt;
 
-public class EdgeLoop extends StepEntity {
-    private List<Integer> edgeIdList;
-
-    public EdgeLoop(List<Integer> edgeIdList) {
-        this.edgeIdList = edgeIdList;
-    }
-
-    public static EdgeLoop getInstance(int id, String name, String attribute) {
-        String substring = attribute.substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"));
-        String[] values = substring.split(",");
-        List<Integer> edgeIdList = new ArrayList<>();
-        for (String value : values) {
-            int edgeId = Integer.parseInt(value.substring(1));
-            edgeIdList.add(edgeId);
-        }
-        EdgeLoop edgeLoop = new EdgeLoop(edgeIdList);
-        edgeLoop.setId(id);
-        edgeLoop.setName(name);
-        return edgeLoop;
+public class EdgeLoop extends UtilListOfInt {
+    public EdgeLoop(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "EdgeLoop{" + super.toString() +
-                " edgeIdList=" + edgeIdList +
-                '}';
+        return "EdgeLoop{" + super.toString() + '}';
     }
 }

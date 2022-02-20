@@ -1,30 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-public class ProductDefinitionFormation extends StepEntity {
-    private String description;
-    private int productId;
+import eu.bopet.jocadv.ie.step.util.UtilStringInt;
 
-    public ProductDefinitionFormation(String description, int productId) {
-        this.description = description;
-        this.productId = productId;
-    }
+public class ProductDefinitionFormation extends UtilStringInt {
 
-    public static ProductDefinitionFormation getInstance(int id, String name, String attribute) {
-        String[] values = attribute.split(",");
-        String description = values[0].replace("'", "");
-        int productId = Integer.parseInt(values[1].substring(1));
-        ProductDefinitionFormation productDefinitionFormation =
-                new ProductDefinitionFormation(description, productId);
-        productDefinitionFormation.setId(id);
-        productDefinitionFormation.setName(name);
-        return productDefinitionFormation;
+    public ProductDefinitionFormation(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "ProductDefinitionFormation{" + super.toString() +
-                " description='" + description + '\'' +
-                ", productId=" + productId +
-                '}';
+        return "ProductDefinitionFormation{" + super.toString() + '}';
     }
 }

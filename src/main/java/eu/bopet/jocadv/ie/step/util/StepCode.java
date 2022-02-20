@@ -1,0 +1,1145 @@
+package eu.bopet.jocadv.ie.step.util;
+
+public class StepCode {
+    public static final String ACTION = "ACTION";
+    public static final String ACTION_ASSIGNMENT = "ACTION_ASSIGNMENT";
+    public static final String ACTION_METHOD = "ACTION_METHOD";
+    public static final String ACTION_REQUEST_ASSIGNMENT = "ACTION_REQUEST_ASSIGNMENT";
+    public static final String ACTION_REQUEST_SOLUTION = "ACTION_REQUEST_SOLUTION";
+    public static final String ADDRESS = "ADDRESS";
+    public static final String ADVANCED_BREP_SHAPE_REPRESENTATION = "ADVANCED_BREP_SHAPE_REPRESENTATION";
+    public static final String ADVANCED_FACE = "ADVANCED_FACE";
+    public static final String ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM = "ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM = "ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String ANALYSIS_ITEM_WITHIN_REPRESENTATION = "ANALYSIS_ITEM_WITHIN_REPRESENTATION";
+    public static final String ANALYSIS_REPRESENTATION_CONTEXT = "ANALYSIS_REPRESENTATION_CONTEXT";
+    public static final String ANGULARITY_TOLERANCE = "ANGULARITY_TOLERANCE";
+    public static final String ANGULAR_LOCATION = "ANGULAR_LOCATION";
+    public static final String ANGULAR_SIZE = "ANGULAR_SIZE";
+    public static final String ANNOTATION_CURVE_OCCURRENCE = "ANNOTATION_CURVE_OCCURRENCE";
+    public static final String ANNOTATION_FILL_AREA = "ANNOTATION_FILL_AREA";
+    public static final String ANNOTATION_FILL_AREA_OCCURRENCE = "ANNOTATION_FILL_AREA_OCCURRENCE";
+    public static final String ANNOTATION_OCCURRENCE = "ANNOTATION_OCCURRENCE";
+    public static final String ANNOTATION_SUBFIGURE_OCCURRENCE = "ANNOTATION_SUBFIGURE_OCCURRENCE";
+    public static final String ANNOTATION_SYMBOL = "ANNOTATION_SYMBOL";
+    public static final String ANNOTATION_SYMBOL_OCCURRENCE = "ANNOTATION_SYMBOL_OCCURRENCE";
+    public static final String ANNOTATION_TEXT = "ANNOTATION_TEXT";
+    public static final String ANNOTATION_TEXT_OCCURRENCE = "ANNOTATION_TEXT_OCCURRENCE";
+    public static final String APPLICATION_CONTEXT = "APPLICATION_CONTEXT";
+    public static final String APPLICATION_CONTEXT_ELEMENT = "APPLICATION_CONTEXT_ELEMENT";
+    public static final String APPLICATION_PROTOCOL_DEFINITION = "APPLICATION_PROTOCOL_DEFINITION";
+    public static final String APPLIED_APPROVAL_ASSIGNMENT = "APPLIED_APPROVAL_ASSIGNMENT";
+    public static final String APPLIED_DATE_AND_TIME_ASSIGNMENT = "APPLIED_DATE_AND_TIME_ASSIGNMENT";
+    public static final String APPLIED_DATE_ASSIGNMENT = "APPLIED_DATE_ASSIGNMENT";
+    public static final String APPLIED_DOCUMENT_REFERENCE = "APPLIED_DOCUMENT_REFERENCE";
+    public static final String APPLIED_EXTERNAL_IDENTIFICATION_ASSIGNMENT = "APPLIED_EXTERNAL_IDENTIFICATION_ASSIGNMENT";
+    public static final String APPLIED_GROUP_ASSIGNMENT = "APPLIED_GROUP_ASSIGNMENT";
+    public static final String APPLIED_ORGANIZATION_ASSIGNMENT = "APPLIED_ORGANIZATION_ASSIGNMENT";
+    public static final String APPLIED_PERSON_AND_ORGANIZATION_ASSIGNMENT = "APPLIED_PERSON_AND_ORGANIZATION_ASSIGNMENT";
+    public static final String APPLIED_PRESENTED_ITEM = "APPLIED_PRESENTED_ITEM";
+    public static final String APPLIED_SECURITY_CLASSIFICATION_ASSIGNMENT = "APPLIED_SECURITY_CLASSIFICATION_ASSIGNMENT";
+    public static final String APPROVAL = "APPROVAL";
+    public static final String APPROVAL_ASSIGNMENT = "APPROVAL_ASSIGNMENT";
+    public static final String APPROVAL_DATE_TIME = "APPROVAL_DATE_TIME";
+    public static final String APPROVAL_PERSON_ORGANIZATION = "APPROVAL_PERSON_ORGANIZATION";
+    public static final String APPROVAL_RELATIONSHIP = "APPROVAL_RELATIONSHIP";
+    public static final String APPROVAL_ROLE = "APPROVAL_ROLE";
+    public static final String APPROVAL_STATUS = "APPROVAL_STATUS";
+    public static final String ARBITRARY_VOLUME_3D_ELEMENT_COORDINATE_SYSTEM = "ARBITRARY_VOLUME_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String AREA_IN_SET = "AREA_IN_SET";
+    public static final String AREA_UNIT = "AREA_UNIT";
+    public static final String ASSEMBLY_COMPONENT_USAGE = "ASSEMBLY_COMPONENT_USAGE";
+    public static final String ASSEMBLY_COMPONENT_USAGE_SUBSTITUTE = "ASSEMBLY_COMPONENT_USAGE_SUBSTITUTE";
+    public static final String AUTO_DESIGN_ACTUAL_DATE_AND_TIME_ASSIGNMENT = "AUTO_DESIGN_ACTUAL_DATE_AND_TIME_ASSIGNMENT";
+    public static final String AUTO_DESIGN_ACTUAL_DATE_ASSIGNMENT = "AUTO_DESIGN_ACTUAL_DATE_ASSIGNMENT";
+    public static final String AUTO_DESIGN_APPROVAL_ASSIGNMENT = "AUTO_DESIGN_APPROVAL_ASSIGNMENT";
+    public static final String AUTO_DESIGN_DATE_AND_PERSON_ASSIGNMENT = "AUTO_DESIGN_DATE_AND_PERSON_ASSIGNMENT";
+    public static final String AUTO_DESIGN_DOCUMENT_REFERENCE = "AUTO_DESIGN_DOCUMENT_REFERENCE";
+    public static final String AUTO_DESIGN_GROUP_ASSIGNMENT = "AUTO_DESIGN_GROUP_ASSIGNMENT";
+    public static final String AUTO_DESIGN_NOMINAL_DATE_AND_TIME_ASSIGNMENT = "AUTO_DESIGN_NOMINAL_DATE_AND_TIME_ASSIGNMENT";
+    public static final String AUTO_DESIGN_NOMINAL_DATE_ASSIGNMENT = "AUTO_DESIGN_NOMINAL_DATE_ASSIGNMENT";
+    public static final String AUTO_DESIGN_ORGANIZATION_ASSIGNMENT = "AUTO_DESIGN_ORGANIZATION_ASSIGNMENT";
+    public static final String AUTO_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT = "AUTO_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT";
+    public static final String AUTO_DESIGN_PRESENTED_ITEM = "AUTO_DESIGN_PRESENTED_ITEM";
+    public static final String AUTO_DESIGN_SECURITY_CLASSIFICATION_ASSIGNMENT = "AUTO_DESIGN_SECURITY_CLASSIFICATION_ASSIGNMENT";
+    public static final String AUTO_DESIGN_VIEW_AREA = "AUTO_DESIGN_VIEW_AREA";
+    public static final String AXIS1_PLACEMENT = "AXIS1_PLACEMENT";
+    public static final String AXIS2_PLACEMENT_2D = "AXIS2_PLACEMENT_2D";
+    public static final String AXIS2_PLACEMENT_3D = "AXIS2_PLACEMENT_3D";
+    public static final String BACKGROUND_COLOUR = "BACKGROUND_COLOUR";
+    public static final String BEZIER_CURVE = "BEZIER_CURVE";
+    public static final String BEZIER_SURFACE = "BEZIER_SURFACE";
+    public static final String BLOCK = "BLOCK";
+    public static final String BOOLEAN_RESULT = "BOOLEAN_RESULT";
+    public static final String BOUNDARY_CURVE = "BOUNDARY_CURVE";
+    public static final String BOUNDED_CURVE = "BOUNDED_CURVE";
+    public static final String BOUNDED_SURFACE = "BOUNDED_SURFACE";
+    public static final String BOXED_HALF_SPACE = "BOXED_HALF_SPACE";
+    public static final String BOX_DOMAIN = "BOX_DOMAIN";
+    public static final String BREP_WITH_VOIDS = "BREP_WITH_VOIDS";
+    public static final String B_SPLINE_CURVE = "B_SPLINE_CURVE";
+    public static final String B_SPLINE_CURVE_WITH_KNOTS = "B_SPLINE_CURVE_WITH_KNOTS";
+    public static final String B_SPLINE_SURFACE = "B_SPLINE_SURFACE";
+    public static final String B_SPLINE_SURFACE_WITH_KNOTS = "B_SPLINE_SURFACE_WITH_KNOTS";
+    public static final String CALENDAR_DATE = "CALENDAR_DATE";
+    public static final String CAMERA_IMAGE = "CAMERA_IMAGE";
+    public static final String CAMERA_IMAGE_2D_WITH_SCALE = "CAMERA_IMAGE_2D_WITH_SCALE";
+    public static final String CAMERA_IMAGE_3D_WITH_SCALE = "CAMERA_IMAGE_3D_WITH_SCALE";
+    public static final String CAMERA_MODEL = "CAMERA_MODEL";
+    public static final String CAMERA_MODEL_D2 = "CAMERA_MODEL_D2";
+    public static final String CAMERA_MODEL_D3 = "CAMERA_MODEL_D3";
+    public static final String CAMERA_USAGE = "CAMERA_USAGE";
+    public static final String CARTESIAN_POINT = "CARTESIAN_POINT";
+    public static final String CARTESIAN_TRANSFORMATION_OPERATOR = "CARTESIAN_TRANSFORMATION_OPERATOR";
+    public static final String CARTESIAN_TRANSFORMATION_OPERATOR_2D = "CARTESIAN_TRANSFORMATION_OPERATOR_2D";
+    public static final String CARTESIAN_TRANSFORMATION_OPERATOR_3D = "CARTESIAN_TRANSFORMATION_OPERATOR_3D";
+    public static final String CC_DESIGN_APPROVAL = "CC_DESIGN_APPROVAL";
+    public static final String CC_DESIGN_CERTIFICATION = "CC_DESIGN_CERTIFICATION";
+    public static final String CC_DESIGN_CONTRACT = "CC_DESIGN_CONTRACT";
+    public static final String CC_DESIGN_DATE_AND_TIME_ASSIGNMENT = "CC_DESIGN_DATE_AND_TIME_ASSIGNMENT";
+    public static final String CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT = "CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT";
+    public static final String CC_DESIGN_SECURITY_CLASSIFICATION = "CC_DESIGN_SECURITY_CLASSIFICATION";
+    public static final String CC_DESIGN_SPECIFICATION_REFERENCE = "CC_DESIGN_SPECIFICATION_REFERENCE";
+    public static final String CERTIFICATION = "CERTIFICATION";
+    public static final String CERTIFICATION_ASSIGNMENT = "CERTIFICATION_ASSIGNMENT";
+    public static final String CERTIFICATION_TYPE = "CERTIFICATION_TYPE";
+    public static final String CHANGE = "CHANGE";
+    public static final String CHANGE_REQUEST = "CHANGE_REQUEST";
+    public static final String CHARACTERIZED_OBJECT = "CHARACTERIZED_OBJECT";
+    public static final String CIRCLE = "CIRCLE";
+    public static final String CIRCULAR_RUNOUT_TOLERANCE = "CIRCULAR_RUNOUT_TOLERANCE";
+    public static final String CLASS = "CLASS";
+    public static final String CLOSED_SHELL = "CLOSED_SHELL";
+    public static final String COAXIALITY_TOLERANCE = "COAXIALITY_TOLERANCE";
+    public static final String COLOUR = "COLOUR";
+    public static final String COLOUR_RGB = "COLOUR_RGB";
+    public static final String COLOUR_SPECIFICATION = "COLOUR_SPECIFICATION";
+    public static final String COMMON_DATUM = "COMMON_DATUM";
+    public static final String COMPOSITE_CURVE = "COMPOSITE_CURVE";
+    public static final String COMPOSITE_CURVE_ON_SURFACE = "COMPOSITE_CURVE_ON_SURFACE";
+    public static final String COMPOSITE_CURVE_SEGMENT = "COMPOSITE_CURVE_SEGMENT";
+    public static final String COMPOSITE_SHAPE_ASPECT = "COMPOSITE_SHAPE_ASPECT";
+    public static final String COMPOSITE_TEXT = "COMPOSITE_TEXT";
+    public static final String COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES = "COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES";
+    public static final String COMPOSITE_TEXT_WITH_BLANKING_BOX = "COMPOSITE_TEXT_WITH_BLANKING_BOX";
+    public static final String COMPOSITE_TEXT_WITH_EXTENT = "COMPOSITE_TEXT_WITH_EXTENT";
+    public static final String COMPOUND_REPRESENTATION_ITEM = "COMPOUND_REPRESENTATION_ITEM";
+    public static final String COMPOUND_SHAPE_REPRESENTATION = "COMPOUND_SHAPE_REPRESENTATION";
+    public static final String CONCENTRICITY_TOLERANCE = "CONCENTRICITY_TOLERANCE";
+    public static final String CONFIGURATION_DESIGN = "CONFIGURATION_DESIGN";
+    public static final String CONFIGURATION_EFFECTIVITY = "CONFIGURATION_EFFECTIVITY";
+    public static final String CONIC = "CONIC";
+    public static final String CONICAL_SURFACE = "CONICAL_SURFACE";
+    public static final String CONNECTED_EDGE_SET = "CONNECTED_EDGE_SET";
+    public static final String CONNECTED_FACE_SET = "CONNECTED_FACE_SET";
+    public static final String CONNECTED_FACE_SHAPE_REPRESENTATION = "CONNECTED_FACE_SHAPE_REPRESENTATION";
+    public static final String CONNECTED_FACE_SUB_SET = "CONNECTED_FACE_SUB_SET";
+    public static final String CONSTANT_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM = "CONSTANT_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String CONTEXT_DEPENDENT_INVISIBILITY = "CONTEXT_DEPENDENT_INVISIBILITY";
+    public static final String CONTEXT_DEPENDENT_OVER_RIDING_STYLED_ITEM = "CONTEXT_DEPENDENT_OVER_RIDING_STYLED_ITEM";
+    public static final String CONTEXT_DEPENDENT_SHAPE_REPRESENTATION = "CONTEXT_DEPENDENT_SHAPE_REPRESENTATION";
+    public static final String CONTRACT = "CONTRACT";
+    public static final String CONTRACT_ASSIGNMENT = "CONTRACT_ASSIGNMENT";
+    public static final String CONTRACT_TYPE = "CONTRACT_TYPE";
+    public static final String CONVERSION_BASED_UNIT = "CONVERSION_BASED_UNIT";
+    public static final String COORDINATED_UNIVERSAL_TIME_OFFSET = "COORDINATED_UNIVERSAL_TIME_OFFSET";
+    public static final String CSG_REPRESENTATION = "CSG_REPRESENTATION";
+    public static final String CSG_SHAPE_REPRESENTATION = "CSG_SHAPE_REPRESENTATION";
+    public static final String CSG_SOLID = "CSG_SOLID";
+    public static final String CURVE = "CURVE";
+    public static final String CURVE_3D_ELEMENT_DESCRIPTOR = "CURVE_3D_ELEMENT_DESCRIPTOR";
+    public static final String CURVE_3D_ELEMENT_PROPERTY = "CURVE_3D_ELEMENT_PROPERTY";
+    public static final String CURVE_3D_ELEMENT_REPRESENTATION = "CURVE_3D_ELEMENT_REPRESENTATION";
+    public static final String CURVE_BOUNDED_SURFACE = "CURVE_BOUNDED_SURFACE";
+    public static final String CURVE_ELEMENT_END_OFFSET = "CURVE_ELEMENT_END_OFFSET";
+    public static final String CURVE_ELEMENT_END_RELEASE = "CURVE_ELEMENT_END_RELEASE";
+    public static final String CURVE_ELEMENT_END_RELEASE_PACKET = "CURVE_ELEMENT_END_RELEASE_PACKET";
+    public static final String CURVE_ELEMENT_INTERVAL = "CURVE_ELEMENT_INTERVAL";
+    public static final String CURVE_ELEMENT_INTERVAL_CONSTANT = "CURVE_ELEMENT_INTERVAL_CONSTANT";
+    public static final String CURVE_ELEMENT_INTERVAL_LINEARLY_VARYING = "CURVE_ELEMENT_INTERVAL_LINEARLY_VARYING";
+    public static final String CURVE_ELEMENT_LOCATION = "CURVE_ELEMENT_LOCATION";
+    public static final String CURVE_ELEMENT_SECTION_DEFINITION = "CURVE_ELEMENT_SECTION_DEFINITION";
+    public static final String CURVE_ELEMENT_SECTION_DERIVED_DEFINITIONS = "CURVE_ELEMENT_SECTION_DERIVED_DEFINITIONS";
+    public static final String CURVE_REPLICA = "CURVE_REPLICA";
+    public static final String CURVE_STYLE = "CURVE_STYLE";
+    public static final String CURVE_STYLE_FONT = "CURVE_STYLE_FONT";
+    public static final String CURVE_STYLE_FONT_PATTERN = "CURVE_STYLE_FONT_PATTERN";
+    public static final String CYLINDRICAL_SURFACE = "CYLINDRICAL_SURFACE";
+    public static final String DATA_ENVIRONMENT = "DATA_ENVIRONMENT";
+    public static final String DATE = "DATE";
+    public static final String DATE_AND_TIME = "DATE_AND_TIME";
+    public static final String DATE_AND_TIME_ASSIGNMENT = "DATE_AND_TIME_ASSIGNMENT";
+    public static final String DATE_ASSIGNMENT = "DATE_ASSIGNMENT";
+    public static final String DATE_ROLE = "DATE_ROLE";
+    public static final String DATE_TIME_ROLE = "DATE_TIME_ROLE";
+    public static final String DATUM = "DATUM";
+    public static final String DATUM_FEATURE = "DATUM_FEATURE";
+    public static final String DATUM_REFERENCE = "DATUM_REFERENCE";
+    public static final String DATUM_TARGET = "DATUM_TARGET";
+    public static final String DEFINED_SYMBOL = "DEFINED_SYMBOL";
+    public static final String DEFINITIONAL_REPRESENTATION = "DEFINITIONAL_REPRESENTATION";
+    public static final String DEGENERATE_PCURVE = "DEGENERATE_PCURVE";
+    public static final String DEGENERATE_TOROIDAL_SURFACE = "DEGENERATE_TOROIDAL_SURFACE";
+    public static final String DERIVED_SHAPE_ASPECT = "DERIVED_SHAPE_ASPECT";
+    public static final String DERIVED_UNIT = "DERIVED_UNIT";
+    public static final String DERIVED_UNIT_ELEMENT = "DERIVED_UNIT_ELEMENT";
+    public static final String DESCRIPTIVE_REPRESENTATION_ITEM = "DESCRIPTIVE_REPRESENTATION_ITEM";
+    public static final String DESIGN_CONTEXT = "DESIGN_CONTEXT";
+    public static final String DIGITAL_DOCUMENT = "DIGITAL_DOCUMENT";
+    public static final String DIMENSIONAL_CHARACTERISTIC_REPRESENTATION = "DIMENSIONAL_CHARACTERISTIC_REPRESENTATION";
+    public static final String DIMENSIONAL_EXPONENTS = "DIMENSIONAL_EXPONENTS";
+    public static final String DIMENSIONAL_LOCATION = "DIMENSIONAL_LOCATION";
+    public static final String DIMENSIONAL_LOCATION_WITH_PATH = "DIMENSIONAL_LOCATION_WITH_PATH";
+    public static final String DIMENSIONAL_SIZE = "DIMENSIONAL_SIZE";
+    public static final String DIMENSIONAL_SIZE_WITH_PATH = "DIMENSIONAL_SIZE_WITH_PATH";
+    public static final String DIMENSION_CURVE = "DIMENSION_CURVE";
+    public static final String DIMENSION_CURVE_TERMINATOR = "DIMENSION_CURVE_TERMINATOR";
+    public static final String DIRECTED_DIMENSIONAL_LOCATION = "DIRECTED_DIMENSIONAL_LOCATION";
+    public static final String DIRECTION = "DIRECTION";
+    public static final String DOCUMENT = "DOCUMENT";
+    public static final String DOCUMENT_FILE = "DOCUMENT_FILE";
+    public static final String DOCUMENT_PRODUCT_ASSOCIATION = "DOCUMENT_PRODUCT_ASSOCIATION";
+    public static final String DOCUMENT_PRODUCT_EQUIVALENCE = "DOCUMENT_PRODUCT_EQUIVALENCE";
+    public static final String DOCUMENT_RELATIONSHIP = "DOCUMENT_RELATIONSHIP";
+    public static final String DOCUMENT_REPRESENTATION_TYPE = "DOCUMENT_REPRESENTATION_TYPE";
+    public static final String DOCUMENT_TYPE = "DOCUMENT_TYPE";
+    public static final String DOCUMENT_USAGE_CONSTRAINT = "DOCUMENT_USAGE_CONSTRAINT";
+    public static final String DRAUGHTING_ANNOTATION_OCCURRENCE = "DRAUGHTING_ANNOTATION_OCCURRENCE";
+    public static final String DRAUGHTING_CALLOUT = "DRAUGHTING_CALLOUT";
+    public static final String DRAUGHTING_MODEL = "DRAUGHTING_MODEL";
+    public static final String DRAUGHTING_PRE_DEFINED_COLOUR = "DRAUGHTING_PRE_DEFINED_COLOUR";
+    public static final String DRAUGHTING_PRE_DEFINED_CURVE_FONT = "DRAUGHTING_PRE_DEFINED_CURVE_FONT";
+    public static final String DRAUGHTING_SUBFIGURE_REPRESENTATION = "DRAUGHTING_SUBFIGURE_REPRESENTATION";
+    public static final String DRAUGHTING_SYMBOL_REPRESENTATION = "DRAUGHTING_SYMBOL_REPRESENTATION";
+    public static final String DRAUGHTING_TEXT_LITERAL_WITH_DELINEATION = "DRAUGHTING_TEXT_LITERAL_WITH_DELINEATION";
+    public static final String DRAWING_DEFINITION = "DRAWING_DEFINITION";
+    public static final String DRAWING_REVISION = "DRAWING_REVISION";
+    public static final String DUMMY_NODE = "DUMMY_NODE";
+    public static final String EDGE = "EDGE";
+    public static final String EDGE_BASED_WIREFRAME_MODEL = "EDGE_BASED_WIREFRAME_MODEL";
+    public static final String EDGE_BASED_WIREFRAME_SHAPE_REPRESENTATION = "EDGE_BASED_WIREFRAME_SHAPE_REPRESENTATION";
+    public static final String EDGE_CURVE = "EDGE_CURVE";
+    public static final String EDGE_LOOP = "EDGE_LOOP";
+    public static final String EFFECTIVITY = "EFFECTIVITY";
+    public static final String EFFECTIVITY_ASSIGNMENT = "EFFECTIVITY_ASSIGNMENT";
+    public static final String ELEMENTARY_SURFACE = "ELEMENTARY_SURFACE";
+    public static final String ELEMENT_DESCRIPTOR = "ELEMENT_DESCRIPTOR";
+    public static final String ELEMENT_GEOMETRIC_RELATIONSHIP = "ELEMENT_GEOMETRIC_RELATIONSHIP";
+    public static final String ELEMENT_GROUP = "ELEMENT_GROUP";
+    public static final String ELEMENT_MATERIAL = "ELEMENT_MATERIAL";
+    public static final String ELEMENT_REPRESENTATION = "ELEMENT_REPRESENTATION";
+    public static final String ELLIPSE = "ELLIPSE";
+    public static final String EULER_ANGLES = "EULER_ANGLES";
+    public static final String EVALUATED_DEGENERATE_PCURVE = "EVALUATED_DEGENERATE_PCURVE";
+    public static final String EXTENSION = "EXTENSION";
+    public static final String EXTERNALLY_DEFINED_CURVE_FONT = "EXTERNALLY_DEFINED_CURVE_FONT";
+    public static final String EXTERNALLY_DEFINED_Class = "EXTERNALLY_DEFINED_Class";
+    public static final String EXTERNALLY_DEFINED_GENERAL_PROPERTY = "EXTERNALLY_DEFINED_GENERAL_PROPERTY";
+    public static final String EXTERNALLY_DEFINED_HATCH_STYLE = "EXTERNALLY_DEFINED_HATCH_STYLE";
+    public static final String EXTERNALLY_DEFINED_ITEM = "EXTERNALLY_DEFINED_ITEM";
+    public static final String EXTERNALLY_DEFINED_REPRESENTATION = "EXTERNALLY_DEFINED_REPRESENTATION";
+    public static final String EXTERNALLY_DEFINED_SYMBOL = "EXTERNALLY_DEFINED_SYMBOL";
+    public static final String EXTERNALLY_DEFINED_TEXT_FONT = "EXTERNALLY_DEFINED_TEXT_FONT";
+    public static final String EXTERNALLY_DEFINED_TILE_STYLE = "EXTERNALLY_DEFINED_TILE_STYLE";
+    public static final String EXTERNAL_IDENTIFICATION_ASSIGNMENT = "EXTERNAL_IDENTIFICATION_ASSIGNMENT";
+    public static final String EXTERNAL_SOURCE = "EXTERNAL_SOURCE";
+    public static final String EXTRUDED_AREA_SOLID = "EXTRUDED_AREA_SOLID";
+    public static final String EXTRUDED_FACE_SOLID = "EXTRUDED_FACE_SOLID";
+    public static final String FACE = "FACE";
+    public static final String FACETED_BREP = "FACETED_BREP";
+    public static final String FACETED_BREP_SHAPE_REPRESENTATION = "FACETED_BREP_SHAPE_REPRESENTATION";
+    public static final String FACE_BASED_SURFACE_MODEL = "FACE_BASED_SURFACE_MODEL";
+    public static final String FACE_BOUND = "FACE_BOUND";
+    public static final String FACE_OUTER_BOUND = "FACE_OUTER_BOUND";
+    public static final String FACE_SURFACE = "FACE_SURFACE";
+    public static final String FEA_AREA_DENSITY = "FEA_AREA_DENSITY";
+    public static final String FEA_AXIS2_PLACEMENT_3D = "FEA_AXIS2_PLACEMENT_3D";
+    public static final String FEA_CURVE_SECTION_GEOMETRIC_RELATIONSHIP = "FEA_CURVE_SECTION_GEOMETRIC_RELATIONSHIP";
+    public static final String FEA_GROUP = "FEA_GROUP";
+    public static final String FEA_LINEAR_ELASTICITY = "FEA_LINEAR_ELASTICITY";
+    public static final String FEA_MASS_DENSITY = "FEA_MASS_DENSITY";
+    public static final String FEA_MATERIAL_PROPERTY_REPRESENTATION = "FEA_MATERIAL_PROPERTY_REPRESENTATION";
+    public static final String FEA_MATERIAL_PROPERTY_REPRESENTATION_ITEM = "FEA_MATERIAL_PROPERTY_REPRESENTATION_ITEM";
+    public static final String FEA_MODEL = "FEA_MODEL";
+    public static final String FEA_MODEL_3D = "FEA_MODEL_3D";
+    public static final String FEA_MODEL_DEFINITION = "FEA_MODEL_DEFINITION";
+    public static final String FEA_MOISTURE_ABSORPTION = "FEA_MOISTURE_ABSORPTION";
+    public static final String FEA_PARAMETRIC_POINT = "FEA_PARAMETRIC_POINT";
+    public static final String FEA_REPRESENTATION_ITEM = "FEA_REPRESENTATION_ITEM";
+    public static final String FEA_SECANT_COEFFICIENT_OF_LINEAR_THERMAL_EXPANSION = "FEA_SECANT_COEFFICIENT_OF_LINEAR_THERMAL_EXPANSION";
+    public static final String FEA_SHELL_BENDING_STIFFNESS = "FEA_SHELL_BENDING_STIFFNESS";
+    public static final String FEA_SHELL_MEMBRANE_BENDING_COUPLING_STIFFNESS = "FEA_SHELL_MEMBRANE_BENDING_COUPLING_STIFFNESS";
+    public static final String FEA_SHELL_MEMBRANE_STIFFNESS = "FEA_SHELL_MEMBRANE_STIFFNESS";
+    public static final String FEA_SHELL_SHEAR_STIFFNESS = "FEA_SHELL_SHEAR_STIFFNESS";
+    public static final String FEA_SURFACE_SECTION_GEOMETRIC_RELATIONSHIP = "FEA_SURFACE_SECTION_GEOMETRIC_RELATIONSHIP";
+    public static final String FEA_TANGENTIAL_COEFFICIENT_OF_LINEAR_THERMAL_EXPANSION = "FEA_TANGENTIAL_COEFFICIENT_OF_LINEAR_THERMAL_EXPANSION";
+    public static final String FILL_AREA_STYLE = "FILL_AREA_STYLE";
+    public static final String FILL_AREA_STYLE_COLOUR = "FILL_AREA_STYLE_COLOUR";
+    public static final String FILL_AREA_STYLE_HATCHING = "FILL_AREA_STYLE_HATCHING";
+    public static final String FILL_AREA_STYLE_TILES = "FILL_AREA_STYLE_TILES";
+    public static final String FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE = "FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE";
+    public static final String FLATNESS_TOLERANCE = "FLATNESS_TOLERANCE";
+    public static final String FREEDOMS_LIST = "FREEDOMS_LIST";
+    public static final String FREEDOM_AND_COEFFICIENT = "FREEDOM_AND_COEFFICIENT";
+    public static final String FUNCTIONALLY_DEFINED_TRANSFORMATION = "FUNCTIONALLY_DEFINED_TRANSFORMATION";
+    public static final String GENERAL_PROPERTY = "GENERAL_PROPERTY";
+    public static final String GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION = "GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION";
+    public static final String GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION = "GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION";
+    public static final String GEOMETRIC_CURVE_SET = "GEOMETRIC_CURVE_SET";
+    public static final String GEOMETRIC_NODE = "GEOMETRIC_NODE";
+    public static final String GEOMETRIC_REPRESENTATION_CONTEXT = "GEOMETRIC_REPRESENTATION_CONTEXT";
+    public static final String GEOMETRIC_REPRESENTATION_CONTEXT_WITH_PARAMETER = "GEOMETRIC_REPRESENTATION_CONTEXT_WITH_PARAMETER";
+    public static final String GEOMETRIC_REPRESENTATION_ITEM = "GEOMETRIC_REPRESENTATION_ITEM";
+    public static final String GEOMETRIC_SET = "GEOMETRIC_SET";
+    public static final String GEOMETRIC_TOLERANCE = "GEOMETRIC_TOLERANCE";
+    public static final String GEOMETRIC_TOLERANCE_RELATIONSHIP = "GEOMETRIC_TOLERANCE_RELATIONSHIP";
+    public static final String GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE = "GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE";
+    public static final String GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT = "GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT";
+    public static final String GLOBAL_UNIT_ASSIGNED_CONTEXT = "GLOBAL_UNIT_ASSIGNED_CONTEXT";
+    public static final String GROUP = "GROUP";
+    public static final String GROUP_ASSIGNMENT = "GROUP_ASSIGNMENT";
+    public static final String GROUP_RELATIONSHIP = "GROUP_RELATIONSHIP";
+    public static final String HALF_SPACE_SOLID = "HALF_SPACE_SOLID";
+    public static final String HYPERBOLA = "HYPERBOLA";
+    public static final String IDENTIFICATION_ASSIGNMENT = "IDENTIFICATION_ASSIGNMENT";
+    public static final String IDENTIFICATION_ROLE = "IDENTIFICATION_ROLE";
+    public static final String INTERSECTION_CURVE = "INTERSECTION_CURVE";
+    public static final String INVISIBILITY = "INVISIBILITY";
+    public static final String ITEM_DEFINED_TRANSFORMATION = "ITEM_DEFINED_TRANSFORMATION";
+    public static final String LENGTH_MEASURE_WITH_UNIT = "LENGTH_MEASURE_WITH_UNIT";
+    public static final String LENGTH_UNIT = "LENGTH_UNIT";
+    public static final String LIMITS_AND_FITS = "LIMITS_AND_FITS";
+    public static final String LINE = "LINE";
+    public static final String LINE_PROFILE_TOLERANCE = "LINE_PROFILE_TOLERANCE";
+    public static final String LOCAL_TIME = "LOCAL_TIME";
+    public static final String LOOP = "LOOP";
+    public static final String MAKE_FROM_USAGE_OPTION = "MAKE_FROM_USAGE_OPTION";
+    public static final String MANIFOLD_SOLID_BREP = "MANIFOLD_SOLID_BREP";
+    public static final String MANIFOLD_SURFACE_SHAPE_REPRESENTATION = "MANIFOLD_SURFACE_SHAPE_REPRESENTATION";
+    public static final String MAPPED_ITEM = "MAPPED_ITEM";
+    public static final String MASS_MEASURE_WITH_UNIT = "MASS_MEASURE_WITH_UNIT";
+    public static final String MASS_UNIT = "MASS_UNIT";
+    public static final String MATERIAL_DESIGNATION = "MATERIAL_DESIGNATION";
+    public static final String MATERIAL_PROPERTY = "MATERIAL_PROPERTY";
+    public static final String MATERIAL_PROPERTY_REPRESENTATION = "MATERIAL_PROPERTY_REPRESENTATION";
+    public static final String MEASURE_QUALIFICATION = "MEASURE_QUALIFICATION";
+    public static final String MEASURE_REPRESENTATION_ITEM = "MEASURE_REPRESENTATION_ITEM";
+    public static final String MEASURE_WITH_UNIT = "MEASURE_WITH_UNIT";
+    public static final String MECHANICAL_CONTEXT = "MECHANICAL_CONTEXT";
+    public static final String MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_AREA = "MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_AREA";
+    public static final String MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_REPRESENTATION = "MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_REPRESENTATION";
+    public static final String MECHANICAL_DESIGN_PRESENTATION_AREA = "MECHANICAL_DESIGN_PRESENTATION_AREA";
+    public static final String MODIFIED_GEOMETRIC_TOLERANCE = "MODIFIED_GEOMETRIC_TOLERANCE";
+    public static final String NAMED_UNIT = "NAMED_UNIT";
+    public static final String NAME_ASSIGNMENT = "NAME_ASSIGNMENT";
+    public static final String NEXT_ASSEMBLY_USAGE_OCCURRENCE = "NEXT_ASSEMBLY_USAGE_OCCURRENCE";
+    public static final String NODE = "NODE";
+    public static final String NODE_DEFINITION = "NODE_DEFINITION";
+    public static final String NODE_GROUP = "NODE_GROUP";
+    public static final String NODE_REPRESENTATION = "NODE_REPRESENTATION";
+    public static final String NODE_SET = "NODE_SET";
+    public static final String NODE_WITH_SOLUTION_COORDINATE_SYSTEM = "NODE_WITH_SOLUTION_COORDINATE_SYSTEM";
+    public static final String NODE_WITH_VECTOR = "NODE_WITH_VECTOR";
+    public static final String NON_MANIFOLD_SURFACE_SHAPE_REPRESENTATION = "NON_MANIFOLD_SURFACE_SHAPE_REPRESENTATION";
+    public static final String OBJECT_ROLE = "OBJECT_ROLE";
+    public static final String OFFSET_CURVE_3D = "OFFSET_CURVE_3D";
+    public static final String OFFSET_SURFACE = "OFFSET_SURFACE";
+    public static final String ONE_DIRECTION_REPEAT_FACTOR = "ONE_DIRECTION_REPEAT_FACTOR";
+    public static final String OPEN_SHELL = "OPEN_SHELL";
+    public static final String ORDINAL_DATE = "ORDINAL_DATE";
+    public static final String ORGANIZATION = "ORGANIZATION";
+    public static final String ORGANIZATIONAL_ADDRESS = "ORGANIZATIONAL_ADDRESS";
+    public static final String ORGANIZATION_ASSIGNMENT = "ORGANIZATION_ASSIGNMENT";
+    public static final String ORGANIZATION_ROLE = "ORGANIZATION_ROLE";
+    public static final String ORIENTED_CLOSED_SHELL = "ORIENTED_CLOSED_SHELL";
+    public static final String ORIENTED_EDGE = "ORIENTED_EDGE";
+    public static final String ORIENTED_FACE = "ORIENTED_FACE";
+    public static final String ORIENTED_OPEN_SHELL = "ORIENTED_OPEN_SHELL";
+    public static final String ORIENTED_PATH = "ORIENTED_PATH";
+    public static final String ORIENTED_SURFACE = "ORIENTED_SURFACE";
+    public static final String OUTER_BOUNDARY_CURVE = "OUTER_BOUNDARY_CURVE";
+    public static final String OVER_RIDING_STYLED_ITEM = "OVER_RIDING_STYLED_ITEM";
+    public static final String PARABOLA = "PARABOLA";
+    public static final String PARALLELISM_TOLERANCE = "PARALLELISM_TOLERANCE";
+    public static final String PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_DIRECTION = "PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_DIRECTION";
+    public static final String PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_SYSTEM = "PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String PARAMETRIC_REPRESENTATION_CONTEXT = "PARAMETRIC_REPRESENTATION_CONTEXT";
+    public static final String PARAMETRIC_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM = "PARAMETRIC_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String PATH = "PATH";
+    public static final String PATH_PARAMETRIC_REPRESENTATION_CONTEXT = "PATH_PARAMETRIC_REPRESENTATION_CONTEXT";
+    public static final String PCURVE = "PCURVE";
+    public static final String PERPENDICULARITY_TOLERANCE = "PERPENDICULARITY_TOLERANCE";
+    public static final String PERSON = "PERSON";
+    public static final String PERSONAL_ADDRESS = "PERSONAL_ADDRESS";
+    public static final String PERSON_AND_ORGANIZATION = "PERSON_AND_ORGANIZATION";
+    public static final String PERSON_AND_ORGANIZATION_ASSIGNMENT = "PERSON_AND_ORGANIZATION_ASSIGNMENT";
+    public static final String PERSON_AND_ORGANIZATION_ROLE = "PERSON_AND_ORGANIZATION_ROLE";
+    public static final String PHYSICALLY_MODELED_PRODUCT_DEFINITION = "PHYSICALLY_MODELED_PRODUCT_DEFINITION";
+    public static final String PLACED_DATUM_TARGET_FEATURE = "PLACED_DATUM_TARGET_FEATURE";
+    public static final String PLACEMENT = "PLACEMENT";
+    public static final String PLANAR_BOX = "PLANAR_BOX";
+    public static final String PLANAR_EXTENT = "PLANAR_EXTENT";
+    public static final String PLANE = "PLANE";
+    public static final String PLANE_ANGLE_MEASURE_WITH_UNIT = "PLANE_ANGLE_MEASURE_WITH_UNIT";
+    public static final String PLANE_ANGLE_UNIT = "PLANE_ANGLE_UNIT";
+    public static final String PLUS_MINUS_TOLERANCE = "PLUS_MINUS_TOLERANCE";
+    public static final String POINT = "POINT";
+    public static final String POINT_ON_CURVE = "POINT_ON_CURVE";
+    public static final String POINT_ON_SURFACE = "POINT_ON_SURFACE";
+    public static final String POINT_REPLICA = "POINT_REPLICA";
+    public static final String POINT_REPRESENTATION = "POINT_REPRESENTATION";
+    public static final String POINT_STYLE = "POINT_STYLE";
+    public static final String POLYLINE = "POLYLINE";
+    public static final String POLY_LOOP = "POLY_LOOP";
+    public static final String POSITION_TOLERANCE = "POSITION_TOLERANCE";
+    public static final String PRECISION_QUALIFIER = "PRECISION_QUALIFIER";
+    public static final String PRESENTATION_AREA = "PRESENTATION_AREA";
+    public static final String PRESENTATION_LAYER_ASSIGNMENT = "PRESENTATION_LAYER_ASSIGNMENT";
+    public static final String PRESENTATION_LAYER_USAGE = "PRESENTATION_LAYER_USAGE";
+    public static final String PRESENTATION_REPRESENTATION = "PRESENTATION_REPRESENTATION";
+    public static final String PRESENTATION_SET = "PRESENTATION_SET";
+    public static final String PRESENTATION_SIZE = "PRESENTATION_SIZE";
+    public static final String PRESENTATION_STYLE_ASSIGNMENT = "PRESENTATION_STYLE_ASSIGNMENT";
+    public static final String PRESENTATION_STYLE_BY_CONTEXT = "PRESENTATION_STYLE_BY_CONTEXT";
+    public static final String PRESENTATION_VIEW = "PRESENTATION_VIEW";
+    public static final String PRESENTED_ITEM = "PRESENTED_ITEM";
+    public static final String PRESENTED_ITEM_REPRESENTATION = "PRESENTED_ITEM_REPRESENTATION";
+    public static final String PRE_DEFINED_COLOUR = "PRE_DEFINED_COLOUR";
+    public static final String PRE_DEFINED_CURVE_FONT = "PRE_DEFINED_CURVE_FONT";
+    public static final String PRE_DEFINED_ITEM = "PRE_DEFINED_ITEM";
+    public static final String PRE_DEFINED_SYMBOL = "PRE_DEFINED_SYMBOL";
+    public static final String PRE_DEFINED_TEXT_FONT = "PRE_DEFINED_TEXT_FONT";
+    public static final String PRODUCT = "PRODUCT";
+    public static final String PRODUCT_CATEGORY = "PRODUCT_CATEGORY";
+    public static final String PRODUCT_CATEGORY_RELATIONSHIP = "PRODUCT_CATEGORY_RELATIONSHIP";
+    public static final String PRODUCT_CONCEPT = "PRODUCT_CONCEPT";
+    public static final String PRODUCT_CONCEPT_CONTEXT = "PRODUCT_CONCEPT_CONTEXT";
+    public static final String PRODUCT_CONTEXT = "PRODUCT_CONTEXT";
+    public static final String PRODUCT_DATA_REPRESENTATION_VIEW = "PRODUCT_DATA_REPRESENTATION_VIEW";
+    public static final String PRODUCT_DEFINITION = "PRODUCT_DEFINITION";
+    public static final String PRODUCT_DEFINITION_CONTEXT = "PRODUCT_DEFINITION_CONTEXT";
+    public static final String PRODUCT_DEFINITION_EFFECTIVITY = "PRODUCT_DEFINITION_EFFECTIVITY";
+    public static final String PRODUCT_DEFINITION_FORMATION = "PRODUCT_DEFINITION_FORMATION";
+    public static final String PRODUCT_DEFINITION_FORMATION_RELATIONSHIP = "PRODUCT_DEFINITION_FORMATION_RELATIONSHIP";
+    public static final String PRODUCT_DEFINITION_FORMATION_WITH_SPECIFIED_SOURCE = "PRODUCT_DEFINITION_FORMATION_WITH_SPECIFIED_SOURCE";
+    public static final String PRODUCT_DEFINITION_RELATIONSHIP = "PRODUCT_DEFINITION_RELATIONSHIP";
+    public static final String PRODUCT_DEFINITION_SHAPE = "PRODUCT_DEFINITION_SHAPE";
+    public static final String PRODUCT_DEFINITION_USAGE = "PRODUCT_DEFINITION_USAGE";
+    public static final String PRODUCT_DEFINITION_WITH_ASSOCIATED_DOCUMENTS = "PRODUCT_DEFINITION_WITH_ASSOCIATED_DOCUMENTS";
+    public static final String PRODUCT_RELATED_PRODUCT_CATEGORY = "PRODUCT_RELATED_PRODUCT_CATEGORY";
+    public static final String PRODUCT_TYPE = "PRODUCT_TYPE";
+    public static final String PROMISSORY_USAGE_OCCURRENCE = "PROMISSORY_USAGE_OCCURRENCE";
+    public static final String PROPERTY_DEFINITION = "PROPERTY_DEFINITION";
+    public static final String PROPERTY_DEFINITION_RELATIONSHIP = "PROPERTY_DEFINITION_RELATIONSHIP";
+    public static final String PROPERTY_DEFINITION_REPRESENTATION = "PROPERTY_DEFINITION_REPRESENTATION";
+    public static final String QUALIFIED_REPRESENTATION_ITEM = "QUALIFIED_REPRESENTATION_ITEM";
+    public static final String QUANTIFIED_ASSEMBLY_COMPONENT_USAGE = "QUANTIFIED_ASSEMBLY_COMPONENT_USAGE";
+    public static final String QUASI_UNIFORM_CURVE = "QUASI_UNIFORM_CURVE";
+    public static final String QUASI_UNIFORM_SURFACE = "QUASI_UNIFORM_SURFACE";
+    public static final String RATIONAL_B_SPLINE_CURVE = "RATIONAL_B_SPLINE_CURVE";
+    public static final String RATIONAL_B_SPLINE_SURFACE = "RATIONAL_B_SPLINE_SURFACE";
+    public static final String RATIO_MEASURE_WITH_UNIT = "RATIO_MEASURE_WITH_UNIT";
+    public static final String RATIO_UNIT = "RATIO_UNIT";
+    public static final String RECTANGULAR_COMPOSITE_SURFACE = "RECTANGULAR_COMPOSITE_SURFACE";
+    public static final String RECTANGULAR_TRIMMED_SURFACE = "RECTANGULAR_TRIMMED_SURFACE";
+    public static final String REPARAMETRISED_COMPOSITE_CURVE_SEGMENT = "REPARAMETRISED_COMPOSITE_CURVE_SEGMENT";
+    public static final String REPRESENTATION = "REPRESENTATION";
+    public static final String REPRESENTATION_CONTEXT = "REPRESENTATION_CONTEXT";
+    public static final String REPRESENTATION_ITEM = "REPRESENTATION_ITEM";
+    public static final String REPRESENTATION_MAP = "REPRESENTATION_MAP";
+    public static final String REPRESENTATION_RELATIONSHIP = "REPRESENTATION_RELATIONSHIP";
+    public static final String REPRESENTATION_RELATIONSHIP_WITH_TRANSFORMATION = "REPRESENTATION_RELATIONSHIP_WITH_TRANSFORMATION";
+    public static final String REP_ITEM_GROUP = "REP_ITEM_GROUP";
+    public static final String REVOLVED_AREA_SOLID = "REVOLVED_AREA_SOLID";
+    public static final String REVOLVED_FACE_SOLID = "REVOLVED_FACE_SOLID";
+    public static final String RIGHT_ANGULAR_WEDGE = "RIGHT_ANGULAR_WEDGE";
+    public static final String RIGHT_CIRCULAR_CONE = "RIGHT_CIRCULAR_CONE";
+    public static final String RIGHT_CIRCULAR_CYLINDER = "RIGHT_CIRCULAR_CYLINDER";
+    public static final String ROLE_ASSOCIATION = "ROLE_ASSOCIATION";
+    public static final String ROUNDNESS_TOLERANCE = "ROUNDNESS_TOLERANCE";
+    public static final String SEAM_CURVE = "SEAM_CURVE";
+    public static final String SEAM_EDGE = "SEAM_EDGE";
+    public static final String SECURITY_CLASSIFICATION = "SECURITY_CLASSIFICATION";
+    public static final String SECURITY_CLASSIFICATION_ASSIGNMENT = "SECURITY_CLASSIFICATION_ASSIGNMENT";
+    public static final String SECURITY_CLASSIFICATION_LEVEL = "SECURITY_CLASSIFICATION_LEVEL";
+    public static final String SHAPE_ASPECT = "SHAPE_ASPECT";
+    public static final String SHAPE_ASPECT_DERIVING_RELATIONSHIP = "SHAPE_ASPECT_DERIVING_RELATIONSHIP";
+    public static final String SHAPE_ASPECT_RELATIONSHIP = "SHAPE_ASPECT_RELATIONSHIP";
+    public static final String SHAPE_ASPECT_TRANSITION = "SHAPE_ASPECT_TRANSITION";
+    public static final String SHAPE_DEFINITION_REPRESENTATION = "SHAPE_DEFINITION_REPRESENTATION";
+    public static final String SHAPE_DIMENSION_REPRESENTATION = "SHAPE_DIMENSION_REPRESENTATION";
+    public static final String SHAPE_REPRESENTATION = "SHAPE_REPRESENTATION";
+    public static final String SHAPE_REPRESENTATION_RELATIONSHIP = "SHAPE_REPRESENTATION_RELATIONSHIP";
+    public static final String SHAPE_REPRESENTATION_WITH_PARAMETERS = "SHAPE_REPRESENTATION_WITH_PARAMETERS";
+    public static final String SHELL_BASED_SURFACE_MODEL = "SHELL_BASED_SURFACE_MODEL";
+    public static final String SI_UNIT = "SI_UNIT";
+    public static final String SOLID_ANGLE_MEASURE_WITH_UNIT = "SOLID_ANGLE_MEASURE_WITH_UNIT";
+    public static final String SOLID_ANGLE_UNIT = "SOLID_ANGLE_UNIT";
+    public static final String SOLID_MODEL = "SOLID_MODEL";
+    public static final String SOLID_REPLICA = "SOLID_REPLICA";
+    public static final String SPECIFIED_HIGHER_USAGE_OCCURRENCE = "SPECIFIED_HIGHER_USAGE_OCCURRENCE";
+    public static final String SPHERE = "SPHERE";
+    public static final String SPHERICAL_SURFACE = "SPHERICAL_SURFACE";
+    public static final String START_REQUEST = "START_REQUEST";
+    public static final String START_WORK = "START_WORK";
+    public static final String STRAIGHTNESS_TOLERANCE = "STRAIGHTNESS_TOLERANCE";
+    public static final String STRUCTURAL_RESPONSE_PROPERTY = "STRUCTURAL_RESPONSE_PROPERTY";
+    public static final String STRUCTURAL_RESPONSE_PROPERTY_DEFINITION_REPRESENTATION = "STRUCTURAL_RESPONSE_PROPERTY_DEFINITION_REPRESENTATION";
+    public static final String STYLED_ITEM = "STYLED_ITEM";
+    public static final String SUBEDGE = "SUBEDGE";
+    public static final String SUBFACE = "SUBFACE";
+    public static final String SUPPLIED_PART_RELATIONSHIP = "SUPPLIED_PART_RELATIONSHIP";
+    public static final String SURFACE = "SURFACE";
+    public static final String SURFACE_3D_ELEMENT_DESCRIPTOR = "SURFACE_3D_ELEMENT_DESCRIPTOR";
+    public static final String SURFACE_3D_ELEMENT_REPRESENTATION = "SURFACE_3D_ELEMENT_REPRESENTATION";
+    public static final String SURFACE_CURVE = "SURFACE_CURVE";
+    public static final String SURFACE_ELEMENT_PROPERTY = "SURFACE_ELEMENT_PROPERTY";
+    public static final String SURFACE_OF_LINEAR_EXTRUSION = "SURFACE_OF_LINEAR_EXTRUSION";
+    public static final String SURFACE_OF_REVOLUTION = "SURFACE_OF_REVOLUTION";
+    public static final String SURFACE_PATCH = "SURFACE_PATCH";
+    public static final String SURFACE_PROFILE_TOLERANCE = "SURFACE_PROFILE_TOLERANCE";
+    public static final String SURFACE_REPLICA = "SURFACE_REPLICA";
+    public static final String SURFACE_SECTION = "SURFACE_SECTION";
+    public static final String SURFACE_SECTION_FIELD = "SURFACE_SECTION_FIELD";
+    public static final String SURFACE_SECTION_FIELD_CONSTANT = "SURFACE_SECTION_FIELD_CONSTANT";
+    public static final String SURFACE_SECTION_FIELD_VARYING = "SURFACE_SECTION_FIELD_VARYING";
+    public static final String SURFACE_SIDE_STYLE = "SURFACE_SIDE_STYLE";
+    public static final String SURFACE_STYLE_BOUNDARY = "SURFACE_STYLE_BOUNDARY";
+    public static final String SURFACE_STYLE_CONTROL_GRID = "SURFACE_STYLE_CONTROL_GRID";
+    public static final String SURFACE_STYLE_FILL_AREA = "SURFACE_STYLE_FILL_AREA";
+    public static final String SURFACE_STYLE_PARAMETER_LINE = "SURFACE_STYLE_PARAMETER_LINE";
+    public static final String SURFACE_STYLE_SEGMENTATION_CURVE = "SURFACE_STYLE_SEGMENTATION_CURVE";
+    public static final String SURFACE_STYLE_SILHOUETTE = "SURFACE_STYLE_SILHOUETTE";
+    public static final String SURFACE_STYLE_USAGE = "SURFACE_STYLE_USAGE";
+    public static final String SWEPT_AREA_SOLID = "SWEPT_AREA_SOLID";
+    public static final String SWEPT_FACE_SOLID = "SWEPT_FACE_SOLID";
+    public static final String SWEPT_SURFACE = "SWEPT_SURFACE";
+    public static final String SYMBOL_COLOUR = "SYMBOL_COLOUR";
+    public static final String SYMBOL_REPRESENTATION = "SYMBOL_REPRESENTATION";
+    public static final String SYMBOL_REPRESENTATION_MAP = "SYMBOL_REPRESENTATION_MAP";
+    public static final String SYMBOL_STYLE = "SYMBOL_STYLE";
+    public static final String SYMBOL_TARGET = "SYMBOL_TARGET";
+    public static final String SYMMETRY_TOLERANCE = "SYMMETRY_TOLERANCE";
+    public static final String TEMPLATE = "TEMPLATE";
+    public static final String TEMPLATE_INSTANCE = "TEMPLATE_INSTANCE";
+    public static final String TERMINATOR_SYMBOL = "TERMINATOR_SYMBOL";
+    public static final String TEXT_LITERAL = "TEXT_LITERAL";
+    public static final String TEXT_LITERAL_WITH_ASSOCIATED_CURVES = "TEXT_LITERAL_WITH_ASSOCIATED_CURVES";
+    public static final String TEXT_LITERAL_WITH_BLANKING_BOX = "TEXT_LITERAL_WITH_BLANKING_BOX";
+    public static final String TEXT_LITERAL_WITH_DELINEATION = "TEXT_LITERAL_WITH_DELINEATION";
+    public static final String TEXT_LITERAL_WITH_EXTENT = "TEXT_LITERAL_WITH_EXTENT";
+    public static final String TEXT_STYLE = "TEXT_STYLE";
+    public static final String TEXT_STYLE_FOR_DEFINED_FONT = "TEXT_STYLE_FOR_DEFINED_FONT";
+    public static final String TEXT_STYLE_WITH_BOX_CHARACTERISTICS = "TEXT_STYLE_WITH_BOX_CHARACTERISTICS";
+    public static final String TEXT_STYLE_WITH_MIRROR = "TEXT_STYLE_WITH_MIRROR";
+    public static final String THERMODYNAMIC_TEMPERATURE_UNIT = "THERMODYNAMIC_TEMPERATURE_UNIT";
+    public static final String TIME_MEASURE_WITH_UNIT = "TIME_MEASURE_WITH_UNIT";
+    public static final String TIME_UNIT = "TIME_UNIT";
+    public static final String TOLERANCE_VALUE = "TOLERANCE_VALUE";
+    public static final String TOPOLOGICAL_REPRESENTATION_ITEM = "TOPOLOGICAL_REPRESENTATION_ITEM";
+    public static final String TOROIDAL_SURFACE = "TOROIDAL_SURFACE";
+    public static final String TORUS = "TORUS";
+    public static final String TOTAL_RUNOUT_TOLERANCE = "TOTAL_RUNOUT_TOLERANCE";
+    public static final String TRANSITIONAL_SHAPE_REPRESENTATION = "TRANSITIONAL_SHAPE_REPRESENTATION";
+    public static final String TRIMMED_CURVE = "TRIMMED_CURVE";
+    public static final String TWO_DIRECTION_REPEAT_FACTOR = "TWO_DIRECTION_REPEAT_FACTOR";
+    public static final String TYPE_QUALIFIER = "TYPE_QUALIFIER";
+    public static final String UNCERTAINTY_MEASURE_WITH_UNIT = "UNCERTAINTY_MEASURE_WITH_UNIT";
+    public static final String UNIFORM_CURVE = "UNIFORM_CURVE";
+    public static final String UNIFORM_SURFACE = "UNIFORM_SURFACE";
+    public static final String UNIFORM_SURFACE_SECTION = "UNIFORM_SURFACE_SECTION";
+    public static final String VALUE_RANGE = "VALUE_RANGE";
+    public static final String VECTOR = "VECTOR";
+    public static final String VERSIONED_ACTION_REQUEST = "VERSIONED_ACTION_REQUEST";
+    public static final String VERTEX = "VERTEX";
+    public static final String VERTEX_LOOP = "VERTEX_LOOP";
+    public static final String VERTEX_POINT = "VERTEX_POINT";
+    public static final String VIEW_VOLUME = "VIEW_VOLUME";
+    public static final String VOLUME_3D_ELEMENT_DESCRIPTOR = "VOLUME_3D_ELEMENT_DESCRIPTOR";
+    public static final String VOLUME_3D_ELEMENT_REPRESENTATION = "VOLUME_3D_ELEMENT_REPRESENTATION";
+    public static final String VOLUME_UNIT = "VOLUME_UNIT";
+    public static final String WEEK_OF_YEAR_AND_DAY_DATE = "WEEK_OF_YEAR_AND_DAY_DATE";
+
+    public static final String[] ALL = {
+            ACTION,
+            ACTION_ASSIGNMENT,
+            ACTION_METHOD,
+            ACTION_REQUEST_ASSIGNMENT,
+            ACTION_REQUEST_SOLUTION,
+            ADDRESS,
+            ADVANCED_BREP_SHAPE_REPRESENTATION,
+            ADVANCED_FACE,
+            ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM,
+            ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM,
+            ANALYSIS_ITEM_WITHIN_REPRESENTATION,
+            ANGULARITY_TOLERANCE,
+            ANGULAR_LOCATION,
+            ANGULAR_SIZE,
+            ANNOTATION_CURVE_OCCURRENCE,
+            ANNOTATION_FILL_AREA,
+            ANNOTATION_FILL_AREA_OCCURRENCE,
+            ANNOTATION_OCCURRENCE,
+            ANNOTATION_SUBFIGURE_OCCURRENCE,
+            ANNOTATION_SYMBOL,
+            ANNOTATION_SYMBOL_OCCURRENCE,
+            ANNOTATION_TEXT,
+            ANNOTATION_TEXT_OCCURRENCE,
+            APPLICATION_CONTEXT,
+            APPLICATION_CONTEXT_ELEMENT,
+            APPLICATION_PROTOCOL_DEFINITION,
+            APPLIED_APPROVAL_ASSIGNMENT,
+            APPLIED_DATE_AND_TIME_ASSIGNMENT,
+            APPLIED_DATE_ASSIGNMENT,
+            APPLIED_DOCUMENT_REFERENCE,
+            APPLIED_EXTERNAL_IDENTIFICATION_ASSIGNMENT,
+            APPLIED_GROUP_ASSIGNMENT,
+            APPLIED_ORGANIZATION_ASSIGNMENT,
+            APPLIED_PERSON_AND_ORGANIZATION_ASSIGNMENT,
+            APPLIED_PRESENTED_ITEM,
+            APPLIED_SECURITY_CLASSIFICATION_ASSIGNMENT,
+            APPROVAL,
+            APPROVAL_ASSIGNMENT,
+            APPROVAL_DATE_TIME,
+            APPROVAL_PERSON_ORGANIZATION,
+            APPROVAL_RELATIONSHIP,
+            APPROVAL_ROLE,
+            APPROVAL_STATUS,
+            ARBITRARY_VOLUME_3D_ELEMENT_COORDINATE_SYSTEM,
+            AREA_IN_SET,
+            AREA_UNIT,
+            ASSEMBLY_COMPONENT_USAGE,
+            ASSEMBLY_COMPONENT_USAGE_SUBSTITUTE,
+            AUTO_DESIGN_ACTUAL_DATE_AND_TIME_ASSIGNMENT,
+            AUTO_DESIGN_ACTUAL_DATE_ASSIGNMENT,
+            AUTO_DESIGN_APPROVAL_ASSIGNMENT,
+            AUTO_DESIGN_DATE_AND_PERSON_ASSIGNMENT,
+            AUTO_DESIGN_DOCUMENT_REFERENCE,
+            AUTO_DESIGN_GROUP_ASSIGNMENT,
+            AUTO_DESIGN_NOMINAL_DATE_AND_TIME_ASSIGNMENT,
+            AUTO_DESIGN_NOMINAL_DATE_ASSIGNMENT,
+            AUTO_DESIGN_ORGANIZATION_ASSIGNMENT,
+            AUTO_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT,
+            AUTO_DESIGN_PRESENTED_ITEM,
+            AUTO_DESIGN_SECURITY_CLASSIFICATION_ASSIGNMENT,
+            AUTO_DESIGN_VIEW_AREA,
+            AXIS1_PLACEMENT,
+            AXIS2_PLACEMENT_2D,
+            AXIS2_PLACEMENT_3D,
+            BACKGROUND_COLOUR,
+            BEZIER_CURVE,
+            BEZIER_SURFACE,
+            BLOCK,
+            BOOLEAN_RESULT,
+            BOUNDARY_CURVE,
+            BOUNDED_CURVE,
+            BOUNDED_SURFACE,
+            BOXED_HALF_SPACE,
+            BOX_DOMAIN,
+            BREP_WITH_VOIDS,
+            B_SPLINE_CURVE,
+            B_SPLINE_CURVE_WITH_KNOTS,
+            B_SPLINE_SURFACE,
+            B_SPLINE_SURFACE_WITH_KNOTS,
+            CALENDAR_DATE,
+            CAMERA_IMAGE,
+            CAMERA_IMAGE_2D_WITH_SCALE,
+            CAMERA_IMAGE_3D_WITH_SCALE,
+            CAMERA_MODEL,
+            CAMERA_MODEL_D2,
+            CAMERA_MODEL_D3,
+            CAMERA_USAGE,
+            CARTESIAN_POINT,
+            CARTESIAN_TRANSFORMATION_OPERATOR,
+            CARTESIAN_TRANSFORMATION_OPERATOR_2D,
+            CARTESIAN_TRANSFORMATION_OPERATOR_3D,
+            CC_DESIGN_APPROVAL,
+            CC_DESIGN_CERTIFICATION,
+            CC_DESIGN_CONTRACT,
+            CC_DESIGN_DATE_AND_TIME_ASSIGNMENT,
+            CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT,
+            CC_DESIGN_SECURITY_CLASSIFICATION,
+            CC_DESIGN_SPECIFICATION_REFERENCE,
+            CERTIFICATION,
+            CERTIFICATION_ASSIGNMENT,
+            CERTIFICATION_TYPE,
+            CHANGE,
+            CHANGE_REQUEST,
+            CHARACTERIZED_OBJECT,
+            CIRCLE,
+            CIRCULAR_RUNOUT_TOLERANCE,
+            CLASS,
+            CLOSED_SHELL,
+            COAXIALITY_TOLERANCE,
+            COLOUR,
+            COLOUR_RGB,
+            COLOUR_SPECIFICATION,
+            COMMON_DATUM,
+            COMPOSITE_CURVE,
+            COMPOSITE_CURVE_ON_SURFACE,
+            COMPOSITE_CURVE_SEGMENT,
+            COMPOSITE_SHAPE_ASPECT,
+            COMPOSITE_TEXT,
+            COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES,
+            COMPOSITE_TEXT_WITH_BLANKING_BOX,
+            COMPOSITE_TEXT_WITH_EXTENT,
+            COMPOUND_REPRESENTATION_ITEM,
+            COMPOUND_SHAPE_REPRESENTATION,
+            CONCENTRICITY_TOLERANCE,
+            CONFIGURATION_DESIGN,
+            CONFIGURATION_EFFECTIVITY,
+            CONIC,
+            CONICAL_SURFACE,
+            CONNECTED_EDGE_SET,
+            CONNECTED_FACE_SET,
+            CONNECTED_FACE_SHAPE_REPRESENTATION,
+            CONNECTED_FACE_SUB_SET,
+            CONSTANT_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM,
+            CONTEXT_DEPENDENT_INVISIBILITY,
+            CONTEXT_DEPENDENT_OVER_RIDING_STYLED_ITEM,
+            CONTEXT_DEPENDENT_SHAPE_REPRESENTATION,
+            CONTRACT,
+            CONTRACT_ASSIGNMENT,
+            CONTRACT_TYPE,
+            CONVERSION_BASED_UNIT,
+            COORDINATED_UNIVERSAL_TIME_OFFSET,
+            CSG_REPRESENTATION,
+            CSG_SHAPE_REPRESENTATION,
+            CSG_SOLID,
+            CURVE,
+            CURVE_3D_ELEMENT_DESCRIPTOR,
+            CURVE_3D_ELEMENT_PROPERTY,
+            CURVE_3D_ELEMENT_REPRESENTATION,
+            CURVE_BOUNDED_SURFACE,
+            CURVE_ELEMENT_END_OFFSET,
+            CURVE_ELEMENT_END_RELEASE,
+            CURVE_ELEMENT_END_RELEASE_PACKET,
+            CURVE_ELEMENT_INTERVAL,
+            CURVE_ELEMENT_INTERVAL_CONSTANT,
+            CURVE_ELEMENT_INTERVAL_LINEARLY_VARYING,
+            CURVE_ELEMENT_LOCATION,
+            CURVE_ELEMENT_SECTION_DEFINITION,
+            CURVE_ELEMENT_SECTION_DERIVED_DEFINITIONS,
+            CURVE_REPLICA,
+            CURVE_STYLE,
+            CURVE_STYLE_FONT,
+            CURVE_STYLE_FONT_PATTERN,
+            CYLINDRICAL_SURFACE,
+            DATA_ENVIRONMENT,
+            DATE,
+            DATE_AND_TIME,
+            DATE_AND_TIME_ASSIGNMENT,
+            DATE_ASSIGNMENT,
+            DATE_ROLE,
+            DATE_TIME_ROLE,
+            DATUM,
+            DATUM_FEATURE,
+            DATUM_REFERENCE,
+            DATUM_TARGET,
+            DEFINED_SYMBOL,
+            DEFINITIONAL_REPRESENTATION,
+            DEGENERATE_PCURVE,
+            DEGENERATE_TOROIDAL_SURFACE,
+            DERIVED_SHAPE_ASPECT,
+            DERIVED_UNIT,
+            DERIVED_UNIT_ELEMENT,
+            DESCRIPTIVE_REPRESENTATION_ITEM,
+            DESIGN_CONTEXT,
+            DIGITAL_DOCUMENT,
+            DIMENSIONAL_CHARACTERISTIC_REPRESENTATION,
+            DIMENSIONAL_EXPONENTS,
+            DIMENSIONAL_LOCATION,
+            DIMENSIONAL_LOCATION_WITH_PATH,
+            DIMENSIONAL_SIZE,
+            DIMENSIONAL_SIZE_WITH_PATH,
+            DIMENSION_CURVE,
+            DIMENSION_CURVE_TERMINATOR,
+            DIRECTED_DIMENSIONAL_LOCATION,
+            DIRECTION,
+            DOCUMENT,
+            DOCUMENT_FILE,
+            DOCUMENT_PRODUCT_ASSOCIATION,
+            DOCUMENT_PRODUCT_EQUIVALENCE,
+            DOCUMENT_RELATIONSHIP,
+            DOCUMENT_REPRESENTATION_TYPE,
+            DOCUMENT_TYPE,
+            DOCUMENT_USAGE_CONSTRAINT,
+            DRAUGHTING_ANNOTATION_OCCURRENCE,
+            DRAUGHTING_CALLOUT,
+            DRAUGHTING_MODEL,
+            DRAUGHTING_PRE_DEFINED_COLOUR,
+            DRAUGHTING_PRE_DEFINED_CURVE_FONT,
+            DRAUGHTING_SUBFIGURE_REPRESENTATION,
+            DRAUGHTING_SYMBOL_REPRESENTATION,
+            DRAUGHTING_TEXT_LITERAL_WITH_DELINEATION,
+            DRAWING_DEFINITION,
+            DRAWING_REVISION,
+            DUMMY_NODE,
+            EDGE,
+            EDGE_BASED_WIREFRAME_MODEL,
+            EDGE_BASED_WIREFRAME_SHAPE_REPRESENTATION,
+            EDGE_CURVE,
+            EDGE_LOOP,
+            EFFECTIVITY,
+            EFFECTIVITY_ASSIGNMENT,
+            ELEMENTARY_SURFACE,
+            ELEMENT_DESCRIPTOR,
+            ELEMENT_GEOMETRIC_RELATIONSHIP,
+            ELEMENT_GROUP,
+            ELEMENT_MATERIAL,
+            ELEMENT_REPRESENTATION,
+            ELLIPSE,
+            EULER_ANGLES,
+            EVALUATED_DEGENERATE_PCURVE,
+            EXTENSION,
+            EXTERNALLY_DEFINED_CURVE_FONT,
+            EXTERNALLY_DEFINED_Class,
+            EXTERNALLY_DEFINED_GENERAL_PROPERTY,
+            EXTERNALLY_DEFINED_HATCH_STYLE,
+            EXTERNALLY_DEFINED_ITEM,
+            EXTERNALLY_DEFINED_REPRESENTATION,
+            EXTERNALLY_DEFINED_SYMBOL,
+            EXTERNALLY_DEFINED_TEXT_FONT,
+            EXTERNALLY_DEFINED_TILE_STYLE,
+            EXTERNAL_IDENTIFICATION_ASSIGNMENT,
+            EXTERNAL_SOURCE,
+            EXTRUDED_AREA_SOLID,
+            EXTRUDED_FACE_SOLID,
+            FACE,
+            FACETED_BREP,
+            FACETED_BREP_SHAPE_REPRESENTATION,
+            FACE_BASED_SURFACE_MODEL,
+            FACE_BOUND,
+            FACE_OUTER_BOUND,
+            FACE_SURFACE,
+            FEA_AREA_DENSITY,
+            FEA_AXIS2_PLACEMENT_3D,
+            FEA_CURVE_SECTION_GEOMETRIC_RELATIONSHIP,
+            FEA_GROUP,
+            FEA_LINEAR_ELASTICITY,
+            FEA_MASS_DENSITY,
+            FEA_MATERIAL_PROPERTY_REPRESENTATION,
+            FEA_MATERIAL_PROPERTY_REPRESENTATION_ITEM,
+            FEA_MODEL,
+            FEA_MODEL_3D,
+            FEA_MODEL_DEFINITION,
+            FEA_MODEL_DEFINITION,
+            FEA_MOISTURE_ABSORPTION,
+            FEA_PARAMETRIC_POINT,
+            FEA_REPRESENTATION_ITEM,
+            FEA_SECANT_COEFFICIENT_OF_LINEAR_THERMAL_EXPANSION,
+            FEA_SHELL_BENDING_STIFFNESS,
+            FEA_SHELL_MEMBRANE_BENDING_COUPLING_STIFFNESS,
+            FEA_SHELL_MEMBRANE_STIFFNESS,
+            FEA_SHELL_SHEAR_STIFFNESS,
+            FEA_SURFACE_SECTION_GEOMETRIC_RELATIONSHIP,
+            FEA_TANGENTIAL_COEFFICIENT_OF_LINEAR_THERMAL_EXPANSION,
+            FILL_AREA_STYLE,
+            FILL_AREA_STYLE_COLOUR,
+            FILL_AREA_STYLE_HATCHING,
+            FILL_AREA_STYLE_TILES,
+            FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE,
+            FLATNESS_TOLERANCE,
+            FREEDOMS_LIST,
+            FREEDOM_AND_COEFFICIENT,
+            FUNCTIONALLY_DEFINED_TRANSFORMATION,
+            GENERAL_PROPERTY,
+            GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION,
+            GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION,
+            GEOMETRIC_CURVE_SET,
+            GEOMETRIC_NODE,
+            GEOMETRIC_REPRESENTATION_CONTEXT,
+            GEOMETRIC_REPRESENTATION_ITEM,
+            GEOMETRIC_SET,
+            GEOMETRIC_TOLERANCE,
+            GEOMETRIC_TOLERANCE_RELATIONSHIP,
+            GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE,
+            GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT,
+            GLOBAL_UNIT_ASSIGNED_CONTEXT,
+            GROUP,
+            GROUP_ASSIGNMENT,
+            GROUP_RELATIONSHIP,
+            HALF_SPACE_SOLID,
+            HYPERBOLA,
+            IDENTIFICATION_ASSIGNMENT,
+            IDENTIFICATION_ROLE,
+            INTERSECTION_CURVE,
+            INVISIBILITY,
+            ITEM_DEFINED_TRANSFORMATION,
+            LENGTH_MEASURE_WITH_UNIT,
+            LENGTH_UNIT,
+            LIMITS_AND_FITS,
+            LINE,
+            LINE_PROFILE_TOLERANCE,
+            LOCAL_TIME,
+            LOOP,
+            MAKE_FROM_USAGE_OPTION,
+            MANIFOLD_SOLID_BREP,
+            MANIFOLD_SURFACE_SHAPE_REPRESENTATION,
+            MAPPED_ITEM,
+            MASS_MEASURE_WITH_UNIT,
+            MASS_UNIT,
+            MATERIAL_DESIGNATION,
+            MATERIAL_PROPERTY,
+            MATERIAL_PROPERTY_REPRESENTATION,
+            MEASURE_QUALIFICATION,
+            MEASURE_REPRESENTATION_ITEM,
+            MEASURE_WITH_UNIT,
+            MECHANICAL_CONTEXT,
+            MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_AREA,
+            MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_REPRESENTATION,
+            MECHANICAL_DESIGN_PRESENTATION_AREA,
+            MODIFIED_GEOMETRIC_TOLERANCE,
+            NAMED_UNIT,
+            NAME_ASSIGNMENT,
+            NEXT_ASSEMBLY_USAGE_OCCURRENCE,
+            NODE,
+            NODE_DEFINITION,
+            NODE_GROUP,
+            NODE_REPRESENTATION,
+            NODE_SET,
+            NODE_WITH_SOLUTION_COORDINATE_SYSTEM,
+            NODE_WITH_VECTOR,
+            NON_MANIFOLD_SURFACE_SHAPE_REPRESENTATION,
+            OBJECT_ROLE,
+            OFFSET_CURVE_3D,
+            OFFSET_SURFACE,
+            ONE_DIRECTION_REPEAT_FACTOR,
+            OPEN_SHELL,
+            ORDINAL_DATE,
+            ORGANIZATION,
+            ORGANIZATIONAL_ADDRESS,
+            ORGANIZATION_ASSIGNMENT,
+            ORGANIZATION_ROLE,
+            ORIENTED_CLOSED_SHELL,
+            ORIENTED_EDGE,
+            ORIENTED_FACE,
+            ORIENTED_OPEN_SHELL,
+            ORIENTED_PATH,
+            ORIENTED_SURFACE,
+            OUTER_BOUNDARY_CURVE,
+            OVER_RIDING_STYLED_ITEM,
+            PARABOLA,
+            PARALLELISM_TOLERANCE,
+            PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_DIRECTION,
+            PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_SYSTEM,
+            PARAMETRIC_REPRESENTATION_CONTEXT,
+            PARAMETRIC_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM,
+            PATH,
+            PCURVE,
+            PERPENDICULARITY_TOLERANCE,
+            PERSON,
+            PERSONAL_ADDRESS,
+            PERSON_AND_ORGANIZATION,
+            PERSON_AND_ORGANIZATION_ASSIGNMENT,
+            PERSON_AND_ORGANIZATION_ROLE,
+            PHYSICALLY_MODELED_PRODUCT_DEFINITION,
+            PLACED_DATUM_TARGET_FEATURE,
+            PLACEMENT,
+            PLANAR_BOX,
+            PLANAR_EXTENT,
+            PLANE,
+            PLANE_ANGLE_MEASURE_WITH_UNIT,
+            PLANE_ANGLE_UNIT,
+            PLUS_MINUS_TOLERANCE,
+            POINT,
+            POINT_ON_CURVE,
+            POINT_ON_SURFACE,
+            POINT_REPLICA,
+            POINT_REPRESENTATION,
+            POINT_STYLE,
+            POLYLINE,
+            POLY_LOOP,
+            POSITION_TOLERANCE,
+            PRECISION_QUALIFIER,
+            PRESENTATION_AREA,
+            PRESENTATION_LAYER_ASSIGNMENT,
+            PRESENTATION_LAYER_USAGE,
+            PRESENTATION_REPRESENTATION,
+            PRESENTATION_SET,
+            PRESENTATION_SIZE,
+            PRESENTATION_STYLE_ASSIGNMENT,
+            PRESENTATION_STYLE_BY_CONTEXT,
+            PRESENTATION_VIEW,
+            PRESENTED_ITEM,
+            PRESENTED_ITEM_REPRESENTATION,
+            PRE_DEFINED_COLOUR,
+            PRE_DEFINED_CURVE_FONT,
+            PRE_DEFINED_ITEM,
+            PRE_DEFINED_SYMBOL,
+            PRE_DEFINED_TEXT_FONT,
+            PRODUCT,
+            PRODUCT_CATEGORY,
+            PRODUCT_CATEGORY_RELATIONSHIP,
+            PRODUCT_CONCEPT,
+            PRODUCT_CONCEPT_CONTEXT,
+            PRODUCT_CONTEXT,
+            PRODUCT_DATA_REPRESENTATION_VIEW,
+            PRODUCT_DEFINITION,
+            PRODUCT_DEFINITION_CONTEXT,
+            PRODUCT_DEFINITION_EFFECTIVITY,
+            PRODUCT_DEFINITION_FORMATION,
+            PRODUCT_DEFINITION_FORMATION_RELATIONSHIP,
+            PRODUCT_DEFINITION_FORMATION_WITH_SPECIFIED_SOURCE,
+            PRODUCT_DEFINITION_RELATIONSHIP,
+            PRODUCT_DEFINITION_SHAPE,
+            PRODUCT_DEFINITION_USAGE,
+            PRODUCT_DEFINITION_WITH_ASSOCIATED_DOCUMENTS,
+            PRODUCT_RELATED_PRODUCT_CATEGORY,
+            PRODUCT_TYPE,
+            PROMISSORY_USAGE_OCCURRENCE,
+            PROPERTY_DEFINITION,
+            PROPERTY_DEFINITION_RELATIONSHIP,
+            PROPERTY_DEFINITION_REPRESENTATION,
+            QUALIFIED_REPRESENTATION_ITEM,
+            QUANTIFIED_ASSEMBLY_COMPONENT_USAGE,
+            QUASI_UNIFORM_CURVE,
+            QUASI_UNIFORM_SURFACE,
+            RATIONAL_B_SPLINE_CURVE,
+            RATIONAL_B_SPLINE_SURFACE,
+            RATIO_MEASURE_WITH_UNIT,
+            RATIO_UNIT,
+            RECTANGULAR_COMPOSITE_SURFACE,
+            RECTANGULAR_TRIMMED_SURFACE,
+            REPARAMETRISED_COMPOSITE_CURVE_SEGMENT,
+            REPRESENTATION,
+            REPRESENTATION_CONTEXT,
+            REPRESENTATION_ITEM,
+            REPRESENTATION_MAP,
+            REPRESENTATION_RELATIONSHIP,
+            REPRESENTATION_RELATIONSHIP_WITH_TRANSFORMATION,
+            REP_ITEM_GROUP,
+            REVOLVED_AREA_SOLID,
+            REVOLVED_FACE_SOLID,
+            RIGHT_ANGULAR_WEDGE,
+            RIGHT_CIRCULAR_CONE,
+            RIGHT_CIRCULAR_CYLINDER,
+            ROLE_ASSOCIATION,
+            ROUNDNESS_TOLERANCE,
+            SEAM_CURVE,
+            SEAM_EDGE,
+            SECURITY_CLASSIFICATION,
+            SECURITY_CLASSIFICATION_ASSIGNMENT,
+            SECURITY_CLASSIFICATION_LEVEL,
+            SHAPE_ASPECT,
+            SHAPE_ASPECT_DERIVING_RELATIONSHIP,
+            SHAPE_ASPECT_RELATIONSHIP,
+            SHAPE_ASPECT_TRANSITION,
+            SHAPE_DEFINITION_REPRESENTATION,
+            SHAPE_DIMENSION_REPRESENTATION,
+            SHAPE_REPRESENTATION,
+            SHAPE_REPRESENTATION_RELATIONSHIP,
+            SHAPE_REPRESENTATION_WITH_PARAMETERS,
+            SHELL_BASED_SURFACE_MODEL,
+            SI_UNIT,
+            SOLID_ANGLE_MEASURE_WITH_UNIT,
+            SOLID_ANGLE_UNIT,
+            SOLID_MODEL,
+            SOLID_REPLICA,
+            SPECIFIED_HIGHER_USAGE_OCCURRENCE,
+            SPHERE,
+            SPHERICAL_SURFACE,
+            START_REQUEST,
+            START_WORK,
+            STRAIGHTNESS_TOLERANCE,
+            STRUCTURAL_RESPONSE_PROPERTY,
+            STRUCTURAL_RESPONSE_PROPERTY_DEFINITION_REPRESENTATION,
+            STYLED_ITEM,
+            SUBEDGE,
+            SUBFACE,
+            SUPPLIED_PART_RELATIONSHIP,
+            SURFACE,
+            SURFACE_3D_ELEMENT_DESCRIPTOR,
+            SURFACE_3D_ELEMENT_REPRESENTATION,
+            SURFACE_CURVE,
+            SURFACE_ELEMENT_PROPERTY,
+            SURFACE_OF_LINEAR_EXTRUSION,
+            SURFACE_OF_REVOLUTION,
+            SURFACE_PATCH,
+            SURFACE_PROFILE_TOLERANCE,
+            SURFACE_REPLICA,
+            SURFACE_SECTION,
+            SURFACE_SECTION_FIELD,
+            SURFACE_SECTION_FIELD_CONSTANT,
+            SURFACE_SECTION_FIELD_VARYING,
+            SURFACE_SIDE_STYLE,
+            SURFACE_STYLE_BOUNDARY,
+            SURFACE_STYLE_CONTROL_GRID,
+            SURFACE_STYLE_FILL_AREA,
+            SURFACE_STYLE_PARAMETER_LINE,
+            SURFACE_STYLE_SEGMENTATION_CURVE,
+            SURFACE_STYLE_SILHOUETTE,
+            SURFACE_STYLE_USAGE,
+            SWEPT_AREA_SOLID,
+            SWEPT_FACE_SOLID,
+            SWEPT_SURFACE,
+            SYMBOL_COLOUR,
+            SYMBOL_REPRESENTATION,
+            SYMBOL_REPRESENTATION_MAP,
+            SYMBOL_STYLE,
+            SYMBOL_TARGET,
+            SYMMETRY_TOLERANCE,
+            TEMPLATE,
+            TEMPLATE_INSTANCE,
+            TERMINATOR_SYMBOL,
+            TEXT_LITERAL,
+            TEXT_LITERAL_WITH_ASSOCIATED_CURVES,
+            TEXT_LITERAL_WITH_BLANKING_BOX,
+            TEXT_LITERAL_WITH_DELINEATION,
+            TEXT_LITERAL_WITH_EXTENT,
+            TEXT_STYLE,
+            TEXT_STYLE_FOR_DEFINED_FONT,
+            TEXT_STYLE_WITH_BOX_CHARACTERISTICS,
+            TEXT_STYLE_WITH_MIRROR,
+            THERMODYNAMIC_TEMPERATURE_UNIT,
+            TIME_MEASURE_WITH_UNIT,
+            TIME_UNIT,
+            TOLERANCE_VALUE,
+            TOPOLOGICAL_REPRESENTATION_ITEM,
+            TOROIDAL_SURFACE,
+            TORUS,
+            TOTAL_RUNOUT_TOLERANCE,
+            TRANSITIONAL_SHAPE_REPRESENTATION,
+            TRIMMED_CURVE,
+            TWO_DIRECTION_REPEAT_FACTOR,
+            TYPE_QUALIFIER,
+            UNCERTAINTY_MEASURE_WITH_UNIT,
+            UNIFORM_CURVE,
+            UNIFORM_SURFACE,
+            UNIFORM_SURFACE_SECTION,
+            VALUE_RANGE,
+            VECTOR,
+            VERSIONED_ACTION_REQUEST,
+            VERTEX,
+            VERTEX_LOOP,
+            VERTEX_POINT,
+            VIEW_VOLUME,
+            VOLUME_3D_ELEMENT_DESCRIPTOR,
+            VOLUME_3D_ELEMENT_REPRESENTATION,
+            VOLUME_UNIT,
+            WEEK_OF_YEAR_AND_DAY_DATE,
+    };
+
+    public static final String[] CONTEXTS = {
+            ANALYSIS_REPRESENTATION_CONTEXT,
+            GEOMETRIC_REPRESENTATION_CONTEXT,
+            GEOMETRIC_REPRESENTATION_CONTEXT_WITH_PARAMETER,
+            GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT,
+            GLOBAL_UNIT_ASSIGNED_CONTEXT,
+            PARAMETRIC_REPRESENTATION_CONTEXT,
+            PATH_PARAMETRIC_REPRESENTATION_CONTEXT,
+            REPRESENTATION_CONTEXT
+    };
+
+    public static final String[] UNITS = {
+            NAMED_UNIT,
+            SI_UNIT,
+            CONVERSION_BASED_UNIT,
+            LENGTH_UNIT,
+            MASS_UNIT,
+            TIME_UNIT,
+            THERMODYNAMIC_TEMPERATURE_UNIT,
+            PLANE_ANGLE_UNIT,
+            SOLID_ANGLE_UNIT,
+            RATIO_UNIT
+    };
+}

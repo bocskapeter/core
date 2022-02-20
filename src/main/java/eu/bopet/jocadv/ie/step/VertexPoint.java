@@ -1,24 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-public class VertexPoint extends StepEntity {
-    private int pointId;
+import eu.bopet.jocadv.ie.step.util.UtilInt;
 
-    public VertexPoint(int pointId) {
-        this.pointId = pointId;
-    }
+public class VertexPoint extends UtilInt {
 
-    public static VertexPoint getInstance(int id, String name, String attributes) {
-        int pointId = Integer.parseInt(attributes.substring(1));
-        VertexPoint vertexPoint = new VertexPoint(pointId);
-        vertexPoint.setId(id);
-        vertexPoint.setName(name);
-        return vertexPoint;
+    public VertexPoint(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "VertexPoint{" + super.toString() +
-                " pointId=" + pointId +
-                '}';
+        return "VertexPoint{" + super.toString() + '}';
     }
 }

@@ -1,29 +1,14 @@
 package eu.bopet.jocadv.ie.step;
 
-public class Line extends StepEntity {
-    private int cartesianPointId;
-    private int vectorId;
+import eu.bopet.jocadv.ie.step.util.UtilIntInt;
 
-    public Line(int cartesianPointId, int vectorId) {
-        this.cartesianPointId = cartesianPointId;
-        this.vectorId = vectorId;
-    }
-
-    public static Line getInstance(int id, String name, String attributes) {
-        String[] values = attributes.split(",");
-        int cartesianPointId = Integer.parseInt(values[0].substring(1));
-        int vectorId = Integer.parseInt(values[1].substring(1));
-        Line line = new Line(cartesianPointId, vectorId);
-        line.setId(id);
-        line.setName(name);
-        return line;
+public class Line extends UtilIntInt {
+    public Line(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "Line{" + super.toString() +
-                " cartesianPointId=" + cartesianPointId +
-                ", vectorId=" + vectorId +
-                '}';
+        return "Line{" + super.toString() + '}';
     }
 }

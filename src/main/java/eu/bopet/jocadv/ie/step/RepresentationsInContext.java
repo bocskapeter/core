@@ -1,18 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-import java.util.Set;
+import eu.bopet.jocadv.ie.step.util.UtilSetOfInt;
 
-public class RepresentationsInContext extends StepEntity {
-    private Set<Integer> representations;
+public class RepresentationsInContext extends UtilSetOfInt {
 
-    public RepresentationsInContext(Set<Integer> representations) {
-        this.representations = representations;
+    public RepresentationsInContext(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "RepresentationsInContext{" + super.toString() +
-                " representations=" + representations +
-                '}';
+        return "RepresentationsInContext{" + super.toString() + '}';
     }
 }

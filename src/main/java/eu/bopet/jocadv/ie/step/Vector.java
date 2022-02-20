@@ -1,29 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-public class Vector extends StepEntity {
-    private int directionId;
-    private double length;
+import eu.bopet.jocadv.ie.step.util.UtilIntDouble;
 
-    public Vector(int directionId, double length) {
-        this.directionId = directionId;
-        this.length = length;
-    }
+public class Vector extends UtilIntDouble {
 
-    public static Vector getInstance(int id, String name, String attributes) {
-        String[] values = attributes.split(",");
-        int directionId = Integer.parseInt(values[0].substring(1));
-        double length = Double.parseDouble(values[1]);
-        Vector vector = new Vector(directionId, length);
-        vector.setId(id);
-        vector.setName(name);
-        return vector;
+    public Vector(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "Vector{" + super.toString() +
-                " directionId=" + directionId +
-                ", length=" + length +
-                '}';
+        return "Vector{" + super.toString() + '}';
     }
 }

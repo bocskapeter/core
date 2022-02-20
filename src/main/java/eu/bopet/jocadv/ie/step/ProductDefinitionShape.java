@@ -1,30 +1,15 @@
 package eu.bopet.jocadv.ie.step;
 
-public class ProductDefinitionShape extends StepEntity {
-    private String description;
-    private int definition;
+import eu.bopet.jocadv.ie.step.util.UtilStringInt;
 
-    public ProductDefinitionShape(String description, int definition) {
-        this.description = description;
-        this.definition = definition;
-    }
+public class ProductDefinitionShape extends UtilStringInt {
 
-    public static ProductDefinitionShape getInstance(int id, String name, String attribute) {
-        String[] values = attribute.split(",");
-        String description = values[0].replace("'", "");
-        int definition = Integer.parseInt(values[1].substring(1));
-        ProductDefinitionShape productDefinitionShape =
-                new ProductDefinitionShape(description, definition);
-        productDefinitionShape.setId(id);
-        productDefinitionShape.setName(name);
-        return productDefinitionShape;
+    public ProductDefinitionShape(int id, String name, String attribute) {
+        super(id, name, attribute);
     }
 
     @Override
     public String toString() {
-        return "ProductDefinitionShape{" + super.toString() +
-                " description='" + description + '\'' +
-                ", definition=" + definition +
-                '}';
+        return "ProductDefinitionShape{" + super.toString() + '}';
     }
 }

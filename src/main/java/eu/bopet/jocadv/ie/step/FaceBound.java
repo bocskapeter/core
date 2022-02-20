@@ -1,22 +1,16 @@
 package eu.bopet.jocadv.ie.step;
 
+import eu.bopet.jocadv.ie.step.util.StepEntity;
+
 public class FaceBound extends StepEntity {
     private int loopId;
     private boolean orientation;
 
-    public FaceBound(int loopId, boolean orientation) {
-        this.loopId = loopId;
-        this.orientation = orientation;
-    }
-
-    public static FaceBound getInstance(int id, String name, String attribute) {
+    public FaceBound(int id, String name, String attribute) {
+        super(id, name);
         String[] values = attribute.split(",");
-        int loopId = Integer.parseInt(values[0].substring(1));
-        boolean orientation = values[1].contains("T");
-        FaceBound faceBound = new FaceBound(loopId, orientation);
-        faceBound.setId(id);
-        faceBound.setName(name);
-        return faceBound;
+        loopId = Integer.parseInt(values[0].substring(1));
+        orientation = values[1].contains("T");
     }
 
     @Override

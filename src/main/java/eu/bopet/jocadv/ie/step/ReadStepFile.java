@@ -241,14 +241,32 @@ public class ReadStepFile {
                         result.add(representation);
                         continue;
                     }
-                    if (secondTag.startsWith(StepCode.UNCERTAINTY_MEASURE_WITH_UNIT)){
+                    if (secondTag.startsWith(StepCode.UNCERTAINTY_MEASURE_WITH_UNIT)) {
 
                     }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);
-                        System.out.println("Set of : " + tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") - 1));
-
+                        String set = tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") - 1);
+                        String firstSet = set.substring(0, set.indexOf("(")).stripLeading().stripTrailing();
+                        System.out.println("First set: " + firstSet);
+                        if (Arrays.asList(StepCode.CONTEXTS).contains(firstSet)) {
+                            System.out.println("*Contexts! ");
+                            continue;
+                        }
+                        if (Arrays.asList(StepCode.CURVES).contains(firstSet)) {
+                            System.out.println("*Curves!");
+                            continue;
+                        }
+                        if (Arrays.asList(StepCode.UNITS).contains(firstSet)) {
+                            System.out.println("*Units!");
+                            continue;
+                        }
+                        if (Arrays.asList(StepCode.SURFACES).contains(firstSet)) {
+                            System.out.println("*Surfaces!");
+                            continue;
+                        }
+                        System.out.println("???Set of : " + set);
                     }
 
                     System.out.println("---> Not processed: " + command);

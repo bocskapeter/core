@@ -1127,7 +1127,6 @@ public class StepCode {
             GLOBAL_UNIT_ASSIGNED_CONTEXT,
             PARAMETRIC_REPRESENTATION_CONTEXT,
             PATH_PARAMETRIC_REPRESENTATION_CONTEXT,
-            REPRESENTATION_CONTEXT
     };
 
     public static final String[] UNITS = {
@@ -1171,7 +1170,7 @@ public class StepCode {
             SEAM_CURVE,
             SURFACE_CURVE,
             TRIMMED_CURVE,
-            UNIFORM_CURVE
+            UNIFORM_CURVE,
     };
 
     public static final String[] SURFACES = {
@@ -1197,6 +1196,6 @@ public class StepCode {
             SURFACE_REPLICA,
             SWEPT_SURFACE,
             TOROIDAL_SURFACE,
-            UNIFORM_SURFACE
+            UNIFORM_SURFACE,
     };
 }

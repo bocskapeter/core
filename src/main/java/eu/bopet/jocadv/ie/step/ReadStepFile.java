@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.ie.step;
 
+import eu.bopet.jocadv.ie.step.context.Contexts;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntity;
 
@@ -247,11 +248,11 @@ public class ReadStepFile {
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         System.out.println("*** current  command: " + command);
-                        String set = tags[1].stripLeading().stripTrailing().substring(tags[1].indexOf("("), tags[1].lastIndexOf(")") - 1);
+                        String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")") - 1);
                         String firstSet = set.substring(0, set.indexOf("(")).stripLeading().stripTrailing();
-                        System.out.println("First set: " + firstSet);
                         if (Arrays.asList(StepCode.CONTEXTS).contains(firstSet)) {
-                            System.out.println("*Contexts! ");
+                            Contexts contexts = new Contexts(id, "", set.replace(" ", ""));
+                            result.add(contexts);
                             continue;
                         }
                         if (Arrays.asList(StepCode.CURVES).contains(firstSet)) {

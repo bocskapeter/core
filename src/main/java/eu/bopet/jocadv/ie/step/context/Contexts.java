@@ -65,14 +65,16 @@ public class Contexts extends StepEntity {
                     break;
                 }
                 case StepCode.GEOMETRIC_REPRESENTATION_CONTEXT: {
-                    int ident = Integer.parseInt(attribute);
-                    GeometricRepresentationContext context = new GeometricRepresentationContext("", "", ident);
+                    int identification = Integer.parseInt(attribute);
+                    GeometricRepresentationContext context =
+                            new GeometricRepresentationContext("", "", identification);
                     contexts.add(context);
                     System.out.println(context);
                     break;
                 }
                 case StepCode.GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT: {
-                    GlobalUncertaintyAssignedContext context = new GlobalUncertaintyAssignedContext("", "", attribute);
+                    GlobalUncertaintyAssignedContext context =
+                            new GlobalUncertaintyAssignedContext("", "", attribute);
                     contexts.add(context);
                     System.out.println(context);
                     break;
@@ -90,6 +92,11 @@ public class Contexts extends StepEntity {
                     break;
                 }
                 case StepCode.PATH_PARAMETRIC_REPRESENTATION_CONTEXT: {
+                    int identification = Integer.parseInt(attribute);
+                    PathParametricRepresentationContext context =
+                            new PathParametricRepresentationContext("", "", identification);
+                    contexts.add(context);
+                    System.out.println(context);
                     break;
                 }
                 case StepCode.REPRESENTATION_CONTEXT: {
@@ -102,7 +109,6 @@ public class Contexts extends StepEntity {
                     break;
                 }
             }
-            continue;
         }
     }
 

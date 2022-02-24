@@ -247,8 +247,7 @@ public class ReadStepFile {
                     }
 
                     if (tags[1].stripLeading().startsWith("(")) {
-                        System.out.println("*** current  command: " + command);
-                        String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")") - 1);
+                        String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));
                         String firstSet = set.substring(0, set.indexOf("(")).stripLeading().stripTrailing();
                         if (Arrays.asList(StepCode.CONTEXTS).contains(firstSet)) {
                             Contexts contexts = new Contexts(id, "", set.replace(" ", ""));

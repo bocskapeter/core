@@ -243,7 +243,7 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.UNCERTAINTY_MEASURE_WITH_UNIT)) {
-
+                        System.out.println("Haho : " + secondTag);
                     }
 
                     if (tags[1].stripLeading().startsWith("(")) {

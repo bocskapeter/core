@@ -14,7 +14,6 @@ public class Contexts extends StepEntity {
 
     public Contexts(int id, String name, String set) {
         super(id, name);
-        System.out.println("Processing set of " + set);
         this.contexts = new LinkedHashSet<>();
         List<Integer> index = new ArrayList<>();
         for (String code : StepCode.CONTEXTS) {
@@ -56,11 +55,10 @@ public class Contexts extends StepEntity {
             contextStringList.add(s);
         }
 
-        System.out.println("Contexts: " + contextStringList);
-
         for (String contextString : contextStringList) {
             String code = contextString.substring(0, contextString.indexOf("(")).replace(" ", "");
             String attribute = contextString.substring(contextString.indexOf("(") + 1, contextString.lastIndexOf(")"));
+            System.out.println("Context String: " + contextString);
             System.out.println("Atribute: " + attribute);
             switch (code) {
                 case StepCode.ANALYSIS_REPRESENTATION_CONTEXT: {
@@ -74,17 +72,34 @@ public class Contexts extends StepEntity {
                     break;
                 }
                 case StepCode.GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT: {
+                    GlobalUncertaintyAssignedContext context = new GlobalUncertaintyAssignedContext("", "", attribute);
+                    contexts.add(context);
+                    System.out.println(context);
                     break;
                 }
                 case StepCode.GLOBAL_UNIT_ASSIGNED_CONTEXT: {
+                    GlobalUnitAssignedContext context = new GlobalUnitAssignedContext("", "", attribute);
+                    contexts.add(context);
+                    System.out.println(context);
                     break;
                 }
                 case StepCode.PARAMETRIC_REPRESENTATION_CONTEXT: {
+                    ParametricRepresentationContext context = new ParametricRepresentationContext("", "");
+                    contexts.add(context);
+                    System.out.println(context);
                     break;
                 }
                 case StepCode.PATH_PARAMETRIC_REPRESENTATION_CONTEXT: {
+                    break;
                 }
                 case StepCode.REPRESENTATION_CONTEXT: {
+                    String[] parts = attribute.split(",");
+                    RepresentationContext context =
+                            new RepresentationContext(parts[0].replace("'", ""),
+                                    parts[1].replace("'", ""));
+                    contexts.add(context);
+                    System.out.println(context);
+                    break;
                 }
             }
             continue;

@@ -58,10 +58,10 @@ public class Contexts extends StepEntity {
         for (String contextString : contextStringList) {
             String code = contextString.substring(0, contextString.indexOf("(")).replace(" ", "");
             String attribute = contextString.substring(contextString.indexOf("(") + 1, contextString.lastIndexOf(")"));
-            System.out.println("Context String: " + contextString);
-            System.out.println("Atribute: " + attribute);
             switch (code) {
                 case StepCode.ANALYSIS_REPRESENTATION_CONTEXT: {
+                    AnalysisRepresentationContext context = new AnalysisRepresentationContext("", "");
+                    contexts.add(context);
                     break;
                 }
                 case StepCode.GEOMETRIC_REPRESENTATION_CONTEXT: {
@@ -69,26 +69,22 @@ public class Contexts extends StepEntity {
                     GeometricRepresentationContext context =
                             new GeometricRepresentationContext("", "", identification);
                     contexts.add(context);
-                    System.out.println(context);
                     break;
                 }
                 case StepCode.GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT: {
                     GlobalUncertaintyAssignedContext context =
                             new GlobalUncertaintyAssignedContext("", "", attribute);
                     contexts.add(context);
-                    System.out.println(context);
                     break;
                 }
                 case StepCode.GLOBAL_UNIT_ASSIGNED_CONTEXT: {
                     GlobalUnitAssignedContext context = new GlobalUnitAssignedContext("", "", attribute);
                     contexts.add(context);
-                    System.out.println(context);
                     break;
                 }
                 case StepCode.PARAMETRIC_REPRESENTATION_CONTEXT: {
                     ParametricRepresentationContext context = new ParametricRepresentationContext("", "");
                     contexts.add(context);
-                    System.out.println(context);
                     break;
                 }
                 case StepCode.PATH_PARAMETRIC_REPRESENTATION_CONTEXT: {
@@ -96,7 +92,6 @@ public class Contexts extends StepEntity {
                     PathParametricRepresentationContext context =
                             new PathParametricRepresentationContext("", "", identification);
                     contexts.add(context);
-                    System.out.println(context);
                     break;
                 }
                 case StepCode.REPRESENTATION_CONTEXT: {
@@ -105,7 +100,6 @@ public class Contexts extends StepEntity {
                             new RepresentationContext(parts[0].replace("'", ""),
                                     parts[1].replace("'", ""));
                     contexts.add(context);
-                    System.out.println(context);
                     break;
                 }
             }

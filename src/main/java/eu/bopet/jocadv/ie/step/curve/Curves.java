@@ -3,7 +3,6 @@ package eu.bopet.jocadv.ie.step.curve;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntity;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,39 +13,67 @@ public class Curves extends StepEntity {
     public Curves(int id, String name, String set) {
         super(id, name);
         curves = new LinkedHashSet<>();
-        System.out.println("Set: " + set);
-        String rest = set;
-        List<String> curveStringList = new ArrayList<>();
-        for (String code : StepCode.CURVES) {
-            if (set.contains(code)) {
-                while (rest.contains(code)) {
-                    String cut = rest.substring(rest.indexOf(code) + code.length());
-                    int lastBracket = 0;
-                    int brackets = 0;
-                    for (int i = 0; i < cut.length(); i++) {
-                        if (cut.charAt(i) == '(') {
-                            brackets++;
+        List<String> curveStringList = StepEntity.getSets(set, StepCode.CURVES);
+        for (String s : curveStringList) {
+            for (String code : StepCode.CURVES) {
+                if (s.startsWith(code)) {
+                    String attributes = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
+                    switch (code) {
+                        case StepCode.RATIONAL_B_SPLINE_CURVE: {
+                            RationalBSplineCurve curve = new RationalBSplineCurve(attributes);
+                            curves.add(curve);
+                            s = "";
+                            continue;
                         }
-                        if (cut.charAt(i) == ')') {
-                            brackets--;
+                        case StepCode.B_SPLINE_CURVE_WITH_KNOTS: {
+                            BSplineCurveWithKnots curve = new BSplineCurveWithKnots(attributes);
+                            curves.add(curve);
+                            s = "";
+                            continue;
                         }
-                        if (brackets == 0) {
-                            lastBracket = i;
-                            break;
+                        case StepCode.B_SPLINE_CURVE: {
+                            BSplineCurve curve = new BSplineCurve(attributes);
+                            curves.add(curve);
+                            s = "";
+                            continue;
                         }
+                        case StepCode.BOUNDED_CURVE: {
+                            BoundedCurve curve = new BoundedCurve();
+                            curves.add(curve);
+                            s = "";
+                            continue;
+                        }
+                        case StepCode.CURVE: {
+                            Curve curve = new Curve();
+                            curves.add(curve);
+                            s = "";
+                            continue;
+                        }
+                        case StepCode.GEOMETRIC_REPRESENTATION_ITEM: {
+                            GeometricRepresentationItem item = new GeometricRepresentationItem();
+                            curves.add(item);
+                            s = "";
+                            continue;
+                        }
+                        case StepCode.REPRESENTATION_ITEM: {
+                            RepresentationItem item = new RepresentationItem();
+                            curves.add(item);
+                            s = "";
+                            System.out.println(item);
+                            continue;
+                        }
+
                     }
-                    String attribute = cut.substring(0, lastBracket + 1);
-                    curveStringList.add(code + attribute);
-                    int backIndex = rest.indexOf(code) + code.length() + attribute.length();
-                    String front = rest.substring(0, rest.indexOf(code));
-                    String back = rest.substring(backIndex);
-                    rest = front + back;
+                    System.out.println("!!! Not found: " + s);
                 }
             }
         }
-        for (String s : curveStringList) {
-            System.out.println(s);
-        }
+    }
 
+    @Override
+    public String toString() {
+        return "Curves{" +
+                "curves=" + curves +
+                '}';
     }
 }

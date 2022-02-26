@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.ie.step.context.Contexts;
+import eu.bopet.jocadv.ie.step.curve.Curves;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntity;
 
@@ -255,7 +256,8 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.CURVES).contains(firstSet)) {
-                            System.out.println("*Curves!");
+                            Curves curves = new Curves(id, "", set.replace(" ", ""));
+                            result.add(curves);
                             continue;
                         }
                         if (Arrays.asList(StepCode.UNITS).contains(firstSet)) {

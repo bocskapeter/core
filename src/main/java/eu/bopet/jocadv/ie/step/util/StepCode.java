@@ -1127,6 +1127,7 @@ public class StepCode {
             GLOBAL_UNIT_ASSIGNED_CONTEXT,
             PARAMETRIC_REPRESENTATION_CONTEXT,
             PATH_PARAMETRIC_REPRESENTATION_CONTEXT,
+            // REPRESENTATION_CONTEXT
     };
 
     public static final String[] UNITS = {
@@ -1143,34 +1144,34 @@ public class StepCode {
     };
 
     public static final String[] CURVES = {
-            B_SPLINE_CURVE,
+            RATIONAL_B_SPLINE_CURVE,
             B_SPLINE_CURVE_WITH_KNOTS,
+            B_SPLINE_CURVE,
             BEZIER_CURVE,
             BOUNDARY_CURVE,
             BOUNDED_CURVE,
             CIRCLE,
-            COMPOSITE_CURVE,
             COMPOSITE_CURVE_ON_SURFACE,
+            COMPOSITE_CURVE,
             CONIC,
-            CURVE,
             CURVE_REPLICA,
             ELLIPSE,
-            GEOMETRIC_REPRESENTATION_ITEM,
             HYPERBOLA,
             INTERSECTION_CURVE,
-            LINE,
             OFFSET_CURVE_3D,
             OUTER_BOUNDARY_CURVE,
             PARABOLA,
             PCURVE,
             POLYLINE,
             QUASI_UNIFORM_CURVE,
-            RATIONAL_B_SPLINE_CURVE,
-            REPRESENTATION_ITEM,
             SEAM_CURVE,
             SURFACE_CURVE,
             TRIMMED_CURVE,
             UNIFORM_CURVE,
+            LINE,
+            CURVE,
+            GEOMETRIC_REPRESENTATION_ITEM,
+            REPRESENTATION_ITEM,
     };
 
     public static final String[] SURFACES = {

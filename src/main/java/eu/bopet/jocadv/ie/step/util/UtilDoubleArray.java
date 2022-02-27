@@ -2,10 +2,10 @@ package eu.bopet.jocadv.ie.step.util;
 
 import java.util.Arrays;
 
-public class UtilsDoubleArray extends StepEntityBase {
+public class UtilDoubleArray extends StepEntityBase {
     private double[] doubles;
 
-    public UtilsDoubleArray(int id, String name, String attributes) {
+    public UtilDoubleArray(int id, String name, String attributes) {
         super(id, name);
         String substring = attributes.substring(attributes.indexOf("(") + 1, attributes.lastIndexOf(")"));
         String[] values = substring.split(",");
@@ -13,6 +13,10 @@ public class UtilsDoubleArray extends StepEntityBase {
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = Double.parseDouble(values[i]);
         }
+    }
+
+    public double[] getDoubles() {
+        return doubles;
     }
 
     @Override

@@ -4,7 +4,6 @@ import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Feature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.ie.step.ReadStepFile;
-import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.io.File;
@@ -21,10 +20,10 @@ public class RegenerativeStep implements RegenerativeLink {
         Set<Feature> features = new LinkedHashSet<>();
         stepFeature = new StepFeature(this, features);
         List<StepEntityBase> stepEntities = ReadStepFile.readStepFile(stepFile);
-        for (StepEntityBase entity: stepEntities){
-            if (entity instanceof StepEntity){
-                StepEntity stepEntity = (StepEntity) entity;
-                features.add(stepEntity.getFeature());
+        for (StepEntityBase entity : stepEntities) {
+            if (entity instanceof RegenerativeLink) {
+                RegenerativeLink regenerativeLink = (RegenerativeLink) entity;
+                features.add(regenerativeLink.getResult());
             }
         }
     }

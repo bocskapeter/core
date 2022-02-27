@@ -3,7 +3,7 @@ package eu.bopet.jocadv.ie.step.util;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class UtilSetOfInt extends StepEntity {
+public class UtilSetOfInt extends StepEntityBase {
     private Set<Integer> ids;
 
     public UtilSetOfInt(int id, String name, String attribute) {

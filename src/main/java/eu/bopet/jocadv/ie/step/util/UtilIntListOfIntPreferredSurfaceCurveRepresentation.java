@@ -3,7 +3,7 @@ package eu.bopet.jocadv.ie.step.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilIntListOfIntPreferredSurfaceCurveRepresentation extends StepEntity {
+public class UtilIntListOfIntPreferredSurfaceCurveRepresentation extends StepEntityBase {
     private int curveId;
     private List<Integer> associatedGeometryIds;
     private PreferredSurfaceCurveRepresentation masterRep;

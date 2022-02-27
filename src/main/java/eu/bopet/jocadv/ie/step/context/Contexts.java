@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.context;
 
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.util.StepEntity;
+import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Contexts extends StepEntity {
+public class Contexts extends StepEntityBase {
     private Set<Context> contexts;
 
     public Contexts(int id, String name, String set) {

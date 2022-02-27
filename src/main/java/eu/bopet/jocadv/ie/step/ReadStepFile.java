@@ -2,8 +2,46 @@ package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.ie.step.context.Contexts;
 import eu.bopet.jocadv.ie.step.curve.Curves;
+import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
+import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
+import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
+import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
+import eu.bopet.jocadv.ie.step.entities.Axis2Placement2D;
+import eu.bopet.jocadv.ie.step.entities.Axis2Placement3D;
+import eu.bopet.jocadv.ie.step.entities.BSplineCurveWithKnots;
+import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
+import eu.bopet.jocadv.ie.step.entities.Circle;
+import eu.bopet.jocadv.ie.step.entities.ClosedShell;
+import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
+import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
+import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
+import eu.bopet.jocadv.ie.step.entities.Direction;
+import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
+import eu.bopet.jocadv.ie.step.entities.EdgeLoop;
+import eu.bopet.jocadv.ie.step.entities.Ellipse;
+import eu.bopet.jocadv.ie.step.entities.FaceBound;
+import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
+import eu.bopet.jocadv.ie.step.entities.Line;
+import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
+import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
+import eu.bopet.jocadv.ie.step.entities.PCurve;
+import eu.bopet.jocadv.ie.step.entities.Plane;
+import eu.bopet.jocadv.ie.step.entities.Product;
+import eu.bopet.jocadv.ie.step.entities.ProductCategory;
+import eu.bopet.jocadv.ie.step.entities.ProductContext;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinition;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContext;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
+import eu.bopet.jocadv.ie.step.entities.SeamCurve;
+import eu.bopet.jocadv.ie.step.entities.ShapeDefinitionRepresentation;
+import eu.bopet.jocadv.ie.step.entities.SurfaceCurve;
+import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
+import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
+import eu.bopet.jocadv.ie.step.entities.Vector;
+import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.util.StepEntity;
+import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,8 +53,8 @@ import java.util.List;
 
 public class ReadStepFile {
 
-    public static List<StepEntity> readStepFile(File file) {
-        List<StepEntity> result = new ArrayList<>();
+    public static List<StepEntityBase> readStepFile(File file) {
+        List<StepEntityBase> result = new ArrayList<>();
         System.out.println("Starting with file: " + file.getName());
         String errorLine = "";
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

@@ -3,7 +3,7 @@ package eu.bopet.jocadv.ie.step.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilListOfInt extends StepEntity {
+public class UtilListOfInt extends StepEntityBase {
     private List<Integer> list;
 
     public UtilListOfInt(int id, String name, String attribute) {

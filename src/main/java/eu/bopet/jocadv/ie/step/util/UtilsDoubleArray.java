@@ -2,7 +2,7 @@ package eu.bopet.jocadv.ie.step.util;
 
 import java.util.Arrays;
 
-public class UtilsDoubleArray extends StepEntity {
+public class UtilsDoubleArray extends StepEntityBase {
     private double[] doubles;
 
     public UtilsDoubleArray(int id, String name, String attributes) {

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.util;
 
-public class UtilString extends StepEntity {
+public class UtilString extends StepEntityBase {
     String string;
 
     public UtilString(int id, String name, String attribute) {

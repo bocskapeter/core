@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step;
 
-import eu.bopet.jocadv.ie.step.util.StepEntity;
+import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,10 +12,10 @@ class ReadStepFileTest {
     void ReadStepFileTest() {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("testFC.step").getFile());
-        List<StepEntity> entityList = ReadStepFile.readStepFile(file);
+        List<StepEntityBase> entityList = ReadStepFile.readStepFile(file);
         System.out.println("\n----****----\nEntities:");
         if (!entityList.isEmpty()) {
-            for (StepEntity entity : entityList) {
+            for (StepEntityBase entity : entityList) {
                 System.out.println(entity);
             }
         }

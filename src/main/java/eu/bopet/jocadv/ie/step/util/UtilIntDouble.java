@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.util;
 
-public class UtilIntDouble extends StepEntity {
+public class UtilIntDouble extends StepEntityBase {
     private int id;
     private double aDouble;
 

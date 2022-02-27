@@ -1,19 +1,19 @@
 package eu.bopet.jocadv.ie.step.curve;
 
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.util.StepEntity;
+import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Curves extends StepEntity {
+public class Curves extends StepEntityBase {
     private Set<Curve> curves;
 
     public Curves(int id, String name, String set) {
         super(id, name);
         curves = new LinkedHashSet<>();
-        List<String> curveStringList = StepEntity.getSets(set, StepCode.CURVES);
+        List<String> curveStringList = StepEntityBase.getSets(set, StepCode.CURVES);
         for (String s : curveStringList) {
             for (String code : StepCode.CURVES) {
                 if (s.startsWith(code)) {

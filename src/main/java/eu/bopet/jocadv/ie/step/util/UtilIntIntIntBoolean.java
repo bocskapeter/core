@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.util;
 
-public class UtilIntIntIntBoolean extends StepEntity {
+public class UtilIntIntIntBoolean extends StepEntityBase {
     private int id1;
     private int id2;
     private int id3;

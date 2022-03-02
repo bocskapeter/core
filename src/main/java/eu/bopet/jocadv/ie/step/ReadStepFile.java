@@ -40,6 +40,7 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
+import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
@@ -281,9 +282,17 @@ public class ReadStepFile {
                         result.add(representation);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.B_SPLINE_SURFACE_WITH_KNOTS)) {
+                        BSplineSurfaceWithKnots bSplineSurfaceWithKnots =
+                                new BSplineSurfaceWithKnots(id, name, att[1].replace(" ", ""));
+                        result.add(bSplineSurfaceWithKnots);
+                        continue;
+                    }
+
                     if (secondTag.startsWith(StepCode.UNCERTAINTY_MEASURE_WITH_UNIT)) {
                         System.out.println("Haho : " + secondTag);
                     }
+
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));
@@ -303,7 +312,7 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.SURFACES).contains(firstSet)) {
-                            System.out.println("*Surfaces!");
+                            System.out.println("*Surfaces!\n" + command);
                             continue;
                         }
                         System.out.println("???Set of : " + set);

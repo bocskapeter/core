@@ -59,12 +59,11 @@ public class Curves extends StepEntityBase {
                             RepresentationItem item = new RepresentationItem();
                             curves.add(item);
                             s = "";
-                            System.out.println(item);
                             continue;
                         }
 
                     }
-                    System.out.println("!!! Not found: " + s);
+                    System.out.println("!!! Curve not found: " + s);
                 }
             }
         }

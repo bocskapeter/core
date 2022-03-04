@@ -1175,12 +1175,11 @@ public class StepCode {
     };
 
     public static final String[] SURFACES = {
-            B_SPLINE_SURFACE,
             B_SPLINE_SURFACE_WITH_KNOTS,
             BEZIER_SURFACE,
-            BOUNDED_SURFACE,
             CONICAL_SURFACE,
             CURVE_BOUNDED_SURFACE,
+            BOUNDED_SURFACE,
             CYLINDRICAL_SURFACE,
             DEGENERATE_TOROIDAL_SURFACE,
             ELEMENTARY_SURFACE,
@@ -1189,6 +1188,7 @@ public class StepCode {
             PLANE,
             QUASI_UNIFORM_SURFACE,
             RATIONAL_B_SPLINE_SURFACE,
+            B_SPLINE_SURFACE,
             RECTANGULAR_COMPOSITE_SURFACE,
             RECTANGULAR_TRIMMED_SURFACE,
             SPHERICAL_SURFACE,
@@ -1198,5 +1198,8 @@ public class StepCode {
             SWEPT_SURFACE,
             TOROIDAL_SURFACE,
             UNIFORM_SURFACE,
+            GEOMETRIC_REPRESENTATION_ITEM,
+            REPRESENTATION_ITEM,
+            SURFACE,
     };
 }

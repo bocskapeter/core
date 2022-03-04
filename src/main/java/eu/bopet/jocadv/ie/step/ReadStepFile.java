@@ -41,6 +41,7 @@ import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
+import eu.bopet.jocadv.ie.step.surface.Surfaces;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
@@ -312,7 +313,8 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.SURFACES).contains(firstSet)) {
-                            System.out.println("*Surfaces!\n" + command);
+                            Surfaces surfaces = new Surfaces(id, "", set.replace(" ", ""));
+                            result.add(surfaces);
                             continue;
                         }
                         System.out.println("???Set of : " + set);

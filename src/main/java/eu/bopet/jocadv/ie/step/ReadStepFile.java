@@ -42,6 +42,7 @@ import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
+import eu.bopet.jocadv.ie.step.unit.Units;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
@@ -309,7 +310,7 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.UNITS).contains(firstSet)) {
-                            System.out.println("*Units!");
+                            Units units = new Units(id,name,set.replace(" ", ""));
                             continue;
                         }
                         if (Arrays.asList(StepCode.SURFACES).contains(firstSet)) {

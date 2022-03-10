@@ -1,12 +1,5 @@
 package eu.bopet.jocadv.ie.step.surface;
 
-public class Surface {
+public interface Surface {
 
-    public Surface() {
-    }
-
-    @Override
-    public String toString() {
-        return "Surface{}";
-    }
 }

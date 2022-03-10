@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.ie.step.curve;
 
+import eu.bopet.jocadv.ie.step.representation.GeometricRepresentationItem;
+import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
@@ -44,7 +46,7 @@ public class Curves extends StepEntityBase {
                             continue;
                         }
                         case StepCode.CURVE: {
-                            Curve curve = new Curve();
+                            StepCurve curve = new StepCurve();
                             curves.add(curve);
                             s = "";
                             continue;
@@ -71,8 +73,8 @@ public class Curves extends StepEntityBase {
 
     @Override
     public String toString() {
-        return "Curves{" +
-                "curves=" + curves +
+        return "Curves{" + super.toString() +
+                " curves=" + curves +
                 '}';
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class BSplineCurveWithKnots extends Curve {
+public class BSplineCurveWithKnots implements Curve {
     private List<Integer> knotMultiplicities;
     private List<Double> knots;
     private KnotType knotType;

@@ -286,7 +286,7 @@ public class ReadStepFile {
                     }
                     if (secondTag.startsWith(StepCode.B_SPLINE_SURFACE_WITH_KNOTS)) {
                         BSplineSurfaceWithKnots bSplineSurfaceWithKnots =
-                                new BSplineSurfaceWithKnots(id, name, att[1].replace(" ", ""));
+                                new BSplineSurfaceWithKnots(id, name, false, att[1].replace(" ", ""));
                         result.add(bSplineSurfaceWithKnots);
                         continue;
                     }
@@ -310,7 +310,8 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.UNITS).contains(firstSet)) {
-                            Units units = new Units(id,name,set.replace(" ", ""));
+                            Units units = new Units(id, name, set.replace(" ", ""));
+                            result.add(units);
                             continue;
                         }
                         if (Arrays.asList(StepCode.SURFACES).contains(firstSet)) {

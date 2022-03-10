@@ -108,8 +108,8 @@ public class Contexts extends StepEntityBase {
 
     @Override
     public String toString() {
-        return "Contexts{id=" + super.getId() +
-                " , contexts=" + contexts +
+        return "Contexts{" + super.toString() +
+                ", contexts=" + contexts +
                 '}';
     }
 }

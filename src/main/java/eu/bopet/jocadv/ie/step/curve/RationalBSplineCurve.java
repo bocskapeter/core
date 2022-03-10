@@ -3,7 +3,7 @@ package eu.bopet.jocadv.ie.step.curve;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RationalBSplineCurve extends Curve {
+public class RationalBSplineCurve implements Curve {
     private List<Double> weights;
 
     public RationalBSplineCurve(String attributes) {

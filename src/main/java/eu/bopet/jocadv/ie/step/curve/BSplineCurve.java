@@ -3,7 +3,7 @@ package eu.bopet.jocadv.ie.step.curve;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BSplineCurve extends Curve {
+public class BSplineCurve implements Curve {
     private int degree;
     private List<Integer> controlPointIds;
     private BSplineCurveForm curveForm;

@@ -7,7 +7,10 @@ public class UtilDoubleArray extends StepEntityBase {
 
     public UtilDoubleArray(int id, String name, String attributes) {
         super(id, name);
-        String substring = attributes.substring(attributes.indexOf("(") + 1, attributes.lastIndexOf(")"));
+        String substring = attributes;
+        if (attributes.contains("(") && attributes.contains(")")) {
+            substring = attributes.substring(attributes.indexOf("(") + 1, attributes.lastIndexOf(")"));
+        }
         String[] values = substring.split(",");
         doubles = new double[values.length];
         for (int i = 0; i < doubles.length; i++) {

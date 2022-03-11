@@ -12,6 +12,7 @@ import eu.bopet.jocadv.ie.step.entities.BSplineCurveWithKnots;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
+import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
@@ -20,6 +21,8 @@ import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
 import eu.bopet.jocadv.ie.step.entities.EdgeLoop;
 import eu.bopet.jocadv.ie.step.entities.Ellipse;
 import eu.bopet.jocadv.ie.step.entities.FaceBound;
+import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
+import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
@@ -340,6 +343,21 @@ public class ReadStepFile {
                         SurfaceStyleFillArea surfaceStyleFillArea =
                                 new SurfaceStyleFillArea(id, "", attributes.replace(" ", ""));
                         result.add(surfaceStyleFillArea);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.FILL_AREA_STYLE_COLOUR)) {
+                        FillAreaStyleColour fillAreaStyleColour = new FillAreaStyleColour(id, name, att[1]);
+                        result.add(fillAreaStyleColour);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.FILL_AREA_STYLE)) {
+                        FillAreaStyle fillAreaStyle = new FillAreaStyle(id, name, att[1].replace(" ", ""));
+                        result.add(fillAreaStyle);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COLOUR_RGB)) {
+                        ColourRGB colourRGB = new ColourRGB(id, name, att[1]);
+                        result.add(colourRGB);
                         continue;
                     }
 

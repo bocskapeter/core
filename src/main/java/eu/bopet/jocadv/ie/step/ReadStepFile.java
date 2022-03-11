@@ -23,9 +23,11 @@ import eu.bopet.jocadv.ie.step.entities.FaceBound;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
+import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
 import eu.bopet.jocadv.ie.step.entities.Plane;
+import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
 import eu.bopet.jocadv.ie.step.entities.Product;
 import eu.bopet.jocadv.ie.step.entities.ProductCategory;
 import eu.bopet.jocadv.ie.step.entities.ProductContext;
@@ -33,13 +35,19 @@ import eu.bopet.jocadv.ie.step.entities.ProductDefinition;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContext;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
+import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.ShapeDefinitionRepresentation;
+import eu.bopet.jocadv.ie.step.entities.StyledItem;
 import eu.bopet.jocadv.ie.step.entities.SurfaceCurve;
 import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
+import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
+import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
+import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
+import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
 import eu.bopet.jocadv.ie.step.unit.Units;
@@ -290,11 +298,50 @@ public class ReadStepFile {
                         result.add(bSplineSurfaceWithKnots);
                         continue;
                     }
-
                     if (secondTag.startsWith(StepCode.UNCERTAINTY_MEASURE_WITH_UNIT)) {
-                        System.out.println("Haho : " + secondTag);
+                        UncertaintyMeasureWithUnit uncertaintyMeasureWithUnit =
+                                new UncertaintyMeasureWithUnit(id, name, attributes);
+                        result.add(uncertaintyMeasureWithUnit);
+                        continue;
                     }
-
+                    if (secondTag.startsWith(StepCode.PRODUCT_RELATED_PRODUCT_CATEGORY)) {
+                        ProductRelatedProductCategory productRelatedProductCategory = new ProductRelatedProductCategory(id, name, attributes);
+                        result.add(productRelatedProductCategory);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_REPRESENTATION)) {
+                        MechanicalDesignGeometricPresentationRepresentation mechanicalDesignGeometricPresentationRepresentation =
+                                new MechanicalDesignGeometricPresentationRepresentation(id, name, att[1].replace(" ", ""));
+                        result.add(mechanicalDesignGeometricPresentationRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.STYLED_ITEM)) {
+                        StyledItem item = new StyledItem(id, name, att[1].replace(" ", ""));
+                        result.add(item);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRESENTATION_STYLE_ASSIGNMENT)) {
+                        PresentationStyleAssignment presentationStyleAssignment =
+                                new PresentationStyleAssignment(id, "", attributes);
+                        result.add(presentationStyleAssignment);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_STYLE_USAGE)) {
+                        SurfaceStyleUsage surfaceStyleUsage = new SurfaceStyleUsage(id, "", attributes);
+                        result.add(surfaceStyleUsage);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_SIDE_STYLE)) {
+                        SurfaceSideStyle surfaceSideStyle = new SurfaceSideStyle(id, name, att[1].replace(" ", ""));
+                        result.add(surfaceSideStyle);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_STYLE_FILL_AREA)) {
+                        SurfaceStyleFillArea surfaceStyleFillArea =
+                                new SurfaceStyleFillArea(id, "", attributes.replace(" ", ""));
+                        result.add(surfaceStyleFillArea);
+                        continue;
+                    }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));

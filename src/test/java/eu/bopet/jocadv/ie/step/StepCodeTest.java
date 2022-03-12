@@ -26,9 +26,9 @@ class StepCodeTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (!result.isEmpty()) {
-            Collections.sort(result);
-        }
+//        if (!result.isEmpty()) {
+//            Collections.sort(result);
+//        }
         for (String s : result) {
             System.out.println(s.toUpperCase(Locale.ROOT));
         }

@@ -1,6 +1,8 @@
 package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.ie.step.context.Contexts;
+import eu.bopet.jocadv.ie.step.context.DesignContext;
+import eu.bopet.jocadv.ie.step.context.MechanicalContext;
 import eu.bopet.jocadv.ie.step.curve.Curves;
 import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
@@ -37,10 +39,12 @@ import eu.bopet.jocadv.ie.step.entities.ProductContext;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinition;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContext;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormationWithSpecifiedSource;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
 import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.ShapeDefinitionRepresentation;
+import eu.bopet.jocadv.ie.step.entities.ShapeRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.StyledItem;
 import eu.bopet.jocadv.ie.step.entities.SurfaceCurve;
 import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
@@ -358,6 +362,28 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.COLOUR_RGB)) {
                         ColourRGB colourRGB = new ColourRGB(id, name, att[1]);
                         result.add(colourRGB);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SHAPE_REPRESENTATION_RELATIONSHIP)) {
+                        ShapeRepresentationRelationship shapeRepresentationRelationship =
+                                new ShapeRepresentationRelationship(id, name, att[1]);
+                        result.add(shapeRepresentationRelationship);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DESIGN_CONTEXT)) {
+                        DesignContext designContext = new DesignContext(id, name, att[1]);
+                        result.add(designContext);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRODUCT_DEFINITION_FORMATION_WITH_SPECIFIED_SOURCE)) {
+                        ProductDefinitionFormationWithSpecifiedSource productDefinitionFormationWithSpecifiedSource =
+                                new ProductDefinitionFormationWithSpecifiedSource(id, name, att[1]);
+                        result.add(productDefinitionFormationWithSpecifiedSource);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MECHANICAL_CONTEXT)) {
+                        MechanicalContext mechanicalContext = new MechanicalContext(id, name, att[1]);
+                        result.add(mechanicalContext);
                         continue;
                     }
 

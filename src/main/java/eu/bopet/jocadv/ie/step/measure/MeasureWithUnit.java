@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-public class MeasureWithUnit {
+public class MeasureWithUnit implements SelectedSize {
     private MeasureValue value;
     private int unit;
 

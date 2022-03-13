@@ -16,15 +16,19 @@ import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
+import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Direction;
+import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedCurveFont;
 import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
 import eu.bopet.jocadv.ie.step.entities.EdgeLoop;
 import eu.bopet.jocadv.ie.step.entities.Ellipse;
 import eu.bopet.jocadv.ie.step.entities.FaceBound;
+import eu.bopet.jocadv.ie.step.entities.FaceOuterBound;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
+import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
@@ -53,9 +57,12 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.Vector;
+import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
+import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
 import eu.bopet.jocadv.ie.step.unit.Units;
 import eu.bopet.jocadv.ie.step.util.StepCode;
@@ -384,6 +391,42 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.MECHANICAL_CONTEXT)) {
                         MechanicalContext mechanicalContext = new MechanicalContext(id, name, att[1]);
                         result.add(mechanicalContext);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SHAPE_REPRESENTATION)) {
+                        ShapeRepresentation shapeRepresentation = new ShapeRepresentation(id, name, att[1]);
+                        result.add(shapeRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GEOMETRIC_CURVE_SET)) {
+                        GeometricCurveSet geometricCurveSet = new GeometricCurveSet(id, name, att[1]);
+                        result.add(geometricCurveSet);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.VERTEX_LOOP)) {
+                        VertexLoop vertexLoop = new VertexLoop(id, name, att[1]);
+                        result.add(vertexLoop);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SPHERICAL_SURFACE)) {
+                        SphericalSurface sphericalSurface = new SphericalSurface(id, name, att[1]);
+                        result.add(sphericalSurface);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.FACE_OUTER_BOUND)) {
+                        FaceOuterBound faceOuterBound = new FaceOuterBound(id, name, att[1]);
+                        result.add(faceOuterBound);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CURVE_STYLE)) {
+                        CurveStyle curveStyle = new CurveStyle(id, name, att[1]);
+                        result.add(curveStyle);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DRAUGHTING_PRE_DEFINED_CURVE_FONT)) {
+                        DraughtingPreDefinedCurveFont draughtingPreDefinedCurveFont =
+                                new DraughtingPreDefinedCurveFont(id, name);
+                        result.add(draughtingPreDefinedCurveFont);
                         continue;
                     }
 

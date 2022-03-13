@@ -56,6 +56,7 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
+import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
@@ -427,6 +428,13 @@ public class ReadStepFile {
                         DraughtingPreDefinedCurveFont draughtingPreDefinedCurveFont =
                                 new DraughtingPreDefinedCurveFont(id, name);
                         result.add(draughtingPreDefinedCurveFont);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TRIMMED_CURVE)) {
+                        System.out.println("c: " + command);
+                        TrimmedCurve trimmedCurve = new TrimmedCurve(id, name, att[1]);
+                        result.add(trimmedCurve);
+                        System.out.println(trimmedCurve);
                         continue;
                     }
 

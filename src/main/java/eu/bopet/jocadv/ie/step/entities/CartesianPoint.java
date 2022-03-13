@@ -9,7 +9,7 @@ import eu.bopet.jocadv.ie.step.util.UtilDoubleArray;
 
 import java.util.Set;
 
-public class CartesianPoint extends UtilDoubleArray implements RegenerativeLink {
+public class CartesianPoint extends UtilDoubleArray implements SelectedTrim, RegenerativeLink {
     private Feature feature;
 
     public CartesianPoint(int id, String name, String attributes) {

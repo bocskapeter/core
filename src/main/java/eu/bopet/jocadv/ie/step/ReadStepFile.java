@@ -19,6 +19,7 @@ import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
 import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
+import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.Direction;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedCurveFont;
 import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
@@ -30,12 +31,15 @@ import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
 import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
+import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
 import eu.bopet.jocadv.ie.step.entities.Plane;
+import eu.bopet.jocadv.ie.step.entities.PointStyle;
+import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
 import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
 import eu.bopet.jocadv.ie.step.entities.Product;
 import eu.bopet.jocadv.ie.step.entities.ProductCategory;
@@ -60,6 +64,8 @@ import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
+import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
@@ -431,10 +437,38 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.TRIMMED_CURVE)) {
-                        System.out.println("c: " + command);
                         TrimmedCurve trimmedCurve = new TrimmedCurve(id, name, att[1]);
                         result.add(trimmedCurve);
-                        System.out.println(trimmedCurve);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.INVISIBILITY)) {
+                        Invisibility invisibility = new Invisibility(id, "", attributes);
+                        result.add(invisibility);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRESENTATION_LAYER_ASSIGNMENT)) {
+                        PresentationLayerAssignment presentationLayerAssignment = new PresentationLayerAssignment(id, name, att[1]);
+                        result.add(presentationLayerAssignment);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.POINT_STYLE)) {
+                        PointStyle pointStyle = new PointStyle(id, name, att[1]);
+                        result.add(pointStyle);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PLANE_ANGLE_MEASURE_WITH_UNIT)) {
+                        PlaneAngleMeasureWithUnit planeAngleMeasureWithUnit = new PlaneAngleMeasureWithUnit(id, "", attributes);
+                        result.add(planeAngleMeasureWithUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DIMENSIONAL_EXPONENTS)) {
+                        DimensionalExponents dimensionalExponents = new DimensionalExponents(id, "", attributes);
+                        result.add(dimensionalExponents);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.LENGTH_MEASURE_WITH_UNIT)) {
+                        LengthMeasureWithUnit lengthMeasureWithUnit = new LengthMeasureWithUnit(id, "", attributes);
+                        result.add(lengthMeasureWithUnit);
                         continue;
                     }
 

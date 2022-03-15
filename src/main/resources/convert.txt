@@ -1,3 +1,7 @@
-made,
-bought,
-not_known
+dot,
+       x,
+       plus,
+       asterisk,
+       ring,
+       square,
+       triangle

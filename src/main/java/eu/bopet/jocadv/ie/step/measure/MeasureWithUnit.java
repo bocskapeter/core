@@ -12,9 +12,6 @@ public class MeasureWithUnit implements SelectedSize {
 
     @Override
     public String toString() {
-        return "MeasureWithUnit{" +
-                "value=" + value +
-                ", unit=" + unit +
-                '}';
+        return "MeasureWithUnit{" + value + ", unit=" + unit + '}';
     }
 }

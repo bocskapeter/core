@@ -3,11 +3,13 @@ package eu.bopet.jocadv.ie.step.util;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class UtilSetOfInt extends StepEntityBase {
+public class UtilIntSetOfInt extends StepEntityBase {
+    private int id;
     private Set<Integer> ids;
 
-    public UtilSetOfInt(int id, String name, String attribute) {
+    public UtilIntSetOfInt(int id, String name, String attribute) {
         super(id, name);
+        this.id = Integer.parseInt(attribute.substring(1, attribute.indexOf(",")));
         String bracket = attribute.substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"))
                 .replaceAll(" ", "");
         String[] values = bracket.split(",");
@@ -20,6 +22,6 @@ public class UtilSetOfInt extends StepEntityBase {
 
     @Override
     public String toString() {
-        return super.toString() + ", set=" + ids.toString();
+        return super.toString() + ", id=" + id + ", set=" + ids;
     }
 }

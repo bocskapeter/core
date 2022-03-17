@@ -8,9 +8,16 @@ import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
 import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
+import eu.bopet.jocadv.ie.step.entities.Approval;
+import eu.bopet.jocadv.ie.step.entities.ApprovalDateTime;
+import eu.bopet.jocadv.ie.step.entities.ApprovalPersonOrganization;
+import eu.bopet.jocadv.ie.step.entities.ApprovalRole;
+import eu.bopet.jocadv.ie.step.entities.ApprovalStatus;
 import eu.bopet.jocadv.ie.step.entities.Axis2Placement2D;
 import eu.bopet.jocadv.ie.step.entities.Axis2Placement3D;
 import eu.bopet.jocadv.ie.step.entities.BSplineCurveWithKnots;
+import eu.bopet.jocadv.ie.step.entities.CCDesignApproval;
+import eu.bopet.jocadv.ie.step.entities.CCDesignSecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
@@ -51,6 +58,8 @@ import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormationWithSpecifiedS
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
 import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
+import eu.bopet.jocadv.ie.step.entities.SecurityClassification;
+import eu.bopet.jocadv.ie.step.entities.SecurityClassificationLevel;
 import eu.bopet.jocadv.ie.step.entities.ShapeDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.ShapeRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.StyledItem;
@@ -469,6 +478,55 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.LENGTH_MEASURE_WITH_UNIT)) {
                         LengthMeasureWithUnit lengthMeasureWithUnit = new LengthMeasureWithUnit(id, "", attributes);
                         result.add(lengthMeasureWithUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CC_DESIGN_APPROVAL)) {
+                        CCDesignApproval ccDesignApproval = new CCDesignApproval(id, "", attributes);
+                        result.add(ccDesignApproval);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.APPROVAL_PERSON_ORGANIZATION)) {
+                        ApprovalPersonOrganization approvalPersonOrganization =
+                                new ApprovalPersonOrganization(id, "", attributes);
+                        result.add(approvalPersonOrganization);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.APPROVAL_ROLE)) {
+                        ApprovalRole approvalRole = new ApprovalRole(id, name);
+                        result.add(approvalRole);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.APPROVAL_DATE_TIME)) {
+                        ApprovalDateTime approvalDateTime = new ApprovalDateTime(id, "", attributes);
+                        result.add(approvalDateTime);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.APPROVAL_STATUS)) {
+                        ApprovalStatus approvalStatus = new ApprovalStatus(id, attributes.replace("'", ""));
+                        result.add(approvalStatus);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.APPROVAL)) {
+                        Approval approval = new Approval(id, "", attributes);
+                        result.add(approval);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CC_DESIGN_SECURITY_CLASSIFICATION)) {
+                        CCDesignSecurityClassification ccDesignSecurityClassification =
+                                new CCDesignSecurityClassification(id, "", attributes);
+                        result.add(ccDesignSecurityClassification);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SECURITY_CLASSIFICATION_LEVEL)) {
+                        SecurityClassificationLevel securityClassificationLevel =
+                                new SecurityClassificationLevel(id, attributes.replace("'", ""));
+                        result.add(securityClassificationLevel);
+                        continue;
+                    }
+
+                    if (secondTag.startsWith(StepCode.SECURITY_CLASSIFICATION)) {
+                        SecurityClassification securityClassification = new SecurityClassification(id, name, att[1]);
+                        result.add(securityClassification);
                         continue;
                     }
 

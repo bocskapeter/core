@@ -7,10 +7,10 @@ public class UtilIntIntInt extends StepEntityBase {
 
     public UtilIntIntInt(int id, String name, String attributes) {
         super(id, name);
-        String[] values = attributes.split(",");
-        this.id1 = Integer.parseInt(values[0].substring(1));
-        this.id2 = Integer.parseInt(values[1].substring(1));
-        this.id3 = Integer.parseInt(values[2].substring(1));
+        String[] values = attributes.replace("#", "").split(",");
+        this.id1 = Integer.parseInt(values[0]);
+        this.id2 = Integer.parseInt(values[1]);
+        this.id3 = Integer.parseInt(values[2]);
     }
 
     @Override

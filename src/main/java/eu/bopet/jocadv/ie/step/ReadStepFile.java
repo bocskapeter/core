@@ -17,14 +17,20 @@ import eu.bopet.jocadv.ie.step.entities.Axis2Placement2D;
 import eu.bopet.jocadv.ie.step.entities.Axis2Placement3D;
 import eu.bopet.jocadv.ie.step.entities.BSplineCurveWithKnots;
 import eu.bopet.jocadv.ie.step.entities.CCDesignApproval;
+import eu.bopet.jocadv.ie.step.entities.CCDesignDateAndTimeAssignment;
+import eu.bopet.jocadv.ie.step.entities.CCDesignPersonAndOrganizationAssignment;
 import eu.bopet.jocadv.ie.step.entities.CCDesignSecurityClassification;
+import eu.bopet.jocadv.ie.step.entities.CalendarDate;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
+import eu.bopet.jocadv.ie.step.entities.CoordinatedUniversalTimeOffset;
 import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
+import eu.bopet.jocadv.ie.step.entities.DateAndTime;
+import eu.bopet.jocadv.ie.step.entities.DateTimeRole;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
 import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.Direction;
@@ -40,10 +46,15 @@ import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
+import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
+import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
+import eu.bopet.jocadv.ie.step.entities.Person;
+import eu.bopet.jocadv.ie.step.entities.PersonAndOrganization;
+import eu.bopet.jocadv.ie.step.entities.PersonAndOrganizationRole;
 import eu.bopet.jocadv.ie.step.entities.Plane;
 import eu.bopet.jocadv.ie.step.entities.PointStyle;
 import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
@@ -87,7 +98,6 @@ import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -523,10 +533,69 @@ public class ReadStepFile {
                         result.add(securityClassificationLevel);
                         continue;
                     }
-
                     if (secondTag.startsWith(StepCode.SECURITY_CLASSIFICATION)) {
                         SecurityClassification securityClassification = new SecurityClassification(id, name, att[1]);
                         result.add(securityClassification);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CC_DESIGN_DATE_AND_TIME_ASSIGNMENT)) {
+                        CCDesignDateAndTimeAssignment ccDesignDateAndTimeAssignment =
+                                new CCDesignDateAndTimeAssignment(id, "", attributes);
+                        result.add(ccDesignDateAndTimeAssignment);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATE_TIME_ROLE)) {
+                        DateTimeRole dateTimeRole = new DateTimeRole(id, name);
+                        result.add(dateTimeRole);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATE_AND_TIME)) {
+                        DateAndTime dateAndTime = new DateAndTime(id, "", attributes);
+                        result.add(dateAndTime);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.LOCAL_TIME)) {
+                        LocalTime localTime = new LocalTime(id, "", attributes);
+                        result.add(localTime);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COORDINATED_UNIVERSAL_TIME_OFFSET)) {
+                        CoordinatedUniversalTimeOffset coordinatedUniversalTimeOffset =
+                                new CoordinatedUniversalTimeOffset(id, "", attributes);
+                        result.add(coordinatedUniversalTimeOffset);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CALENDAR_DATE)) {
+                        CalendarDate calendarDate = new CalendarDate(id, "", attributes);
+                        result.add(calendarDate);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT)) {
+                        CCDesignPersonAndOrganizationAssignment ccDesignPersonAndOrganizationAssignment =
+                                new CCDesignPersonAndOrganizationAssignment(id, "", attributes);
+                        result.add(ccDesignPersonAndOrganizationAssignment);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PERSON_AND_ORGANIZATION_ROLE)) {
+                        PersonAndOrganizationRole personAndOrganizationRole =
+                                new PersonAndOrganizationRole(id, name);
+                        result.add(personAndOrganizationRole);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PERSON_AND_ORGANIZATION)) {
+                        PersonAndOrganization personAndOrganization =
+                                new PersonAndOrganization(id, "", attributes);
+                        result.add(personAndOrganization);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ORGANIZATION)) {
+                        Organization organization = new Organization(id, name, att[1]);
+                        result.add(organization);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PERSON)) {
+                        Person person = new Person(id, name, att[1]);
+                        result.add(person);
                         continue;
                     }
 
@@ -568,10 +637,14 @@ public class ReadStepFile {
                 }
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error in line: " + errorLine);
             e.printStackTrace();
         }
+        int entitiesCount = result.size();
+        int checkedEntities = result.get(result.size() - 1).getId() - result.get(0).getId() + 1;
+        System.out.println("Entities processed: " + entitiesCount);
+        System.out.println("Id check: " + checkedEntities);
         return result;
     }
 }

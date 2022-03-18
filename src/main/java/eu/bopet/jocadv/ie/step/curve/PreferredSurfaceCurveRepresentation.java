@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.ie.step.util;
+package eu.bopet.jocadv.ie.step.curve;
 
 public enum PreferredSurfaceCurveRepresentation {
     CURVE3D,

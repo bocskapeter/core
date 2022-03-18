@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.ie.step.util;
 
+import eu.bopet.jocadv.ie.step.curve.PreferredSurfaceCurveRepresentation;
+
 import java.util.ArrayList;
 import java.util.List;
 

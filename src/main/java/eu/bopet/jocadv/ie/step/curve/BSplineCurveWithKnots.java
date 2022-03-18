@@ -1,7 +1,5 @@
 package eu.bopet.jocadv.ie.step.curve;
 
-import eu.bopet.jocadv.ie.step.util.KnotType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;

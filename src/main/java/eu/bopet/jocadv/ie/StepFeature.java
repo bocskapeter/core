@@ -1,21 +1,21 @@
 package eu.bopet.jocadv.ie;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class StepFeature implements Feature {
+public class StepFeature implements JoFeature {
     private RegenerativeLink regenerativeLink;
-    private Set<Feature> features;
+    private Set<JoFeature> features;
 
     public StepFeature(RegenerativeLink regenerativeLink) {
         this.regenerativeLink = regenerativeLink;
         this.features = new LinkedHashSet<>();
     }
 
-    public StepFeature(RegenerativeLink regenerativeLink, Set<Feature> features) {
+    public StepFeature(RegenerativeLink regenerativeLink, Set<JoFeature> features) {
         this.regenerativeLink = regenerativeLink;
         this.features = features;
     }

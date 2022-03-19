@@ -5,7 +5,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.axis.PointDirectionAxis;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalException;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
 import eu.bopet.jocadv.core.constraints.regenerative.vector.CrossVector;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -109,7 +109,7 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return resultCoordinateSystem;
     }
 

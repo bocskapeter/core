@@ -11,6 +11,14 @@ public class UtilIntDouble extends StepEntityBase {
         this.aDouble = Double.parseDouble(values[1]);
     }
 
+    public int get1st() {
+        return id;
+    }
+
+    public double get2nd() {
+        return aDouble;
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", id=" + id + ", value=" + aDouble;

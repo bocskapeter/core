@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.vector.JoValue;
@@ -57,7 +57,7 @@ public class ToPlaneProjectedPoint implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return resultPoint;
     }
 

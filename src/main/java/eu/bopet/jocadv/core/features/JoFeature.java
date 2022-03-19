@@ -7,7 +7,7 @@ import eu.bopet.jocadv.core.features.exception.NotCompatibleRegenerativeLinkExce
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public interface Feature {
+public interface JoFeature {
     /**
      * @return regenerative link
      */

@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.feature;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.point.ToPlaneWithDirectionProjectedPoint;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoEdge;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -48,7 +48,7 @@ public class LineProjectedToPlaneEdge implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return resultEdge;
     }
 

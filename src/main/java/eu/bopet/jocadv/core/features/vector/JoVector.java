@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.core.features.vector;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Set;
 
-public class JoVector implements Feature {
+public class JoVector implements JoFeature {
     public final static JoVector ZERO = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
     public static final JoVector I = new JoVector(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
     public static final JoVector J = new JoVector(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
@@ -68,7 +68,7 @@ public class JoVector implements Feature {
     }
 
     public Set<JoValue> getValues() {
-        Set<JoValue> result = Feature.super.getValues();
+        Set<JoValue> result = JoFeature.super.getValues();
         result.add(x);
         result.add(y);
         result.add(z);
@@ -77,7 +77,7 @@ public class JoVector implements Feature {
 
     @Override
     public void store() {
-        Feature.super.store();
+        JoFeature.super.store();
         x.store();
         y.store();
         z.store();

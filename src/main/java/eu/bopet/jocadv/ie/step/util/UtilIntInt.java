@@ -11,6 +11,14 @@ public class UtilIntInt extends StepEntityBase {
         this.id2 = Integer.parseInt(values[1].replace("#", ""));
     }
 
+    public int get1st() {
+        return id1;
+    }
+
+    public int get2nd() {
+        return id2;
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", 1=" + id1 + ", 2=" + id2;

@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.feature;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoFace;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
@@ -15,7 +15,7 @@ public class SketchDirectionPlaneFace implements RegenerativeLink {
     private JoSketch referenceSketch;
     private JoVector referenceDirection;
     private JoPlane referencePlane;
-    private final Set<Feature> loop;
+    private final Set<JoFeature> loop;
     private final JoFace resultFace;
 
     public SketchDirectionPlaneFace(JoSketch referenceSketch, JoVector referenceDirection, JoPlane referencePlane) {
@@ -34,7 +34,7 @@ public class SketchDirectionPlaneFace implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return null;
     }
 

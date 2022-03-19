@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.ie.step.ReadStepFile;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
@@ -17,7 +17,7 @@ public class RegenerativeStep implements RegenerativeLink {
 
     public RegenerativeStep(File stepFile) {
         this.stepFile = stepFile;
-        Set<Feature> features = new LinkedHashSet<>();
+        Set<JoFeature> features = new LinkedHashSet<>();
         stepFeature = new StepFeature(this, features);
         List<StepEntityBase> stepEntities = ReadStepFile.readStepFile(stepFile);
         for (StepEntityBase entity : stepEntities) {
@@ -43,7 +43,7 @@ public class RegenerativeStep implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return stepFeature;
     }
 

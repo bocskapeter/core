@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.NoIntersectionException;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -61,7 +61,7 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return resultPoint;
     }
 

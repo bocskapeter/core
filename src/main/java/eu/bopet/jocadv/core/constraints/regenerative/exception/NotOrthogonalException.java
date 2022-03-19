@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.core.constraints.regenerative.exception;
 
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 
 public class NotOrthogonalException extends Exception {
-    private final Feature feature1;
-    private final Feature feature2;
+    private final JoFeature feature1;
+    private final JoFeature feature2;
 
-    public NotOrthogonalException(Feature feature1, Feature feature2) {
+    public NotOrthogonalException(JoFeature feature1, JoFeature feature2) {
         this.feature1 = feature1;
         this.feature2 = feature2;
     }

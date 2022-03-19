@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.feature;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.protrusion.JoExtrude;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
 import eu.bopet.jocadv.core.features.vector.JoValue;
@@ -39,7 +39,7 @@ public class SketchDirectionExtrude implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return null;
     }
 

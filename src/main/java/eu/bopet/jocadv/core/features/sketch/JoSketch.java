@@ -5,7 +5,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureEx
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -18,11 +18,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
+public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink {
 
     private static final int MAX_ITERATIONS = 31;
 
-    private final Set<Feature> references;
+    private final Set<JoFeature> references;
     private final Set<SketchGeometry> geometries;
     private final Set<SketchConstraint> constraints;
     private final Set<SketchConstraint> constraintsInSolver;
@@ -150,8 +150,8 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
         }
         constraints.add(newConstraint);
         for (Object object : components) {
-            if (object instanceof Feature) {
-                Feature feature = (Feature) object;
+            if (object instanceof JoFeature) {
+                JoFeature feature = (JoFeature) object;
                 if (!geometries.contains(feature)) {
                     if (feature instanceof JoPlane) {
                         JoPlane referencePlane = (JoPlane) feature;
@@ -340,7 +340,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
 
     @Override
     public void regenerate() throws Exception {
-        for (Feature feature : references) {
+        for (JoFeature feature : references) {
             if (feature.getRegenerativeLink() != null) feature.getRegenerativeLink().regenerate();
         }
         regenerativeLink.regenerate();
@@ -348,7 +348,7 @@ public class JoSketch extends FeatureBase implements Feature, RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return this;
     }
 

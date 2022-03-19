@@ -1,6 +1,8 @@
 package eu.bopet.jocadv.core.features.sketch;
 
+import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoValue;
@@ -9,7 +11,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
+public class JoLine extends FeatureBase implements SketchGeometry, Selectable, JoFeature {
     private final JoPoint point1;
     private final JoPoint point2;
     private final boolean construction;
@@ -45,6 +47,16 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
 
     private Line geLine() {
         return new Line(point1.getVector().getVector3D(), point2.getVector().getVector3D(), JoValue.DEFAULT_TOLERANCE);
+    }
+
+    @Override
+    public RegenerativeLink getRegenerativeLink() {
+        return null;
+    }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+
     }
 
     @Override

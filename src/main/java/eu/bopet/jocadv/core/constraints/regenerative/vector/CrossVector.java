@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.vector.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
@@ -59,7 +59,7 @@ public class CrossVector implements RegenerativeLink {
     }
 
     @Override
-    public Feature getResult() {
+    public JoFeature getResult() {
         return resultVector;
     }
 

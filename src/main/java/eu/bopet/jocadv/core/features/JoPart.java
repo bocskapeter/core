@@ -4,24 +4,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class JoPart extends FeatureBase {
-    private final Set<Feature> features;
+    private final Set<JoFeature> features;
 
     public JoPart() {
         features = new HashSet<>();
     }
 
-    public void addFeature(Feature feature) {
+    public void addFeature(JoFeature feature) {
         if (!features.contains(feature)) {
             features.add(feature);
         }
     }
 
-    public void insertAfter(Feature feature) {
+    public void insertAfter(JoFeature feature) {
 
     }
 
     public void regenerate() throws Exception {
-        for (Feature feature : features) {
+        for (JoFeature feature : features) {
             if (feature.getRegenerativeLink() != null) feature.getRegenerativeLink().regenerate();
         }
     }

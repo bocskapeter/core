@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.features.datums;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.Feature;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.vector.JoValue;
@@ -12,7 +12,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Set;
 
-public class JoPlane extends FeatureBase implements Selectable, Feature {
+public class JoPlane extends FeatureBase implements Selectable, JoFeature {
     public final static JoPlane XY = new JoPlane("XY", JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
     public final static JoPlane XZ = new JoPlane("XZ", JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
     public final static JoPlane YZ = new JoPlane("YZ", JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
@@ -91,7 +91,7 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
 
     @Override
     public Set<JoValue> getValues() {
-        Set<JoValue> result = Feature.super.getValues();
+        Set<JoValue> result = JoFeature.super.getValues();
         result.add(x);
         result.add(y);
         result.add(z);
@@ -101,7 +101,7 @@ public class JoPlane extends FeatureBase implements Selectable, Feature {
 
     @Override
     public void store() {
-        Feature.super.store();
+        JoFeature.super.store();
         x.store();
         y.store();
         z.store();

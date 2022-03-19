@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.entities;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.sketch.JoLine;
+import eu.bopet.jocadv.core.features.basic.JoEdge;
 import eu.bopet.jocadv.ie.step.StepLink;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 import eu.bopet.jocadv.ie.step.util.UtilIntInt;
@@ -46,7 +46,7 @@ public class Line extends UtilIntInt implements StepLink {
             }
         }
 
-        JoLine result = null;
+        JoEdge result = null;
         return result;
 
     }

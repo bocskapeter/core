@@ -11,7 +11,7 @@ import eu.bopet.jocadv.ie.step.util.UtilDoubleArray;
 import java.util.List;
 
 public class CartesianPoint extends UtilDoubleArray implements SelectedTrim, StepLink {
-    private JoFeature feature;
+    private JoPoint joPoint;
 
     public CartesianPoint(int id, String name, String attributes) {
         super(id, name, attributes);
@@ -19,8 +19,8 @@ public class CartesianPoint extends UtilDoubleArray implements SelectedTrim, Ste
 
     @Override
     public JoFeature getResult(List<StepEntityBase> entityList) {
-        if (feature != null) {
-            return feature;
+        if (joPoint != null) {
+            return joPoint;
         }
         double[] doubles = this.getDoubles();
         if (doubles.length == 3) {
@@ -28,8 +28,8 @@ public class CartesianPoint extends UtilDoubleArray implements SelectedTrim, Ste
             JoValue y = new JoValue(JoValue.IMPORTED, doubles[1]);
             JoValue z = new JoValue(JoValue.IMPORTED, doubles[2]);
             JoVector vector = new JoVector(x, y, z, null);
-            feature = new JoPoint(vector, null);
-            return feature;
+            joPoint = new JoPoint(vector, null);
+            return joPoint;
         }
         return null;
     }

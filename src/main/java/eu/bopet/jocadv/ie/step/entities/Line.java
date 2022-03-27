@@ -2,16 +2,24 @@ package eu.bopet.jocadv.ie.step.entities;
 
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoEdge;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
+import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.vector.JoVector;
 import eu.bopet.jocadv.ie.step.StepLink;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 import eu.bopet.jocadv.ie.step.util.UtilIntInt;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Line extends UtilIntInt implements StepLink {
-    CartesianPoint point;
-    Vector vector;
-    Direction direction;
+    private CartesianPoint point;
+    private Vector vector;
+    private Direction direction;
+    private Set<JoPoint> points;
+
 
     public Line(int id, String name, String attribute) {
         super(id, name, attribute);
@@ -45,8 +53,20 @@ public class Line extends UtilIntInt implements StepLink {
                 }
             }
         }
+        JoPoint point1 = (JoPoint) point.getResult(entityList);
+        double scale = vector.get2nd();
+        Vector3D direction3D = new Vector3D(direction.getDoubles());
+        Vector3D point23D = direction3D.scalarMultiply(scale);
+        JoValue x = new JoValue(JoValue.IMPORTED, point23D.getX());
+        JoValue y = new JoValue(JoValue.IMPORTED, point23D.getY());
+        JoValue z = new JoValue(JoValue.IMPORTED, point23D.getZ());
+        JoVector vector2 = new JoVector(x, y, z, null);
+        JoPoint point2 = new JoPoint(vector2, null);
+        points = new LinkedHashSet<>();
+        points.add(point1);
+        points.add(point2);
 
-        JoEdge result = null;
+        JoEdge result = new JoEdge(points, null);
         return result;
 
     }

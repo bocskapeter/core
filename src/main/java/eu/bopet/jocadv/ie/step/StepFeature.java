@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.ie;
+package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;

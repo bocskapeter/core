@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.basic;
 
 import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.Selectable;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
@@ -35,5 +35,12 @@ public class JoEdge extends FeatureBase implements JoFeature, Selectable {
     @Override
     public double distance(Line pickingLine) {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "JoEdge{" +
+                "points=" + points +
+                '}';
     }
 }

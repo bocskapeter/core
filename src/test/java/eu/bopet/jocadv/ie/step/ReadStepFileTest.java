@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.ie.step;
 
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.core.features.JoFeature;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.List;
+import java.util.Set;
 
 class ReadStepFileTest {
 
@@ -12,15 +12,13 @@ class ReadStepFileTest {
     void ReadStepFileTest() {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("testFC.step").getFile());
-        List<StepEntityBase> entityList = ReadStepFile.readStepFile(file);
+        RegenerativeStep regenerativeStep = new RegenerativeStep(file);
+        StepFeature feature = (StepFeature) regenerativeStep.getResult();
+        Set<JoFeature> entityList = feature.getFeatures();
         System.out.println("\n----****----\nEntities:");
         if (!entityList.isEmpty()) {
-            for (StepEntityBase entity : entityList) {
+            for (JoFeature entity : entityList) {
                 System.out.println(entity);
-                if (entity instanceof StepLink) {
-                    StepLink stepLink = (StepLink) entity;
-                    System.out.println("StepLink: " + stepLink.getResult(entityList));
-                }
             }
         }
     }

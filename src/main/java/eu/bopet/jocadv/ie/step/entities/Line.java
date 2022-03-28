@@ -18,6 +18,7 @@ public class Line extends UtilIntInt implements StepLink {
     private CartesianPoint point;
     private Vector vector;
     private Direction direction;
+    private Vector3D direction3D;
     private Set<JoPoint> points;
 
 
@@ -35,12 +36,10 @@ public class Line extends UtilIntInt implements StepLink {
         for (StepEntityBase entity : entityList) {
             if (entity.getId() == this.get1st() && entity instanceof CartesianPoint) {
                 point = (CartesianPoint) entity;
-                System.out.println("point: " + point.toString());
                 continue;
             }
             if (entity.getId() == this.get2nd() && entity instanceof Vector) {
                 vector = (Vector) entity;
-                System.out.println("vector: " + vector.toString());
                 continue;
             }
         }
@@ -48,14 +47,18 @@ public class Line extends UtilIntInt implements StepLink {
             for (StepEntityBase entity : entityList) {
                 if (entity.getId() == vector.get1st() && entity instanceof Direction) {
                     direction = (Direction) entity;
-                    System.out.println("direction: " + direction.toString());
                     continue;
                 }
             }
         }
         JoPoint point1 = (JoPoint) point.getResult(entityList);
         double scale = vector.get2nd();
-        Vector3D direction3D = new Vector3D(direction.getDoubles());
+        if (direction.getDoubles().length == 3) {
+            direction3D = new Vector3D(direction.getDoubles());
+        }
+        if (direction.getDoubles().length == 2) {
+            direction3D = new Vector3D(direction.getDoubles()[0], direction.getDoubles()[1], 0.0);
+        }
         Vector3D point23D = direction3D.scalarMultiply(scale);
         JoValue x = new JoValue(JoValue.IMPORTED, point23D.getX());
         JoValue y = new JoValue(JoValue.IMPORTED, point23D.getY());

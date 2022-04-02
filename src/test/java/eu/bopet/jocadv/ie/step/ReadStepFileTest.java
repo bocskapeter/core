@@ -11,7 +11,7 @@ class ReadStepFileTest {
     @Test
     void ReadStepFileTest() {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("testFC.step").getFile());
+        File file = new File(classLoader.getResource("test.step").getFile());
         RegenerativeStep regenerativeStep = new RegenerativeStep(file);
         StepFeature feature = (StepFeature) regenerativeStep.getResult();
         Set<JoFeature> entityList = feature.getFeatures();

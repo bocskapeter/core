@@ -25,8 +25,10 @@ import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
+import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedSurfaceSet;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
 import eu.bopet.jocadv.ie.step.entities.CoordinatedUniversalTimeOffset;
+import eu.bopet.jocadv.ie.step.entities.CoordinatesList;
 import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DateAndTime;
@@ -596,6 +598,19 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.PERSON)) {
                         Person person = new Person(id, name, att[1]);
                         result.add(person);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COORDINATES_LIST)) {
+                        CoordinatesList coordinatesList = new CoordinatesList(id, name, att[1]);
+                        result.add(coordinatesList);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPLEX_TRIANGULATED_SURFACE_SET)) {
+                        System.out.println("c: " + command);
+                        ComplexTriangulatedSurfaceSet complexTriangulatedSurfaceSet =
+                                new ComplexTriangulatedSurfaceSet(id, name, att[1]);
+                        System.out.println(complexTriangulatedSurfaceSet);
+                        result.add(complexTriangulatedSurfaceSet);
                         continue;
                     }
 

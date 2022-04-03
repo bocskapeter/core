@@ -27,7 +27,7 @@ public class CoordinatesList extends StepEntityBase {
     @Override
     public String toString() {
         return "CoordinatesList{" + super.toString() +
-                "coordinates=" + coordinates +
+                ", coordinates=" + coordinates +
                 '}';
     }
 }

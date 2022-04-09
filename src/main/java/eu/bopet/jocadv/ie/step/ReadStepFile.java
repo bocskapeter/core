@@ -21,6 +21,7 @@ import eu.bopet.jocadv.ie.step.entities.CCDesignDateAndTimeAssignment;
 import eu.bopet.jocadv.ie.step.entities.CCDesignPersonAndOrganizationAssignment;
 import eu.bopet.jocadv.ie.step.entities.CCDesignSecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.CalendarDate;
+import eu.bopet.jocadv.ie.step.entities.CameraModelD3;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
@@ -33,6 +34,7 @@ import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DateAndTime;
 import eu.bopet.jocadv.ie.step.entities.DateTimeRole;
+import eu.bopet.jocadv.ie.step.entities.DefaultModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
 import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.Direction;
@@ -50,6 +52,7 @@ import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
+import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationship;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
@@ -57,6 +60,7 @@ import eu.bopet.jocadv.ie.step.entities.PCurve;
 import eu.bopet.jocadv.ie.step.entities.Person;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganization;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganizationRole;
+import eu.bopet.jocadv.ie.step.entities.PlanarBox;
 import eu.bopet.jocadv.ie.step.entities.Plane;
 import eu.bopet.jocadv.ie.step.entities.PointStyle;
 import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
@@ -86,6 +90,7 @@ import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
+import eu.bopet.jocadv.ie.step.entities.ViewVolume;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
@@ -609,6 +614,33 @@ public class ReadStepFile {
                         ComplexTriangulatedSurfaceSet complexTriangulatedSurfaceSet =
                                 new ComplexTriangulatedSurfaceSet(id, name, att[1]);
                         result.add(complexTriangulatedSurfaceSet);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DEFAULT_MODEL_GEOMETRIC_VIEW)) {
+                        DefaultModelGeometricView defaultModelGeometricView =
+                                new DefaultModelGeometricView(id, name, att[1]);
+                        result.add(defaultModelGeometricView);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MECHANICAL_DESIGN_AND_DRAUGHTING_RELATIONSHIP)) {
+                        MechanicalDesignAndDraughtingRelationship mechanicalDesignAndDraughtingRelationship =
+                                new MechanicalDesignAndDraughtingRelationship(id, name, att[1]);
+                        result.add(mechanicalDesignAndDraughtingRelationship);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CAMERA_MODEL_D3)) {
+                        CameraModelD3 cameraModelD3 = new CameraModelD3(id, name, att[1]);
+                        result.add(cameraModelD3);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.VIEW_VOLUME)) {
+                        ViewVolume viewVolume = new ViewVolume(id, "", attributes);
+                        result.add(viewVolume);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PLANAR_BOX)) {
+                        PlanarBox planarBox = new PlanarBox(id, name, att[1]);
+                        result.add(planarBox);
                         continue;
                     }
 

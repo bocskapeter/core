@@ -11,6 +11,7 @@ public class StepCode {
     public static final String ADVANCED_FACE = "ADVANCED_FACE";
     public static final String ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM = "ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM";
     public static final String ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM = "ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM";
+    public static final String ALL_AROUND_SHAPE_ASPECT = "ALL_AROUND_SHAPE_ASPECT";
     public static final String ANALYSIS_ITEM_WITHIN_REPRESENTATION = "ANALYSIS_ITEM_WITHIN_REPRESENTATION";
     public static final String ANALYSIS_REPRESENTATION_CONTEXT = "ANALYSIS_REPRESENTATION_CONTEXT";
     public static final String ANGULARITY_TOLERANCE = "ANGULARITY_TOLERANCE";
@@ -179,6 +180,7 @@ public class StepCode {
     public static final String DATUM = "DATUM";
     public static final String DATUM_FEATURE = "DATUM_FEATURE";
     public static final String DATUM_REFERENCE = "DATUM_REFERENCE";
+    public static final String DATUM_REFERENCE_ELEMENT = "DATUM_REFERENCE_ELEMENT";
     public static final String DATUM_TARGET = "DATUM_TARGET";
     public static final String DEFAULT_MODEL_GEOMETRIC_VIEW = "DEFAULT_MODEL_GEOMETRIC_VIEW";
     public static final String DEFINED_SYMBOL = "DEFINED_SYMBOL";
@@ -578,6 +580,7 @@ public class StepCode {
             ADVANCED_FACE,
             ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM,
             ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM,
+            ALL_AROUND_SHAPE_ASPECT,
             ANALYSIS_ITEM_WITHIN_REPRESENTATION,
             ANGULARITY_TOLERANCE,
             ANGULAR_LOCATION,
@@ -745,6 +748,7 @@ public class StepCode {
             DATUM,
             DATUM_FEATURE,
             DATUM_REFERENCE,
+            DATUM_REFERENCE_ELEMENT,
             DATUM_TARGET,
             DEFAULT_MODEL_GEOMETRIC_VIEW,
             DEFINED_SYMBOL,

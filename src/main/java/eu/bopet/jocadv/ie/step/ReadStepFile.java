@@ -6,6 +6,7 @@ import eu.bopet.jocadv.ie.step.context.MechanicalContext;
 import eu.bopet.jocadv.ie.step.curve.Curves;
 import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
+import eu.bopet.jocadv.ie.step.entities.AllAroundShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
 import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
 import eu.bopet.jocadv.ie.step.entities.Approval;
@@ -34,9 +35,12 @@ import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DateAndTime;
 import eu.bopet.jocadv.ie.step.entities.DateTimeRole;
+import eu.bopet.jocadv.ie.step.entities.DatumFeature;
+import eu.bopet.jocadv.ie.step.entities.DatumReferenceElement;
 import eu.bopet.jocadv.ie.step.entities.DefaultModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
 import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
+import eu.bopet.jocadv.ie.step.entities.DimensionalLocation;
 import eu.bopet.jocadv.ie.step.entities.Direction;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedCurveFont;
 import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
@@ -46,7 +50,9 @@ import eu.bopet.jocadv.ie.step.entities.FaceBound;
 import eu.bopet.jocadv.ie.step.entities.FaceOuterBound;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
+import eu.bopet.jocadv.ie.step.entities.FlatnessTolerance;
 import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
+import eu.bopet.jocadv.ie.step.entities.GeometricToleranceRelationship;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
@@ -57,6 +63,7 @@ import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRep
 import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
+import eu.bopet.jocadv.ie.step.entities.ParallelismTolerance;
 import eu.bopet.jocadv.ie.step.entities.Person;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganization;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganizationRole;
@@ -641,6 +648,42 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.PLANAR_BOX)) {
                         PlanarBox planarBox = new PlanarBox(id, name, att[1]);
                         result.add(planarBox);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DIMENSIONAL_LOCATION)) {
+                        DimensionalLocation dimensionalLocation = new DimensionalLocation(id, name, att[1]);
+                        result.add(dimensionalLocation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GEOMETRIC_TOLERANCE_RELATIONSHIP)) {
+                        GeometricToleranceRelationship geometricToleranceRelationship
+                                = new GeometricToleranceRelationship(id, name, att[1]);
+                        result.add(geometricToleranceRelationship);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ALL_AROUND_SHAPE_ASPECT)) {
+                        AllAroundShapeAspect allAroundShapeAspect = new AllAroundShapeAspect(id, name, att[1]);
+                        result.add(allAroundShapeAspect);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATUM_REFERENCE_ELEMENT)) {
+                        DatumReferenceElement datumReferenceElement = new DatumReferenceElement(id, name, att[1]);
+                        result.add(datumReferenceElement);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.FLATNESS_TOLERANCE)) {
+                        FlatnessTolerance flatnessTolerance = new FlatnessTolerance(id, name, att[1]);
+                        result.add(flatnessTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PARALLELISM_TOLERANCE)) {
+                        ParallelismTolerance parallelismTolerance = new ParallelismTolerance(id, name, att[1]);
+                        result.add(parallelismTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATUM_FEATURE)) {
+                        DatumFeature datumFeature = new DatumFeature(id, name, att[1]);
+                        result.add(datumFeature);
                         continue;
                     }
 

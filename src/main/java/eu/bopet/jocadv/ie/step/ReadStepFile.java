@@ -81,6 +81,7 @@ import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormationWithSpecifiedSource;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
 import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
+import eu.bopet.jocadv.ie.step.entities.PropertyDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassificationLevel;
@@ -684,6 +685,12 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.DATUM_FEATURE)) {
                         DatumFeature datumFeature = new DatumFeature(id, name, att[1]);
                         result.add(datumFeature);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PROPERTY_DEFINITION_REPRESENTATION)) {
+                        PropertyDefinitionRepresentation propertyDefinitionRepresentation =
+                                new PropertyDefinitionRepresentation(id, "", attributes);
+                        result.add(propertyDefinitionRepresentation);
                         continue;
                     }
 

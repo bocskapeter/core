@@ -36,9 +36,11 @@ import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DateAndTime;
 import eu.bopet.jocadv.ie.step.entities.DateTimeRole;
 import eu.bopet.jocadv.ie.step.entities.DatumFeature;
+import eu.bopet.jocadv.ie.step.entities.DatumReferenceCompartment;
 import eu.bopet.jocadv.ie.step.entities.DatumReferenceElement;
 import eu.bopet.jocadv.ie.step.entities.DefaultModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
+import eu.bopet.jocadv.ie.step.entities.DescriptiveRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.DimensionalLocation;
 import eu.bopet.jocadv.ie.step.entities.Direction;
@@ -81,6 +83,7 @@ import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormationWithSpecifiedSource;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
 import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
+import eu.bopet.jocadv.ie.step.entities.PropertyDefinition;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassification;
@@ -93,6 +96,8 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
 import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
+import eu.bopet.jocadv.ie.step.entities.ToleranceZone;
+import eu.bopet.jocadv.ie.step.entities.ToleranceZoneForm;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
 import eu.bopet.jocadv.ie.step.entities.Vector;
@@ -103,6 +108,8 @@ import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.representation.Representation;
+import eu.bopet.jocadv.ie.step.representation.RepresentationMap;
 import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
@@ -692,6 +699,51 @@ public class ReadStepFile {
                         PropertyDefinitionRepresentation propertyDefinitionRepresentation =
                                 new PropertyDefinitionRepresentation(id, "", attributes);
                         result.add(propertyDefinitionRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.REPRESENTATION_MAP)) {
+                        RepresentationMap representationMap = new RepresentationMap(id, "", attributes);
+                        result.add(representationMap);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.REPRESENTATION)) {
+                        Representation representation = new Representation(id, name, att[1]);
+                        result.add(representation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PROPERTY_DEFINITION)) {
+                        PropertyDefinition propertyDefinition = new PropertyDefinition(id, name, att[1]);
+                        result.add(propertyDefinition);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DESCRIPTIVE_REPRESENTATION_ITEM)) {
+                        DescriptiveRepresentationItem descriptiveRepresentationItem =
+                                new DescriptiveRepresentationItem(id, name, att[1]);
+                        result.add(descriptiveRepresentationItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SHAPE_ASPECT_RELATIONSHIP)) {
+                        ShapeRepresentationRelationship shapeRepresentationRelationship
+                                = new ShapeRepresentationRelationship(id, name, att[1]);
+                        result.add(shapeRepresentationRelationship);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TOLERANCE_ZONE_FORM)) {
+                        ToleranceZoneForm toleranceZoneForm = new ToleranceZoneForm(id, name);
+                        result.add(toleranceZoneForm);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TOLERANCE_ZONE)) {
+                        ToleranceZone toleranceZone = new ToleranceZone(id, name, att[1]);
+                        result.add(toleranceZone);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATUM_REFERENCE_COMPARTMENT)) {
+                        System.out.println("C: " + command);
+                        DatumReferenceCompartment datumReferenceCompartment =
+                                new DatumReferenceCompartment(id, name, att[1]);
+                        System.out.println(datumReferenceCompartment);
+                        result.add(datumReferenceCompartment);
                         continue;
                     }
 

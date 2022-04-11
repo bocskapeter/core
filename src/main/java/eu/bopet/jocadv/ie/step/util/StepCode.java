@@ -180,6 +180,7 @@ public class StepCode {
     public static final String DATUM = "DATUM";
     public static final String DATUM_FEATURE = "DATUM_FEATURE";
     public static final String DATUM_REFERENCE = "DATUM_REFERENCE";
+    public static final String DATUM_REFERENCE_COMPARTMENT = "DATUM_REFERENCE_COMPARTMENT";
     public static final String DATUM_REFERENCE_ELEMENT = "DATUM_REFERENCE_ELEMENT";
     public static final String DATUM_TARGET = "DATUM_TARGET";
     public static final String DEFAULT_MODEL_GEOMETRIC_VIEW = "DEFAULT_MODEL_GEOMETRIC_VIEW";
@@ -545,6 +546,8 @@ public class StepCode {
     public static final String TIME_MEASURE_WITH_UNIT = "TIME_MEASURE_WITH_UNIT";
     public static final String TIME_UNIT = "TIME_UNIT";
     public static final String TOLERANCE_VALUE = "TOLERANCE_VALUE";
+    public static final String TOLERANCE_ZONE = "TOLERANCE_ZONE";
+    public static final String TOLERANCE_ZONE_FORM = "TOLERANCE_ZONE_FORM";
     public static final String TOPOLOGICAL_REPRESENTATION_ITEM = "TOPOLOGICAL_REPRESENTATION_ITEM";
     public static final String TOROIDAL_SURFACE = "TOROIDAL_SURFACE";
     public static final String TORUS = "TORUS";
@@ -748,6 +751,7 @@ public class StepCode {
             DATUM,
             DATUM_FEATURE,
             DATUM_REFERENCE,
+            DATUM_REFERENCE_COMPARTMENT,
             DATUM_REFERENCE_ELEMENT,
             DATUM_TARGET,
             DEFAULT_MODEL_GEOMETRIC_VIEW,
@@ -1112,6 +1116,8 @@ public class StepCode {
             TIME_MEASURE_WITH_UNIT,
             TIME_UNIT,
             TOLERANCE_VALUE,
+            TOLERANCE_ZONE,
+            TOLERANCE_ZONE_FORM,
             TOPOLOGICAL_REPRESENTATION_ITEM,
             TOROIDAL_SURFACE,
             TORUS,

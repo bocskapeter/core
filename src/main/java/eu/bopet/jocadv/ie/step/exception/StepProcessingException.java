@@ -11,4 +11,10 @@ public class StepProcessingException extends Exception {
     public String getMessage() {
         return "***\n*** Step processing exception in line: " + errorLine + "\n***";
     }
+
+    @Override
+    public String getLocalizedMessage() {
+        // TODO localize message
+        return getMessage();
+    }
 }

@@ -8,7 +8,8 @@ public class UtilListOfInt extends StepEntityBase {
 
     public UtilListOfInt(int id, String name, String attribute) {
         super(id, name);
-        String substring = attribute.substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"));
+        String substring = attribute.replace(" ", "")
+                .substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"));
         String[] values = substring.split(",");
         list = new ArrayList<>();
         for (String value : values) {

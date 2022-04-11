@@ -9,7 +9,7 @@ import java.util.Set;
 class ReadStepFileTest {
 
     @Test
-    void ReadStepFileTest() {
+    void ReadStepFileTest() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("test.step").getFile());
         RegenerativeStep regenerativeStep = new RegenerativeStep(file);

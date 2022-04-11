@@ -99,6 +99,7 @@ import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.entities.ViewVolume;
+import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
@@ -119,7 +120,7 @@ import java.util.List;
 
 public class ReadStepFile {
 
-    public static List<StepEntityBase> readStepFile(File file) {
+    public static List<StepEntityBase> readStepFile(File file) throws StepProcessingException {
         List<StepEntityBase> result = new ArrayList<>();
         System.out.println("Starting with file: " + file.getName());
         String errorLine = "";
@@ -733,8 +734,8 @@ public class ReadStepFile {
             }
 
         } catch (Exception e) {
-            System.out.println("Error in line: " + errorLine);
             e.printStackTrace();
+            throw new StepProcessingException(errorLine);
         }
         int entitiesCount = result.size();
         int checkedEntities = result.get(result.size() - 1).getId() - result.get(0).getId() + 1;

@@ -10,7 +10,8 @@ public class UtilStringIntBoolean extends StepEntityBase {
         description = attribute.substring(0, attribute.indexOf("',")).replace("'", "");
         String rest = attribute.substring(attribute.indexOf("',") + 2);
         shape = Integer.parseInt(rest.substring(0, rest.indexOf(",")).replace("#", ""));
-        productDefinitional = rest.substring(rest.indexOf(",."), rest.indexOf(".,")).contains("T");
+        String rest2 = rest.substring(rest.indexOf(",.") + 2);
+        productDefinitional = rest2.substring(0, rest2.indexOf(".")).contains("T");
     }
 
     @Override

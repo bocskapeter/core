@@ -26,6 +26,7 @@ import eu.bopet.jocadv.ie.step.entities.CameraModelD3;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
+import eu.bopet.jocadv.ie.step.entities.Colour;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedSurfaceSet;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
@@ -45,7 +46,10 @@ import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
 import eu.bopet.jocadv.ie.step.entities.DescriptiveRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.DimensionalLocation;
+import eu.bopet.jocadv.ie.step.entities.DimensionalSize;
 import eu.bopet.jocadv.ie.step.entities.Direction;
+import eu.bopet.jocadv.ie.step.entities.DraughtingCallOut;
+import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedColour;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedCurveFont;
 import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
 import eu.bopet.jocadv.ie.step.entities.EdgeLoop;
@@ -62,6 +66,7 @@ import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
+import eu.bopet.jocadv.ie.step.entities.MappedItem;
 import eu.bopet.jocadv.ie.step.entities.MeasureQualification;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationship;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
@@ -92,6 +97,7 @@ import eu.bopet.jocadv.ie.step.entities.PropertyDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassificationLevel;
+import eu.bopet.jocadv.ie.step.entities.ShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.ShapeDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.ShapeRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.StyledItem;
@@ -111,10 +117,13 @@ import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.entities.ViewVolume;
 import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.measure.MeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.representation.DimensionalCharacteristicRepresentation;
 import eu.bopet.jocadv.ie.step.representation.Representation;
 import eu.bopet.jocadv.ie.step.representation.RepresentationMap;
+import eu.bopet.jocadv.ie.step.representation.ShapeDimensionRepresentation;
 import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
@@ -770,9 +779,56 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.MEASURE_QUALIFICATION)) {
-                        //System.out.println("C: " + command);
                         MeasureQualification measureQualification = new MeasureQualification(id, name, att[1]);
                         result.add(measureQualification);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MEASURE_WITH_UNIT)) {
+                        MeasureWithUnit measureWithUnit = new MeasureWithUnit(id, "", attributes);
+                        result.add(measureWithUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DIMENSIONAL_CHARACTERISTIC_REPRESENTATION)) {
+                        DimensionalCharacteristicRepresentation dimensionalCharacteristicRepresentation =
+                                new DimensionalCharacteristicRepresentation(id, "", attributes);
+                        result.add(dimensionalCharacteristicRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DIMENSIONAL_SIZE)) {
+                        DimensionalSize dimensionalSize = new DimensionalSize(id, "", attributes);
+                        result.add(dimensionalSize);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SHAPE_DIMENSION_REPRESENTATION)) {
+                        ShapeDimensionRepresentation shapeDimensionRepresentation =
+                                new ShapeDimensionRepresentation(id, name, att[1]);
+                        result.add(shapeDimensionRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SHAPE_ASPECT)) {
+                        ShapeAspect shapeAspect = new ShapeAspect(id, name, att[1]);
+                        result.add(shapeAspect);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MAPPED_ITEM)) {
+                        MappedItem mappedItem = new MappedItem(id, name, att[1]);
+                        result.add(mappedItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COLOUR)) {
+                        Colour colour = new Colour(id, "");
+                        result.add(colour);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DRAUGHTING_CALLOUT)) {
+                        DraughtingCallOut draughtingCallOut = new DraughtingCallOut(id, name, att[1]);
+                        result.add(draughtingCallOut);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DRAUGHTING_PRE_DEFINED_COLOUR)) {
+                        DraughtingPreDefinedColour draughtingPreDefinedColour =
+                                new DraughtingPreDefinedColour(id, name);
+                        result.add(draughtingPreDefinedColour);
                         continue;
                     }
 

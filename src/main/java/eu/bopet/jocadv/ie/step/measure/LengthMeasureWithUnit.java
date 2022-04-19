@@ -3,15 +3,15 @@ package eu.bopet.jocadv.ie.step.measure;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 public class LengthMeasureWithUnit extends StepEntityBase {
-    private MeasureWithUnit measureWithUnit;
+    private MeasureWithUnitInSet measureWithUnitInSet;
 
     public LengthMeasureWithUnit(int id, String name, String attribute) {
         super(id, name);
-        measureWithUnit = new MeasureWithUnit(attribute);
+        measureWithUnitInSet = new MeasureWithUnitInSet(attribute);
     }
 
     @Override
     public String toString() {
-        return "LengthMeasureWithUnit{" + measureWithUnit + '}';
+        return "LengthMeasureWithUnit{" + measureWithUnitInSet + '}';
     }
 }

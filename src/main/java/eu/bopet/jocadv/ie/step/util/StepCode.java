@@ -183,7 +183,7 @@ public class StepCode {
     public static final String DATUM_REFERENCE = "DATUM_REFERENCE";
     public static final String DATUM_REFERENCE_COMPARTMENT = "DATUM_REFERENCE_COMPARTMENT";
     public static final String DATUM_REFERENCE_ELEMENT = "DATUM_REFERENCE_ELEMENT";
-    public static final String DATUM_SYSTEM ="DATUM_SYSTEM";
+    public static final String DATUM_SYSTEM = "DATUM_SYSTEM";
     public static final String DATUM_TARGET = "DATUM_TARGET";
     public static final String DEFAULT_MODEL_GEOMETRIC_VIEW = "DEFAULT_MODEL_GEOMETRIC_VIEW";
     public static final String DEFINED_SYMBOL = "DEFINED_SYMBOL";
@@ -316,6 +316,7 @@ public class StepCode {
     public static final String INTERSECTION_CURVE = "INTERSECTION_CURVE";
     public static final String INVISIBILITY = "INVISIBILITY";
     public static final String ITEM_DEFINED_TRANSFORMATION = "ITEM_DEFINED_TRANSFORMATION";
+    public static final String LENGTH_MEASURE = "LENGTH_MEASURE";
     public static final String LENGTH_MEASURE_WITH_UNIT = "LENGTH_MEASURE_WITH_UNIT";
     public static final String LENGTH_UNIT = "LENGTH_UNIT";
     public static final String LIMITS_AND_FITS = "LIMITS_AND_FITS";
@@ -889,6 +890,7 @@ public class StepCode {
             INTERSECTION_CURVE,
             INVISIBILITY,
             ITEM_DEFINED_TRANSFORMATION,
+            LENGTH_MEASURE,
             LENGTH_MEASURE_WITH_UNIT,
             LENGTH_UNIT,
             LIMITS_AND_FITS,

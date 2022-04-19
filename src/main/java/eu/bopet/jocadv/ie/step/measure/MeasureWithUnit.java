@@ -1,17 +1,22 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-public class MeasureWithUnit implements SelectedSize {
-    private MeasureValue value;
-    private int unit;
+import eu.bopet.jocadv.ie.step.util.StepCode;
+import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
-    public MeasureWithUnit(String attribute) {
-        String[] parts = attribute.split(",");
-        value = new MeasureValue(parts[0]);
-        unit = Integer.parseInt(parts[1].replace("#", ""));
+public class MeasureWithUnit extends StepEntityBase {
+    private LengthMeasureWithUnit lengthMeasureWithUnit;
+
+    public MeasureWithUnit(int id, String name, String attribute) {
+        super(id, name);
+        if (attribute.startsWith(StepCode.LENGTH_MEASURE)) {
+            lengthMeasureWithUnit = new LengthMeasureWithUnit(-1, "", attribute);
+        }
     }
 
     @Override
     public String toString() {
-        return "MeasureWithUnit{" + value + ", unit=" + unit + '}';
+        return "MeasureWithUnit{" + super.toString() +
+                ", lengthMeasureWithUnit=" + lengthMeasureWithUnit +
+                '}';
     }
 }

@@ -116,6 +116,7 @@ public class StepCode {
     public static final String COLOUR_RGB = "COLOUR_RGB";
     public static final String COLOUR_SPECIFICATION = "COLOUR_SPECIFICATION";
     public static final String COMMON_DATUM = "COMMON_DATUM";
+    public static final String COMMON_DATUM_LIST = "COMMON_DATUM_LIST";
     public static final String COMPLEX_TRIANGULATED_SURFACE_SET = "COMPLEX_TRIANGULATED_SURFACE_SET";
     public static final String COMPOSITE_CURVE = "COMPOSITE_CURVE";
     public static final String COMPOSITE_CURVE_ON_SURFACE = "COMPOSITE_CURVE_ON_SURFACE";
@@ -182,6 +183,7 @@ public class StepCode {
     public static final String DATUM_REFERENCE = "DATUM_REFERENCE";
     public static final String DATUM_REFERENCE_COMPARTMENT = "DATUM_REFERENCE_COMPARTMENT";
     public static final String DATUM_REFERENCE_ELEMENT = "DATUM_REFERENCE_ELEMENT";
+    public static final String DATUM_SYSTEM ="DATUM_SYSTEM";
     public static final String DATUM_TARGET = "DATUM_TARGET";
     public static final String DEFAULT_MODEL_GEOMETRIC_VIEW = "DEFAULT_MODEL_GEOMETRIC_VIEW";
     public static final String DEFINED_SYMBOL = "DEFINED_SYMBOL";
@@ -687,6 +689,7 @@ public class StepCode {
             COLOUR_RGB,
             COLOUR_SPECIFICATION,
             COMMON_DATUM,
+            COMMON_DATUM_LIST,
             COMPLEX_TRIANGULATED_SURFACE_SET,
             COMPOSITE_CURVE,
             COMPOSITE_CURVE_ON_SURFACE,
@@ -753,6 +756,7 @@ public class StepCode {
             DATUM_REFERENCE,
             DATUM_REFERENCE_COMPARTMENT,
             DATUM_REFERENCE_ELEMENT,
+            DATUM_SYSTEM,
             DATUM_TARGET,
             DEFAULT_MODEL_GEOMETRIC_VIEW,
             DEFINED_SYMBOL,

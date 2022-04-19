@@ -35,9 +35,11 @@ import eu.bopet.jocadv.ie.step.entities.CurveStyle;
 import eu.bopet.jocadv.ie.step.entities.CylindricalSurface;
 import eu.bopet.jocadv.ie.step.entities.DateAndTime;
 import eu.bopet.jocadv.ie.step.entities.DateTimeRole;
+import eu.bopet.jocadv.ie.step.entities.Datum;
 import eu.bopet.jocadv.ie.step.entities.DatumFeature;
 import eu.bopet.jocadv.ie.step.entities.DatumReferenceCompartment;
 import eu.bopet.jocadv.ie.step.entities.DatumReferenceElement;
+import eu.bopet.jocadv.ie.step.entities.DatumSystem;
 import eu.bopet.jocadv.ie.step.entities.DefaultModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
 import eu.bopet.jocadv.ie.step.entities.DescriptiveRepresentationItem;
@@ -60,6 +62,7 @@ import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
+import eu.bopet.jocadv.ie.step.entities.MeasureQualification;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationship;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Organization;
@@ -71,6 +74,7 @@ import eu.bopet.jocadv.ie.step.entities.PersonAndOrganization;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganizationRole;
 import eu.bopet.jocadv.ie.step.entities.PlanarBox;
 import eu.bopet.jocadv.ie.step.entities.Plane;
+import eu.bopet.jocadv.ie.step.entities.PlusMinusTolerance;
 import eu.bopet.jocadv.ie.step.entities.PointStyle;
 import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
 import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
@@ -96,6 +100,7 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
 import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
+import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZone;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZoneForm;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
@@ -739,11 +744,35 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.DATUM_REFERENCE_COMPARTMENT)) {
-                        System.out.println("C: " + command);
                         DatumReferenceCompartment datumReferenceCompartment =
                                 new DatumReferenceCompartment(id, name, att[1]);
-                        System.out.println(datumReferenceCompartment);
                         result.add(datumReferenceCompartment);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATUM_SYSTEM)) {
+                        DatumSystem datumSystem = new DatumSystem(id, name, att[1]);
+                        result.add(datumSystem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DATUM)) {
+                        Datum datum = new Datum(id, name, att[1]);
+                        result.add(datum);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PLUS_MINUS_TOLERANCE)) {
+                        PlusMinusTolerance plusMinusTolerance = new PlusMinusTolerance(id, "", attributes);
+                        result.add(plusMinusTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TOLERANCE_VALUE)) {
+                        ToleranceValue toleranceValue = new ToleranceValue(id, "", attributes);
+                        result.add(toleranceValue);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MEASURE_QUALIFICATION)) {
+                        //System.out.println("C: " + command);
+                        MeasureQualification measureQualification = new MeasureQualification(id, name, att[1]);
+                        result.add(measureQualification);
                         continue;
                     }
 

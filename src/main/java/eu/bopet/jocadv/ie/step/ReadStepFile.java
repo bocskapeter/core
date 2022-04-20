@@ -8,6 +8,7 @@ import eu.bopet.jocadv.ie.step.curve.TessellatedCurveSet;
 import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
 import eu.bopet.jocadv.ie.step.entities.AllAroundShapeAspect;
+import eu.bopet.jocadv.ie.step.entities.AnnotationPlane;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
 import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
 import eu.bopet.jocadv.ie.step.entities.Approval;
@@ -52,6 +53,7 @@ import eu.bopet.jocadv.ie.step.entities.DimensionalLocation;
 import eu.bopet.jocadv.ie.step.entities.DimensionalSize;
 import eu.bopet.jocadv.ie.step.entities.Direction;
 import eu.bopet.jocadv.ie.step.entities.DraughtingCallOut;
+import eu.bopet.jocadv.ie.step.entities.DraughtingModelItemAssociation;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedColour;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedCurveFont;
 import eu.bopet.jocadv.ie.step.entities.EdgeCurve;
@@ -63,8 +65,10 @@ import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
 import eu.bopet.jocadv.ie.step.entities.FlatnessTolerance;
 import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
+import eu.bopet.jocadv.ie.step.entities.GeometricItemSpecificUsage;
 import eu.bopet.jocadv.ie.step.entities.GeometricToleranceRelationship;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
+import eu.bopet.jocadv.ie.step.entities.IdAttribute;
 import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
@@ -109,11 +113,13 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
 import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
+import eu.bopet.jocadv.ie.step.entities.TessellatedAnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZone;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZoneForm;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
+import eu.bopet.jocadv.ie.step.entities.ValueFormatTypeQualifier;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
@@ -856,6 +862,39 @@ public class ReadStepFile {
                         CompositeGroupShapeAspect compositeGroupShapeAspect =
                                 new CompositeGroupShapeAspect(id, name, att[1]);
                         result.add(compositeGroupShapeAspect);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.VALUE_FORMAT_TYPE_QUALIFIER)) {
+                        ValueFormatTypeQualifier valueFormatTypeQualifier = new ValueFormatTypeQualifier(id, name);
+                        result.add(valueFormatTypeQualifier);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DRAUGHTING_MODEL_ITEM_ASSOCIATION)) {
+                        DraughtingModelItemAssociation draughtingModelItemAssociation =
+                                new DraughtingModelItemAssociation(id, name, att[1]);
+                        result.add(draughtingModelItemAssociation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GEOMETRIC_ITEM_SPECIFIC_USAGE)) {
+                        GeometricItemSpecificUsage geometricItemSpecificUsage =
+                                new GeometricItemSpecificUsage(id, name, att[1]);
+                        result.add(geometricItemSpecificUsage);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ID_ATTRIBUTE)) {
+                        IdAttribute idAttribute = new IdAttribute(id, name, att[1]);
+                        result.add(idAttribute);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ANNOTATION_PLANE)) {
+                        AnnotationPlane annotationPlane = new AnnotationPlane(id, name, att[1]);
+                        result.add(annotationPlane);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TESSELLATED_ANNOTATION_OCCURRENCE)) {
+                        TessellatedAnnotationOccurrence tessellatedAnnotationOccurrence =
+                                new TessellatedAnnotationOccurrence(id, name, att[1]);
+                        result.add(tessellatedAnnotationOccurrence);
                         continue;
                     }
 

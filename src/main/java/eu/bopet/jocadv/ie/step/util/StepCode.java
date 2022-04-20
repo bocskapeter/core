@@ -121,6 +121,7 @@ public class StepCode {
     public static final String COMPOSITE_CURVE = "COMPOSITE_CURVE";
     public static final String COMPOSITE_CURVE_ON_SURFACE = "COMPOSITE_CURVE_ON_SURFACE";
     public static final String COMPOSITE_CURVE_SEGMENT = "COMPOSITE_CURVE_SEGMENT";
+    public static final String COMPOSITE_GROUP_SHAPE_ASPECT = "COMPOSITE_GROUP_SHAPE_ASPECT";
     public static final String COMPOSITE_SHAPE_ASPECT = "COMPOSITE_SHAPE_ASPECT";
     public static final String COMPOSITE_TEXT = "COMPOSITE_TEXT";
     public static final String COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES = "COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES";
@@ -695,6 +696,7 @@ public class StepCode {
             COMPOSITE_CURVE,
             COMPOSITE_CURVE_ON_SURFACE,
             COMPOSITE_CURVE_SEGMENT,
+            COMPOSITE_GROUP_SHAPE_ASPECT,
             COMPOSITE_SHAPE_ASPECT,
             COMPOSITE_TEXT,
             COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES,

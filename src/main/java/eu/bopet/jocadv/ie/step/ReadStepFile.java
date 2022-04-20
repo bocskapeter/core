@@ -4,6 +4,7 @@ import eu.bopet.jocadv.ie.step.context.Contexts;
 import eu.bopet.jocadv.ie.step.context.DesignContext;
 import eu.bopet.jocadv.ie.step.context.MechanicalContext;
 import eu.bopet.jocadv.ie.step.curve.Curves;
+import eu.bopet.jocadv.ie.step.curve.TessellatedCurveSet;
 import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
 import eu.bopet.jocadv.ie.step.entities.AllAroundShapeAspect;
@@ -29,7 +30,9 @@ import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.Colour;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedSurfaceSet;
+import eu.bopet.jocadv.ie.step.entities.CompositeGroupShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
+import eu.bopet.jocadv.ie.step.entities.ConstructiveGeometryRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.CoordinatedUniversalTimeOffset;
 import eu.bopet.jocadv.ie.step.entities.CoordinatesList;
 import eu.bopet.jocadv.ie.step.entities.CurveStyle;
@@ -120,6 +123,7 @@ import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.MeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.representation.ConstructiveGeometryRepresentation;
 import eu.bopet.jocadv.ie.step.representation.DimensionalCharacteristicRepresentation;
 import eu.bopet.jocadv.ie.step.representation.Representation;
 import eu.bopet.jocadv.ie.step.representation.RepresentationMap;
@@ -829,6 +833,29 @@ public class ReadStepFile {
                         DraughtingPreDefinedColour draughtingPreDefinedColour =
                                 new DraughtingPreDefinedColour(id, name);
                         result.add(draughtingPreDefinedColour);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TESSELLATED_CURVE_SET)) {
+                        TessellatedCurveSet tessellatedCurveSet = new TessellatedCurveSet(id, name, att[1]);
+                        result.add(tessellatedCurveSet);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CONSTRUCTIVE_GEOMETRY_REPRESENTATION_RELATIONSHIP)) {
+                        ConstructiveGeometryRepresentationRelationship constructiveGeometryRepresentationRelationship =
+                                new ConstructiveGeometryRepresentationRelationship(id, name, att[1]);
+                        result.add(constructiveGeometryRepresentationRelationship);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CONSTRUCTIVE_GEOMETRY_REPRESENTATION)) {
+                        ConstructiveGeometryRepresentation constructiveGeometryRepresentation =
+                                new ConstructiveGeometryRepresentation(id, name, att[1]);
+                        result.add(constructiveGeometryRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPOSITE_GROUP_SHAPE_ASPECT)) {
+                        CompositeGroupShapeAspect compositeGroupShapeAspect =
+                                new CompositeGroupShapeAspect(id, name, att[1]);
+                        result.add(compositeGroupShapeAspect);
                         continue;
                     }
 

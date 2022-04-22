@@ -71,6 +71,8 @@ import eu.bopet.jocadv.ie.step.entities.FaceOuterBound;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
 import eu.bopet.jocadv.ie.step.entities.FlatnessTolerance;
+import eu.bopet.jocadv.ie.step.entities.GeneralProperty;
+import eu.bopet.jocadv.ie.step.entities.GeneralPropertyAssociation;
 import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
 import eu.bopet.jocadv.ie.step.entities.GeometricItemSpecificUsage;
 import eu.bopet.jocadv.ie.step.entities.GeometricToleranceRelationship;
@@ -103,6 +105,7 @@ import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
 import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
 import eu.bopet.jocadv.ie.step.entities.Product;
 import eu.bopet.jocadv.ie.step.entities.ProductCategory;
+import eu.bopet.jocadv.ie.step.entities.ProductCategoryRelationship;
 import eu.bopet.jocadv.ie.step.entities.ProductContext;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinition;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContext;
@@ -359,6 +362,12 @@ public class ReadStepFile {
                     if (secondTag.startsWith(StepCode.PRODUCT_DEFINITION + "(")) {
                         ProductDefinition productDefinition = new ProductDefinition(id, name, att[1]);
                         result.add(productDefinition);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRODUCT_CATEGORY_RELATIONSHIP)) {
+                        ProductCategoryRelationship productCategoryRelationship =
+                                new ProductCategoryRelationship(id, name, att[1]);
+                        result.add(productCategoryRelationship);
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.PRODUCT_CATEGORY + "(")) {
@@ -991,6 +1000,18 @@ public class ReadStepFile {
                         SurfaceStyleParameterLine surfaceStyleParameterLine =
                                 new SurfaceStyleParameterLine(id, "", attributes);
                         result.add(surfaceStyleParameterLine);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GENERAL_PROPERTY_ASSOCIATION)) {
+                        GeneralPropertyAssociation generalPropertyAssociation =
+                                new GeneralPropertyAssociation(id, name, att[1]);
+                        result.add(generalPropertyAssociation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GENERAL_PROPERTY)) {
+                        GeneralProperty generalProperty =
+                                new GeneralProperty(id, name, att[1]);
+                        result.add(generalProperty);
                         continue;
                     }
 

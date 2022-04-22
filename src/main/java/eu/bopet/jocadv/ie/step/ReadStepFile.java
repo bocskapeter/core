@@ -28,6 +28,7 @@ import eu.bopet.jocadv.ie.step.entities.CCDesignSecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.CalendarDate;
 import eu.bopet.jocadv.ie.step.entities.CameraModelD3;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
+import eu.bopet.jocadv.ie.step.entities.CharacterizedItemWithinRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Circle;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.Colour;
@@ -78,7 +79,9 @@ import eu.bopet.jocadv.ie.step.entities.GeometricItemSpecificUsage;
 import eu.bopet.jocadv.ie.step.entities.GeometricToleranceRelationship;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.IdAttribute;
+import eu.bopet.jocadv.ie.step.entities.IntegerRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.Invisibility;
+import eu.bopet.jocadv.ie.step.entities.ItemIdentifiedRepresentationUsage;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
@@ -101,6 +104,7 @@ import eu.bopet.jocadv.ie.step.entities.Plane;
 import eu.bopet.jocadv.ie.step.entities.PlusMinusTolerance;
 import eu.bopet.jocadv.ie.step.entities.PointStyle;
 import eu.bopet.jocadv.ie.step.entities.Polyline;
+import eu.bopet.jocadv.ie.step.entities.PreDefinedPointMarkerSymbol;
 import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
 import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
 import eu.bopet.jocadv.ie.step.entities.Product;
@@ -128,6 +132,8 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleBoundary;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleParameterLine;
+import eu.bopet.jocadv.ie.step.entities.SurfaceStyleRenderingWithProperties;
+import eu.bopet.jocadv.ie.step.entities.SurfaceStyleTransparent;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.TessellatedAnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
@@ -1014,6 +1020,42 @@ public class ReadStepFile {
                         result.add(generalProperty);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.CHARACTERIZED_ITEM_WITHIN_REPRESENTATION)) {
+                        CharacterizedItemWithinRepresentation characterizedItemWithinRepresentation =
+                                new CharacterizedItemWithinRepresentation(id, name, att[1]);
+                        result.add(characterizedItemWithinRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.INTEGER_REPRESENTATION_ITEM)) {
+                        IntegerRepresentationItem integerRepresentationItem =
+                                new IntegerRepresentationItem(id, name, att[1].replace(".", ""));
+                        result.add(integerRepresentationItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRE_DEFINED_POINT_MARKER_SYMBOL)) {
+                        PreDefinedPointMarkerSymbol preDefinedPointMarkerSymbol =
+                                new PreDefinedPointMarkerSymbol(id, "", attributes);
+                        result.add(preDefinedPointMarkerSymbol);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_STYLE_RENDERING_WITH_PROPERTIES)) {
+                        SurfaceStyleRenderingWithProperties surfaceStyleRenderingWithProperties =
+                                new SurfaceStyleRenderingWithProperties(id, "", attributes);
+                        result.add(surfaceStyleRenderingWithProperties);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_STYLE_TRANSPARENT)) {
+                        SurfaceStyleTransparent surfaceStyleTransparent =
+                                new SurfaceStyleTransparent(id, "", attributes);
+                        result.add(surfaceStyleTransparent);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ITEM_IDENTIFIED_REPRESENTATION_USAGE)) {
+                        ItemIdentifiedRepresentationUsage itemIdentifiedRepresentationUsage =
+                                new ItemIdentifiedRepresentationUsage(id, name, att[1]);
+                        result.add(itemIdentifiedRepresentationUsage);
+                        continue;
+                    }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));
@@ -1038,7 +1080,11 @@ public class ReadStepFile {
                             result.add(surfaces);
                             continue;
                         }
-                        System.out.println("???Set of : " + set);
+                        if (Arrays.asList(StepCode.TOLERANCES).contains(firstSet)) {
+                            System.out.println("C: " + command);
+
+                        }
+                        System.out.println("???Set of : " + set + "\n first set: " + firstSet);
                     }
 
                     System.out.println("---> Not processed: " + command);

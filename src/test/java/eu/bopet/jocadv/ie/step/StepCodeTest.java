@@ -15,7 +15,7 @@ class StepCodeTest {
     @Test
     void ReadStepCodeTest() {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("convert/convert.txt").getFile());
+        File file = new File(classLoader.getResource("convert.txt").getFile());
         System.out.println("Starting with file: " + file.getPath() + " - " + file.getName());
         List<String> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

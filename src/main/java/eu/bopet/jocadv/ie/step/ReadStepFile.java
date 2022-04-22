@@ -8,6 +8,7 @@ import eu.bopet.jocadv.ie.step.curve.TessellatedCurveSet;
 import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
 import eu.bopet.jocadv.ie.step.entities.AllAroundShapeAspect;
+import eu.bopet.jocadv.ie.step.entities.AngularLocation;
 import eu.bopet.jocadv.ie.step.entities.AnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.AnnotationPlane;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
@@ -33,6 +34,7 @@ import eu.bopet.jocadv.ie.step.entities.Colour;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedSurfaceSet;
 import eu.bopet.jocadv.ie.step.entities.CompositeGroupShapeAspect;
+import eu.bopet.jocadv.ie.step.entities.CompositeShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
 import eu.bopet.jocadv.ie.step.entities.ConstructiveGeometryRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.CoordinatedUniversalTimeOffset;
@@ -88,6 +90,7 @@ import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
 import eu.bopet.jocadv.ie.step.entities.ParallelismTolerance;
+import eu.bopet.jocadv.ie.step.entities.PerpendicularityTolerance;
 import eu.bopet.jocadv.ie.step.entities.Person;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganization;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganizationRole;
@@ -119,7 +122,9 @@ import eu.bopet.jocadv.ie.step.entities.StyledItem;
 import eu.bopet.jocadv.ie.step.entities.SurfaceCurve;
 import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
 import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
+import eu.bopet.jocadv.ie.step.entities.SurfaceStyleBoundary;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
+import eu.bopet.jocadv.ie.step.entities.SurfaceStyleParameterLine;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.TessellatedAnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
@@ -961,6 +966,33 @@ public class ReadStepFile {
                         result.add(nameAttribute);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.ANGULAR_LOCATION)) {
+                        AngularLocation angularLocation = new AngularLocation(id, name, att[1]);
+                        result.add(angularLocation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PERPENDICULARITY_TOLERANCE)) {
+                        PerpendicularityTolerance perpendicularityTolerance =
+                                new PerpendicularityTolerance(id, name, att[1]);
+                        result.add(perpendicularityTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPOSITE_SHAPE_ASPECT)) {
+                        CompositeShapeAspect compositeShapeAspect = new CompositeShapeAspect(id, name, att[1]);
+                        result.add(compositeShapeAspect);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_STYLE_BOUNDARY)) {
+                        SurfaceStyleBoundary surfaceStyleBoundary = new SurfaceStyleBoundary(id, "", attributes);
+                        result.add(surfaceStyleBoundary);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_STYLE_PARAMETER_LINE)) {
+                        SurfaceStyleParameterLine surfaceStyleParameterLine =
+                                new SurfaceStyleParameterLine(id, "", attributes);
+                        result.add(surfaceStyleParameterLine);
+                        continue;
+                    }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));
@@ -1006,7 +1038,7 @@ public class ReadStepFile {
         }
         int entitiesCount = result.size();
         int checkedEntities = result.get(result.size() - 1).getId() - result.get(0).getId() + 1;
-        if (entitiesCount == checkedEntities){
+        if (entitiesCount == checkedEntities) {
             System.out.println("All " + entitiesCount + " entities have been processed.");
         } else {
             System.out.println("Entities processed: " + entitiesCount);

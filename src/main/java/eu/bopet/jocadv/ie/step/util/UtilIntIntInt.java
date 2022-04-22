@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.ie.step.util;
 
+import static org.apache.commons.lang3.StringUtils.isNumeric;
+
 public class UtilIntIntInt extends StepEntityBase {
     private int id1;
     private int id2;
@@ -8,9 +10,11 @@ public class UtilIntIntInt extends StepEntityBase {
     public UtilIntIntInt(int id, String name, String attributes) {
         super(id, name);
         String[] values = attributes.replace("#", "").split(",");
-        this.id1 = Integer.parseInt(values[0]);
-        this.id2 = Integer.parseInt(values[1]);
-        this.id3 = Integer.parseInt(values[2]);
+        id1 = Integer.parseInt(values[0]);
+        id2 = -1;
+        if (isNumeric(values[1])) id2 = Integer.parseInt(values[1]);
+        id3 = -1;
+        if (isNumeric(values[2])) id3 = Integer.parseInt(values[2]);
     }
 
     @Override

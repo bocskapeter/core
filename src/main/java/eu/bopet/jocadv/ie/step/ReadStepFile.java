@@ -8,6 +8,7 @@ import eu.bopet.jocadv.ie.step.curve.TessellatedCurveSet;
 import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
 import eu.bopet.jocadv.ie.step.entities.AllAroundShapeAspect;
+import eu.bopet.jocadv.ie.step.entities.AnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.AnnotationPlane;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
 import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
@@ -47,12 +48,16 @@ import eu.bopet.jocadv.ie.step.entities.DatumReferenceElement;
 import eu.bopet.jocadv.ie.step.entities.DatumSystem;
 import eu.bopet.jocadv.ie.step.entities.DefaultModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.DefinitionalRepresentation;
+import eu.bopet.jocadv.ie.step.entities.DerivedUnit;
+import eu.bopet.jocadv.ie.step.entities.DerivedUnitElement;
 import eu.bopet.jocadv.ie.step.entities.DescriptiveRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.DimensionalLocation;
 import eu.bopet.jocadv.ie.step.entities.DimensionalSize;
 import eu.bopet.jocadv.ie.step.entities.Direction;
 import eu.bopet.jocadv.ie.step.entities.DraughtingCallOut;
+import eu.bopet.jocadv.ie.step.entities.DraughtingCallOutRelationship;
+import eu.bopet.jocadv.ie.step.entities.DraughtingModel;
 import eu.bopet.jocadv.ie.step.entities.DraughtingModelItemAssociation;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedColour;
 import eu.bopet.jocadv.ie.step.entities.DraughtingPreDefinedCurveFont;
@@ -75,8 +80,10 @@ import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
 import eu.bopet.jocadv.ie.step.entities.MappedItem;
 import eu.bopet.jocadv.ie.step.entities.MeasureQualification;
+import eu.bopet.jocadv.ie.step.entities.MeasureRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationship;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
+import eu.bopet.jocadv.ie.step.entities.NameAttribute;
 import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
@@ -88,6 +95,7 @@ import eu.bopet.jocadv.ie.step.entities.PlanarBox;
 import eu.bopet.jocadv.ie.step.entities.Plane;
 import eu.bopet.jocadv.ie.step.entities.PlusMinusTolerance;
 import eu.bopet.jocadv.ie.step.entities.PointStyle;
+import eu.bopet.jocadv.ie.step.entities.Polyline;
 import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
 import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
 import eu.bopet.jocadv.ie.step.entities.Product;
@@ -120,6 +128,7 @@ import eu.bopet.jocadv.ie.step.entities.ToleranceZoneForm;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
 import eu.bopet.jocadv.ie.step.entities.ValueFormatTypeQualifier;
+import eu.bopet.jocadv.ie.step.entities.ValueRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
@@ -133,6 +142,7 @@ import eu.bopet.jocadv.ie.step.representation.ConstructiveGeometryRepresentation
 import eu.bopet.jocadv.ie.step.representation.DimensionalCharacteristicRepresentation;
 import eu.bopet.jocadv.ie.step.representation.Representation;
 import eu.bopet.jocadv.ie.step.representation.RepresentationMap;
+import eu.bopet.jocadv.ie.step.representation.RepresentationRelationship;
 import eu.bopet.jocadv.ie.step.representation.ShapeDimensionRepresentation;
 import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
@@ -730,6 +740,12 @@ public class ReadStepFile {
                         result.add(representationMap);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.REPRESENTATION_RELATIONSHIP)) {
+                        RepresentationRelationship representationRelationship =
+                                new RepresentationRelationship(id, name, att[1]);
+                        result.add(representationRelationship);
+                        continue;
+                    }
                     if (secondTag.startsWith(StepCode.REPRESENTATION)) {
                         Representation representation = new Representation(id, name, att[1]);
                         result.add(representation);
@@ -830,6 +846,12 @@ public class ReadStepFile {
                         result.add(colour);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.DRAUGHTING_CALLOUT_RELATIONSHIP)) {
+                        DraughtingCallOutRelationship draughtingCallOutRelationship =
+                                new DraughtingCallOutRelationship(id, name, att[1]);
+                        result.add(draughtingCallOutRelationship);
+                        continue;
+                    }
                     if (secondTag.startsWith(StepCode.DRAUGHTING_CALLOUT)) {
                         DraughtingCallOut draughtingCallOut = new DraughtingCallOut(id, name, att[1]);
                         result.add(draughtingCallOut);
@@ -897,6 +919,48 @@ public class ReadStepFile {
                         result.add(tessellatedAnnotationOccurrence);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.DERIVED_UNIT_ELEMENT)) {
+                        DerivedUnitElement derivedUnitElement = new DerivedUnitElement(id, "", attributes);
+                        result.add(derivedUnitElement);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DERIVED_UNIT)) {
+                        DerivedUnit derivedUnit = new DerivedUnit(id, "", attributes);
+                        result.add(derivedUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MEASURE_REPRESENTATION_ITEM)) {
+                        MeasureRepresentationItem measureRepresentationItem =
+                                new MeasureRepresentationItem(id, name, att[1]);
+                        result.add(measureRepresentationItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DRAUGHTING_MODEL)) {
+                        DraughtingModel draughtingModel = new DraughtingModel(id, name, att[1]);
+                        result.add(draughtingModel);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ANNOTATION_OCCURRENCE)) {
+                        AnnotationOccurrence annotationOccurrence = new AnnotationOccurrence(id, name, att[1]);
+                        result.add(annotationOccurrence);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.POLYLINE)) {
+                        Polyline polyline = new Polyline(id, name, att[1]);
+                        result.add(polyline);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.VALUE_REPRESENTATION_ITEM)) {
+                        ValueRepresentationItem valueRepresentationItem =
+                                new ValueRepresentationItem(id, name, att[1]);
+                        result.add(valueRepresentationItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.NAME_ATTRIBUTE)) {
+                        NameAttribute nameAttribute = new NameAttribute(id, name, att[1]);
+                        result.add(nameAttribute);
+                        continue;
+                    }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));
@@ -942,8 +1006,12 @@ public class ReadStepFile {
         }
         int entitiesCount = result.size();
         int checkedEntities = result.get(result.size() - 1).getId() - result.get(0).getId() + 1;
-        System.out.println("Entities processed: " + entitiesCount);
-        System.out.println("Id check: " + checkedEntities);
+        if (entitiesCount == checkedEntities){
+            System.out.println("All " + entitiesCount + " entities have been processed.");
+        } else {
+            System.out.println("Entities processed: " + entitiesCount);
+            System.out.println("Id check: " + checkedEntities);
+        }
         return result;
     }
 }

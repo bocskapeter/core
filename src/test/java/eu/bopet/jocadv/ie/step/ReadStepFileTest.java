@@ -4,6 +4,7 @@ import eu.bopet.jocadv.core.features.JoFeature;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Set;
 
 class ReadStepFileTest {
@@ -11,15 +12,14 @@ class ReadStepFileTest {
     @Test
     void ReadStepFileTest() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("test.step").getFile());
+        String fileName = "nist_ctc_01_asme1_ap242-e1.stp";
+        File file = new File(classLoader.getResource(fileName).getFile());
         RegenerativeStep regenerativeStep = new RegenerativeStep(file);
         StepFeature feature = (StepFeature) regenerativeStep.getResult();
         Set<JoFeature> entityList = feature.getFeatures();
-        System.out.println("\n----****----\nEntities:");
         if (!entityList.isEmpty()) {
-            for (JoFeature entity : entityList) {
-                System.out.println(entity);
-            }
+
+            System.out.println("\n----****----\nEntities: " + entityList.size());
         }
     }
 }

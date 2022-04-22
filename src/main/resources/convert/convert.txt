@@ -1,0 +1,7 @@
+dot,
+       x,
+       plus,
+       asterisk,
+       ring,
+       square,
+       triangle

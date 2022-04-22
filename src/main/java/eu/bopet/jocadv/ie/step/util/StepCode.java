@@ -218,6 +218,7 @@ public class StepCode {
     public static final String DOCUMENT_USAGE_CONSTRAINT = "DOCUMENT_USAGE_CONSTRAINT";
     public static final String DRAUGHTING_ANNOTATION_OCCURRENCE = "DRAUGHTING_ANNOTATION_OCCURRENCE";
     public static final String DRAUGHTING_CALLOUT = "DRAUGHTING_CALLOUT";
+    public static final String DRAUGHTING_CALLOUT_RELATIONSHIP = "DRAUGHTING_CALLOUT_RELATIONSHIP";
     public static final String DRAUGHTING_MODEL = "DRAUGHTING_MODEL";
     public static final String DRAUGHTING_MODEL_ITEM_ASSOCIATION = "DRAUGHTING_MODEL_ITEM_ASSOCIATION";
     public static final String DRAUGHTING_PRE_DEFINED_COLOUR = "DRAUGHTING_PRE_DEFINED_COLOUR";
@@ -349,6 +350,7 @@ public class StepCode {
     public static final String MODIFIED_GEOMETRIC_TOLERANCE = "MODIFIED_GEOMETRIC_TOLERANCE";
     public static final String NAMED_UNIT = "NAMED_UNIT";
     public static final String NAME_ASSIGNMENT = "NAME_ASSIGNMENT";
+    public static final String NAME_ATTRIBUTE = "NAME_ATTRIBUTE";
     public static final String NEXT_ASSEMBLY_USAGE_OCCURRENCE = "NEXT_ASSEMBLY_USAGE_OCCURRENCE";
     public static final String NODE = "NODE";
     public static final String NODE_DEFINITION = "NODE_DEFINITION";
@@ -571,6 +573,7 @@ public class StepCode {
     public static final String UNIFORM_SURFACE_SECTION = "UNIFORM_SURFACE_SECTION";
     public static final String VALUE_FORMAT_TYPE_QUALIFIER = "VALUE_FORMAT_TYPE_QUALIFIER";
     public static final String VALUE_RANGE = "VALUE_RANGE";
+    public static final String VALUE_REPRESENTATION_ITEM = "VALUE_REPRESENTATION_ITEM";
     public static final String VECTOR = "VECTOR";
     public static final String VERSIONED_ACTION_REQUEST = "VERSIONED_ACTION_REQUEST";
     public static final String VERTEX = "VERTEX";
@@ -799,6 +802,7 @@ public class StepCode {
             DOCUMENT_USAGE_CONSTRAINT,
             DRAUGHTING_ANNOTATION_OCCURRENCE,
             DRAUGHTING_CALLOUT,
+            DRAUGHTING_CALLOUT_RELATIONSHIP,
             DRAUGHTING_MODEL,
             DRAUGHTING_MODEL_ITEM_ASSOCIATION,
             DRAUGHTING_PRE_DEFINED_COLOUR,
@@ -930,6 +934,7 @@ public class StepCode {
             MODIFIED_GEOMETRIC_TOLERANCE,
             NAMED_UNIT,
             NAME_ASSIGNMENT,
+            NAME_ATTRIBUTE,
             NEXT_ASSEMBLY_USAGE_OCCURRENCE,
             NODE,
             NODE_DEFINITION,
@@ -1150,6 +1155,7 @@ public class StepCode {
             UNIFORM_SURFACE,
             UNIFORM_SURFACE_SECTION,
             VALUE_RANGE,
+            VALUE_REPRESENTATION_ITEM,
             VECTOR,
             VERSIONED_ACTION_REQUEST,
             VERTEX,

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.measure.MeasureWithUnit;
+import eu.bopet.jocadv.ie.step.measure.MeasureWithUnitInSet;
 import eu.bopet.jocadv.ie.step.measure.PositiveLengthMeasure;
 import eu.bopet.jocadv.ie.step.measure.SelectedSize;
 import eu.bopet.jocadv.ie.step.measure.SizeSelect;
@@ -25,7 +25,7 @@ public class CurveStyle extends UtilInt {
                 break;
             }
             case MEASURE_WITH_UNIT: {
-                selectedSize = new MeasureWithUnit(substring);
+                selectedSize = new MeasureWithUnitInSet(substring);
                 break;
             }
         }

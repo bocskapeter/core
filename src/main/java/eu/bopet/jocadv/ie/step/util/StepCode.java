@@ -21,6 +21,7 @@ public class StepCode {
     public static final String ANNOTATION_FILL_AREA = "ANNOTATION_FILL_AREA";
     public static final String ANNOTATION_FILL_AREA_OCCURRENCE = "ANNOTATION_FILL_AREA_OCCURRENCE";
     public static final String ANNOTATION_OCCURRENCE = "ANNOTATION_OCCURRENCE";
+    public static final String ANNOTATION_PLANE = "ANNOTATION_PLANE";
     public static final String ANNOTATION_SUBFIGURE_OCCURRENCE = "ANNOTATION_SUBFIGURE_OCCURRENCE";
     public static final String ANNOTATION_SYMBOL = "ANNOTATION_SYMBOL";
     public static final String ANNOTATION_SYMBOL_OCCURRENCE = "ANNOTATION_SYMBOL_OCCURRENCE";
@@ -106,6 +107,7 @@ public class StepCode {
     public static final String CERTIFICATION_TYPE = "CERTIFICATION_TYPE";
     public static final String CHANGE = "CHANGE";
     public static final String CHANGE_REQUEST = "CHANGE_REQUEST";
+    public static final String CHARACTERIZED_ITEM_WITHIN_REPRESENTATION = "CHARACTERIZED_ITEM_WITHIN_REPRESENTATION";
     public static final String CHARACTERIZED_OBJECT = "CHARACTERIZED_OBJECT";
     public static final String CIRCLE = "CIRCLE";
     public static final String CIRCULAR_RUNOUT_TOLERANCE = "CIRCULAR_RUNOUT_TOLERANCE";
@@ -116,10 +118,12 @@ public class StepCode {
     public static final String COLOUR_RGB = "COLOUR_RGB";
     public static final String COLOUR_SPECIFICATION = "COLOUR_SPECIFICATION";
     public static final String COMMON_DATUM = "COMMON_DATUM";
+    public static final String COMMON_DATUM_LIST = "COMMON_DATUM_LIST";
     public static final String COMPLEX_TRIANGULATED_SURFACE_SET = "COMPLEX_TRIANGULATED_SURFACE_SET";
     public static final String COMPOSITE_CURVE = "COMPOSITE_CURVE";
     public static final String COMPOSITE_CURVE_ON_SURFACE = "COMPOSITE_CURVE_ON_SURFACE";
     public static final String COMPOSITE_CURVE_SEGMENT = "COMPOSITE_CURVE_SEGMENT";
+    public static final String COMPOSITE_GROUP_SHAPE_ASPECT = "COMPOSITE_GROUP_SHAPE_ASPECT";
     public static final String COMPOSITE_SHAPE_ASPECT = "COMPOSITE_SHAPE_ASPECT";
     public static final String COMPOSITE_TEXT = "COMPOSITE_TEXT";
     public static final String COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES = "COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES";
@@ -170,6 +174,7 @@ public class StepCode {
     public static final String CURVE_STYLE_FONT = "CURVE_STYLE_FONT";
     public static final String CURVE_STYLE_FONT_PATTERN = "CURVE_STYLE_FONT_PATTERN";
     public static final String CYLINDRICAL_SURFACE = "CYLINDRICAL_SURFACE";
+    public static final String CYLINDRICITY_TOLERANCE = "CYLINDRICITY_TOLERANCE";
     public static final String DATA_ENVIRONMENT = "DATA_ENVIRONMENT";
     public static final String DATE = "DATE";
     public static final String DATE_AND_TIME = "DATE_AND_TIME";
@@ -180,7 +185,9 @@ public class StepCode {
     public static final String DATUM = "DATUM";
     public static final String DATUM_FEATURE = "DATUM_FEATURE";
     public static final String DATUM_REFERENCE = "DATUM_REFERENCE";
+    public static final String DATUM_REFERENCE_COMPARTMENT = "DATUM_REFERENCE_COMPARTMENT";
     public static final String DATUM_REFERENCE_ELEMENT = "DATUM_REFERENCE_ELEMENT";
+    public static final String DATUM_SYSTEM = "DATUM_SYSTEM";
     public static final String DATUM_TARGET = "DATUM_TARGET";
     public static final String DEFAULT_MODEL_GEOMETRIC_VIEW = "DEFAULT_MODEL_GEOMETRIC_VIEW";
     public static final String DEFINED_SYMBOL = "DEFINED_SYMBOL";
@@ -213,7 +220,9 @@ public class StepCode {
     public static final String DOCUMENT_USAGE_CONSTRAINT = "DOCUMENT_USAGE_CONSTRAINT";
     public static final String DRAUGHTING_ANNOTATION_OCCURRENCE = "DRAUGHTING_ANNOTATION_OCCURRENCE";
     public static final String DRAUGHTING_CALLOUT = "DRAUGHTING_CALLOUT";
+    public static final String DRAUGHTING_CALLOUT_RELATIONSHIP = "DRAUGHTING_CALLOUT_RELATIONSHIP";
     public static final String DRAUGHTING_MODEL = "DRAUGHTING_MODEL";
+    public static final String DRAUGHTING_MODEL_ITEM_ASSOCIATION = "DRAUGHTING_MODEL_ITEM_ASSOCIATION";
     public static final String DRAUGHTING_PRE_DEFINED_COLOUR = "DRAUGHTING_PRE_DEFINED_COLOUR";
     public static final String DRAUGHTING_PRE_DEFINED_CURVE_FONT = "DRAUGHTING_PRE_DEFINED_CURVE_FONT";
     public static final String DRAUGHTING_SUBFIGURE_REPRESENTATION = "DRAUGHTING_SUBFIGURE_REPRESENTATION";
@@ -290,9 +299,11 @@ public class StepCode {
     public static final String FREEDOM_AND_COEFFICIENT = "FREEDOM_AND_COEFFICIENT";
     public static final String FUNCTIONALLY_DEFINED_TRANSFORMATION = "FUNCTIONALLY_DEFINED_TRANSFORMATION";
     public static final String GENERAL_PROPERTY = "GENERAL_PROPERTY";
+    public static final String GENERAL_PROPERTY_ASSOCIATION = "GENERAL_PROPERTY_ASSOCIATION";
     public static final String GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION = "GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION";
     public static final String GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION = "GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION";
     public static final String GEOMETRIC_CURVE_SET = "GEOMETRIC_CURVE_SET";
+    public static final String GEOMETRIC_ITEM_SPECIFIC_USAGE = "GEOMETRIC_ITEM_SPECIFIC_USAGE";
     public static final String GEOMETRIC_NODE = "GEOMETRIC_NODE";
     public static final String GEOMETRIC_REPRESENTATION_CONTEXT = "GEOMETRIC_REPRESENTATION_CONTEXT";
     public static final String GEOMETRIC_REPRESENTATION_CONTEXT_WITH_PARAMETER = "GEOMETRIC_REPRESENTATION_CONTEXT_WITH_PARAMETER";
@@ -301,6 +312,8 @@ public class StepCode {
     public static final String GEOMETRIC_TOLERANCE = "GEOMETRIC_TOLERANCE";
     public static final String GEOMETRIC_TOLERANCE_RELATIONSHIP = "GEOMETRIC_TOLERANCE_RELATIONSHIP";
     public static final String GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE = "GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE";
+    public static final String GEOMETRIC_TOLERANCE_WITH_DEFINED_UNIT = "GEOMETRIC_TOLERANCE_WITH_DEFINED_UNIT";
+    public static final String GEOMETRIC_TOLERANCE_WITH_MODIFIERS = "GEOMETRIC_TOLERANCE_WITH_MODIFIERS";
     public static final String GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT = "GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT";
     public static final String GLOBAL_UNIT_ASSIGNED_CONTEXT = "GLOBAL_UNIT_ASSIGNED_CONTEXT";
     public static final String GROUP = "GROUP";
@@ -308,11 +321,15 @@ public class StepCode {
     public static final String GROUP_RELATIONSHIP = "GROUP_RELATIONSHIP";
     public static final String HALF_SPACE_SOLID = "HALF_SPACE_SOLID";
     public static final String HYPERBOLA = "HYPERBOLA";
+    public static final String ID_ATTRIBUTE = "ID_ATTRIBUTE";
     public static final String IDENTIFICATION_ASSIGNMENT = "IDENTIFICATION_ASSIGNMENT";
     public static final String IDENTIFICATION_ROLE = "IDENTIFICATION_ROLE";
+    public static final String INTEGER_REPRESENTATION_ITEM = "INTEGER_REPRESENTATION_ITEM";
     public static final String INTERSECTION_CURVE = "INTERSECTION_CURVE";
     public static final String INVISIBILITY = "INVISIBILITY";
     public static final String ITEM_DEFINED_TRANSFORMATION = "ITEM_DEFINED_TRANSFORMATION";
+    public static final String ITEM_IDENTIFIED_REPRESENTATION_USAGE = "ITEM_IDENTIFIED_REPRESENTATION_USAGE";
+    public static final String LENGTH_MEASURE = "LENGTH_MEASURE";
     public static final String LENGTH_MEASURE_WITH_UNIT = "LENGTH_MEASURE_WITH_UNIT";
     public static final String LENGTH_UNIT = "LENGTH_UNIT";
     public static final String LIMITS_AND_FITS = "LIMITS_AND_FITS";
@@ -340,6 +357,7 @@ public class StepCode {
     public static final String MODIFIED_GEOMETRIC_TOLERANCE = "MODIFIED_GEOMETRIC_TOLERANCE";
     public static final String NAMED_UNIT = "NAMED_UNIT";
     public static final String NAME_ASSIGNMENT = "NAME_ASSIGNMENT";
+    public static final String NAME_ATTRIBUTE = "NAME_ATTRIBUTE";
     public static final String NEXT_ASSEMBLY_USAGE_OCCURRENCE = "NEXT_ASSEMBLY_USAGE_OCCURRENCE";
     public static final String NODE = "NODE";
     public static final String NODE_DEFINITION = "NODE_DEFINITION";
@@ -415,6 +433,7 @@ public class StepCode {
     public static final String PRE_DEFINED_COLOUR = "PRE_DEFINED_COLOUR";
     public static final String PRE_DEFINED_CURVE_FONT = "PRE_DEFINED_CURVE_FONT";
     public static final String PRE_DEFINED_ITEM = "PRE_DEFINED_ITEM";
+    public static final String PRE_DEFINED_POINT_MARKER_SYMBOL = "PRE_DEFINED_POINT_MARKER_SYMBOL";
     public static final String PRE_DEFINED_SYMBOL = "PRE_DEFINED_SYMBOL";
     public static final String PRE_DEFINED_TEXT_FONT = "PRE_DEFINED_TEXT_FONT";
     public static final String PRODUCT = "PRODUCT";
@@ -516,8 +535,10 @@ public class StepCode {
     public static final String SURFACE_STYLE_CONTROL_GRID = "SURFACE_STYLE_CONTROL_GRID";
     public static final String SURFACE_STYLE_FILL_AREA = "SURFACE_STYLE_FILL_AREA";
     public static final String SURFACE_STYLE_PARAMETER_LINE = "SURFACE_STYLE_PARAMETER_LINE";
+    public static final String SURFACE_STYLE_RENDERING_WITH_PROPERTIES = "SURFACE_STYLE_RENDERING_WITH_PROPERTIES";
     public static final String SURFACE_STYLE_SEGMENTATION_CURVE = "SURFACE_STYLE_SEGMENTATION_CURVE";
     public static final String SURFACE_STYLE_SILHOUETTE = "SURFACE_STYLE_SILHOUETTE";
+    public static final String SURFACE_STYLE_TRANSPARENT = "SURFACE_STYLE_TRANSPARENT";
     public static final String SURFACE_STYLE_USAGE = "SURFACE_STYLE_USAGE";
     public static final String SWEPT_AREA_SOLID = "SWEPT_AREA_SOLID";
     public static final String SWEPT_FACE_SOLID = "SWEPT_FACE_SOLID";
@@ -531,6 +552,7 @@ public class StepCode {
     public static final String TEMPLATE = "TEMPLATE";
     public static final String TEMPLATE_INSTANCE = "TEMPLATE_INSTANCE";
     public static final String TERMINATOR_SYMBOL = "TERMINATOR_SYMBOL";
+    public static final String TESSELLATED_ANNOTATION_OCCURRENCE = "TESSELLATED_ANNOTATION_OCCURRENCE";
     public static final String TESSELLATED_CURVE_SET = "TESSELLATED_CURVE_SET";
     public static final String TEXT_LITERAL = "TEXT_LITERAL";
     public static final String TEXT_LITERAL_WITH_ASSOCIATED_CURVES = "TEXT_LITERAL_WITH_ASSOCIATED_CURVES";
@@ -545,6 +567,8 @@ public class StepCode {
     public static final String TIME_MEASURE_WITH_UNIT = "TIME_MEASURE_WITH_UNIT";
     public static final String TIME_UNIT = "TIME_UNIT";
     public static final String TOLERANCE_VALUE = "TOLERANCE_VALUE";
+    public static final String TOLERANCE_ZONE = "TOLERANCE_ZONE";
+    public static final String TOLERANCE_ZONE_FORM = "TOLERANCE_ZONE_FORM";
     public static final String TOPOLOGICAL_REPRESENTATION_ITEM = "TOPOLOGICAL_REPRESENTATION_ITEM";
     public static final String TOROIDAL_SURFACE = "TOROIDAL_SURFACE";
     public static final String TORUS = "TORUS";
@@ -553,11 +577,14 @@ public class StepCode {
     public static final String TRIMMED_CURVE = "TRIMMED_CURVE";
     public static final String TWO_DIRECTION_REPEAT_FACTOR = "TWO_DIRECTION_REPEAT_FACTOR";
     public static final String TYPE_QUALIFIER = "TYPE_QUALIFIER";
+    public static final String UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE = "UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE";
     public static final String UNCERTAINTY_MEASURE_WITH_UNIT = "UNCERTAINTY_MEASURE_WITH_UNIT";
     public static final String UNIFORM_CURVE = "UNIFORM_CURVE";
     public static final String UNIFORM_SURFACE = "UNIFORM_SURFACE";
     public static final String UNIFORM_SURFACE_SECTION = "UNIFORM_SURFACE_SECTION";
+    public static final String VALUE_FORMAT_TYPE_QUALIFIER = "VALUE_FORMAT_TYPE_QUALIFIER";
     public static final String VALUE_RANGE = "VALUE_RANGE";
+    public static final String VALUE_REPRESENTATION_ITEM = "VALUE_REPRESENTATION_ITEM";
     public static final String VECTOR = "VECTOR";
     public static final String VERSIONED_ACTION_REQUEST = "VERSIONED_ACTION_REQUEST";
     public static final String VERTEX = "VERTEX";
@@ -589,6 +616,7 @@ public class StepCode {
             ANNOTATION_FILL_AREA,
             ANNOTATION_FILL_AREA_OCCURRENCE,
             ANNOTATION_OCCURRENCE,
+            ANNOTATION_PLANE,
             ANNOTATION_SUBFIGURE_OCCURRENCE,
             ANNOTATION_SYMBOL,
             ANNOTATION_SYMBOL_OCCURRENCE,
@@ -674,6 +702,7 @@ public class StepCode {
             CERTIFICATION_TYPE,
             CHANGE,
             CHANGE_REQUEST,
+            CHARACTERIZED_ITEM_WITHIN_REPRESENTATION,
             CHARACTERIZED_OBJECT,
             CIRCLE,
             CIRCULAR_RUNOUT_TOLERANCE,
@@ -684,10 +713,12 @@ public class StepCode {
             COLOUR_RGB,
             COLOUR_SPECIFICATION,
             COMMON_DATUM,
+            COMMON_DATUM_LIST,
             COMPLEX_TRIANGULATED_SURFACE_SET,
             COMPOSITE_CURVE,
             COMPOSITE_CURVE_ON_SURFACE,
             COMPOSITE_CURVE_SEGMENT,
+            COMPOSITE_GROUP_SHAPE_ASPECT,
             COMPOSITE_SHAPE_ASPECT,
             COMPOSITE_TEXT,
             COMPOSITE_TEXT_WITH_ASSOCIATED_CURVES,
@@ -738,6 +769,7 @@ public class StepCode {
             CURVE_STYLE_FONT,
             CURVE_STYLE_FONT_PATTERN,
             CYLINDRICAL_SURFACE,
+            CYLINDRICITY_TOLERANCE,
             DATA_ENVIRONMENT,
             DATE,
             DATE_AND_TIME,
@@ -748,7 +780,9 @@ public class StepCode {
             DATUM,
             DATUM_FEATURE,
             DATUM_REFERENCE,
+            DATUM_REFERENCE_COMPARTMENT,
             DATUM_REFERENCE_ELEMENT,
+            DATUM_SYSTEM,
             DATUM_TARGET,
             DEFAULT_MODEL_GEOMETRIC_VIEW,
             DEFINED_SYMBOL,
@@ -781,7 +815,9 @@ public class StepCode {
             DOCUMENT_USAGE_CONSTRAINT,
             DRAUGHTING_ANNOTATION_OCCURRENCE,
             DRAUGHTING_CALLOUT,
+            DRAUGHTING_CALLOUT_RELATIONSHIP,
             DRAUGHTING_MODEL,
+            DRAUGHTING_MODEL_ITEM_ASSOCIATION,
             DRAUGHTING_PRE_DEFINED_COLOUR,
             DRAUGHTING_PRE_DEFINED_CURVE_FONT,
             DRAUGHTING_SUBFIGURE_REPRESENTATION,
@@ -859,9 +895,11 @@ public class StepCode {
             FREEDOM_AND_COEFFICIENT,
             FUNCTIONALLY_DEFINED_TRANSFORMATION,
             GENERAL_PROPERTY,
+            GENERAL_PROPERTY_ASSOCIATION,
             GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION,
             GEOMETRICALLY_BOUNDED_WIREFRAME_SHAPE_REPRESENTATION,
             GEOMETRIC_CURVE_SET,
+            GEOMETRIC_ITEM_SPECIFIC_USAGE,
             GEOMETRIC_NODE,
             GEOMETRIC_REPRESENTATION_CONTEXT,
             GEOMETRIC_REPRESENTATION_ITEM,
@@ -869,6 +907,8 @@ public class StepCode {
             GEOMETRIC_TOLERANCE,
             GEOMETRIC_TOLERANCE_RELATIONSHIP,
             GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE,
+            GEOMETRIC_TOLERANCE_WITH_DEFINED_UNIT,
+            GEOMETRIC_TOLERANCE_WITH_MODIFIERS,
             GLOBAL_UNCERTAINTY_ASSIGNED_CONTEXT,
             GLOBAL_UNIT_ASSIGNED_CONTEXT,
             GROUP,
@@ -876,11 +916,15 @@ public class StepCode {
             GROUP_RELATIONSHIP,
             HALF_SPACE_SOLID,
             HYPERBOLA,
+            ID_ATTRIBUTE,
             IDENTIFICATION_ASSIGNMENT,
             IDENTIFICATION_ROLE,
+            INTEGER_REPRESENTATION_ITEM,
             INTERSECTION_CURVE,
             INVISIBILITY,
             ITEM_DEFINED_TRANSFORMATION,
+            ITEM_IDENTIFIED_REPRESENTATION_USAGE,
+            LENGTH_MEASURE,
             LENGTH_MEASURE_WITH_UNIT,
             LENGTH_UNIT,
             LIMITS_AND_FITS,
@@ -908,6 +952,7 @@ public class StepCode {
             MODIFIED_GEOMETRIC_TOLERANCE,
             NAMED_UNIT,
             NAME_ASSIGNMENT,
+            NAME_ATTRIBUTE,
             NEXT_ASSEMBLY_USAGE_OCCURRENCE,
             NODE,
             NODE_DEFINITION,
@@ -982,6 +1027,7 @@ public class StepCode {
             PRE_DEFINED_COLOUR,
             PRE_DEFINED_CURVE_FONT,
             PRE_DEFINED_ITEM,
+            PRE_DEFINED_POINT_MARKER_SYMBOL,
             PRE_DEFINED_SYMBOL,
             PRE_DEFINED_TEXT_FONT,
             PRODUCT,
@@ -1083,8 +1129,10 @@ public class StepCode {
             SURFACE_STYLE_CONTROL_GRID,
             SURFACE_STYLE_FILL_AREA,
             SURFACE_STYLE_PARAMETER_LINE,
+            SURFACE_STYLE_RENDERING_WITH_PROPERTIES,
             SURFACE_STYLE_SEGMENTATION_CURVE,
             SURFACE_STYLE_SILHOUETTE,
+            SURFACE_STYLE_TRANSPARENT,
             SURFACE_STYLE_USAGE,
             SWEPT_AREA_SOLID,
             SWEPT_FACE_SOLID,
@@ -1098,6 +1146,7 @@ public class StepCode {
             TEMPLATE,
             TEMPLATE_INSTANCE,
             TERMINATOR_SYMBOL,
+            TESSELLATED_ANNOTATION_OCCURRENCE,
             TESSELLATED_CURVE_SET,
             TEXT_LITERAL,
             TEXT_LITERAL_WITH_ASSOCIATED_CURVES,
@@ -1112,6 +1161,8 @@ public class StepCode {
             TIME_MEASURE_WITH_UNIT,
             TIME_UNIT,
             TOLERANCE_VALUE,
+            TOLERANCE_ZONE,
+            TOLERANCE_ZONE_FORM,
             TOPOLOGICAL_REPRESENTATION_ITEM,
             TOROIDAL_SURFACE,
             TORUS,
@@ -1120,11 +1171,13 @@ public class StepCode {
             TRIMMED_CURVE,
             TWO_DIRECTION_REPEAT_FACTOR,
             TYPE_QUALIFIER,
+            UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE,
             UNCERTAINTY_MEASURE_WITH_UNIT,
             UNIFORM_CURVE,
             UNIFORM_SURFACE,
             UNIFORM_SURFACE_SECTION,
             VALUE_RANGE,
+            VALUE_REPRESENTATION_ITEM,
             VECTOR,
             VERSIONED_ACTION_REQUEST,
             VERTEX,
@@ -1219,5 +1272,20 @@ public class StepCode {
             GEOMETRIC_REPRESENTATION_ITEM,
             REPRESENTATION_ITEM,
             SURFACE,
+    };
+    public static final String[] TOLERANCES = {
+            GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE,
+            GEOMETRIC_TOLERANCE_WITH_DEFINED_UNIT,
+            GEOMETRIC_TOLERANCE_WITH_MODIFIERS,
+            MODIFIED_GEOMETRIC_TOLERANCE,
+            UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE,
+            CYLINDRICITY_TOLERANCE,
+            FLATNESS_TOLERANCE,
+            LINE_PROFILE_TOLERANCE,
+            POSITION_TOLERANCE,
+            ROUNDNESS_TOLERANCE,
+            STRAIGHTNESS_TOLERANCE,
+            SURFACE_PROFILE_TOLERANCE,
+            GEOMETRIC_TOLERANCE,
     };
 }

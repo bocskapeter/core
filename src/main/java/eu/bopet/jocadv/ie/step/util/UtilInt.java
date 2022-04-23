@@ -5,7 +5,7 @@ public class UtilInt extends StepEntityBase {
 
     public UtilInt(int id, String name, String attribute) {
         super(id, name);
-        this.id = Integer.parseInt(attribute.substring(1));
+        this.id = Integer.parseInt(attribute.replace("#", ""));
     }
 
     @Override

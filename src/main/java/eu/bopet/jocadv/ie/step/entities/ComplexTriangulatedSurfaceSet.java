@@ -33,16 +33,17 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
         pnIndex = new ArrayList<>();
         String[] pnIs = attribute.substring(attribute.indexOf(")),(") + 4, attribute.indexOf("),((")).split(",");
         for (String s : pnIs) {
+            s = s.replace(")", "").replace("(", "");
             if (!s.equals("")) pnIndex.add(Integer.parseInt(s));
         }
         String rest = attribute.substring(attribute.indexOf("),((") + 4);
-        String[] stripsStrings = rest.substring(0, rest.indexOf(")),(")).split(Pattern.quote("),("));
+        String[] stripsStrings = rest.split(Pattern.quote("),("));
         strips = new ArrayList<>();
         for (String s : stripsStrings) {
             List<Integer> integerList = new ArrayList<>();
-            String[] strings = s.split(",");
+            String[] strings = s.replace(")", "").replace("(", "").split(",");
             for (String s1 : strings) {
-                integerList.add(Integer.parseInt(s1));
+                if (!s1.isEmpty()) integerList.add(Integer.parseInt(s1));
             }
             strips.add(integerList);
         }

@@ -162,6 +162,7 @@ import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
+import eu.bopet.jocadv.ie.step.tolerance.Tolerances;
 import eu.bopet.jocadv.ie.step.unit.Units;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
@@ -1081,8 +1082,9 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.TOLERANCES).contains(firstSet)) {
-                            System.out.println("C: " + command);
-
+                            Tolerances tolerances = new Tolerances(id, "", set);
+                            result.add(tolerances);
+                            continue;
                         }
                         System.out.println("???Set of : " + set + "\n first set: " + firstSet);
                     }

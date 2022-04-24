@@ -15,46 +15,7 @@ public class Contexts extends StepEntityBase {
     public Contexts(int id, String name, String set) {
         super(id, name);
         this.contexts = new LinkedHashSet<>();
-        List<Integer> index = new ArrayList<>();
-        for (String code : StepCode.CONTEXTS) {
-            if (set.contains(code)) {
-                index.add(set.indexOf(code));
-            }
-        }
-        Collections.sort(index);
-        List<String> contextStringList = new ArrayList<>();
-        for (int i = 0; i < (index.size()); i++) {
-            int lastIndex = set.length();
-            if (i + 1 < index.size()) {
-                lastIndex = index.get(i + 1);
-            }
-            String s = set.substring(index.get(i), lastIndex);
-            if (s.contains(StepCode.REPRESENTATION_CONTEXT)) {
-                int first = s.indexOf(StepCode.REPRESENTATION_CONTEXT);
-                int last = s.lastIndexOf(StepCode.REPRESENTATION_CONTEXT);
-                if (first == last) {
-                    if (first != 0) {
-                        if (s.charAt(first - 1) == '_') {
-                            contextStringList.add(s);
-                        } else {
-                            String firstPart = s.substring(0, last);
-                            String lastPart = s.substring(last);
-                            contextStringList.add(firstPart);
-                            contextStringList.add(lastPart);
-                        }
-                        continue;
-                    }
-                } else {
-                    String firstPart = s.substring(0, last);
-                    String lastPart = s.substring(last);
-                    contextStringList.add(firstPart);
-                    contextStringList.add(lastPart);
-                    continue;
-                }
-            }
-            contextStringList.add(s);
-        }
-
+        List<String> contextStringList = StepEntityBase.getSets(set, StepCode.CONTEXTS);
         for (String contextString : contextStringList) {
             String code = contextString.substring(0, contextString.indexOf("(")).replace(" ", "");
             String attribute = contextString.substring(contextString.indexOf("(") + 1, contextString.lastIndexOf(")"));

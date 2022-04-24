@@ -2,7 +2,7 @@ package eu.bopet.jocadv.ie.step.measure;
 
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
-public class PlaneAngleMeasureWithUnit extends StepEntityBase {
+public class PlaneAngleMeasureWithUnit extends StepEntityBase implements Measure {
     private MeasureWithUnitInSet measureWithUnitInSet;
 
     public PlaneAngleMeasureWithUnit(int id, String name, String attribute) {

@@ -150,6 +150,7 @@ import eu.bopet.jocadv.ie.step.entities.ViewVolume;
 import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.MeasureWithUnit;
+import eu.bopet.jocadv.ie.step.measure.Measures;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.UncertaintyMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.representation.ConstructiveGeometryRepresentation;
@@ -1084,6 +1085,13 @@ public class ReadStepFile {
                         if (Arrays.asList(StepCode.TOLERANCES).contains(firstSet)) {
                             Tolerances tolerances = new Tolerances(id, "", set);
                             result.add(tolerances);
+                            continue;
+                        }
+                        if (Arrays.asList(StepCode.MEASURES).contains(firstSet)) {
+                            System.out.println("Set: " + set);
+                            Measures measures = new Measures(id, "", set);
+                            result.add(measures);
+                            System.out.println(measures);
                             continue;
                         }
                         System.out.println("???Set of : " + set + "\n first set: " + firstSet);

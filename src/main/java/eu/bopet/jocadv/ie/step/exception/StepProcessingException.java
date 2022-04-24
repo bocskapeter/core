@@ -9,7 +9,7 @@ public class StepProcessingException extends Exception {
 
     @Override
     public String getMessage() {
-        return "***\n*** Step processing exception in line: " + errorLine + "\n***";
+        return "\n***\n*** Step processing exception in line: " + errorLine + "\n***";
     }
 
     @Override

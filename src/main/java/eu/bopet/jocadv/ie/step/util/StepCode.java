@@ -1,6 +1,10 @@
 package eu.bopet.jocadv.ie.step.util;
 
 public class StepCode {
+    public static final String ABSORBED_DOSE_MEASURE = "ABSORBED_DOSE_MEASURE";
+    public static final String ABSORBED_DOSE_MEASURE_WITH_UNIT = "ABSORBED_DOSE_MEASURE_WITH_UNIT";
+    public static final String ACCELERATION_MEASURE = "ACCELERATION_MEASURE";
+    public static final String ACCELERATION_MEASURE_WITH_UNIT = "ACCELERATION_MEASURE_WITH_UNIT";
     public static final String ACTION = "ACTION";
     public static final String ACTION_ASSIGNMENT = "ACTION_ASSIGNMENT";
     public static final String ACTION_METHOD = "ACTION_METHOD";
@@ -12,6 +16,8 @@ public class StepCode {
     public static final String ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM = "ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM";
     public static final String ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM = "ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM";
     public static final String ALL_AROUND_SHAPE_ASPECT = "ALL_AROUND_SHAPE_ASPECT";
+    public static final String AMOUNT_OF_SUBSTANCE_MEASURE = "AMOUNT_OF_SUBSTANCE_MEASURE";
+    public static final String AMOUNT_OF_SUBSTANCE_MEASURE_WITH_UNIT = "AMOUNT_OF_SUBSTANCE_MEASURE_WITH_UNIT";
     public static final String ANALYSIS_ITEM_WITHIN_REPRESENTATION = "ANALYSIS_ITEM_WITHIN_REPRESENTATION";
     public static final String ANALYSIS_REPRESENTATION_CONTEXT = "ANALYSIS_REPRESENTATION_CONTEXT";
     public static final String ANGULARITY_TOLERANCE = "ANGULARITY_TOLERANCE";
@@ -49,6 +55,8 @@ public class StepCode {
     public static final String APPROVAL_STATUS = "APPROVAL_STATUS";
     public static final String ARBITRARY_VOLUME_3D_ELEMENT_COORDINATE_SYSTEM = "ARBITRARY_VOLUME_3D_ELEMENT_COORDINATE_SYSTEM";
     public static final String AREA_IN_SET = "AREA_IN_SET";
+    public static final String AREA_MEASURE = "AREA_MEASURE";
+    public static final String AREA_MEASURE_WITH_UNIT = "AREA_MEASURE_WITH_UNIT";
     public static final String AREA_UNIT = "AREA_UNIT";
     public static final String ASSEMBLY_COMPONENT_USAGE = "ASSEMBLY_COMPONENT_USAGE";
     public static final String ASSEMBLY_COMPONENT_USAGE_SUBSTITUTE = "ASSEMBLY_COMPONENT_USAGE_SUBSTITUTE";
@@ -91,6 +99,8 @@ public class StepCode {
     public static final String CAMERA_MODEL_D2 = "CAMERA_MODEL_D2";
     public static final String CAMERA_MODEL_D3 = "CAMERA_MODEL_D3";
     public static final String CAMERA_USAGE = "CAMERA_USAGE";
+    public static final String CAPACITANCE_MEASURE = "CAPACITANCE_MEASURE";
+    public static final String CAPACITANCE_MEASURE_WITH_UNIT = "CAPACITANCE_MEASURE_WITH_UNIT";
     public static final String CARTESIAN_POINT = "CARTESIAN_POINT";
     public static final String CARTESIAN_TRANSFORMATION_OPERATOR = "CARTESIAN_TRANSFORMATION_OPERATOR";
     public static final String CARTESIAN_TRANSFORMATION_OPERATOR_2D = "CARTESIAN_TRANSFORMATION_OPERATOR_2D";
@@ -102,6 +112,8 @@ public class StepCode {
     public static final String CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT = "CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT";
     public static final String CC_DESIGN_SECURITY_CLASSIFICATION = "CC_DESIGN_SECURITY_CLASSIFICATION";
     public static final String CC_DESIGN_SPECIFICATION_REFERENCE = "CC_DESIGN_SPECIFICATION_REFERENCE";
+    public static final String CELSIUS_TEMPERATURE_MEASURE = "CELSIUS_TEMPERATURE_MEASURE";
+    public static final String CELSIUS_TEMPERATURE_MEASURE_WITH_UNIT = "CELSIUS_TEMPERATURE_MEASURE_WITH_UNIT";
     public static final String CERTIFICATION = "CERTIFICATION";
     public static final String CERTIFICATION_ASSIGNMENT = "CERTIFICATION_ASSIGNMENT";
     public static final String CERTIFICATION_TYPE = "CERTIFICATION_TYPE";
@@ -132,6 +144,8 @@ public class StepCode {
     public static final String COMPOUND_REPRESENTATION_ITEM = "COMPOUND_REPRESENTATION_ITEM";
     public static final String COMPOUND_SHAPE_REPRESENTATION = "COMPOUND_SHAPE_REPRESENTATION";
     public static final String CONCENTRICITY_TOLERANCE = "CONCENTRICITY_TOLERANCE";
+    public static final String CONDUCTANCE_MEASURE = "CONDUCTANCE_MEASURE";
+    public static final String CONDUCTANCE_MEASURE_WITH_UNIT = "CONDUCTANCE_MEASURE_WITH_UNIT";
     public static final String CONFIGURATION_DESIGN = "CONFIGURATION_DESIGN";
     public static final String CONFIGURATION_EFFECTIVITY = "CONFIGURATION_EFFECTIVITY";
     public static final String CONIC = "CONIC";
@@ -144,6 +158,7 @@ public class StepCode {
     public static final String CONSTRUCTIVE_GEOMETRY_REPRESENTATION = "CONSTRUCTIVE_GEOMETRY_REPRESENTATION";
     public static final String CONSTRUCTIVE_GEOMETRY_REPRESENTATION_RELATIONSHIP = "CONSTRUCTIVE_GEOMETRY_REPRESENTATION_RELATIONSHIP";
     public static final String CONTEXT_DEPENDENT_INVISIBILITY = "CONTEXT_DEPENDENT_INVISIBILITY";
+    public static final String CONTEXT_DEPENDENT_MEASURE = "CONTEXT_DEPENDENT_MEASURE";
     public static final String CONTEXT_DEPENDENT_OVER_RIDING_STYLED_ITEM = "CONTEXT_DEPENDENT_OVER_RIDING_STYLED_ITEM";
     public static final String CONTEXT_DEPENDENT_SHAPE_REPRESENTATION = "CONTEXT_DEPENDENT_SHAPE_REPRESENTATION";
     public static final String CONTRACT = "CONTRACT";
@@ -152,6 +167,7 @@ public class StepCode {
     public static final String CONVERSION_BASED_UNIT = "CONVERSION_BASED_UNIT";
     public static final String COORDINATED_UNIVERSAL_TIME_OFFSET = "COORDINATED_UNIVERSAL_TIME_OFFSET";
     public static final String COORDINATES_LIST = "COORDINATES_LIST";
+    public static final String COUNT_MEASURE = "COUNT_MEASURE";
     public static final String CSG_REPRESENTATION = "CSG_REPRESENTATION";
     public static final String CSG_SHAPE_REPRESENTATION = "CSG_SHAPE_REPRESENTATION";
     public static final String CSG_SOLID = "CSG_SOLID";
@@ -197,6 +213,7 @@ public class StepCode {
     public static final String DERIVED_SHAPE_ASPECT = "DERIVED_SHAPE_ASPECT";
     public static final String DERIVED_UNIT = "DERIVED_UNIT";
     public static final String DERIVED_UNIT_ELEMENT = "DERIVED_UNIT_ELEMENT";
+    public static final String DESCRIPTIVE_MEASURE = "DESCRIPTIVE_MEASURE";
     public static final String DESCRIPTIVE_REPRESENTATION_ITEM = "DESCRIPTIVE_REPRESENTATION_ITEM";
     public static final String DESIGN_CONTEXT = "DESIGN_CONTEXT";
     public static final String DIGITAL_DOCUMENT = "DIGITAL_DOCUMENT";
@@ -218,6 +235,8 @@ public class StepCode {
     public static final String DOCUMENT_REPRESENTATION_TYPE = "DOCUMENT_REPRESENTATION_TYPE";
     public static final String DOCUMENT_TYPE = "DOCUMENT_TYPE";
     public static final String DOCUMENT_USAGE_CONSTRAINT = "DOCUMENT_USAGE_CONSTRAINT";
+    public static final String DOSE_EQUIVALENT_MEASURE = "DOSE_EQUIVALENT_MEASURE";
+    public static final String DOSE_EQUIVALENT_MEASURE_WITH_UNIT = "DOSE_EQUIVALENT_MEASURE_WITH_UNIT";
     public static final String DRAUGHTING_ANNOTATION_OCCURRENCE = "DRAUGHTING_ANNOTATION_OCCURRENCE";
     public static final String DRAUGHTING_CALLOUT = "DRAUGHTING_CALLOUT";
     public static final String DRAUGHTING_CALLOUT_RELATIONSHIP = "DRAUGHTING_CALLOUT_RELATIONSHIP";
@@ -238,6 +257,12 @@ public class StepCode {
     public static final String EDGE_LOOP = "EDGE_LOOP";
     public static final String EFFECTIVITY = "EFFECTIVITY";
     public static final String EFFECTIVITY_ASSIGNMENT = "EFFECTIVITY_ASSIGNMENT";
+    public static final String ELECTRIC_CHARGE_MEASURE = "ELECTRIC_CHARGE_MEASURE";
+    public static final String ELECTRIC_CHARGE_MEASURE_WITH_UNIT = "ELECTRIC_CHARGE_MEASURE_WITH_UNIT";
+    public static final String ELECTRIC_CURRENT_MEASURE = "ELECTRIC_CURRENT_MEASURE";
+    public static final String ELECTRIC_CURRENT_MEASURE_WITH_UNIT = "ELECTRIC_CURRENT_MEASURE_WITH_UNIT";
+    public static final String ELECTRIC_POTENTIAL_MEASURE = "ELECTRIC_POTENTIAL_MEASURE";
+    public static final String ELECTRIC_POTENTIAL_MEASURE_WITH_UNIT = "ELECTRIC_POTENTIAL_MEASURE_WITH_UNIT";
     public static final String ELEMENTARY_SURFACE = "ELEMENTARY_SURFACE";
     public static final String ELEMENT_DESCRIPTOR = "ELEMENT_DESCRIPTOR";
     public static final String ELEMENT_GEOMETRIC_RELATIONSHIP = "ELEMENT_GEOMETRIC_RELATIONSHIP";
@@ -245,11 +270,13 @@ public class StepCode {
     public static final String ELEMENT_MATERIAL = "ELEMENT_MATERIAL";
     public static final String ELEMENT_REPRESENTATION = "ELEMENT_REPRESENTATION";
     public static final String ELLIPSE = "ELLIPSE";
+    public static final String ENERGY_MEASURE = "ENERGY_MEASURE";
+    public static final String ENERGY_MEASURE_WITH_UNIT = "ENERGY_MEASURE_WITH_UNIT";
     public static final String EULER_ANGLES = "EULER_ANGLES";
     public static final String EVALUATED_DEGENERATE_PCURVE = "EVALUATED_DEGENERATE_PCURVE";
     public static final String EXTENSION = "EXTENSION";
+    public static final String EXTERNALLY_DEFINED_CLASS = "EXTERNALLY_DEFINED_CLASS";
     public static final String EXTERNALLY_DEFINED_CURVE_FONT = "EXTERNALLY_DEFINED_CURVE_FONT";
-    public static final String EXTERNALLY_DEFINED_Class = "EXTERNALLY_DEFINED_Class";
     public static final String EXTERNALLY_DEFINED_GENERAL_PROPERTY = "EXTERNALLY_DEFINED_GENERAL_PROPERTY";
     public static final String EXTERNALLY_DEFINED_HATCH_STYLE = "EXTERNALLY_DEFINED_HATCH_STYLE";
     public static final String EXTERNALLY_DEFINED_ITEM = "EXTERNALLY_DEFINED_ITEM";
@@ -295,8 +322,12 @@ public class StepCode {
     public static final String FILL_AREA_STYLE_TILES = "FILL_AREA_STYLE_TILES";
     public static final String FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE = "FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE";
     public static final String FLATNESS_TOLERANCE = "FLATNESS_TOLERANCE";
+    public static final String FORCE_MEASURE = "FORCE_MEASURE";
+    public static final String FORCE_MEASURE_WITH_UNIT = "FORCE_MEASURE_WITH_UNIT";
     public static final String FREEDOMS_LIST = "FREEDOMS_LIST";
     public static final String FREEDOM_AND_COEFFICIENT = "FREEDOM_AND_COEFFICIENT";
+    public static final String FREQUENCY_MEASURE = "FREQUENCY_MEASURE";
+    public static final String FREQUENCY_MEASURE_WITH_UNIT = "FREQUENCY_MEASURE_WITH_UNIT";
     public static final String FUNCTIONALLY_DEFINED_TRANSFORMATION = "FUNCTIONALLY_DEFINED_TRANSFORMATION";
     public static final String GENERAL_PROPERTY = "GENERAL_PROPERTY";
     public static final String GENERAL_PROPERTY_ASSOCIATION = "GENERAL_PROPERTY_ASSOCIATION";
@@ -321,9 +352,13 @@ public class StepCode {
     public static final String GROUP_RELATIONSHIP = "GROUP_RELATIONSHIP";
     public static final String HALF_SPACE_SOLID = "HALF_SPACE_SOLID";
     public static final String HYPERBOLA = "HYPERBOLA";
-    public static final String ID_ATTRIBUTE = "ID_ATTRIBUTE";
     public static final String IDENTIFICATION_ASSIGNMENT = "IDENTIFICATION_ASSIGNMENT";
     public static final String IDENTIFICATION_ROLE = "IDENTIFICATION_ROLE";
+    public static final String ID_ATTRIBUTE = "ID_ATTRIBUTE";
+    public static final String ILLUMINANCE_MEASURE = "ILLUMINANCE_MEASURE";
+    public static final String ILLUMINANCE_MEASURE_WITH_UNIT = "ILLUMINANCE_MEASURE_WITH_UNIT";
+    public static final String INDUCTANCE_MEASURE = "INDUCTANCE_MEASURE";
+    public static final String INDUCTANCE_MEASURE_WITH_UNIT = "INDUCTANCE_MEASURE_WITH_UNIT";
     public static final String INTEGER_REPRESENTATION_ITEM = "INTEGER_REPRESENTATION_ITEM";
     public static final String INTERSECTION_CURVE = "INTERSECTION_CURVE";
     public static final String INVISIBILITY = "INVISIBILITY";
@@ -337,10 +372,19 @@ public class StepCode {
     public static final String LINE_PROFILE_TOLERANCE = "LINE_PROFILE_TOLERANCE";
     public static final String LOCAL_TIME = "LOCAL_TIME";
     public static final String LOOP = "LOOP";
+    public static final String LUMINOUS_FLUX_MEASURE = "LUMINOUS_FLUX_MEASURE";
+    public static final String LUMINOUS_FLUX_MEASURE_WITH_UNIT = "LUMINOUS_FLUX_MEASURE_WITH_UNIT";
+    public static final String LUMINOUS_INTENSITY_MEASURE = "LUMINOUS_INTENSITY_MEASURE";
+    public static final String LUMINOUS_INTENSITY_MEASURE_WITH_UNIT = "LUMINOUS_INTENSITY_MEASURE_WITH_UNIT";
+    public static final String MAGNETIC_FLUX_DENSITY_MEASURE = "MAGNETIC_FLUX_DENSITY_MEASURE";
+    public static final String MAGNETIC_FLUX_DENSITY_MEASURE_WITH_UNIT = "MAGNETIC_FLUX_DENSITY_MEASURE_WITH_UNIT";
+    public static final String MAGNETIC_FLUX_MEASURE = "MAGNETIC_FLUX_MEASURE";
+    public static final String MAGNETIC_FLUX_MEASURE_WITH_UNIT = "MAGNETIC_FLUX_MEASURE_WITH_UNIT";
     public static final String MAKE_FROM_USAGE_OPTION = "MAKE_FROM_USAGE_OPTION";
     public static final String MANIFOLD_SOLID_BREP = "MANIFOLD_SOLID_BREP";
     public static final String MANIFOLD_SURFACE_SHAPE_REPRESENTATION = "MANIFOLD_SURFACE_SHAPE_REPRESENTATION";
     public static final String MAPPED_ITEM = "MAPPED_ITEM";
+    public static final String MASS_MEASURE = "MASS_MEASURE";
     public static final String MASS_MEASURE_WITH_UNIT = "MASS_MEASURE_WITH_UNIT";
     public static final String MASS_UNIT = "MASS_UNIT";
     public static final String MATERIAL_DESIGNATION = "MATERIAL_DESIGNATION";
@@ -367,6 +411,8 @@ public class StepCode {
     public static final String NODE_WITH_SOLUTION_COORDINATE_SYSTEM = "NODE_WITH_SOLUTION_COORDINATE_SYSTEM";
     public static final String NODE_WITH_VECTOR = "NODE_WITH_VECTOR";
     public static final String NON_MANIFOLD_SURFACE_SHAPE_REPRESENTATION = "NON_MANIFOLD_SURFACE_SHAPE_REPRESENTATION";
+    public static final String NON_NEGATIVE_LENGTH_MEASURE = "NON_NEGATIVE_LENGTH_MEASURE";
+    public static final String NUMERIC_MEASURE = "NUMERIC_MEASURE";
     public static final String OBJECT_ROLE = "OBJECT_ROLE";
     public static final String OFFSET_CURVE_3D = "OFFSET_CURVE_3D";
     public static final String OFFSET_SURFACE = "OFFSET_SURFACE";
@@ -387,6 +433,7 @@ public class StepCode {
     public static final String OVER_RIDING_STYLED_ITEM = "OVER_RIDING_STYLED_ITEM";
     public static final String PARABOLA = "PARABOLA";
     public static final String PARALLELISM_TOLERANCE = "PARALLELISM_TOLERANCE";
+    public static final String PARAMETER_VALUE = "PARAMETER_VALUE";
     public static final String PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_DIRECTION = "PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_DIRECTION";
     public static final String PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_SYSTEM = "PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_SYSTEM";
     public static final String PARAMETRIC_REPRESENTATION_CONTEXT = "PARAMETRIC_REPRESENTATION_CONTEXT";
@@ -406,6 +453,7 @@ public class StepCode {
     public static final String PLANAR_BOX = "PLANAR_BOX";
     public static final String PLANAR_EXTENT = "PLANAR_EXTENT";
     public static final String PLANE = "PLANE";
+    public static final String PLANE_ANGLE_MEASURE = "PLANE_ANGLE_MEASURE";
     public static final String PLANE_ANGLE_MEASURE_WITH_UNIT = "PLANE_ANGLE_MEASURE_WITH_UNIT";
     public static final String PLANE_ANGLE_UNIT = "PLANE_ANGLE_UNIT";
     public static final String PLUS_MINUS_TOLERANCE = "PLUS_MINUS_TOLERANCE";
@@ -418,6 +466,11 @@ public class StepCode {
     public static final String POLYLINE = "POLYLINE";
     public static final String POLY_LOOP = "POLY_LOOP";
     public static final String POSITION_TOLERANCE = "POSITION_TOLERANCE";
+    public static final String POSITIVE_LENGTH_MEASURE = "POSITIVE_LENGTH_MEASURE";
+    public static final String POSITIVE_PLANE_ANGLE_MEASURE = "POSITIVE_PLANE_ANGLE_MEASURE";
+    public static final String POSITIVE_RATIO_MEASURE = "POSITIVE_RATIO_MEASURE";
+    public static final String POWER_MEASURE = "POWER_MEASURE";
+    public static final String POWER_MEASURE_WITH_UNIT = "POWER_MEASURE_WITH_UNIT";
     public static final String PRECISION_QUALIFIER = "PRECISION_QUALIFIER";
     public static final String PRESENTATION_AREA = "PRESENTATION_AREA";
     public static final String PRESENTATION_LAYER_ASSIGNMENT = "PRESENTATION_LAYER_ASSIGNMENT";
@@ -430,6 +483,8 @@ public class StepCode {
     public static final String PRESENTATION_VIEW = "PRESENTATION_VIEW";
     public static final String PRESENTED_ITEM = "PRESENTED_ITEM";
     public static final String PRESENTED_ITEM_REPRESENTATION = "PRESENTED_ITEM_REPRESENTATION";
+    public static final String PRESSURE_MEASURE = "PRESSURE_MEASURE";
+    public static final String PRESSURE_MEASURE_WITH_UNIT = "PRESSURE_MEASURE_WITH_UNIT";
     public static final String PRE_DEFINED_COLOUR = "PRE_DEFINED_COLOUR";
     public static final String PRE_DEFINED_CURVE_FONT = "PRE_DEFINED_CURVE_FONT";
     public static final String PRE_DEFINED_ITEM = "PRE_DEFINED_ITEM";
@@ -463,8 +518,11 @@ public class StepCode {
     public static final String QUANTIFIED_ASSEMBLY_COMPONENT_USAGE = "QUANTIFIED_ASSEMBLY_COMPONENT_USAGE";
     public static final String QUASI_UNIFORM_CURVE = "QUASI_UNIFORM_CURVE";
     public static final String QUASI_UNIFORM_SURFACE = "QUASI_UNIFORM_SURFACE";
+    public static final String RADIOACTIVITY_MEASURE = "RADIOACTIVITY_MEASURE";
+    public static final String RADIOACTIVITY_MEASURE_WITH_UNIT = "RADIOACTIVITY_MEASURE_WITH_UNIT";
     public static final String RATIONAL_B_SPLINE_CURVE = "RATIONAL_B_SPLINE_CURVE";
     public static final String RATIONAL_B_SPLINE_SURFACE = "RATIONAL_B_SPLINE_SURFACE";
+    public static final String RATIO_MEASURE = "RATIO_MEASURE";
     public static final String RATIO_MEASURE_WITH_UNIT = "RATIO_MEASURE_WITH_UNIT";
     public static final String RATIO_UNIT = "RATIO_UNIT";
     public static final String RECTANGULAR_COMPOSITE_SURFACE = "RECTANGULAR_COMPOSITE_SURFACE";
@@ -477,6 +535,8 @@ public class StepCode {
     public static final String REPRESENTATION_RELATIONSHIP = "REPRESENTATION_RELATIONSHIP";
     public static final String REPRESENTATION_RELATIONSHIP_WITH_TRANSFORMATION = "REPRESENTATION_RELATIONSHIP_WITH_TRANSFORMATION";
     public static final String REP_ITEM_GROUP = "REP_ITEM_GROUP";
+    public static final String RESISTANCE_MEASURE = "RESISTANCE_MEASURE";
+    public static final String RESISTANCE_MEASURE_WITH_UNIT = "RESISTANCE_MEASURE_WITH_UNIT";
     public static final String REVOLVED_AREA_SOLID = "REVOLVED_AREA_SOLID";
     public static final String REVOLVED_FACE_SOLID = "REVOLVED_FACE_SOLID";
     public static final String RIGHT_ANGULAR_WEDGE = "RIGHT_ANGULAR_WEDGE";
@@ -500,6 +560,7 @@ public class StepCode {
     public static final String SHAPE_REPRESENTATION_WITH_PARAMETERS = "SHAPE_REPRESENTATION_WITH_PARAMETERS";
     public static final String SHELL_BASED_SURFACE_MODEL = "SHELL_BASED_SURFACE_MODEL";
     public static final String SI_UNIT = "SI_UNIT";
+    public static final String SOLID_ANGLE_MEASURE = "SOLID_ANGLE_MEASURE";
     public static final String SOLID_ANGLE_MEASURE_WITH_UNIT = "SOLID_ANGLE_MEASURE_WITH_UNIT";
     public static final String SOLID_ANGLE_UNIT = "SOLID_ANGLE_UNIT";
     public static final String SOLID_MODEL = "SOLID_MODEL";
@@ -563,7 +624,10 @@ public class StepCode {
     public static final String TEXT_STYLE_FOR_DEFINED_FONT = "TEXT_STYLE_FOR_DEFINED_FONT";
     public static final String TEXT_STYLE_WITH_BOX_CHARACTERISTICS = "TEXT_STYLE_WITH_BOX_CHARACTERISTICS";
     public static final String TEXT_STYLE_WITH_MIRROR = "TEXT_STYLE_WITH_MIRROR";
+    public static final String THERMODYNAMIC_TEMPERATURE_MEASURE = "THERMODYNAMIC_TEMPERATURE_MEASURE";
+    public static final String THERMODYNAMIC_TEMPERATURE_MEASURE_WITH_UNIT = "THERMODYNAMIC_TEMPERATURE_MEASURE_WITH_UNIT";
     public static final String THERMODYNAMIC_TEMPERATURE_UNIT = "THERMODYNAMIC_TEMPERATURE_UNIT";
+    public static final String TIME_MEASURE = "TIME_MEASURE";
     public static final String TIME_MEASURE_WITH_UNIT = "TIME_MEASURE_WITH_UNIT";
     public static final String TIME_UNIT = "TIME_UNIT";
     public static final String TOLERANCE_VALUE = "TOLERANCE_VALUE";
@@ -577,8 +641,8 @@ public class StepCode {
     public static final String TRIMMED_CURVE = "TRIMMED_CURVE";
     public static final String TWO_DIRECTION_REPEAT_FACTOR = "TWO_DIRECTION_REPEAT_FACTOR";
     public static final String TYPE_QUALIFIER = "TYPE_QUALIFIER";
-    public static final String UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE = "UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE";
     public static final String UNCERTAINTY_MEASURE_WITH_UNIT = "UNCERTAINTY_MEASURE_WITH_UNIT";
+    public static final String UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE = "UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE";
     public static final String UNIFORM_CURVE = "UNIFORM_CURVE";
     public static final String UNIFORM_SURFACE = "UNIFORM_SURFACE";
     public static final String UNIFORM_SURFACE_SECTION = "UNIFORM_SURFACE_SECTION";
@@ -586,6 +650,8 @@ public class StepCode {
     public static final String VALUE_RANGE = "VALUE_RANGE";
     public static final String VALUE_REPRESENTATION_ITEM = "VALUE_REPRESENTATION_ITEM";
     public static final String VECTOR = "VECTOR";
+    public static final String VELOCITY_MEASURE = "VELOCITY_MEASURE";
+    public static final String VELOCITY_MEASURE_WITH_UNIT = "VELOCITY_MEASURE_WITH_UNIT";
     public static final String VERSIONED_ACTION_REQUEST = "VERSIONED_ACTION_REQUEST";
     public static final String VERTEX = "VERTEX";
     public static final String VERTEX_LOOP = "VERTEX_LOOP";
@@ -593,10 +659,16 @@ public class StepCode {
     public static final String VIEW_VOLUME = "VIEW_VOLUME";
     public static final String VOLUME_3D_ELEMENT_DESCRIPTOR = "VOLUME_3D_ELEMENT_DESCRIPTOR";
     public static final String VOLUME_3D_ELEMENT_REPRESENTATION = "VOLUME_3D_ELEMENT_REPRESENTATION";
+    public static final String VOLUME_MEASURE = "VOLUME_MEASURE";
+    public static final String VOLUME_MEASURE_WITH_UNIT = "VOLUME_MEASURE_WITH_UNIT";
     public static final String VOLUME_UNIT = "VOLUME_UNIT";
     public static final String WEEK_OF_YEAR_AND_DAY_DATE = "WEEK_OF_YEAR_AND_DAY_DATE";
 
     public static final String[] ALL = {
+            ABSORBED_DOSE_MEASURE,
+            ABSORBED_DOSE_MEASURE_WITH_UNIT,
+            ACCELERATION_MEASURE,
+            ACCELERATION_MEASURE_WITH_UNIT,
             ACTION,
             ACTION_ASSIGNMENT,
             ACTION_METHOD,
@@ -608,7 +680,10 @@ public class StepCode {
             ALIGNED_CURVE_3D_ELEMENT_COORDINATE_SYSTEM,
             ALIGNED_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM,
             ALL_AROUND_SHAPE_ASPECT,
+            AMOUNT_OF_SUBSTANCE_MEASURE,
+            AMOUNT_OF_SUBSTANCE_MEASURE_WITH_UNIT,
             ANALYSIS_ITEM_WITHIN_REPRESENTATION,
+            ANALYSIS_REPRESENTATION_CONTEXT,
             ANGULARITY_TOLERANCE,
             ANGULAR_LOCATION,
             ANGULAR_SIZE,
@@ -644,6 +719,8 @@ public class StepCode {
             APPROVAL_STATUS,
             ARBITRARY_VOLUME_3D_ELEMENT_COORDINATE_SYSTEM,
             AREA_IN_SET,
+            AREA_MEASURE,
+            AREA_MEASURE_WITH_UNIT,
             AREA_UNIT,
             ASSEMBLY_COMPONENT_USAGE,
             ASSEMBLY_COMPONENT_USAGE_SUBSTITUTE,
@@ -686,6 +763,8 @@ public class StepCode {
             CAMERA_MODEL_D2,
             CAMERA_MODEL_D3,
             CAMERA_USAGE,
+            CAPACITANCE_MEASURE,
+            CAPACITANCE_MEASURE_WITH_UNIT,
             CARTESIAN_POINT,
             CARTESIAN_TRANSFORMATION_OPERATOR,
             CARTESIAN_TRANSFORMATION_OPERATOR_2D,
@@ -697,6 +776,8 @@ public class StepCode {
             CC_DESIGN_PERSON_AND_ORGANIZATION_ASSIGNMENT,
             CC_DESIGN_SECURITY_CLASSIFICATION,
             CC_DESIGN_SPECIFICATION_REFERENCE,
+            CELSIUS_TEMPERATURE_MEASURE,
+            CELSIUS_TEMPERATURE_MEASURE_WITH_UNIT,
             CERTIFICATION,
             CERTIFICATION_ASSIGNMENT,
             CERTIFICATION_TYPE,
@@ -727,6 +808,8 @@ public class StepCode {
             COMPOUND_REPRESENTATION_ITEM,
             COMPOUND_SHAPE_REPRESENTATION,
             CONCENTRICITY_TOLERANCE,
+            CONDUCTANCE_MEASURE,
+            CONDUCTANCE_MEASURE_WITH_UNIT,
             CONFIGURATION_DESIGN,
             CONFIGURATION_EFFECTIVITY,
             CONIC,
@@ -739,6 +822,7 @@ public class StepCode {
             CONSTRUCTIVE_GEOMETRY_REPRESENTATION,
             CONSTRUCTIVE_GEOMETRY_REPRESENTATION_RELATIONSHIP,
             CONTEXT_DEPENDENT_INVISIBILITY,
+            CONTEXT_DEPENDENT_MEASURE,
             CONTEXT_DEPENDENT_OVER_RIDING_STYLED_ITEM,
             CONTEXT_DEPENDENT_SHAPE_REPRESENTATION,
             CONTRACT,
@@ -747,6 +831,7 @@ public class StepCode {
             CONVERSION_BASED_UNIT,
             COORDINATED_UNIVERSAL_TIME_OFFSET,
             COORDINATES_LIST,
+            COUNT_MEASURE,
             CSG_REPRESENTATION,
             CSG_SHAPE_REPRESENTATION,
             CSG_SOLID,
@@ -792,6 +877,7 @@ public class StepCode {
             DERIVED_SHAPE_ASPECT,
             DERIVED_UNIT,
             DERIVED_UNIT_ELEMENT,
+            DESCRIPTIVE_MEASURE,
             DESCRIPTIVE_REPRESENTATION_ITEM,
             DESIGN_CONTEXT,
             DIGITAL_DOCUMENT,
@@ -813,6 +899,8 @@ public class StepCode {
             DOCUMENT_REPRESENTATION_TYPE,
             DOCUMENT_TYPE,
             DOCUMENT_USAGE_CONSTRAINT,
+            DOSE_EQUIVALENT_MEASURE,
+            DOSE_EQUIVALENT_MEASURE_WITH_UNIT,
             DRAUGHTING_ANNOTATION_OCCURRENCE,
             DRAUGHTING_CALLOUT,
             DRAUGHTING_CALLOUT_RELATIONSHIP,
@@ -833,6 +921,12 @@ public class StepCode {
             EDGE_LOOP,
             EFFECTIVITY,
             EFFECTIVITY_ASSIGNMENT,
+            ELECTRIC_CHARGE_MEASURE,
+            ELECTRIC_CHARGE_MEASURE_WITH_UNIT,
+            ELECTRIC_CURRENT_MEASURE,
+            ELECTRIC_CURRENT_MEASURE_WITH_UNIT,
+            ELECTRIC_POTENTIAL_MEASURE,
+            ELECTRIC_POTENTIAL_MEASURE_WITH_UNIT,
             ELEMENTARY_SURFACE,
             ELEMENT_DESCRIPTOR,
             ELEMENT_GEOMETRIC_RELATIONSHIP,
@@ -840,11 +934,13 @@ public class StepCode {
             ELEMENT_MATERIAL,
             ELEMENT_REPRESENTATION,
             ELLIPSE,
+            ENERGY_MEASURE,
+            ENERGY_MEASURE_WITH_UNIT,
             EULER_ANGLES,
             EVALUATED_DEGENERATE_PCURVE,
             EXTENSION,
+            EXTERNALLY_DEFINED_CLASS,
             EXTERNALLY_DEFINED_CURVE_FONT,
-            EXTERNALLY_DEFINED_Class,
             EXTERNALLY_DEFINED_GENERAL_PROPERTY,
             EXTERNALLY_DEFINED_HATCH_STYLE,
             EXTERNALLY_DEFINED_ITEM,
@@ -874,7 +970,6 @@ public class StepCode {
             FEA_MODEL,
             FEA_MODEL_3D,
             FEA_MODEL_DEFINITION,
-            FEA_MODEL_DEFINITION,
             FEA_MOISTURE_ABSORPTION,
             FEA_PARAMETRIC_POINT,
             FEA_REPRESENTATION_ITEM,
@@ -891,8 +986,12 @@ public class StepCode {
             FILL_AREA_STYLE_TILES,
             FILL_AREA_STYLE_TILE_SYMBOL_WITH_STYLE,
             FLATNESS_TOLERANCE,
+            FORCE_MEASURE,
+            FORCE_MEASURE_WITH_UNIT,
             FREEDOMS_LIST,
             FREEDOM_AND_COEFFICIENT,
+            FREQUENCY_MEASURE,
+            FREQUENCY_MEASURE_WITH_UNIT,
             FUNCTIONALLY_DEFINED_TRANSFORMATION,
             GENERAL_PROPERTY,
             GENERAL_PROPERTY_ASSOCIATION,
@@ -902,6 +1001,7 @@ public class StepCode {
             GEOMETRIC_ITEM_SPECIFIC_USAGE,
             GEOMETRIC_NODE,
             GEOMETRIC_REPRESENTATION_CONTEXT,
+            GEOMETRIC_REPRESENTATION_CONTEXT_WITH_PARAMETER,
             GEOMETRIC_REPRESENTATION_ITEM,
             GEOMETRIC_SET,
             GEOMETRIC_TOLERANCE,
@@ -916,9 +1016,13 @@ public class StepCode {
             GROUP_RELATIONSHIP,
             HALF_SPACE_SOLID,
             HYPERBOLA,
-            ID_ATTRIBUTE,
             IDENTIFICATION_ASSIGNMENT,
             IDENTIFICATION_ROLE,
+            ID_ATTRIBUTE,
+            ILLUMINANCE_MEASURE,
+            ILLUMINANCE_MEASURE_WITH_UNIT,
+            INDUCTANCE_MEASURE,
+            INDUCTANCE_MEASURE_WITH_UNIT,
             INTEGER_REPRESENTATION_ITEM,
             INTERSECTION_CURVE,
             INVISIBILITY,
@@ -932,10 +1036,19 @@ public class StepCode {
             LINE_PROFILE_TOLERANCE,
             LOCAL_TIME,
             LOOP,
+            LUMINOUS_FLUX_MEASURE,
+            LUMINOUS_FLUX_MEASURE_WITH_UNIT,
+            LUMINOUS_INTENSITY_MEASURE,
+            LUMINOUS_INTENSITY_MEASURE_WITH_UNIT,
+            MAGNETIC_FLUX_DENSITY_MEASURE,
+            MAGNETIC_FLUX_DENSITY_MEASURE_WITH_UNIT,
+            MAGNETIC_FLUX_MEASURE,
+            MAGNETIC_FLUX_MEASURE_WITH_UNIT,
             MAKE_FROM_USAGE_OPTION,
             MANIFOLD_SOLID_BREP,
             MANIFOLD_SURFACE_SHAPE_REPRESENTATION,
             MAPPED_ITEM,
+            MASS_MEASURE,
             MASS_MEASURE_WITH_UNIT,
             MASS_UNIT,
             MATERIAL_DESIGNATION,
@@ -962,6 +1075,8 @@ public class StepCode {
             NODE_WITH_SOLUTION_COORDINATE_SYSTEM,
             NODE_WITH_VECTOR,
             NON_MANIFOLD_SURFACE_SHAPE_REPRESENTATION,
+            NON_NEGATIVE_LENGTH_MEASURE,
+            NUMERIC_MEASURE,
             OBJECT_ROLE,
             OFFSET_CURVE_3D,
             OFFSET_SURFACE,
@@ -982,11 +1097,13 @@ public class StepCode {
             OVER_RIDING_STYLED_ITEM,
             PARABOLA,
             PARALLELISM_TOLERANCE,
+            PARAMETER_VALUE,
             PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_DIRECTION,
             PARAMETRIC_CURVE_3D_ELEMENT_COORDINATE_SYSTEM,
             PARAMETRIC_REPRESENTATION_CONTEXT,
             PARAMETRIC_SURFACE_3D_ELEMENT_COORDINATE_SYSTEM,
             PATH,
+            PATH_PARAMETRIC_REPRESENTATION_CONTEXT,
             PCURVE,
             PERPENDICULARITY_TOLERANCE,
             PERSON,
@@ -1000,6 +1117,7 @@ public class StepCode {
             PLANAR_BOX,
             PLANAR_EXTENT,
             PLANE,
+            PLANE_ANGLE_MEASURE,
             PLANE_ANGLE_MEASURE_WITH_UNIT,
             PLANE_ANGLE_UNIT,
             PLUS_MINUS_TOLERANCE,
@@ -1012,6 +1130,11 @@ public class StepCode {
             POLYLINE,
             POLY_LOOP,
             POSITION_TOLERANCE,
+            POSITIVE_LENGTH_MEASURE,
+            POSITIVE_PLANE_ANGLE_MEASURE,
+            POSITIVE_RATIO_MEASURE,
+            POWER_MEASURE,
+            POWER_MEASURE_WITH_UNIT,
             PRECISION_QUALIFIER,
             PRESENTATION_AREA,
             PRESENTATION_LAYER_ASSIGNMENT,
@@ -1024,6 +1147,8 @@ public class StepCode {
             PRESENTATION_VIEW,
             PRESENTED_ITEM,
             PRESENTED_ITEM_REPRESENTATION,
+            PRESSURE_MEASURE,
+            PRESSURE_MEASURE_WITH_UNIT,
             PRE_DEFINED_COLOUR,
             PRE_DEFINED_CURVE_FONT,
             PRE_DEFINED_ITEM,
@@ -1057,8 +1182,11 @@ public class StepCode {
             QUANTIFIED_ASSEMBLY_COMPONENT_USAGE,
             QUASI_UNIFORM_CURVE,
             QUASI_UNIFORM_SURFACE,
+            RADIOACTIVITY_MEASURE,
+            RADIOACTIVITY_MEASURE_WITH_UNIT,
             RATIONAL_B_SPLINE_CURVE,
             RATIONAL_B_SPLINE_SURFACE,
+            RATIO_MEASURE,
             RATIO_MEASURE_WITH_UNIT,
             RATIO_UNIT,
             RECTANGULAR_COMPOSITE_SURFACE,
@@ -1071,6 +1199,8 @@ public class StepCode {
             REPRESENTATION_RELATIONSHIP,
             REPRESENTATION_RELATIONSHIP_WITH_TRANSFORMATION,
             REP_ITEM_GROUP,
+            RESISTANCE_MEASURE,
+            RESISTANCE_MEASURE_WITH_UNIT,
             REVOLVED_AREA_SOLID,
             REVOLVED_FACE_SOLID,
             RIGHT_ANGULAR_WEDGE,
@@ -1094,6 +1224,7 @@ public class StepCode {
             SHAPE_REPRESENTATION_WITH_PARAMETERS,
             SHELL_BASED_SURFACE_MODEL,
             SI_UNIT,
+            SOLID_ANGLE_MEASURE,
             SOLID_ANGLE_MEASURE_WITH_UNIT,
             SOLID_ANGLE_UNIT,
             SOLID_MODEL,
@@ -1157,7 +1288,10 @@ public class StepCode {
             TEXT_STYLE_FOR_DEFINED_FONT,
             TEXT_STYLE_WITH_BOX_CHARACTERISTICS,
             TEXT_STYLE_WITH_MIRROR,
+            THERMODYNAMIC_TEMPERATURE_MEASURE,
+            THERMODYNAMIC_TEMPERATURE_MEASURE_WITH_UNIT,
             THERMODYNAMIC_TEMPERATURE_UNIT,
+            TIME_MEASURE,
             TIME_MEASURE_WITH_UNIT,
             TIME_UNIT,
             TOLERANCE_VALUE,
@@ -1171,14 +1305,17 @@ public class StepCode {
             TRIMMED_CURVE,
             TWO_DIRECTION_REPEAT_FACTOR,
             TYPE_QUALIFIER,
-            UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE,
             UNCERTAINTY_MEASURE_WITH_UNIT,
+            UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE,
             UNIFORM_CURVE,
             UNIFORM_SURFACE,
             UNIFORM_SURFACE_SECTION,
+            VALUE_FORMAT_TYPE_QUALIFIER,
             VALUE_RANGE,
             VALUE_REPRESENTATION_ITEM,
             VECTOR,
+            VELOCITY_MEASURE,
+            VELOCITY_MEASURE_WITH_UNIT,
             VERSIONED_ACTION_REQUEST,
             VERTEX,
             VERTEX_LOOP,
@@ -1186,6 +1323,8 @@ public class StepCode {
             VIEW_VOLUME,
             VOLUME_3D_ELEMENT_DESCRIPTOR,
             VOLUME_3D_ELEMENT_REPRESENTATION,
+            VOLUME_MEASURE,
+            VOLUME_MEASURE_WITH_UNIT,
             VOLUME_UNIT,
             WEEK_OF_YEAR_AND_DAY_DATE,
     };
@@ -1198,7 +1337,7 @@ public class StepCode {
             GLOBAL_UNIT_ASSIGNED_CONTEXT,
             PARAMETRIC_REPRESENTATION_CONTEXT,
             PATH_PARAMETRIC_REPRESENTATION_CONTEXT,
-            // REPRESENTATION_CONTEXT
+            REPRESENTATION_CONTEXT,
     };
 
     public static final String[] UNITS = {
@@ -1287,5 +1426,85 @@ public class StepCode {
             STRAIGHTNESS_TOLERANCE,
             SURFACE_PROFILE_TOLERANCE,
             GEOMETRIC_TOLERANCE,
+    };
+    public static String[] MEASURES = {
+            ABSORBED_DOSE_MEASURE,
+            ABSORBED_DOSE_MEASURE_WITH_UNIT,
+            ACCELERATION_MEASURE,
+            ACCELERATION_MEASURE_WITH_UNIT,
+            AMOUNT_OF_SUBSTANCE_MEASURE,
+            AMOUNT_OF_SUBSTANCE_MEASURE_WITH_UNIT,
+            AREA_MEASURE,
+            AREA_MEASURE_WITH_UNIT,
+            CAPACITANCE_MEASURE,
+            CAPACITANCE_MEASURE_WITH_UNIT,
+            CELSIUS_TEMPERATURE_MEASURE,
+            CELSIUS_TEMPERATURE_MEASURE_WITH_UNIT,
+            CONDUCTANCE_MEASURE,
+            CONDUCTANCE_MEASURE_WITH_UNIT,
+            CONTEXT_DEPENDENT_MEASURE,
+            COUNT_MEASURE,
+            DESCRIPTIVE_MEASURE,
+            DOSE_EQUIVALENT_MEASURE,
+            DOSE_EQUIVALENT_MEASURE_WITH_UNIT,
+            ELECTRIC_CHARGE_MEASURE,
+            ELECTRIC_CHARGE_MEASURE_WITH_UNIT,
+            ELECTRIC_CURRENT_MEASURE,
+            ELECTRIC_CURRENT_MEASURE_WITH_UNIT,
+            ELECTRIC_POTENTIAL_MEASURE,
+            ELECTRIC_POTENTIAL_MEASURE_WITH_UNIT,
+            ENERGY_MEASURE,
+            ENERGY_MEASURE_WITH_UNIT,
+            FORCE_MEASURE,
+            FORCE_MEASURE_WITH_UNIT,
+            FREQUENCY_MEASURE,
+            FREQUENCY_MEASURE_WITH_UNIT,
+            ILLUMINANCE_MEASURE,
+            ILLUMINANCE_MEASURE_WITH_UNIT,
+            INDUCTANCE_MEASURE,
+            INDUCTANCE_MEASURE_WITH_UNIT,
+            LENGTH_MEASURE,
+            LENGTH_MEASURE_WITH_UNIT,
+            LUMINOUS_FLUX_MEASURE,
+            LUMINOUS_FLUX_MEASURE_WITH_UNIT,
+            LUMINOUS_INTENSITY_MEASURE,
+            LUMINOUS_INTENSITY_MEASURE_WITH_UNIT,
+            MAGNETIC_FLUX_DENSITY_MEASURE,
+            MAGNETIC_FLUX_DENSITY_MEASURE_WITH_UNIT,
+            MAGNETIC_FLUX_MEASURE,
+            MAGNETIC_FLUX_MEASURE_WITH_UNIT,
+            MASS_MEASURE,
+            MASS_MEASURE_WITH_UNIT,
+            MEASURE_REPRESENTATION_ITEM,
+            MEASURE_WITH_UNIT,
+            NON_NEGATIVE_LENGTH_MEASURE,
+            NUMERIC_MEASURE,
+            PARAMETER_VALUE,
+            PLANE_ANGLE_MEASURE,
+            PLANE_ANGLE_MEASURE_WITH_UNIT,
+            POSITIVE_LENGTH_MEASURE,
+            POSITIVE_PLANE_ANGLE_MEASURE,
+            POSITIVE_RATIO_MEASURE,
+            POWER_MEASURE,
+            POWER_MEASURE_WITH_UNIT,
+            PRESSURE_MEASURE,
+            PRESSURE_MEASURE_WITH_UNIT,
+            RADIOACTIVITY_MEASURE,
+            RADIOACTIVITY_MEASURE_WITH_UNIT,
+            RATIO_MEASURE,
+            RATIO_MEASURE_WITH_UNIT,
+            REPRESENTATION_ITEM,
+            RESISTANCE_MEASURE,
+            RESISTANCE_MEASURE_WITH_UNIT,
+            SOLID_ANGLE_MEASURE,
+            SOLID_ANGLE_MEASURE_WITH_UNIT,
+            THERMODYNAMIC_TEMPERATURE_MEASURE,
+            THERMODYNAMIC_TEMPERATURE_MEASURE_WITH_UNIT,
+            TIME_MEASURE,
+            TIME_MEASURE_WITH_UNIT,
+            VELOCITY_MEASURE,
+            VELOCITY_MEASURE_WITH_UNIT,
+            VOLUME_MEASURE,
+            VOLUME_MEASURE_WITH_UNIT,
     };
 }

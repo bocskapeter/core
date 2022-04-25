@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.TreeSet;
 
-class StepCodeTest {
+class StepCodeConverterTest {
 
     @Test
-    void ReadStepCodeTest() {
+    void ConvertStepCodesTest() {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("convert.txt").getFile());
         System.out.println("Starting with file: " + file.getPath() + " - " + file.getName());
@@ -27,7 +27,7 @@ class StepCodeTest {
         for (String s : result) {
             System.out.println("public static final String " + s + " = \"" + s + "\";");
         }
-        System.out.println("public static final String[] ALL = {");
+        System.out.println("\npublic static final String[] ALL = {");
         for (String s : result) {
             System.out.println(s + ",");
         }

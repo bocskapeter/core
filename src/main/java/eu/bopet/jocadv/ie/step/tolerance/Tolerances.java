@@ -45,6 +45,7 @@ public class Tolerances extends StepEntityBase {
                             continue;
                         }
                     }
+                    System.out.println("Not processed item: " + s);
                 }
             }
         }

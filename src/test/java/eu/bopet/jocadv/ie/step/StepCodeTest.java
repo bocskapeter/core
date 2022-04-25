@@ -6,9 +6,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.Set;
+import java.util.TreeSet;
 
 class StepCodeTest {
 
@@ -17,19 +16,21 @@ class StepCodeTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("convert.txt").getFile());
         System.out.println("Starting with file: " + file.getPath() + " - " + file.getName());
-        List<String> result = new ArrayList<>();
+        Set<String> result = new TreeSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             for (String line; (line = br.readLine()) != null; ) {
-                result.add(line);
+                result.add(line.toUpperCase().replace(" ", "").replace(",", ""));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        if (!result.isEmpty()) {
-//            Collections.sort(result);
-//        }
         for (String s : result) {
-            System.out.println(s.toUpperCase(Locale.ROOT));
+            System.out.println("public static final String " + s + " = \"" + s + "\";");
         }
+        System.out.println("public static final String[] ALL = {");
+        for (String s : result) {
+            System.out.println(s + ",");
+        }
+        System.out.println("};");
     }
 }

@@ -19,12 +19,10 @@ public class Measures extends StepEntityBase {
             for (String code : StepCode.MEASURES) {
                 if (s.startsWith(code)) {
                     String attributes = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
-                    System.out.println("att: " + attributes);
                     switch (code) {
                         case StepCode.MEASURE_WITH_UNIT: {
                             MeasureWithUnit measureWithUnit = new MeasureWithUnit(-1, "", attributes);
                             measures.add(measureWithUnit);
-                            System.out.println(measureWithUnit);
                             s = "";
                             continue;
                         }
@@ -32,6 +30,8 @@ public class Measures extends StepEntityBase {
                             MeasureRepresentationItem measureRepresentationItem =
                                     new MeasureRepresentationItem(-1, "", attributes);
                             measures.add(measureRepresentationItem);
+                            s = "";
+                            continue;
                         }
                     }
                 }

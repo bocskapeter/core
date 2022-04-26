@@ -22,7 +22,7 @@ public class Measures extends StepEntityBase {
                     String attributes = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
                     switch (code) {
                         case StepCode.MEASURE_WITH_UNIT: {
-                            MeasureWithUnit measureWithUnit = new MeasureWithUnit(-1, "", attributes);
+                            MeasureWithUnitInSet measureWithUnit = new MeasureWithUnitInSet(attributes);
                             measures.add(measureWithUnit);
                             s = "";
                             continue;
@@ -35,6 +35,7 @@ public class Measures extends StepEntityBase {
                             continue;
                         }
                         case StepCode.PLANE_ANGLE_MEASURE_WITH_UNIT: {
+                            System.out.println("jo");
                             PlaneAngleMeasureWithUnit planeAngleMeasureWithUnit =
                                     new PlaneAngleMeasureWithUnit(-1, "", attributes);
                             measures.add(planeAngleMeasureWithUnit);

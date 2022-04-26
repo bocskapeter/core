@@ -1,13 +1,15 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-public class MeasureWithUnitInSet implements SelectedSize {
+public class MeasureWithUnitInSet implements SelectedSize, Measure {
     private MeasureValue value;
-    private int unit;
+    private int unit = -1;
 
     public MeasureWithUnitInSet(String attribute) {
         String[] parts = attribute.split(",");
-        value = new MeasureValue(parts[0]);
-        unit = Integer.parseInt(parts[1].replace("#", ""));
+        if (parts.length > 1) {
+            value = new MeasureValue(parts[0]);
+            unit = Integer.parseInt(parts[1].replace("#", ""));
+        }
     }
 
     @Override

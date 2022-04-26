@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.ie.step.measure;
 
 import eu.bopet.jocadv.ie.step.entities.MeasureRepresentationItem;
+import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
@@ -30,6 +31,20 @@ public class Measures extends StepEntityBase {
                             MeasureRepresentationItem measureRepresentationItem =
                                     new MeasureRepresentationItem(-1, "", attributes);
                             measures.add(measureRepresentationItem);
+                            s = "";
+                            continue;
+                        }
+                        case StepCode.PLANE_ANGLE_MEASURE_WITH_UNIT: {
+                            PlaneAngleMeasureWithUnit planeAngleMeasureWithUnit =
+                                    new PlaneAngleMeasureWithUnit(-1, "", attributes);
+                            measures.add(planeAngleMeasureWithUnit);
+                            s = "";
+                            continue;
+                        }
+                        case StepCode.REPRESENTATION_ITEM: {
+                            RepresentationItem representationItem =
+                                    new RepresentationItem(attributes);
+                            measures.add(representationItem);
                             s = "";
                             continue;
                         }

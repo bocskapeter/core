@@ -6,7 +6,7 @@ import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 public class MeasureRepresentationItem extends StepEntityBase implements Measure {
     private MeasureValue valueComponent;
-    private int unit;
+    private int unit = -1;
 
     public MeasureRepresentationItem(int id, String name, String attribute) {
         super(id, name);

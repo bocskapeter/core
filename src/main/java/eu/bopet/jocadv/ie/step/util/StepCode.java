@@ -4798,7 +4798,6 @@ public class StepCode {
             MASS_MEASURE_WITH_UNIT,
             MASS_MEASURE,
             MEASURE_REPRESENTATION_ITEM,
-            MEASURE_WITH_UNIT,
             NON_NEGATIVE_LENGTH_MEASURE,
             NUMERIC_MEASURE,
             PARAMETER_VALUE,
@@ -4828,5 +4827,6 @@ public class StepCode {
             VELOCITY_MEASURE,
             VOLUME_MEASURE_WITH_UNIT,
             VOLUME_MEASURE,
+            MEASURE_WITH_UNIT,
     };
 }

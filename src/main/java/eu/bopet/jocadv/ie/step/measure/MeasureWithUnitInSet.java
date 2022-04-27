@@ -14,6 +14,6 @@ public class MeasureWithUnitInSet implements SelectedSize, Measure {
 
     @Override
     public String toString() {
-        return "MeasureWithUnit{" + value + ", unit=" + unit + '}';
+        return "MeasureWithUnitInSet{" + value + ", unit=" + unit + '}';
     }
 }

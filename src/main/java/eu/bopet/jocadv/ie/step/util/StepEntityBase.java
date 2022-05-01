@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.ie.step.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class StepEntityBase {
@@ -30,6 +31,11 @@ public abstract class StepEntityBase {
 
     public static List<String> getSets(String set, String[] sets) {
         List<String> result = new ArrayList<>();
+        String firstCode = set.substring(0,set.indexOf("("));
+        System.out.println("First code: " + firstCode);
+        if (Arrays.asList(sets).contains(firstCode)){
+
+        }
         String rest = set;
         for (String code : sets) {
             if (set.contains(code)) {

@@ -13,7 +13,7 @@ public class Tolerances extends StepEntityBase {
     public Tolerances(int id, String name, String set) {
         super(id, name);
         tolerances = new LinkedHashSet<>();
-        List<String> toleranceListString = StepEntityBase.getSets(set, StepCode.TOLERANCES);
+        List<String> toleranceListString = StepEntityBase.getSets(set);
         for (String s : toleranceListString) {
             for (String code : StepCode.TOLERANCES) {
                 if (s.startsWith(code)) {

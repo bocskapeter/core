@@ -15,7 +15,7 @@ public class Contexts extends StepEntityBase {
     public Contexts(int id, String name, String set) {
         super(id, name);
         this.contexts = new LinkedHashSet<>();
-        List<String> contextStringList = StepEntityBase.getSets(set, StepCode.CONTEXTS);
+        List<String> contextStringList = StepEntityBase.getSets(set);
         for (String contextString : contextStringList) {
             String code = contextString.substring(0, contextString.indexOf("(")).replace(" ", "");
             String attribute = contextString.substring(contextString.indexOf("(") + 1, contextString.lastIndexOf(")"));

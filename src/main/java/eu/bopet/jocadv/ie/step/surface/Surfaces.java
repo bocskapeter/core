@@ -15,7 +15,7 @@ public class Surfaces extends StepEntityBase {
     public Surfaces(int id, String name, String set) {
         super(id, name);
         surfaces = new LinkedHashSet<>();
-        List<String> surfaceStringList = StepEntityBase.getSets(set, StepCode.SURFACES);
+        List<String> surfaceStringList = StepEntityBase.getSets(set);
         for (String s : surfaceStringList) {
             for (String code : StepCode.SURFACES) {
                 if (s.startsWith(code)) {

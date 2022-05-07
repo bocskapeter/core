@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.ie.step.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class StepEntityBase {
@@ -29,40 +28,26 @@ public abstract class StepEntityBase {
         this.name = name;
     }
 
-    public static List<String> getSets(String set, String[] sets) {
+    public static List<String> getSets(String set) {
         List<String> result = new ArrayList<>();
-        String firstCode = set.substring(0,set.indexOf("("));
-        System.out.println("First code: " + firstCode);
-        if (Arrays.asList(sets).contains(firstCode)){
-
-        }
-        String rest = set;
-        for (String code : sets) {
-            if (set.contains(code)) {
-                while (rest.contains(code)) {
-                    String cut = rest.substring(rest.indexOf(code) + code.length());
-                    int lastBracket = 0;
-                    int brackets = 0;
-                    for (int i = 0; i < cut.length(); i++) {
-                        if (cut.charAt(i) == '(') {
-                            brackets++;
-                        }
-                        if (cut.charAt(i) == ')') {
-                            brackets--;
-                        }
-                        if (brackets == 0) {
-                            lastBracket = i;
-                            break;
-                        }
-                    }
-                    String attribute = cut.substring(0, lastBracket + 1);
-                    result.add(code + attribute);
-                    int backIndex = rest.indexOf(code) + code.length() + attribute.length();
-                    String front = rest.substring(0, rest.indexOf(code));
-                    String back = rest.substring(backIndex);
-                    rest = front + back;
+        int firstBracket = set.indexOf("(");
+        List<Integer> limiters = new ArrayList<>();
+        int brackets = 0;
+        for (int i = firstBracket; i < set.length(); i++) {
+            if (set.charAt(i) == '(') {
+                brackets++;
+            }
+            if (set.charAt(i) == ')') {
+                brackets--;
+                if (brackets == 0) {
+                    limiters.add(i);
                 }
             }
+        }
+        firstBracket = -1;
+        for (int limit : limiters) {
+            result.add(set.substring(firstBracket + 1, limit + 1));
+            firstBracket = limit;
         }
         return result;
     }

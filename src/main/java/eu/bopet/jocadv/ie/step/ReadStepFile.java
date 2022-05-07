@@ -1088,10 +1088,8 @@ public class ReadStepFile {
                             continue;
                         }
                         if (Arrays.asList(StepCode.MEASURES).contains(firstSet)) {
-                            System.out.println("Set: " + set);
                             Measures measures = new Measures(id, "", set);
                             result.add(measures);
-                            System.out.println(measures);
                             continue;
                         }
                         System.out.println("???Set of : " + set + "\n first set: " + firstSet);

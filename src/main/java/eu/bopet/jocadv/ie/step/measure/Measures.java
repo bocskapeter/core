@@ -15,8 +15,7 @@ public class Measures extends StepEntityBase {
     public Measures(int id, String name, String set) {
         super(id, name);
         measures = new LinkedHashSet<>();
-        List<String> measureListString = StepEntityBase.getSets(set, StepCode.MEASURES);
-        System.out.println("List: " + measureListString);
+        List<String> measureListString = StepEntityBase.getSets(set);
         for (String s : measureListString) {
             for (String code : StepCode.MEASURES) {
                 if (s.startsWith(code)) {
@@ -30,10 +29,8 @@ public class Measures extends StepEntityBase {
                             continue;
                         }
                         case StepCode.PLANE_ANGLE_MEASURE_WITH_UNIT: {
-                            System.out.println("att: " + attributes);
                             PlaneAngleMeasureWithUnit planeAngleMeasureWithUnit =
                                     new PlaneAngleMeasureWithUnit(-1, "", attributes);
-                            System.out.println(planeAngleMeasureWithUnit);
                             measures.add(planeAngleMeasureWithUnit);
                             s = "";
                             continue;

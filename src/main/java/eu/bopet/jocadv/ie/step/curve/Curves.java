@@ -15,7 +15,7 @@ public class Curves extends StepEntityBase {
     public Curves(int id, String name, String set) {
         super(id, name);
         curves = new LinkedHashSet<>();
-        List<String> curveStringList = StepEntityBase.getSets(set, StepCode.CURVES);
+        List<String> curveStringList = StepEntityBase.getSets(set);
         for (String s : curveStringList) {
             for (String code : StepCode.CURVES) {
                 if (s.startsWith(code)) {

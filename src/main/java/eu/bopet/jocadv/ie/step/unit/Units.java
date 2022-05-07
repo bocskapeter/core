@@ -13,7 +13,7 @@ public class Units extends StepEntityBase {
     public Units(int id, String name, String set) {
         super(id, name);
         units = new LinkedHashSet<>();
-        List<String> unitStringList = StepEntityBase.getSets(set, StepCode.UNITS);
+        List<String> unitStringList = StepEntityBase.getSets(set);
         for (String s : unitStringList) {
             for (String code : StepCode.UNITS) {
                 if (s.startsWith(code)) {

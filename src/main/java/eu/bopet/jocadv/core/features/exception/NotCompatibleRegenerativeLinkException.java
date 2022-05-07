@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.exception;
 
-import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 
 public class NotCompatibleRegenerativeLinkException extends Exception {
     private final RegenerativeLink regenerativeLink;

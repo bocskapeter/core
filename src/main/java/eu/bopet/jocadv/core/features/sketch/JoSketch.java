@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
@@ -10,7 +10,7 @@ import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.linear.*;
 
 import java.util.ArrayList;

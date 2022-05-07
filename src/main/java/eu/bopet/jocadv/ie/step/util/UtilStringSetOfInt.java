@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.ie.step.util;
 
+import eu.bopet.jocadv.ie.step.StepEntityBase;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,6 +25,6 @@ public class UtilStringSetOfInt extends StepEntityBase {
     @Override
     public String toString() {
         return super.toString() +
-                ", \'" + string + '\'' + ", ids=" + ids + '}';
+                ", '" + string + '\'' + ", ids=" + ids + '}';
     }
 }

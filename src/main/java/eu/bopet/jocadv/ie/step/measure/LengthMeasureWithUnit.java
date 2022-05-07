@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 
 public class LengthMeasureWithUnit extends StepEntityBase implements Measure {
     private MeasureWithUnitInSet measureWithUnitInSet;

@@ -1,11 +1,12 @@
 package eu.bopet.jocadv.core.features.protrusion;
 
-import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.basic.JoFace;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class JoExtrude extends FeatureBase implements JoFeature, RegenerativeLink {
@@ -21,11 +22,7 @@ public class JoExtrude extends FeatureBase implements JoFeature, RegenerativeLin
         this.path = path;
         this.start = start;
         this.end = end;
-        if (pitch != null) {
-            this.pitch = pitch;
-        } else {
-            this.pitch = new JoValue(JoValue.AUTO, Double.POSITIVE_INFINITY);
-        }
+        this.pitch = Objects.requireNonNullElseGet(pitch, () -> new JoValue(JoValue.AUTO, Double.POSITIVE_INFINITY));
         this.regenerativeLink = regenerativeLink;
     }
 

@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.ie.step.util;
 
+import eu.bopet.jocadv.ie.step.StepEntityBase;
+
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class UtilIntIntInt extends StepEntityBase {

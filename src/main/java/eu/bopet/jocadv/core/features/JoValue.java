@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.core.features.vector;
+package eu.bopet.jocadv.core.features;
 
 import org.apache.commons.math3.util.Precision;
 

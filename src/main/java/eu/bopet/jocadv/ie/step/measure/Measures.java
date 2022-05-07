@@ -3,7 +3,7 @@ package eu.bopet.jocadv.ie.step.measure;
 import eu.bopet.jocadv.ie.step.entities.MeasureRepresentationItem;
 import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 
 import java.util.LinkedHashSet;
 import java.util.List;

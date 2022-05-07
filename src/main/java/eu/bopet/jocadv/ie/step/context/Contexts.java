@@ -1,10 +1,8 @@
 package eu.bopet.jocadv.ie.step.context;
 
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;

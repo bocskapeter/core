@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.constraints.regenerative.cosys;
 
-import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.axis.PointDirectionAxis;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalException;
 import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
@@ -10,7 +10,7 @@ import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
 import java.util.HashSet;

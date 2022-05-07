@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.curve;
 
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 
 import java.util.ArrayList;
 import java.util.List;

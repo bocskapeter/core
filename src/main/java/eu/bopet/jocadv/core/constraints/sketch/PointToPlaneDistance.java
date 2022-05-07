@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.sketch;
 
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 
 import java.util.ArrayList;
 import java.util.List;

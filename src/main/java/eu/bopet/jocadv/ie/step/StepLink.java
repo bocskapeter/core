@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.util.List;
 

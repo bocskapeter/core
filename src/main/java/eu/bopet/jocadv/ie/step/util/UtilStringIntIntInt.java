@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.ie.step.util;
 
+import eu.bopet.jocadv.ie.step.StepEntityBase;
+
 public class UtilStringIntIntInt extends StepEntityBase {
     private final String string;
     private final int id1;

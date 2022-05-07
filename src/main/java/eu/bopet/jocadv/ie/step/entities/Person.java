@@ -1,8 +1,9 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Person extends StepEntityBase {
@@ -19,9 +20,7 @@ public class Person extends StepEntityBase {
         firstName = parts[1];
         middleNames = new ArrayList<>();
         String[] middleNamesString = attribute.substring(attribute.indexOf(",(") + 2, attribute.indexOf("),")).split(",");
-        for (String s : middleNamesString) {
-            middleNames.add(s);
-        }
+        middleNames.addAll(Arrays.asList(middleNamesString));
         String[] lastParts = attribute.substring(attribute.indexOf("),") + 2).split(",");
         prefix = lastParts[0];
         suffix = lastParts[1];

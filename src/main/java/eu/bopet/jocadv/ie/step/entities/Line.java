@@ -3,10 +3,10 @@ package eu.bopet.jocadv.ie.step.entities;
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.basic.JoEdge;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import eu.bopet.jocadv.ie.step.StepLink;
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 import eu.bopet.jocadv.ie.step.util.UtilIntInt;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
@@ -69,8 +69,7 @@ public class Line extends UtilIntInt implements StepLink {
         points.add(point1);
         points.add(point2);
 
-        JoEdge result = new JoEdge(points, null);
-        return result;
+        return new JoEdge(points, null);
 
     }
 

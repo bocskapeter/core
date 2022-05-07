@@ -166,7 +166,6 @@ import eu.bopet.jocadv.ie.step.surface.Surfaces;
 import eu.bopet.jocadv.ie.step.tolerance.Tolerances;
 import eu.bopet.jocadv.ie.step.unit.Units;
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.io.BufferedReader;
 import java.io.File;

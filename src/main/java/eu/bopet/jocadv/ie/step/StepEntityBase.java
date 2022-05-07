@@ -1,4 +1,4 @@
-package eu.bopet.jocadv.ie.step.util;
+package eu.bopet.jocadv.ie.step;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

@@ -1,10 +1,9 @@
 package eu.bopet.jocadv.ie.step;
 
-import eu.bopet.jocadv.core.constraints.regenerative.RegenerativeLink;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
-import eu.bopet.jocadv.ie.step.util.StepEntityBase;
 
 import java.io.File;
 import java.util.LinkedHashSet;

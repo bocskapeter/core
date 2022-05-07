@@ -1,7 +1,7 @@
-package eu.bopet.jocadv.core.constraints.regenerative;
+package eu.bopet.jocadv.core.features;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 
 import java.util.Set;
 

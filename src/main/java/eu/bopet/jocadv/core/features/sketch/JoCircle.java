@@ -4,7 +4,7 @@ import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.vector.JoValue;
+import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.LinkedHashSet;

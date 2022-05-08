@@ -1,9 +1,9 @@
 package eu.bopet.jocadv.ie.step.curve;
 
+import eu.bopet.jocadv.ie.step.StepEntityBase;
 import eu.bopet.jocadv.ie.step.representation.GeometricRepresentationItem;
 import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
-import eu.bopet.jocadv.ie.step.StepEntityBase;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -63,7 +63,9 @@ public class Curves extends StepEntityBase {
                             s = "";
                             continue;
                         }
-
+                        default: {
+                            System.out.println("Not processed curve: " + s);
+                        }
                     }
                     System.out.println("!!! Curve not found: " + s);
                 }

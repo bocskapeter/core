@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.ie.step;
 
+import eu.bopet.jocadv.ie.step.characterizedObject.CharacterizedObjects;
 import eu.bopet.jocadv.ie.step.context.Contexts;
 import eu.bopet.jocadv.ie.step.context.DesignContext;
 import eu.bopet.jocadv.ie.step.context.MechanicalContext;
@@ -90,6 +91,7 @@ import eu.bopet.jocadv.ie.step.entities.MeasureQualification;
 import eu.bopet.jocadv.ie.step.entities.MeasureRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationship;
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
+import eu.bopet.jocadv.ie.step.entities.ModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.NameAttribute;
 import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
@@ -119,6 +121,7 @@ import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
 import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinition;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinitionRepresentation;
+import eu.bopet.jocadv.ie.step.entities.RealRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassificationLevel;
@@ -128,6 +131,7 @@ import eu.bopet.jocadv.ie.step.entities.ShapeRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.StyledItem;
 import eu.bopet.jocadv.ie.step.entities.SurfaceCurve;
 import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
+import eu.bopet.jocadv.ie.step.entities.SurfaceProfileTolerance;
 import eu.bopet.jocadv.ie.step.entities.SurfaceSideStyle;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleBoundary;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleFillArea;
@@ -693,6 +697,12 @@ public class ReadStepFile {
                         result.add(defaultModelGeometricView);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.MODEL_GEOMETRIC_VIEW)) {
+                        ModelGeometricView modelGeometricView =
+                                new ModelGeometricView(id, name, att[1]);
+                        result.add(modelGeometricView);
+                        continue;
+                    }
                     if (secondTag.startsWith(StepCode.MECHANICAL_DESIGN_AND_DRAUGHTING_RELATIONSHIP)) {
                         MechanicalDesignAndDraughtingRelationship mechanicalDesignAndDraughtingRelationship =
                                 new MechanicalDesignAndDraughtingRelationship(id, name, att[1]);
@@ -1057,6 +1067,18 @@ public class ReadStepFile {
                         result.add(itemIdentifiedRepresentationUsage);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.REAL_REPRESENTATION_ITEM)) {
+                        RealRepresentationItem realRepresentationItem =
+                                new RealRepresentationItem(id, name, att[1]);
+                        result.add(realRepresentationItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SURFACE_PROFILE_TOLERANCE)) {
+                        SurfaceProfileTolerance surfaceProfileTolerance =
+                                new SurfaceProfileTolerance(id, name, att[1]);
+                        result.add(surfaceProfileTolerance);
+                        continue;
+                    }
 
                     if (tags[1].stripLeading().startsWith("(")) {
                         String set = tags[1].substring(tags[1].indexOf("(") + 1, tags[1].lastIndexOf(")"));
@@ -1089,6 +1111,11 @@ public class ReadStepFile {
                         if (Arrays.asList(StepCode.MEASURES).contains(firstSet)) {
                             Measures measures = new Measures(id, "", set);
                             result.add(measures);
+                            continue;
+                        }
+                        if (Arrays.asList(StepCode.CHARACTERIZED_OBJECTS).contains(firstSet)) {
+                            CharacterizedObjects characterizedObjects = new CharacterizedObjects(id, "", set);
+                            result.add(characterizedObjects);
                             continue;
                         }
                         System.out.println("???Set of : " + set + "\n first set: " + firstSet);

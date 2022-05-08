@@ -25,7 +25,8 @@ class StepCodeConverterTest {
             e.printStackTrace();
         }
         for (String s : result) {
-            System.out.println("public static final String " + s + " = \"" + s + "\";");
+            System.out.println(s + ",");
+            //System.out.println("public static final String " + s + " = \"" + s + "\";");
         }
         System.out.println("\npublic static final String[] ALL = {");
         for (String s : result) {

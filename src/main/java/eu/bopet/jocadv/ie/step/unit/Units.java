@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.unit;
 
-import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.util.StepCode;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -51,6 +51,9 @@ public class Units extends StepEntityBase {
                             units.add(unit);
                             s = "";
                             continue;
+                        }
+                        default: {
+                            System.out.println("Not processed unit: " + s);
                         }
                     }
                     System.out.println("Not Processed code: " + code);

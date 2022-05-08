@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.context;
 
-import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.util.StepCode;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -60,6 +60,9 @@ public class Contexts extends StepEntityBase {
                                     parts[1].replace("'", ""));
                     contexts.add(context);
                     break;
+                }
+                default: {
+                    System.out.println("Not processed context: " + contextString);
                 }
             }
         }

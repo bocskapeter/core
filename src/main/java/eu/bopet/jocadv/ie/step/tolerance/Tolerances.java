@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.tolerance;
 
-import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.util.StepCode;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -33,8 +33,8 @@ public class Tolerances extends StepEntityBase {
                             continue;
                         }
                         case StepCode.SURFACE_PROFILE_TOLERANCE: {
-                            SurfaceProfileTolerance surfaceProfileTolerance = new SurfaceProfileTolerance();
-                            tolerances.add(surfaceProfileTolerance);
+                            SurfaceProfileToleranceInSet surfaceProfileToleranceInSet = new SurfaceProfileToleranceInSet();
+                            tolerances.add(surfaceProfileToleranceInSet);
                             s = "";
                             continue;
                         }
@@ -43,6 +43,23 @@ public class Tolerances extends StepEntityBase {
                             tolerances.add(geometricTolerance);
                             s = "";
                             continue;
+                        }
+                        case StepCode.UNEQUALLY_DISPOSED_GEOMETRIC_TOLERANCE: {
+                            UnequallyDisposedGeometricTolerance unequallyDisposedGeometricTolerance =
+                                    new UnequallyDisposedGeometricTolerance(attributes);
+                            tolerances.add(unequallyDisposedGeometricTolerance);
+                            s = "";
+                            continue;
+                        }
+                        case StepCode.GEOMETRIC_TOLERANCE_WITH_MODIFIERS: {
+                            GeometricToleranceWithModifiers geometricToleranceWithModifiers =
+                                    new GeometricToleranceWithModifiers(attributes);
+                            tolerances.add(geometricToleranceWithModifiers);
+                            s = "";
+                            continue;
+                        }
+                        default: {
+                            System.out.println("Not processed tolerance: " + s);
                         }
                     }
                     System.out.println("Not processed item: " + s);

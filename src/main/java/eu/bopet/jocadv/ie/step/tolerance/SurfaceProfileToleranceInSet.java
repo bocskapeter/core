@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.tolerance;
 
-public class SurfaceProfileTolerance implements Tolerance {
-    public SurfaceProfileTolerance() {
+public class SurfaceProfileToleranceInSet implements Tolerance {
+    public SurfaceProfileToleranceInSet() {
     }
 
     @Override

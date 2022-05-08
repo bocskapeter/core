@@ -4829,4 +4829,10 @@ public class StepCode {
             VOLUME_MEASURE,
             MEASURE_WITH_UNIT,
     };
+    public static String[] CHARACTERIZED_OBJECTS = {
+            CHARACTERIZED_OBJECT,
+            CHARACTERIZED_REPRESENTATION,
+            DRAUGHTING_MODEL,
+            REPRESENTATION,
+    };
 }

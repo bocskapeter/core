@@ -70,6 +70,7 @@ import eu.bopet.jocadv.ie.step.entities.EdgeLoop;
 import eu.bopet.jocadv.ie.step.entities.Ellipse;
 import eu.bopet.jocadv.ie.step.entities.FaceBound;
 import eu.bopet.jocadv.ie.step.entities.FaceOuterBound;
+import eu.bopet.jocadv.ie.step.entities.FeatureForDatumTargetRelationship;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyle;
 import eu.bopet.jocadv.ie.step.entities.FillAreaStyleColour;
 import eu.bopet.jocadv.ie.step.entities.FlatnessTolerance;
@@ -1077,6 +1078,12 @@ public class ReadStepFile {
                         SurfaceProfileTolerance surfaceProfileTolerance =
                                 new SurfaceProfileTolerance(id, name, att[1]);
                         result.add(surfaceProfileTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.FEATURE_FOR_DATUM_TARGET_RELATIONSHIP)) {
+                        FeatureForDatumTargetRelationship featureForDatumTargetRelationship =
+                                new FeatureForDatumTargetRelationship(id, name, att[1]);
+                        result.add(featureForDatumTargetRelationship);
                         continue;
                     }
 

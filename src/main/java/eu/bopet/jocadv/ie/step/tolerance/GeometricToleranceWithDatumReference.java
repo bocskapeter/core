@@ -3,12 +3,15 @@ package eu.bopet.jocadv.ie.step.tolerance;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class GeometricToleranceWithDatumReference implements Tolerance {
+public class GeometricToleranceWithDatumReference extends GeometricTolerance {
     private Set<Integer> datumSystem;
 
-    public GeometricToleranceWithDatumReference(String attribute) {
+    public GeometricToleranceWithDatumReference(int id, String name, String attribute) {
+        super(id, name, attribute);
         datumSystem = new LinkedHashSet<>();
-        String[] parts = attribute.replace("(", "").replace(")", "").split(",");
+        String datumSystemString = attribute.substring(attribute.indexOf(",(") + 1);
+        String[] parts = datumSystemString.replace("(", "").replace(")", "")
+                .split(",");
         for (String s : parts) {
             datumSystem.add(Integer.parseInt(s.replace("#", "")));
         }
@@ -16,8 +19,8 @@ public class GeometricToleranceWithDatumReference implements Tolerance {
 
     @Override
     public String toString() {
-        return "GeometricToleranceWithDatumReference{" +
-                "datumSystem=" + datumSystem +
+        return "GeometricToleranceWithDatumReference{" + super.toString() +
+                ", datumSystem=" + datumSystem +
                 '}';
     }
 }

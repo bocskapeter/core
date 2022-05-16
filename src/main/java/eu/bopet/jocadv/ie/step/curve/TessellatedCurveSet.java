@@ -19,7 +19,7 @@ public class TessellatedCurveSet extends StepEntityBase {
             List<Integer> subStrips = new ArrayList<>();
             String[] c = pair.replace("(", "").replace(")", "").split(",");
             for (String s : c) {
-                subStrips.add(Integer.parseInt(s));
+                subStrips.add(Integer.parseInt(s.replace(" ", "")));
             }
             strips.add(subStrips);
         }

@@ -10,12 +10,13 @@ public class UtilListOfInt extends StepEntityBase {
 
     public UtilListOfInt(int id, String name, String attribute) {
         super(id, name);
-        String substring = attribute.replace(" ", "")
-                .substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"));
+        String cleaned = attribute.replace(" ", "");
+        String substring = cleaned
+                .substring(cleaned.indexOf("(") + 1, cleaned.lastIndexOf(")"));
         String[] values = substring.split(",");
         list = new ArrayList<>();
         for (String value : values) {
-            int anId = Integer.parseInt(value.substring(1));
+            int anId = Integer.parseInt(value.replace("#", ""));
             list.add(anId);
         }
     }

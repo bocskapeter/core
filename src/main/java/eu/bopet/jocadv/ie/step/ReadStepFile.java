@@ -10,7 +10,10 @@ import eu.bopet.jocadv.ie.step.entities.AdvancedBRepShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.AdvancedFace;
 import eu.bopet.jocadv.ie.step.entities.AllAroundShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.AngularLocation;
+import eu.bopet.jocadv.ie.step.entities.AngularSize;
+import eu.bopet.jocadv.ie.step.entities.AnnotationCurveOccurrence;
 import eu.bopet.jocadv.ie.step.entities.AnnotationOccurrence;
+import eu.bopet.jocadv.ie.step.entities.AnnotationPlaceholderOccurrence;
 import eu.bopet.jocadv.ie.step.entities.AnnotationPlane;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
 import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
@@ -19,6 +22,7 @@ import eu.bopet.jocadv.ie.step.entities.ApprovalDateTime;
 import eu.bopet.jocadv.ie.step.entities.ApprovalPersonOrganization;
 import eu.bopet.jocadv.ie.step.entities.ApprovalRole;
 import eu.bopet.jocadv.ie.step.entities.ApprovalStatus;
+import eu.bopet.jocadv.ie.step.entities.AreaUnit;
 import eu.bopet.jocadv.ie.step.entities.Axis2Placement2D;
 import eu.bopet.jocadv.ie.step.entities.Axis2Placement3D;
 import eu.bopet.jocadv.ie.step.entities.BSplineCurveWithKnots;
@@ -31,10 +35,13 @@ import eu.bopet.jocadv.ie.step.entities.CameraModelD3;
 import eu.bopet.jocadv.ie.step.entities.CartesianPoint;
 import eu.bopet.jocadv.ie.step.entities.CharacterizedItemWithinRepresentation;
 import eu.bopet.jocadv.ie.step.entities.Circle;
+import eu.bopet.jocadv.ie.step.entities.CircularRunOutTolerance;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.Colour;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
 import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedSurfaceSet;
+import eu.bopet.jocadv.ie.step.entities.CompositeCurve;
+import eu.bopet.jocadv.ie.step.entities.CompositeCurveSegment;
 import eu.bopet.jocadv.ie.step.entities.CompositeGroupShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.CompositeShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
@@ -78,7 +85,9 @@ import eu.bopet.jocadv.ie.step.entities.GeneralProperty;
 import eu.bopet.jocadv.ie.step.entities.GeneralPropertyAssociation;
 import eu.bopet.jocadv.ie.step.entities.GeometricCurveSet;
 import eu.bopet.jocadv.ie.step.entities.GeometricItemSpecificUsage;
+import eu.bopet.jocadv.ie.step.entities.GeometricSet;
 import eu.bopet.jocadv.ie.step.entities.GeometricToleranceRelationship;
+import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedSurfaceShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.GeometricallyBoundedWireframeShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.IdAttribute;
 import eu.bopet.jocadv.ie.step.entities.IntegerRepresentationItem;
@@ -87,6 +96,7 @@ import eu.bopet.jocadv.ie.step.entities.ItemIdentifiedRepresentationUsage;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
+import eu.bopet.jocadv.ie.step.entities.ManifoldSurfaceShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.MappedItem;
 import eu.bopet.jocadv.ie.step.entities.MeasureQualification;
 import eu.bopet.jocadv.ie.step.entities.MeasureRepresentationItem;
@@ -94,19 +104,23 @@ import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationshi
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
 import eu.bopet.jocadv.ie.step.entities.ModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.NameAttribute;
+import eu.bopet.jocadv.ie.step.entities.OpenShell;
 import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
+import eu.bopet.jocadv.ie.step.entities.OverRidingStyledItem;
 import eu.bopet.jocadv.ie.step.entities.PCurve;
 import eu.bopet.jocadv.ie.step.entities.ParallelismTolerance;
 import eu.bopet.jocadv.ie.step.entities.PerpendicularityTolerance;
 import eu.bopet.jocadv.ie.step.entities.Person;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganization;
 import eu.bopet.jocadv.ie.step.entities.PersonAndOrganizationRole;
+import eu.bopet.jocadv.ie.step.entities.PlacedDatumTargetFeature;
 import eu.bopet.jocadv.ie.step.entities.PlanarBox;
 import eu.bopet.jocadv.ie.step.entities.Plane;
 import eu.bopet.jocadv.ie.step.entities.PlusMinusTolerance;
 import eu.bopet.jocadv.ie.step.entities.PointStyle;
 import eu.bopet.jocadv.ie.step.entities.Polyline;
+import eu.bopet.jocadv.ie.step.entities.PreDefinedMarker;
 import eu.bopet.jocadv.ie.step.entities.PreDefinedPointMarkerSymbol;
 import eu.bopet.jocadv.ie.step.entities.PresentationLayerAssignment;
 import eu.bopet.jocadv.ie.step.entities.PresentationStyleAssignment;
@@ -120,6 +134,7 @@ import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormationWithSpecifiedSource;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
 import eu.bopet.jocadv.ie.step.entities.ProductRelatedProductCategory;
+import eu.bopet.jocadv.ie.step.entities.ProjectedZoneDefinition;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinition;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.RealRepresentationItem;
@@ -129,6 +144,7 @@ import eu.bopet.jocadv.ie.step.entities.SecurityClassificationLevel;
 import eu.bopet.jocadv.ie.step.entities.ShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.ShapeDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.ShapeRepresentationRelationship;
+import eu.bopet.jocadv.ie.step.entities.ShellBasedSurfaceModel;
 import eu.bopet.jocadv.ie.step.entities.StyledItem;
 import eu.bopet.jocadv.ie.step.entities.SurfaceCurve;
 import eu.bopet.jocadv.ie.step.entities.SurfaceOfLinearExtrusion;
@@ -141,17 +157,21 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceStyleRenderingWithProperties;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleTransparent;
 import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.TessellatedAnnotationOccurrence;
+import eu.bopet.jocadv.ie.step.entities.TessellatedGeometricSet;
+import eu.bopet.jocadv.ie.step.entities.TessellatedShapeRepresentation;
 import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZone;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZoneForm;
 import eu.bopet.jocadv.ie.step.entities.ToroidalSurface;
 import eu.bopet.jocadv.ie.step.entities.TrimmedCurve;
+import eu.bopet.jocadv.ie.step.entities.TypeQualifier;
 import eu.bopet.jocadv.ie.step.entities.ValueFormatTypeQualifier;
 import eu.bopet.jocadv.ie.step.entities.ValueRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.Vector;
 import eu.bopet.jocadv.ie.step.entities.VertexLoop;
 import eu.bopet.jocadv.ie.step.entities.VertexPoint;
 import eu.bopet.jocadv.ie.step.entities.ViewVolume;
+import eu.bopet.jocadv.ie.step.entities.VolumeUnit;
 import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.MeasureWithUnit;
@@ -165,9 +185,13 @@ import eu.bopet.jocadv.ie.step.representation.RepresentationMap;
 import eu.bopet.jocadv.ie.step.representation.RepresentationRelationship;
 import eu.bopet.jocadv.ie.step.representation.ShapeDimensionRepresentation;
 import eu.bopet.jocadv.ie.step.representation.ShapeRepresentation;
+import eu.bopet.jocadv.ie.step.shapeAspect.ShapeAspects;
 import eu.bopet.jocadv.ie.step.surface.BSplineSurfaceWithKnots;
 import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
+import eu.bopet.jocadv.ie.step.tolerance.AngularityTolerance;
+import eu.bopet.jocadv.ie.step.tolerance.ConcentricityTolerance;
+import eu.bopet.jocadv.ie.step.tolerance.StraightnessTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.Tolerances;
 import eu.bopet.jocadv.ie.step.unit.Units;
 import eu.bopet.jocadv.ie.step.util.StepCode;
@@ -1050,6 +1074,11 @@ public class ReadStepFile {
                         result.add(preDefinedPointMarkerSymbol);
                         continue;
                     }
+                    if (secondTag.startsWith(StepCode.PRE_DEFINED_MARKER)) {
+                        PreDefinedMarker preDefinedMarker = new PreDefinedMarker(id, name);
+                        result.add(preDefinedMarker);
+                        continue;
+                    }
                     if (secondTag.startsWith(StepCode.SURFACE_STYLE_RENDERING_WITH_PROPERTIES)) {
                         SurfaceStyleRenderingWithProperties surfaceStyleRenderingWithProperties =
                                 new SurfaceStyleRenderingWithProperties(id, "", attributes);
@@ -1084,6 +1113,127 @@ public class ReadStepFile {
                         FeatureForDatumTargetRelationship featureForDatumTargetRelationship =
                                 new FeatureForDatumTargetRelationship(id, name, att[1]);
                         result.add(featureForDatumTargetRelationship);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PLACED_DATUM_TARGET_FEATURE)) {
+                        PlacedDatumTargetFeature placedDatumTargetFeature =
+                                new PlacedDatumTargetFeature(id, name, att[1]);
+                        result.add(placedDatumTargetFeature);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ANNOTATION_PLACEHOLDER_OCCURRENCE)) {
+                        AnnotationPlaceholderOccurrence annotationPlaceholderOccurrence =
+                                new AnnotationPlaceholderOccurrence(id, name, att[1]);
+                        result.add(annotationPlaceholderOccurrence);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GEOMETRIC_SET)) {
+                        GeometricSet geometricSet = new GeometricSet(id, name, att[1]);
+                        result.add(geometricSet);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MANIFOLD_SURFACE_SHAPE_REPRESENTATION)) {
+                        ManifoldSurfaceShapeRepresentation manifoldSurfaceShapeRepresentation =
+                                new ManifoldSurfaceShapeRepresentation(id, name, att[1]);
+                        result.add(manifoldSurfaceShapeRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.OPEN_SHELL)) {
+                        OpenShell openShell = new OpenShell(id, name, att[1]);
+                        result.add(openShell);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SHELL_BASED_SURFACE_MODEL)) {
+                        ShellBasedSurfaceModel shellBasedSurfaceModel = new ShellBasedSurfaceModel(id, name, att[1]);
+                        result.add(shellBasedSurfaceModel);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.AREA_UNIT)) {
+                        AreaUnit areaUnit = new AreaUnit(id, "", attributes);
+                        result.add(areaUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.VOLUME_UNIT)) {
+                        VolumeUnit volumeUnit = new VolumeUnit(id, "", attributes);
+                        result.add(volumeUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPOSITE_CURVE_SEGMENT)) {
+                        CompositeCurveSegment compositeCurveSegment =
+                                new CompositeCurveSegment(id, "", attributes);
+                        result.add(compositeCurveSegment);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPOSITE_CURVE)) {
+                        CompositeCurve compositeCurve = new CompositeCurve(id, "", attributes);
+                        result.add(compositeCurve);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.GEOMETRICALLY_BOUNDED_SURFACE_SHAPE_REPRESENTATION)) {
+                        GeometricallyBoundedSurfaceShapeRepresentation geometricallyBoundedSurfaceShapeRepresentation =
+                                new GeometricallyBoundedSurfaceShapeRepresentation(id, name, att[1]);
+                        result.add(geometricallyBoundedSurfaceShapeRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ANGULARITY_TOLERANCE)) {
+                        AngularityTolerance angularityTolerance = new AngularityTolerance(id, name, att[1]);
+                        result.add(angularityTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.OVER_RIDING_STYLED_ITEM)) {
+                        OverRidingStyledItem overRidingStyledItem = new OverRidingStyledItem(id, name, att[1]);
+                        result.add(overRidingStyledItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TESSELLATED_GEOMETRIC_SET)) {
+                        TessellatedGeometricSet tessellatedGeometricSet =
+                                new TessellatedGeometricSet(id, name, att[1]);
+                        result.add(tessellatedGeometricSet);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TESSELLATED_SHAPE_REPRESENTATION)) {
+                        TessellatedShapeRepresentation tessellatedShapeRepresentation =
+                                new TessellatedShapeRepresentation(id, name, att[1]);
+                        result.add(tessellatedShapeRepresentation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PROJECTED_ZONE_DEFINITION)) {
+                        ProjectedZoneDefinition projectedZoneDefinition
+                                = new ProjectedZoneDefinition(id, "", attributes);
+                        result.add(projectedZoneDefinition);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ANGULAR_SIZE)) {
+                        AngularSize angularSize = new AngularSize(id, "", attributes);
+                        result.add(angularSize);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ANNOTATION_CURVE_OCCURRENCE)) {
+                        AnnotationCurveOccurrence annotationCurveOccurrence =
+                                new AnnotationCurveOccurrence(id, name, att[1]);
+                        result.add(annotationCurveOccurrence);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TYPE_QUALIFIER)) {
+                        TypeQualifier typeQualifier = new TypeQualifier(id, name);
+                        result.add(typeQualifier);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CIRCULAR_RUNOUT_TOLERANCE)) {
+                        CircularRunOutTolerance circularRunOutTolerance =
+                                new CircularRunOutTolerance(id, name, att[1]);
+                        result.add(circularRunOutTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.STRAIGHTNESS_TOLERANCE)) {
+                        StraightnessTolerance straightnessTolerance = new StraightnessTolerance(id, name, att[1]);
+                        result.add(straightnessTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CONCENTRICITY_TOLERANCE)) {
+                        ConcentricityTolerance concentricityTolerance =
+                                new ConcentricityTolerance(id, name, att[1]);
+                        result.add(concentricityTolerance);
                         continue;
                     }
 
@@ -1123,6 +1273,11 @@ public class ReadStepFile {
                         if (Arrays.asList(StepCode.CHARACTERIZED_OBJECTS).contains(firstSet)) {
                             CharacterizedObjects characterizedObjects = new CharacterizedObjects(id, "", set);
                             result.add(characterizedObjects);
+                            continue;
+                        }
+                        if (Arrays.asList(StepCode.SHAPE_ASPECTS).contains(firstSet)) {
+                            ShapeAspects shapeAspects = new ShapeAspects(id, "", set);
+                            result.add(shapeAspects);
                             continue;
                         }
                         System.out.println("???Set of : " + set + "\n first set: " + firstSet);

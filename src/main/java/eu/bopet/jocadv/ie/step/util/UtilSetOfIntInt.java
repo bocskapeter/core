@@ -15,7 +15,8 @@ public class UtilSetOfIntInt extends StepEntityBase {
         String[] items = substring.split(",");
         this.set = new LinkedHashSet<>();
         for (String item : items) {
-            this.set.add(Integer.parseInt(item.substring(1).replace(")", "")));
+            this.set.add(Integer.parseInt(item.replace("#", "").replace(" ", "")
+                    .replace(")", "")));
         }
         String last = attribute.substring(attribute.indexOf(")") + 2);
         if (last.contains(",")) {

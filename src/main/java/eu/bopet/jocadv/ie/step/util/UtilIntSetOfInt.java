@@ -14,11 +14,14 @@ public class UtilIntSetOfInt extends StepEntityBase {
         this.id = Integer.parseInt(attribute.substring(1, attribute.indexOf(",")));
         String bracket = attribute.substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"))
                 .replaceAll(" ", "");
+
         String[] values = bracket.split(",");
         ids = new LinkedHashSet<>();
         for (String value : values) {
-            int anId = Integer.parseInt(value.substring(1));
-            ids.add(anId);
+            if (!value.isEmpty()) {
+                int anId = Integer.parseInt(value.replace("#", ""));
+                ids.add(anId);
+            }
         }
     }
 

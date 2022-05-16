@@ -4835,4 +4835,9 @@ public class StepCode {
             DRAUGHTING_MODEL,
             REPRESENTATION,
     };
+    public static String[] SHAPE_ASPECTS = {
+            COMPOSITE_SHAPE_ASPECT,
+            SHAPE_ASPECT,
+            DATUM_FEATURE,
+    };
 }

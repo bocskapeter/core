@@ -2,6 +2,8 @@ package eu.bopet.jocadv.ie.step.entities;
 
 import eu.bopet.jocadv.ie.step.StepEntityBase;
 
+import static org.apache.commons.lang3.StringUtils.isNumeric;
+
 public class DatumReferenceElement extends StepEntityBase {
     private final String description;
     private final int shape;
@@ -13,7 +15,10 @@ public class DatumReferenceElement extends StepEntityBase {
         super(id, name);
         String[] parts = attribute.split(",");
         description = parts[0];
-        shape = Integer.parseInt(parts[1].replace("#", ""));
+        String shapeString = parts[1].replace("#", "");
+        if (isNumeric(shapeString))
+            shape = Integer.parseInt(shapeString);
+        else shape = -1;
         productDefinitional = parts[2].contains("T");
         base = Integer.parseInt(parts[3].replace("#", ""));
         modifiers = parts[4];

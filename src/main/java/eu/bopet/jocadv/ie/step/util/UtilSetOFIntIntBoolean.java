@@ -16,7 +16,7 @@ public class UtilSetOFIntIntBoolean extends StepEntityBase {
         String[] values = substring.split(",");
         this.set = new LinkedHashSet<>();
         for (String value : values) {
-            this.set.add(Integer.parseInt(value.substring(1)));
+            this.set.add(Integer.parseInt(value.replace(" ", "").replace("#", "")));
         }
         String[] rest = (attribute.substring(attribute.indexOf(")") + 1)).split(",");
         this.id = Integer.parseInt(rest[1].substring(1));

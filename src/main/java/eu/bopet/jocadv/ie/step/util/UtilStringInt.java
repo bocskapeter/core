@@ -8,9 +8,15 @@ public class UtilStringInt extends StepEntityBase {
 
     public UtilStringInt(int id, String name, String attribute) {
         super(id, name);
-        String[] values = attribute.split(",");
-        string = values[0].replace("'", "");
-        this.id = Integer.parseInt(values[1].substring(1));
+        if (!attribute.isEmpty()) {
+            String[] values = attribute.split(",");
+            string = values[0].replace("'", "");
+            this.id = Integer.parseInt(values[1].substring(1));
+        } else {
+            string = "";
+            this.id = -1;
+        }
+
     }
 
     @Override

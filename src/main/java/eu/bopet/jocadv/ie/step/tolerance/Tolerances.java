@@ -17,9 +17,9 @@ public class Tolerances extends StepEntityBase {
         for (String s : toleranceListString) {
             String attributes = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
             if (s.startsWith(StepCode.GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE)) {
-                GeometricToleranceWithDatumReference geometricToleranceWithDatumReference =
-                        new GeometricToleranceWithDatumReference(attributes);
-                tolerances.add(geometricToleranceWithDatumReference);
+                GeometricToleranceWithDatumReferenceInSet geometricToleranceWithDatumReferenceInSet =
+                        new GeometricToleranceWithDatumReferenceInSet(attributes);
+                tolerances.add(geometricToleranceWithDatumReferenceInSet);
                 continue;
             }
             if (s.startsWith(StepCode.POSITION_TOLERANCE)) {
@@ -44,9 +44,26 @@ public class Tolerances extends StepEntityBase {
                 tolerances.add(geometricToleranceWithModifiers);
                 continue;
             }
+            if (s.startsWith(StepCode.FLATNESS_TOLERANCE)) {
+                FlatnessTolerance flatnessTolerance = new FlatnessTolerance();
+                tolerances.add(flatnessTolerance);
+                continue;
+            }
+            if (s.startsWith(StepCode.GEOMETRIC_TOLERANCE_WITH_DEFINED_AREA_UNIT)) {
+                GeometricToleranceWithDefinedAreaUnit geometricToleranceWithDefinedAreaUnit =
+                        new GeometricToleranceWithDefinedAreaUnit(attributes);
+                tolerances.add(geometricToleranceWithDefinedAreaUnit);
+                continue;
+            }
+            if (s.startsWith(StepCode.GEOMETRIC_TOLERANCE_WITH_DEFINED_UNIT)) {
+                GeometricToleranceWithDefinedUnit geometricToleranceWithDefinedUnit =
+                        new GeometricToleranceWithDefinedUnit(attributes);
+                tolerances.add(geometricToleranceWithDefinedUnit);
+                continue;
+            }
             if (s.startsWith(StepCode.GEOMETRIC_TOLERANCE)) {
-                GeometricTolerance geometricTolerance = new GeometricTolerance(attributes);
-                tolerances.add(geometricTolerance);
+                GeometricToleranceInSet geometricToleranceInSet = new GeometricToleranceInSet(attributes);
+                tolerances.add(geometricToleranceInSet);
                 continue;
             }
             if (s.startsWith(StepCode.LINE_PROFILE_TOLERANCE)) {
@@ -59,7 +76,7 @@ public class Tolerances extends StepEntityBase {
                 tolerances.add(perpendicularityTolerance);
                 continue;
             }
-            System.out.println("Not processed tolerance: " + s);
+            System.out.println("Not processed tolerance: " + s + " id: " + id);
         }
     }
 

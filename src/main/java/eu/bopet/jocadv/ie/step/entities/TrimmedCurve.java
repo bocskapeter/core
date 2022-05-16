@@ -31,11 +31,26 @@ public class TrimmedCurve extends UtilInt {
                 break;
             }
             case CARTESIAN: {
-                System.out.println("Not processed trimmed curve: cartesian!");
+                CartesianTrim cartesianTrim1 = new CartesianTrim(-1, "", trim1String[0]);
+                CartesianTrim cartesianTrim2 = new CartesianTrim(-1, "", trim2String[0]);
+                trim1.add(cartesianTrim1);
+                trim2.add(cartesianTrim2);
                 break;
             }
             case UNSPECIFIED: {
+                if (trim1String[0].contains("PARAMETER_VALUE")) {
+                    for (String s : trim1String) {
+                        ParameterValue parameterValue = new ParameterValue(s.substring(s.indexOf("(") + 1, s.indexOf(")")));
+                        trim1.add(parameterValue);
+                    }
+                    for (String s : trim2String) {
+                        ParameterValue parameterValue = new ParameterValue(s.substring(s.indexOf("(") + 1, s.indexOf(")")));
+                        trim2.add(parameterValue);
+                    }
+                    break;
+                }
                 System.out.println("Not processed trimmed curve: unspecified!");
+                System.out.println("Attribute: " + attribute);
                 break;
             }
         }

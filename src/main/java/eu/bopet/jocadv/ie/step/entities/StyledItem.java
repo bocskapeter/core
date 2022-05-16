@@ -16,7 +16,9 @@ public class StyledItem extends StepEntityBase {
         String[] parts = attribute.split(Pattern.quote("),"));
         String[] styleStrings = parts[0].replace("#", "").split(",");
         for (String s : styleStrings) {
-            styles.add(Integer.parseInt(s.replace("(", "")));
+            String styleString = s.replace("(", "");
+            if (!styleString.isEmpty())
+                styles.add(Integer.parseInt(styleString));
         }
         item = Integer.parseInt(parts[1].replace("#", ""));
     }

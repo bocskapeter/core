@@ -37,6 +37,16 @@ public class CharacterizedObjects extends StepEntityBase {
                 objects.add(representationInSet);
                 continue;
             }
+            if (s.startsWith(StepCode.SHAPE_REPRESENTATION)) {
+                ShapeRepresentation shapeRepresentation = new ShapeRepresentation();
+                objects.add(shapeRepresentation);
+                continue;
+            }
+            if (s.startsWith(StepCode.TESSELLATED_SHAPE_REPRESENTATION)) {
+                TessellatedShapeRepresentation tessellatedShapeRepresentation = new TessellatedShapeRepresentation();
+                objects.add(tessellatedShapeRepresentation);
+                continue;
+            }
             System.out.println("Not processed characterized object: " + s);
         }
     }

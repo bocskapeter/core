@@ -9,27 +9,35 @@ import eu.bopet.jocadv.ie.step.util.UtilInt;
 public class CurveStyle extends UtilInt {
     private SizeSelect width;
     private SelectedSize selectedSize;
+    private int selectedSizeEntity = -1;
     private int colour;
 
     public CurveStyle(int id, String name, String attribute) {
         super(id, name, attribute.substring(0, attribute.indexOf(",")));
-        width = SizeSelect.valueOf(attribute.substring(attribute.indexOf(",") + 1, attribute.indexOf("(")));
-        String substring = attribute.substring(attribute.indexOf("(") + 1, attribute.indexOf(")"));
-        switch (width) {
-            case POSITIVE_LENGTH_MEASURE: {
-                selectedSize = new PositiveLengthMeasure(substring);
-                break;
+        if (attribute.contains("(")) {
+            width = SizeSelect.valueOf(attribute.substring(attribute.indexOf(",") + 1, attribute.indexOf("(")));
+            String substring = attribute.substring(attribute.indexOf("(") + 1, attribute.indexOf(")"));
+            switch (width) {
+                case POSITIVE_LENGTH_MEASURE: {
+                    selectedSize = new PositiveLengthMeasure(substring);
+                    break;
+                }
+                case DESCRIPTIVE_MEASURE: {
+                    System.out.println("Not processed measure: DESCRIPTIVE_MEASURE");
+                    break;
+                }
+                case MEASURE_WITH_UNIT: {
+                    selectedSize = new MeasureWithUnitInSet(substring);
+                    break;
+                }
             }
-            case DESCRIPTIVE_MEASURE: {
-                System.out.println("Not processed measure: DESCRIPTIVE_MEASURE");
-                break;
-            }
-            case MEASURE_WITH_UNIT: {
-                selectedSize = new MeasureWithUnitInSet(substring);
-                break;
-            }
+        } else {
+            String rest = attribute.substring(attribute.indexOf(",") + 1);
+            selectedSizeEntity = Integer.parseInt(rest.substring(0, rest.indexOf(","))
+                    .replace("#", ""));
         }
-        colour = Integer.parseInt(attribute.substring(attribute.lastIndexOf(",") + 1).replace("#", ""));
+        colour = Integer.parseInt(attribute.substring(attribute.lastIndexOf(",") + 1)
+                .replace("#", ""));
     }
 
     @Override
@@ -37,6 +45,7 @@ public class CurveStyle extends UtilInt {
         return "CurveStyle{" + super.toString() +
                 ", width=" + width +
                 ", selectedSize=" + selectedSize +
+                ", selectedSizeEntity=" + selectedSizeEntity +
                 ", colour=" + colour +
                 '}';
     }

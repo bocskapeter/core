@@ -46,7 +46,7 @@ public abstract class StepEntityBase {
         }
         firstBracket = -1;
         for (int limit : limiters) {
-            result.add(set.substring(firstBracket + 1, limit + 1));
+            result.add(set.substring(firstBracket + 1, limit + 1).stripLeading());
             firstBracket = limit;
         }
         return result;

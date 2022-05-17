@@ -12,6 +12,6 @@ public class UtilString extends StepEntityBase {
 
     @Override
     public String toString() {
-        return super.toString() + ", " + string;
+        return super.toString() + ", '" + string + "'";
     }
 }

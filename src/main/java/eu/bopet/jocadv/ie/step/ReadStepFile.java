@@ -17,6 +17,7 @@ import eu.bopet.jocadv.ie.step.entities.AnnotationPlaceholderOccurrence;
 import eu.bopet.jocadv.ie.step.entities.AnnotationPlane;
 import eu.bopet.jocadv.ie.step.entities.ApplicationContext;
 import eu.bopet.jocadv.ie.step.entities.ApplicationProtocolDefinition;
+import eu.bopet.jocadv.ie.step.entities.AppliedDocumentReference;
 import eu.bopet.jocadv.ie.step.entities.Approval;
 import eu.bopet.jocadv.ie.step.entities.ApprovalDateTime;
 import eu.bopet.jocadv.ie.step.entities.ApprovalPersonOrganization;
@@ -44,6 +45,7 @@ import eu.bopet.jocadv.ie.step.entities.CompositeCurve;
 import eu.bopet.jocadv.ie.step.entities.CompositeCurveSegment;
 import eu.bopet.jocadv.ie.step.entities.CompositeGroupShapeAspect;
 import eu.bopet.jocadv.ie.step.entities.CompositeShapeAspect;
+import eu.bopet.jocadv.ie.step.entities.CompoundRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.ConicalSurface;
 import eu.bopet.jocadv.ie.step.entities.ConstructiveGeometryRepresentationRelationship;
 import eu.bopet.jocadv.ie.step.entities.CoordinatedUniversalTimeOffset;
@@ -66,6 +68,9 @@ import eu.bopet.jocadv.ie.step.entities.DimensionalExponents;
 import eu.bopet.jocadv.ie.step.entities.DimensionalLocation;
 import eu.bopet.jocadv.ie.step.entities.DimensionalSize;
 import eu.bopet.jocadv.ie.step.entities.Direction;
+import eu.bopet.jocadv.ie.step.entities.Document;
+import eu.bopet.jocadv.ie.step.entities.DocumentProductEquivalence;
+import eu.bopet.jocadv.ie.step.entities.DocumentType;
 import eu.bopet.jocadv.ie.step.entities.DraughtingCallOut;
 import eu.bopet.jocadv.ie.step.entities.DraughtingCallOutRelationship;
 import eu.bopet.jocadv.ie.step.entities.DraughtingModel;
@@ -104,6 +109,7 @@ import eu.bopet.jocadv.ie.step.entities.MechanicalDesignAndDraughtingRelationshi
 import eu.bopet.jocadv.ie.step.entities.MechanicalDesignGeometricPresentationRepresentation;
 import eu.bopet.jocadv.ie.step.entities.ModelGeometricView;
 import eu.bopet.jocadv.ie.step.entities.NameAttribute;
+import eu.bopet.jocadv.ie.step.entities.ObjectRole;
 import eu.bopet.jocadv.ie.step.entities.OpenShell;
 import eu.bopet.jocadv.ie.step.entities.Organization;
 import eu.bopet.jocadv.ie.step.entities.OrientedEdge;
@@ -130,6 +136,8 @@ import eu.bopet.jocadv.ie.step.entities.ProductCategoryRelationship;
 import eu.bopet.jocadv.ie.step.entities.ProductContext;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinition;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContext;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContextAssociation;
+import eu.bopet.jocadv.ie.step.entities.ProductDefinitionContextRole;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormation;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionFormationWithSpecifiedSource;
 import eu.bopet.jocadv.ie.step.entities.ProductDefinitionShape;
@@ -138,6 +146,7 @@ import eu.bopet.jocadv.ie.step.entities.ProjectedZoneDefinition;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinition;
 import eu.bopet.jocadv.ie.step.entities.PropertyDefinitionRepresentation;
 import eu.bopet.jocadv.ie.step.entities.RealRepresentationItem;
+import eu.bopet.jocadv.ie.step.entities.RoleAssociation;
 import eu.bopet.jocadv.ie.step.entities.SeamCurve;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassification;
 import eu.bopet.jocadv.ie.step.entities.SecurityClassificationLevel;
@@ -191,8 +200,10 @@ import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
 import eu.bopet.jocadv.ie.step.tolerance.AngularityTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.ConcentricityTolerance;
+import eu.bopet.jocadv.ie.step.tolerance.RoundnessTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.StraightnessTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.Tolerances;
+import eu.bopet.jocadv.ie.step.tolerance.TotalRunOutTolerance;
 import eu.bopet.jocadv.ie.step.unit.Units;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 
@@ -1234,6 +1245,68 @@ public class ReadStepFile {
                         ConcentricityTolerance concentricityTolerance =
                                 new ConcentricityTolerance(id, name, att[1]);
                         result.add(concentricityTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ROUNDNESS_TOLERANCE)) {
+                        RoundnessTolerance roundnessTolerance =
+                                new RoundnessTolerance(id, name, att[1]);
+                        result.add(roundnessTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TOTAL_RUNOUT_TOLERANCE)) {
+                        TotalRunOutTolerance totalRunOutTolerance =
+                                new TotalRunOutTolerance(id, name, att[1]);
+                        result.add(totalRunOutTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DOCUMENT_PRODUCT_EQUIVALENCE)) {
+                        DocumentProductEquivalence documentProductEquivalence =
+                                new DocumentProductEquivalence(id, name, att[1]);
+                        result.add(documentProductEquivalence);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.ROLE_ASSOCIATION)) {
+                        RoleAssociation roleAssociation = new RoleAssociation(id, "", attributes);
+                        result.add(roleAssociation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRODUCT_DEFINITION_CONTEXT_ASSOCIATION)) {
+                        ProductDefinitionContextAssociation productDefinitionContextAssociation =
+                                new ProductDefinitionContextAssociation(id, "", attributes);
+                        result.add(productDefinitionContextAssociation);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.PRODUCT_DEFINITION_CONTEXT_ROLE)) {
+                        ProductDefinitionContextRole productDefinitionContextRole =
+                                new ProductDefinitionContextRole(id, name, att[1]);
+                        result.add(productDefinitionContextRole);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.APPLIED_DOCUMENT_REFERENCE)) {
+                        AppliedDocumentReference appliedDocumentReference =
+                                new AppliedDocumentReference(id, "", attributes);
+                        result.add(appliedDocumentReference);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DOCUMENT_TYPE)) {
+                        DocumentType documentType = new DocumentType(id, name);
+                        result.add(documentType);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.DOCUMENT)) {
+                        Document document = new Document(id, name, att[1]);
+                        result.add(document);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.OBJECT_ROLE)) {
+                        ObjectRole objectRole = new ObjectRole(id, name, att[1]);
+                        result.add(objectRole);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPOUND_REPRESENTATION_ITEM)) {
+                        CompoundRepresentationItem compoundRepresentationItem =
+                                new CompoundRepresentationItem(id, name, att[1]);
+                        result.add(compoundRepresentationItem);
                         continue;
                     }
 

@@ -11,7 +11,7 @@ public class UtilSetOfInt extends StepEntityBase {
     public UtilSetOfInt(int id, String name, String attribute) {
         super(id, name);
         String bracket = attribute.substring(attribute.indexOf("(") + 1, attribute.lastIndexOf(")"))
-                .replaceAll(" ", "");
+                .replaceAll(" ", "").replace(")", "");
         String[] values = bracket.split(",");
         ids = new LinkedHashSet<>();
         for (String value : values) {

@@ -8,9 +8,9 @@ public class UtilStringString extends StepEntityBase {
 
     public UtilStringString(int id, String name, String attribute) {
         super(id, name);
-        String[] parts = attribute.replace("'", "").split(",");
-        s1 = parts[0];
-        s2 = parts[1];
+        String[] parts = attribute.split(",");
+        s1 = parts[0].replace("'", "");
+        s2 = parts[1].replace("'", "");
     }
 
     @Override

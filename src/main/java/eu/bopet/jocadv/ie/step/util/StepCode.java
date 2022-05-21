@@ -4837,6 +4837,7 @@ public class StepCode {
     };
     public static String[] SHAPE_ASPECTS = {
             COMPOSITE_SHAPE_ASPECT,
+            COMPOSITE_GROUP_SHAPE_ASPECT,
             SHAPE_ASPECT,
             DATUM_FEATURE,
     };

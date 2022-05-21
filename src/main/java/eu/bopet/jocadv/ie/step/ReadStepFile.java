@@ -40,6 +40,7 @@ import eu.bopet.jocadv.ie.step.entities.CircularRunOutTolerance;
 import eu.bopet.jocadv.ie.step.entities.ClosedShell;
 import eu.bopet.jocadv.ie.step.entities.Colour;
 import eu.bopet.jocadv.ie.step.entities.ColourRGB;
+import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedFace;
 import eu.bopet.jocadv.ie.step.entities.ComplexTriangulatedSurfaceSet;
 import eu.bopet.jocadv.ie.step.entities.CompositeCurve;
 import eu.bopet.jocadv.ie.step.entities.CompositeCurveSegment;
@@ -183,6 +184,7 @@ import eu.bopet.jocadv.ie.step.entities.ViewVolume;
 import eu.bopet.jocadv.ie.step.entities.VolumeUnit;
 import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 import eu.bopet.jocadv.ie.step.measure.LengthMeasureWithUnit;
+import eu.bopet.jocadv.ie.step.measure.MassMeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.MeasureWithUnit;
 import eu.bopet.jocadv.ie.step.measure.Measures;
 import eu.bopet.jocadv.ie.step.measure.PlaneAngleMeasureWithUnit;
@@ -1307,6 +1309,18 @@ public class ReadStepFile {
                         CompoundRepresentationItem compoundRepresentationItem =
                                 new CompoundRepresentationItem(id, name, att[1]);
                         result.add(compoundRepresentationItem);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.MASS_MEASURE_WITH_UNIT)) {
+                        MassMeasureWithUnit massMeasureWithUnit =
+                                new MassMeasureWithUnit(id, "", attributes);
+                        result.add(massMeasureWithUnit);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.COMPLEX_TRIANGULATED_FACE)) {
+                        ComplexTriangulatedFace complexTriangulatedFace =
+                                new ComplexTriangulatedFace(id, name, att[1]);
+                        result.add(complexTriangulatedFace);
                         continue;
                     }
 

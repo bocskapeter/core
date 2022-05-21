@@ -18,6 +18,7 @@ public class ProductRelatedProductCategory extends StepEntityBase {
         String[] productStrings = thirdParts[1].split(",");
         products = new LinkedHashSet<>();
         for (String s : productStrings) {
+            s = s.replace(" ", "");
             products.add(Integer.parseInt(s.replace("#", "").replace(")", "")));
         }
     }

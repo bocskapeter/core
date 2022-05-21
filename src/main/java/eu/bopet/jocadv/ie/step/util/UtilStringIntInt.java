@@ -11,8 +11,8 @@ public class UtilStringIntInt extends StepEntityBase {
         super(id, name);
         String[] values = attribute.split(",");
         this.string = values[0].replace("'", "").stripLeading();
-        this.id1 = Integer.parseInt(values[1].replace("#", ""));
-        this.id2 = Integer.parseInt(values[2].replace("#", ""));
+        this.id1 = Integer.parseInt(values[1].replace("#", "").replace(" ", ""));
+        this.id2 = Integer.parseInt(values[2].replace("#", "").replace(" ", ""));
     }
 
     @Override

@@ -35,6 +35,12 @@ public class ShapeAspects extends StepEntityBase {
                 shapeAspects.add(shapeAspect);
                 continue;
             }
+            if (s.startsWith(StepCode.COMPOSITE_GROUP_SHAPE_ASPECT)) {
+                CompositeGroupShapeAspect compositeGroupShapeAspect =
+                        new CompositeGroupShapeAspect();
+                shapeAspects.add(compositeGroupShapeAspect);
+                continue;
+            }
             System.out.println("Not processed shape aspect: " + s + " id: " + id);
         }
     }

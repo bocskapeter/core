@@ -18,7 +18,7 @@ public class UtilSetOfIntInt extends StepEntityBase {
             this.set.add(Integer.parseInt(item.replace("#", "").replace(" ", "")
                     .replace(")", "")));
         }
-        String last = attribute.substring(attribute.indexOf(")") + 2);
+        String last = attribute.substring(attribute.indexOf(")") + 2).replace(" ", "");
         if (last.contains(",")) {
             this.id = Integer.parseInt(last.substring(1, last.indexOf(",")).replace("#", ""));
         } else {

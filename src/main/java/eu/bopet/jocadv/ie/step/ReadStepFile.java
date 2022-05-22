@@ -99,6 +99,7 @@ import eu.bopet.jocadv.ie.step.entities.IdAttribute;
 import eu.bopet.jocadv.ie.step.entities.IntegerRepresentationItem;
 import eu.bopet.jocadv.ie.step.entities.Invisibility;
 import eu.bopet.jocadv.ie.step.entities.ItemIdentifiedRepresentationUsage;
+import eu.bopet.jocadv.ie.step.entities.LimitsAndFits;
 import eu.bopet.jocadv.ie.step.entities.Line;
 import eu.bopet.jocadv.ie.step.entities.LocalTime;
 import eu.bopet.jocadv.ie.step.entities.ManifoldSolidBRep;
@@ -169,6 +170,7 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.TessellatedAnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.TessellatedGeometricSet;
 import eu.bopet.jocadv.ie.step.entities.TessellatedShapeRepresentation;
+import eu.bopet.jocadv.ie.step.entities.TessellatedShell;
 import eu.bopet.jocadv.ie.step.entities.TessellatedSolid;
 import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZone;
@@ -203,8 +205,10 @@ import eu.bopet.jocadv.ie.step.surface.SphericalSurface;
 import eu.bopet.jocadv.ie.step.surface.Surfaces;
 import eu.bopet.jocadv.ie.step.tolerance.AngularityTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.ConcentricityTolerance;
+import eu.bopet.jocadv.ie.step.tolerance.CylindricityTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.RoundnessTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.StraightnessTolerance;
+import eu.bopet.jocadv.ie.step.tolerance.SymmetryTolerance;
 import eu.bopet.jocadv.ie.step.tolerance.Tolerances;
 import eu.bopet.jocadv.ie.step.tolerance.TotalRunOutTolerance;
 import eu.bopet.jocadv.ie.step.unit.Units;
@@ -1326,9 +1330,27 @@ public class ReadStepFile {
                     }
                     if (secondTag.startsWith(StepCode.TESSELLATED_SOLID)) {
                         TessellatedSolid tessellatedSolid = new TessellatedSolid(id, name, att[1]);
-                        System.out.println(command);
-                        System.out.println(tessellatedSolid);
                         result.add(tessellatedSolid);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TESSELLATED_SHELL)) {
+                        TessellatedShell tessellatedShell = new TessellatedShell(id, name, att[1]);
+                        result.add(tessellatedShell);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.SYMMETRY_TOLERANCE)) {
+                        SymmetryTolerance symmetryTolerance = new SymmetryTolerance(id, name, att[1]);
+                        result.add(symmetryTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.CYLINDRICITY_TOLERANCE)) {
+                        CylindricityTolerance cylindricityTolerance = new CylindricityTolerance(id, name, att[1]);
+                        result.add(cylindricityTolerance);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.LIMITS_AND_FITS)) {
+                        LimitsAndFits limitsAndFits = new LimitsAndFits(id, "", attributes);
+                        result.add(limitsAndFits);
                         continue;
                     }
 

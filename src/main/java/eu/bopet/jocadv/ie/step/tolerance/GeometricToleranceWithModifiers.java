@@ -9,10 +9,11 @@ public class GeometricToleranceWithModifiers implements Tolerance {
 
     public GeometricToleranceWithModifiers(String attribute) {
         modifiers = new LinkedHashSet<>();
-        String[] parts = attribute.split(Pattern.quote(")"));
+        String[] parts = attribute.split(Pattern.quote(","));
         for (String s : parts) {
             modifiers.add(GeometricToleranceModifier.valueOf(s.replace("(", "")
-                    .replace(")", "").replace(".", "")));
+                    .replace(")", "").replace(".", "")
+                    .replace(" ", "")));
         }
     }
 

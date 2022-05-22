@@ -15,7 +15,7 @@ public class DatumReferenceCompartment extends UtilStringInt {
         super(id, name, attribute);
         String rest = attribute.substring(attribute.indexOf(",.") + 1);
         productDefinitional = rest.substring(0, 3).contains("T");
-        String rest2 = rest.substring(rest.indexOf(".,") + 2);
+        String rest2 = rest.substring(rest.indexOf(".,") + 2).stripLeading();
         bases = new ArrayList<>();
         if (rest2.startsWith(StepCode.COMMON_DATUM_LIST)) {
             String[] parts = rest2.substring(rest2.indexOf("("), rest2.lastIndexOf(")")).split(",");

@@ -76,6 +76,26 @@ public class Tolerances extends StepEntityBase {
                 tolerances.add(perpendicularityTolerance);
                 continue;
             }
+            if (s.startsWith(StepCode.PARALLELISM_TOLERANCE)) {
+                ParallelismTolerance parallelismTolerance = new ParallelismTolerance();
+                tolerances.add(parallelismTolerance);
+                continue;
+            }
+            if (s.startsWith(StepCode.STRAIGHTNESS_TOLERANCE)) {
+                StraightnessToleranceInSet straightnessToleranceInSet = new StraightnessToleranceInSet();
+                tolerances.add(straightnessToleranceInSet);
+                continue;
+            }
+            if (s.startsWith(StepCode.ROUNDNESS_TOLERANCE)) {
+                RoundnessToleranceInSet roundnessToleranceInSet = new RoundnessToleranceInSet();
+                tolerances.add(roundnessToleranceInSet);
+                continue;
+            }
+            if (s.startsWith(StepCode.CIRCULAR_RUNOUT_TOLERANCE)) {
+                CircularRunOutTolerance circularRunOutTolerance = new CircularRunOutTolerance();
+                tolerances.add(circularRunOutTolerance);
+                continue;
+            }
             System.out.println("Not processed tolerance: " + s + " id: " + id);
         }
     }

@@ -5,6 +5,8 @@ import eu.bopet.jocadv.ie.step.StepEntityBase;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static org.apache.commons.lang3.StringUtils.isNumeric;
+
 public class UtilSetOfIntInt extends StepEntityBase {
     private final Set<Integer> set;
     private final int id;
@@ -18,11 +20,12 @@ public class UtilSetOfIntInt extends StepEntityBase {
             this.set.add(Integer.parseInt(item.replace("#", "").replace(" ", "")
                     .replace(")", "")));
         }
-        String last = attribute.substring(attribute.indexOf(")") + 2).replace(" ", "");
-        if (last.contains(",")) {
-            this.id = Integer.parseInt(last.substring(1, last.indexOf(",")).replace("#", ""));
+        String last = attribute.substring(attribute.indexOf(")") + 1)
+                .replace(" ", "").replace("#", "");
+        if (isNumeric(last)) {
+            this.id = Integer.parseInt(last);
         } else {
-            this.id = Integer.parseInt(last.substring(1).replace("#", ""));
+            this.id = -1;
         }
 
     }

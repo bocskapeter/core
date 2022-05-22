@@ -729,8 +729,10 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.COMPLEX_TRIANGULATED_SURFACE_SET)) {
+                        System.out.println(command);
                         ComplexTriangulatedSurfaceSet complexTriangulatedSurfaceSet =
                                 new ComplexTriangulatedSurfaceSet(id, name, att[1]);
+                        System.out.println(complexTriangulatedSurfaceSet);
                         result.add(complexTriangulatedSurfaceSet);
                         continue;
                     }

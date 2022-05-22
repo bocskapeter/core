@@ -20,6 +20,8 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
                 Integer.parseInt(attribute.substring(0, attribute.indexOf(",")).replace("#", ""));
         pnMax = Integer.parseInt(attribute.substring(attribute.indexOf(",") + 1, attribute.indexOf(",(")));
         normals = new ArrayList<>();
+        String rest = attribute.substring(attribute.indexOf(",(") + 1);
+        System.out.println("rest: " + rest);
         String[] coordinatesString = attribute.substring(attribute.indexOf(",((") + 3, attribute.indexOf(")),"))
                 .split(Pattern.quote("),("));
         for (String c : coordinatesString) {
@@ -28,7 +30,7 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
             for (String s : cString) {
                 coordinates.add(Double.parseDouble(s));
             }
-            normals.add(coordinates);
+            if (!coordinates.isEmpty()) normals.add(coordinates);
         }
         pnIndex = new ArrayList<>();
         String[] pnIs = attribute.substring(attribute.indexOf(")),(") + 4, attribute.indexOf("),((")).split(",");
@@ -36,7 +38,7 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
             s = s.replace(")", "").replace("(", "");
             if (!s.equals("")) pnIndex.add(Integer.parseInt(s));
         }
-        String rest = attribute.substring(attribute.indexOf("),((") + 4);
+        rest = attribute.substring(attribute.indexOf("),((") + 4);
         String[] stripsStrings = rest.split(Pattern.quote("),("));
         strips = new ArrayList<>();
         for (String s : stripsStrings) {
@@ -45,7 +47,7 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
             for (String s1 : strings) {
                 if (!s1.isEmpty()) integerList.add(Integer.parseInt(s1));
             }
-            strips.add(integerList);
+            if (!integerList.isEmpty()) strips.add(integerList);
         }
         fans = new ArrayList<>();
         String[] fansStrings = rest.substring(rest.indexOf(")),(") + 4).split(Pattern.quote("),("));
@@ -55,7 +57,7 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
             for (String s1 : strings) {
                 if (!s1.equals("")) integerList.add(Integer.parseInt(s1));
             }
-            fans.add(integerList);
+            if (!integerList.isEmpty()) fans.add(integerList);
         }
     }
 

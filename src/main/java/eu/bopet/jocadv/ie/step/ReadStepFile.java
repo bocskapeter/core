@@ -169,6 +169,7 @@ import eu.bopet.jocadv.ie.step.entities.SurfaceStyleUsage;
 import eu.bopet.jocadv.ie.step.entities.TessellatedAnnotationOccurrence;
 import eu.bopet.jocadv.ie.step.entities.TessellatedGeometricSet;
 import eu.bopet.jocadv.ie.step.entities.TessellatedShapeRepresentation;
+import eu.bopet.jocadv.ie.step.entities.TessellatedSolid;
 import eu.bopet.jocadv.ie.step.entities.ToleranceValue;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZone;
 import eu.bopet.jocadv.ie.step.entities.ToleranceZoneForm;
@@ -1321,6 +1322,13 @@ public class ReadStepFile {
                         ComplexTriangulatedFace complexTriangulatedFace =
                                 new ComplexTriangulatedFace(id, name, att[1]);
                         result.add(complexTriangulatedFace);
+                        continue;
+                    }
+                    if (secondTag.startsWith(StepCode.TESSELLATED_SOLID)) {
+                        TessellatedSolid tessellatedSolid = new TessellatedSolid(id, name, att[1]);
+                        System.out.println(command);
+                        System.out.println(tessellatedSolid);
+                        result.add(tessellatedSolid);
                         continue;
                     }
 

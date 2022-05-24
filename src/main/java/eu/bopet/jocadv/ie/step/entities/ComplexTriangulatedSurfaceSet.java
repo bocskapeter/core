@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static org.apache.commons.lang3.StringUtils.isNumeric;
+
 public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
-    private int coordinatesId;
-    private int pnMax;
-    private List<List<Double>> normals;
-    private List<Integer> pnIndex;
-    private List<List<Integer>> strips;
-    private List<List<Integer>> fans;
+    private final int coordinatesId;
+    private final int pnMax;
+    private final List<List<Double>> normals;
+    private final List<Integer> pnIndex;
+    private final List<List<Integer>> strips;
+    private final List<List<Integer>> fans;
 
     public ComplexTriangulatedSurfaceSet(int id, String name, String attribute) {
         super(id, name);
@@ -21,14 +23,15 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
         pnMax = Integer.parseInt(attribute.substring(attribute.indexOf(",") + 1, attribute.indexOf(",(")));
         normals = new ArrayList<>();
         String rest = attribute.substring(attribute.indexOf(",(") + 1);
-        System.out.println("rest: " + rest);
-        String[] coordinatesString = attribute.substring(attribute.indexOf(",((") + 3, attribute.indexOf(")),"))
-                .split(Pattern.quote("),("));
+        List<String> sets = StepEntityBase.getSets(rest);
+        String[] coordinatesString = sets.get(0).substring(sets.get(0).indexOf("(") + 1,
+                sets.get(0).lastIndexOf(")")).split(Pattern.quote("),("));
         for (String c : coordinatesString) {
             List<Double> coordinates = new ArrayList<>();
+            c = c.replace("(", "").replace(")", "");
             String[] cString = c.split(",");
             for (String s : cString) {
-                coordinates.add(Double.parseDouble(s));
+                if (!s.isEmpty()) coordinates.add(Double.parseDouble(s));
             }
             if (!coordinates.isEmpty()) normals.add(coordinates);
         }

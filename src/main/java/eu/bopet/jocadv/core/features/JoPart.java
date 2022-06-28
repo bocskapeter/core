@@ -16,6 +16,10 @@ public class JoPart extends FeatureBase {
         }
     }
 
+    public Set<JoFeature> getFeatures() {
+        return features;
+    }
+
     public void insertAfter(JoFeature feature) {
 
     }

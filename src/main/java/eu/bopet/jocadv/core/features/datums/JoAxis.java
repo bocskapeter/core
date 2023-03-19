@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
@@ -45,7 +45,7 @@ public class JoAxis extends FeatureBase implements Selectable, JoFeature {
         return new Line(
                 point.getVector().getVector3D(),
                 point.getVector().getVector3D().add(direction.getVector3D()),
-                JoValue.DEFAULT_TOLERANCE);
+                this.getTolerance());
     }
 
     @Override

@@ -1,13 +1,15 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JoCircle extends FeatureBase implements SketchGeometry, Selectable {
@@ -21,6 +23,22 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
 
     public JoSphere getSphere() {
         return sphere;
+    }
+
+    public JoPoint getCenter() {
+        return sphere.getCenter();
+    }
+
+    public Vector3D getCenter3D() {
+        return sphere.getCenter3D();
+    }
+
+    public JoValue getRadius() {
+        return sphere.getRadius();
+    }
+
+    public double getRadiusD() {
+        return sphere.getRadiusD();
     }
 
     public JoPlane getPlane() {
@@ -43,7 +61,7 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
-    public JoPoint getIntersection(SketchGeometry geometry) {
+    public List<JoPoint> getIntersection(SketchGeometry geometry) {
         // TODO calculate intersection with arc, circle and line
         return null;
     }

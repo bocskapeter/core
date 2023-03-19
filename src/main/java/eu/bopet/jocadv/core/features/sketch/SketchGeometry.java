@@ -3,6 +3,7 @@ package eu.bopet.jocadv.core.features.sketch;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.JoValue;
 
+import java.util.List;
 import java.util.Set;
 
 public interface SketchGeometry {
@@ -21,5 +22,5 @@ public interface SketchGeometry {
      * @param geometry the other geometry
      * @return the intersection point
      */
-    JoPoint getIntersection(SketchGeometry geometry);
+    List<JoPoint> getIntersection(SketchGeometry geometry);
 }

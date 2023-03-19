@@ -1,15 +1,17 @@
 package eu.bopet.jocadv.core.features.basic;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, JoFeature {
@@ -29,8 +31,16 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
         this.regenerativeLink = regenerativeLink;
     }
 
+    public JoPoint(Vector3D vector3D) {
+        this.vector = new JoVector(vector3D);
+    }
+
     public JoVector getVector() {
         return vector;
+    }
+
+    public Vector3D getVector3D() {
+        return vector.getVector3D();
     }
 
     public double distance(JoPoint point) {
@@ -63,7 +73,7 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     }
 
     @Override
-    public JoPoint getIntersection(SketchGeometry geometry) {
+    public List<JoPoint> getIntersection(SketchGeometry geometry) {
         return null;
     }
 

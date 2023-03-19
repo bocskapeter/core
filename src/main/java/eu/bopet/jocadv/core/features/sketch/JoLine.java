@@ -1,12 +1,16 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
-import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+import org.apache.commons.math3.geometry.euclidean.threed.SubLine;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
@@ -38,13 +42,17 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         return construction;
     }
 
-    @Override
-    public double distance(Line pickingLine) {
-        return pickingLine.distance(geLine());
+    public SubLine getSubLine() {
+        return new SubLine(point1.getVector().getVector3D(), point2.getVector().getVector3D(), this.getTolerance());
     }
 
-    private Line geLine() {
-        return new Line(point1.getVector().getVector3D(), point2.getVector().getVector3D(), JoValue.DEFAULT_TOLERANCE);
+    public Line getLine() {
+        return new Line(point1.getVector().getVector3D(), point2.getVector().getVector3D(), this.getTolerance());
+    }
+
+    @Override
+    public double distance(Line pickingLine) {
+        return pickingLine.distance(getLine());
     }
 
     @Override
@@ -64,13 +72,32 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
     }
 
     @Override
-    public JoPoint getIntersection(SketchGeometry geometry) {
-        if (this.isConstruction()) return null;
+    public List<JoPoint> getIntersection(SketchGeometry geometry) {
+        List<JoPoint> result = new ArrayList<>();
         if (geometry instanceof JoLine) {
             JoLine otherLine = (JoLine) geometry;
-            if (otherLine.isConstruction()) return null;
-            // TODO calculate intersection with arc, circle and line
+            Vector3D sectionPoint = this.getSubLine().intersection(otherLine.getSubLine(), false);
+            if (sectionPoint != null) {
+                result.add(new JoPoint(sectionPoint));
+                return result;
+            }
         }
+        if (geometry instanceof JoCircle) {
+            JoCircle circle = (JoCircle) geometry;
+            Vector3D centerPoint = circle.getCenter3D();
+            double difference = getLine().distance(centerPoint) - circle.getRadiusD();
+            if (difference <= -getTolerance()) {
+                // TODO intersecting circle with two intersecting points
+
+            }
+
+            if (-getTolerance() < difference && difference < getTolerance()) {
+                // TODO tangent circle and one tangent point
+
+            }
+
+        }
+        // TODO calculate intersection with arc
         return null;
     }
 

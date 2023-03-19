@@ -1,13 +1,15 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
@@ -21,8 +23,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.circle = circle;
         this.point1 = point1;
         this.point2 = point2;
-        this.line1 = new JoLine(circle.getSphere().getCenter(), point1, true);
-        this.line2 = new JoLine(circle.getSphere().getCenter(), point2, true);
+        this.line1 = new JoLine(circle.getCenter(), point1, true);
+        this.line2 = new JoLine(circle.getCenter(), point2, true);
     }
 
     public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) {
@@ -30,16 +32,28 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.circle = new JoCircle(sphere, plane);
         this.point1 = point1;
         this.point2 = point2;
-        this.line1 = new JoLine(circle.getSphere().getCenter(), point1, true);
-        this.line2 = new JoLine(circle.getSphere().getCenter(), point2, true);
+        this.line1 = new JoLine(circle.getCenter(), point1, true);
+        this.line2 = new JoLine(circle.getCenter(), point2, true);
     }
 
     public JoValue getRadius() {
         return circle.getSphere().getRadius();
     }
 
+    public double getRadiusD() {
+        return circle.getRadiusD();
+    }
+
     public JoCircle getCircle() {
         return circle;
+    }
+
+    public JoPoint getCenter() {
+        return circle.getCenter();
+    }
+
+    public Vector3D getCenter3D() {
+        return circle.getCenter3D();
     }
 
     public JoPoint get1stPoint() {
@@ -80,7 +94,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     }
 
     @Override
-    public JoPoint getIntersection(SketchGeometry geometry) {
+    public List<JoPoint> getIntersection(SketchGeometry geometry) {
+
         // TODO calculate intersection with arc, circle and line
         return null;
     }

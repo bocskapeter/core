@@ -1,17 +1,23 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoValue;
-import org.apache.commons.math3.linear.*;
+import eu.bopet.jocadv.core.features.sketch.exception.SelfIntersectionException;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.DecompositionSolver;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.linear.SingularValueDecomposition;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -90,6 +96,14 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
 
     public void addGeometry(SketchGeometry newGeometry) throws Exception {
         if (geometries.contains(newGeometry)) return;
+        if (!geometries.isEmpty()) {
+            for (SketchGeometry geometry : geometries) {
+                List<JoPoint> intersections = geometry.getIntersection(newGeometry);
+                if (intersections != null && !intersections.isEmpty()) {
+                    throw new SelfIntersectionException(geometry, newGeometry);
+                }
+            }
+        }
         geometries.add(newGeometry);
         for (JoValue value : newGeometry.getValues()) {
             value.setStatus(JoValue.VARIABLE);
@@ -128,7 +142,7 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
             JoArc arc = (JoArc) newGeometry;
             JoPoint point1 = arc.get1stPoint();
             JoPoint point2 = arc.get2ndPoint();
-            JoPoint center = arc.getCircle().getSphere().getCenter();
+            JoPoint center = arc.getCircle().getCenter();
             PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
                     point1, center, arc.getRadius(), SketchConstraint.SYSTEM);
             PointToPointDistance pointToPointDistance2 = new PointToPointDistance(

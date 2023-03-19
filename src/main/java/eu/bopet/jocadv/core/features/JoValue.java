@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.core.features;
 
+
 import org.apache.commons.math3.util.Precision;
 
 public class JoValue {
@@ -10,7 +11,7 @@ public class JoValue {
     public final static short VARIABLE = 4;   //                    change can be done
     public final static short AUTO = 5;       //                    change can be done
 
-    private static final String[] SYMBOLS = {"⏚", "🖳","↴", "✔", "↔", "?"};
+    private static final String[] SYMBOLS = {"⏚", "🖳", "↴", "✔", "↔", "?"};
 
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
@@ -33,6 +34,12 @@ public class JoValue {
 
     public JoValue(short status, double value) {
         this.status = status;
+        this.value = value;
+        this.stored = value;
+    }
+
+    public JoValue(double value) {
+        this.status = AUTO;
         this.value = value;
         this.stored = value;
     }

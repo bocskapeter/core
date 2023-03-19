@@ -1,12 +1,14 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
-import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class JoSphere extends FeatureBase implements SketchGeometry, Selectable {
@@ -22,8 +24,16 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
         return center;
     }
 
+    public Vector3D getCenter3D() {
+        return center.getVector3D();
+    }
+
     public JoValue getRadius() {
         return radius;
+    }
+
+    public double getRadiusD() {
+        return radius.get();
     }
 
     @Override
@@ -46,7 +56,7 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
-    public JoPoint getIntersection(SketchGeometry geometry) {
+    public List<JoPoint> getIntersection(SketchGeometry geometry) {
         return null;
     }
 

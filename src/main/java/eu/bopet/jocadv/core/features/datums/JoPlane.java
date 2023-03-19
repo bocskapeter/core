@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
+import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
@@ -62,7 +62,7 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
     public Plane getPlane() {
         return new Plane(new Vector3D(x.get() * d.get(), y.get() * d.get(), z.get() * d.get()),
                 new Vector3D(x.get(), y.get(), z.get()),
-                JoValue.DEFAULT_TOLERANCE);
+                this.getTolerance());
     }
 
     @Override

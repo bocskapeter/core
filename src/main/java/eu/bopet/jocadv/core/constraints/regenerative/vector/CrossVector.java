@@ -1,9 +1,9 @@
 package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
@@ -11,9 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CrossVector implements RegenerativeLink {
+    private final JoVector resultVector;
     private JoVector referenceVector1;
     private JoVector referenceVector2;
-    private final JoVector resultVector;
 
     public CrossVector(JoVector referenceVector1, JoVector referenceVector2) throws Exception {
         this.referenceVector1 = referenceVector1;

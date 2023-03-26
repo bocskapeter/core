@@ -1,6 +1,8 @@
 package eu.bopet.jocadv.core.features;
 
 
+import eu.bopet.jocadv.core.features.basic.JoPoint;
+
 import java.util.UUID;
 
 public abstract class FeatureBase {
@@ -38,4 +40,6 @@ public abstract class FeatureBase {
     public void setTolerance(double tolerance) {
         this.tolerance = tolerance;
     }
+
+    public abstract boolean isOn(JoPoint point);
 }

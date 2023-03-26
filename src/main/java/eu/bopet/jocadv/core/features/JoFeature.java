@@ -11,6 +11,8 @@ public interface JoFeature {
      */
     RegenerativeLink getRegenerativeLink();
 
+    void setRegenerativeLink(RegenerativeLink newRegenerativeLink);
+
     /**
      * @param newRegenerativeLink - the new regenerative link
      */
@@ -20,8 +22,6 @@ public interface JoFeature {
         }
         setRegenerativeLink(newRegenerativeLink);
     }
-
-    void setRegenerativeLink(RegenerativeLink newRegenerativeLink);
 
     /**
      * @return list of values used in this feature

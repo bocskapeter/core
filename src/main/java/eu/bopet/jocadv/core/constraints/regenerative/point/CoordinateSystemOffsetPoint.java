@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
@@ -12,11 +12,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CoordinateSystemOffsetPoint implements RegenerativeLink {
-    private JoCoSys referenceCoordinateSystem;
     private final JoValue x;
     private final JoValue y;
     private final JoValue z;
     private final JoPoint resultPoint;
+    private JoCoSys referenceCoordinateSystem;
 
     public CoordinateSystemOffsetPoint(JoCoSys referenceCoordinateSystem, JoValue x, JoValue y, JoValue z) {
         this.referenceCoordinateSystem = referenceCoordinateSystem;

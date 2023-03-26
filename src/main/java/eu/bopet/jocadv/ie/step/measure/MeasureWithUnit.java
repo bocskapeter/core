@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-import eu.bopet.jocadv.ie.step.util.StepCode;
 import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.util.StepCode;
 
 public class MeasureWithUnit extends StepEntityBase implements Measure {
     private Measure measure;

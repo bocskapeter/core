@@ -1,18 +1,18 @@
 package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class CoaxialAxis implements RegenerativeLink {
-    private JoAxis referenceAxis;
     private final JoAxis resultAxis;
+    private JoAxis referenceAxis;
 
     public CoaxialAxis(JoAxis referenceAxis) {
         this.referenceAxis = referenceAxis;

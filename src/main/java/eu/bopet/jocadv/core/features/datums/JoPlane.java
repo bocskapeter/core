@@ -5,6 +5,7 @@ import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 import org.apache.commons.math3.geometry.euclidean.threed.Plane;
@@ -30,6 +31,15 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
         this.d = d;
         this.regenerativeLink = regenerativeLink;
         normal = new JoVector(x, y, z, null);
+    }
+
+    public JoPlane(double x, double y, double z, double d) {
+        this.x = new JoValue(x);
+        this.y = new JoValue(y);
+        this.z = new JoValue(z);
+        this.d = new JoValue(d);
+        this.regenerativeLink = null;
+        normal = new JoVector(this.x, this.y, this.z, null);
     }
 
     public JoPlane(String name, JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
@@ -65,6 +75,15 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
                 this.getTolerance());
     }
 
+    public JoVector getNormal() {
+        return normal;
+    }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        return getPlane().contains(point.getVector3D());
+    }
+
     @Override
     public double distance(Line pickingLine) {
         Plane thisPlane = getPlane();
@@ -73,10 +92,6 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
             return thisPlane.getOffset(pickingLine.getOrigin());
         }
         return pickingLine.distance(intersection);
-    }
-
-    public JoVector getNormal() {
-        return normal;
     }
 
     @Override

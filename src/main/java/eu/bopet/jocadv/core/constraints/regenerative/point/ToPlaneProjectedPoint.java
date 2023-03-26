@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
@@ -12,9 +12,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ToPlaneProjectedPoint implements RegenerativeLink {
+    private final JoPoint resultPoint;
     private JoPlane referencePlane;
     private JoPoint referencePoint;
-    private final JoPoint resultPoint;
 
     public ToPlaneProjectedPoint(JoPlane referencePlane, JoPoint referencePoint) {
         this.referencePlane = referencePlane;

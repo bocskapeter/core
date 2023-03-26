@@ -1,24 +1,25 @@
 package eu.bopet.jocadv.core.features.protrusion;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.basic.JoFace;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
+import eu.bopet.jocadv.core.features.sketch.JoSketch;
 
 import java.util.Objects;
 import java.util.Set;
 
 public class JoExtrude extends FeatureBase implements JoFeature, RegenerativeLink {
-    private final JoFace face;
+    private final JoSketch sketch;
     private final JoFeature path;
     private final JoFeature start;
     private final JoFeature end;
     private final JoValue pitch;
     private final RegenerativeLink regenerativeLink;
 
-    public JoExtrude(JoFace face, JoFeature path, JoFeature start, JoFeature end, JoValue pitch, RegenerativeLink regenerativeLink) {
-        this.face = face;
+    public JoExtrude(JoSketch sketch, JoFeature path, JoFeature start, JoFeature end, JoValue pitch, RegenerativeLink regenerativeLink) {
+        this.sketch = sketch;
         this.path = path;
         this.start = start;
         this.end = end;
@@ -53,5 +54,11 @@ public class JoExtrude extends FeatureBase implements JoFeature, RegenerativeLin
     @Override
     public void store() {
         JoFeature.super.store();
+    }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        // TODO point on extrude
+        return false;
     }
 }

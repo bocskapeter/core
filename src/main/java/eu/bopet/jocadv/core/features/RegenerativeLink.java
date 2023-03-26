@@ -1,8 +1,5 @@
 package eu.bopet.jocadv.core.features;
 
-import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
-
 import java.util.Set;
 
 public interface RegenerativeLink {

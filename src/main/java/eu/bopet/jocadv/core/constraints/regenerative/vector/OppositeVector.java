@@ -1,16 +1,16 @@
 package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class OppositeVector implements RegenerativeLink {
-    private JoVector referenceVector;
     private final JoVector resultVector;
+    private JoVector referenceVector;
 
     public OppositeVector(JoVector referenceVector) {
         this.referenceVector = referenceVector;
@@ -31,13 +31,13 @@ public class OppositeVector implements RegenerativeLink {
         regenerate();
     }
 
+    public JoVector getReferenceVector() {
+        return referenceVector;
+    }
+
     public void setReferenceVector(JoVector referenceVector) throws Exception {
         this.referenceVector = referenceVector;
         regenerate();
-    }
-
-    public JoVector getReferenceVector() {
-        return referenceVector;
     }
 
     @Override

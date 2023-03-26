@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.surface;
 
-import eu.bopet.jocadv.ie.step.curve.KnotType;
 import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.curve.KnotType;
 
 import java.util.ArrayList;
 import java.util.List;

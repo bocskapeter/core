@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.basic;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.FeatureBase;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
@@ -23,13 +23,13 @@ public class JoEdge extends FeatureBase implements JoFeature, Selectable {
     }
 
     @Override
-    public void replaceReferenceLink(RegenerativeLink newRegenerativeLink) throws Exception {
-        JoFeature.super.replaceReferenceLink(newRegenerativeLink);
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+        this.regenerativeLink = newRegenerativeLink;
     }
 
     @Override
-    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
-        this.regenerativeLink = newRegenerativeLink;
+    public void replaceReferenceLink(RegenerativeLink newRegenerativeLink) throws Exception {
+        JoFeature.super.replaceReferenceLink(newRegenerativeLink);
     }
 
     @Override
@@ -42,5 +42,11 @@ public class JoEdge extends FeatureBase implements JoFeature, Selectable {
         return "JoEdge{" +
                 "points=" + points +
                 '}';
+    }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        // TODO point on edge
+        return false;
     }
 }

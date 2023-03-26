@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalException;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
 import org.apache.commons.math3.geometry.euclidean.threed.RotationConvention;
@@ -15,14 +15,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class AxisAngleToPlanePlane implements RegenerativeLink {
+    private final JoVector normal;
+    private final PointNormalPlane pointNormalPlane;
+    private final JoPlane resultPlane;
     private JoAxis referenceAxis;
     private JoPlane referencePlane;
     private JoValue referenceAngle;
-
-    private final JoVector normal;
-    private final PointNormalPlane pointNormalPlane;
-
-    private final JoPlane resultPlane;
 
     public AxisAngleToPlanePlane(JoAxis referenceAxis,
                                  JoPlane referencePlane, JoValue referenceAngle) throws Exception {

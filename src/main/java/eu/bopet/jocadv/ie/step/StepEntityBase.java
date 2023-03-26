@@ -12,22 +12,6 @@ public abstract class StepEntityBase {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public static List<String> getSets(String set) {
         List<String> result = new ArrayList<>();
         int firstBracket = set.indexOf("(");
@@ -50,6 +34,22 @@ public abstract class StepEntityBase {
             firstBracket = limit;
         }
         return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

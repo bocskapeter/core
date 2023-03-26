@@ -1,17 +1,17 @@
 package eu.bopet.jocadv.core.constraints.regenerative.sketch;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
-import eu.bopet.jocadv.core.features.JoValue;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class CoordinateSystemSketch implements RegenerativeLink {
-    private JoCoSys referenceCoordinateSystem;
     private final JoSketch resultSketch;
+    private JoCoSys referenceCoordinateSystem;
 
     public CoordinateSystemSketch(JoCoSys referenceCoordinateSystem) {
         this.referenceCoordinateSystem = referenceCoordinateSystem;

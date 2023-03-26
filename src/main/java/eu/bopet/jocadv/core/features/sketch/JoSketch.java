@@ -12,6 +12,7 @@ import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.sketch.exception.SelfIntersectionException;
+import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.DecompositionSolver;
@@ -35,9 +36,9 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     private final Set<SketchConstraint> canBeRemoved;
     private final Set<JoPoint> points;
     private final JoCoSys coSys;
-    private RegenerativeLink regenerativeLink;
     private final Set<JoValue> valueList;
     private final Set<JoValue> variables;
+    private RegenerativeLink regenerativeLink;
     private int difference;
     private SketchConstraint lastConstraint;
     private boolean edit;
@@ -73,6 +74,14 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
         return coSys;
     }
 
+    public JoPlane getSketchPlane() {
+        return coSys.getXy();
+    }
+
+    public JoVector getNormal() {
+        return coSys.getZ().getDirection();
+    }
+
     public void edit() {
         if (edit) return;
         for (SketchGeometry geometry : geometries) {
@@ -97,12 +106,15 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     public void addGeometry(SketchGeometry newGeometry) throws Exception {
         if (geometries.contains(newGeometry)) return;
         if (!geometries.isEmpty()) {
+            // intersection detection
             for (SketchGeometry geometry : geometries) {
                 List<JoPoint> intersections = geometry.getIntersection(newGeometry);
                 if (intersections != null && !intersections.isEmpty()) {
                     throw new SelfIntersectionException(geometry, newGeometry);
                 }
             }
+            // TODO loop detection
+
         }
         geometries.add(newGeometry);
         for (JoValue value : newGeometry.getValues()) {
@@ -369,5 +381,10 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     @Override
     public Set<JoValue> getValues() {
         return valueList;
+    }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        return coSys.getXy().isOn(point);
     }
 }

@@ -93,4 +93,9 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
         if (this.getName() != null) name = this.getName();
         return name + "{" + vector + '}';
     }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        return getVector3D().distance(point.getVector3D()) < getTolerance();
+    }
 }

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-public class ParameterValue implements SelectedTrim{
+public class ParameterValue implements SelectedTrim {
     private double value;
 
     public ParameterValue(String attribute) {

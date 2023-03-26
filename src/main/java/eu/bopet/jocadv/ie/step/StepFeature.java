@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 
 import java.util.Set;
 

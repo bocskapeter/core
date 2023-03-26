@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 
 import java.io.File;
@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 public class RegenerativeStep implements RegenerativeLink {
-    private File stepFile;
     private final StepFeature stepFeature;
+    private File stepFile;
 
     public RegenerativeStep(File stepFile) throws StepProcessingException {
         this.stepFile = stepFile;

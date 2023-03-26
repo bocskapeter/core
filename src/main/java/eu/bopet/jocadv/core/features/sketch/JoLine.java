@@ -50,6 +50,61 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         return new Line(point1.getVector().getVector3D(), point2.getVector().getVector3D(), this.getTolerance());
     }
 
+    private List<JoPoint> getLineCircleIntersection(JoCircle circle) {
+        List<JoPoint> result = new ArrayList<>();
+        double difference = getLine().distance(circle.getCenter3D()) - circle.getRadiusD();
+        if (difference <= 0.0) {
+            double cx = circle.getCenter3D().getX();
+            double cy = circle.getCenter3D().getY();
+            double cz = circle.getCenter3D().getZ();
+            double px = point1.getVector3D().getX();
+            double py = point1.getVector3D().getY();
+            double pz = point1.getVector3D().getZ();
+            double vx = point2.getVector3D().getX() - px;
+            double vy = point2.getVector3D().getY() - py;
+            double vz = point2.getVector3D().getZ() - pz;
+            double A = vx * vx + vy * vy + vz * vz;
+            double B = 2.0 * (px * vx + py * vy + pz * vz - vx * cx - vy * cy - vz * cz);
+            double C = px * px - 2 * px * cx + cx * cx + py * py - 2 * py * cy + cy * cy +
+                    pz * pz - 2 * pz * cz + cz * cz - circle.getRadiusD() * circle.getRadiusD();
+            double D = B * B - 4 * A * C;
+            double t1 = (-B - Math.sqrt(D)) / (2.0 * A);
+            Vector3D sectionPoint1 = new Vector3D(
+                    point1.getVector3D().getX() * (1 - t1) + t1 * point2.getVector3D().getX(),
+                    point1.getVector3D().getY() * (1 - t1) + t1 * point2.getVector3D().getY(),
+                    point1.getVector3D().getZ() * (1 - t1) + t1 * point2.getVector3D().getZ());
+            double t2 = (-B + Math.sqrt(D)) / (2.0 * A);
+            Vector3D sectionPoint2 = new Vector3D(
+                    point1.getVector3D().getX() * (1 - t2) + t2 * point2.getVector3D().getX(),
+                    point1.getVector3D().getY() * (1 - t2) + t2 * point2.getVector3D().getY(),
+                    point1.getVector3D().getZ() * (1 - t2) + t2 * point2.getVector3D().getZ());
+            double distance = sectionPoint1.distance(sectionPoint2);
+            if (t1 > 0.0 && t1 < 1.0) {
+                if (t2 > 0.0 && t2 < 1.0) {
+                    if (distance >= getTolerance()) {
+                        result.add(new JoPoint(sectionPoint1));
+                        result.add(new JoPoint(sectionPoint2));
+                    } else {
+                        Vector3D sP1ToSP2 = sectionPoint2.subtract(sectionPoint1);
+                        Vector3D half = sP1ToSP2.scalarMultiply(0.5);
+                        Vector3D sectionPoint = sectionPoint1.add(half);
+                        result.add(new JoPoint(sectionPoint));
+                    }
+                } else {
+                    result.add(new JoPoint(sectionPoint1));
+                }
+            } else if (t2 > 0.0 && t2 < 1.0) {
+                result.add(new JoPoint(sectionPoint2));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        return getLine().contains(point.getVector3D());
+    }
+
     @Override
     public double distance(Line pickingLine) {
         return pickingLine.distance(getLine());
@@ -84,21 +139,37 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         }
         if (geometry instanceof JoCircle) {
             JoCircle circle = (JoCircle) geometry;
-            Vector3D centerPoint = circle.getCenter3D();
-            double difference = getLine().distance(centerPoint) - circle.getRadiusD();
-            if (difference <= -getTolerance()) {
-                // TODO intersecting circle with two intersecting points
-
-            }
-
-            if (-getTolerance() < difference && difference < getTolerance()) {
-                // TODO tangent circle and one tangent point
-
-            }
-
+            return getLineCircleIntersection(circle);
         }
-        // TODO calculate intersection with arc
-        return null;
+        if (geometry instanceof JoArc) {
+            JoArc arc = (JoArc) geometry;
+            result = getLineCircleIntersection(arc.getCircle());
+            if (!result.isEmpty()) {
+                if (result.size() == 1) {
+                    JoPoint tangentPoint = result.get(0);
+                    if (!arc.isOn(tangentPoint)) {
+                        result.clear();
+                    }
+                    return result;
+                }
+                if (result.size() == 2) {
+                    JoPoint p1 = result.get(0);
+                    JoPoint p2 = result.get(1);
+                    result.clear();
+                    if (arc.isOn(p1)) {
+                        result.add(p1);
+                    }
+                    if (arc.isOn(p2)) {
+                        result.add(p2);
+                    }
+                    return result;
+                }
+            } else {
+                result.clear();
+                return result;
+            }
+        }
+        return result;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         this.line2 = new JoLine(circle.getCenter(), point2, true);
     }
 
-    public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) {
+    public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) throws Exception {
         JoSphere sphere = new JoSphere(center, radius);
         this.circle = new JoCircle(sphere, plane);
         this.point1 = point1;
@@ -70,6 +70,16 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
 
     public JoLine getLine2() {
         return line2;
+    }
+
+    public boolean isOn(JoPoint point) {
+        if (!circle.isOn(point)) return false;
+        Vector3D r1 = point1.getVector3D().subtract(circle.getCenter3D());
+        Vector3D r2 = point2.getVector3D().subtract(circle.getCenter3D());
+        Vector3D rp = point.getVector3D().subtract(circle.getCenter3D());
+        double firstAngle = Vector3D.angle(r1, rp);
+        double secondAngle = Vector3D.angle(r1, r2);
+        return firstAngle < secondAngle;
     }
 
     @Override

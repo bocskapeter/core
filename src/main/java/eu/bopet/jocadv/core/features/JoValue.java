@@ -10,9 +10,6 @@ public class JoValue {
     public final static short FIX = 3;        //           no value change can be done
     public final static short VARIABLE = 4;   //                    change can be done
     public final static short AUTO = 5;       //                    change can be done
-
-    private static final String[] SYMBOLS = {"⏚", "🖳", "↴", "✔", "↔", "?"};
-
     public final static JoValue ZERO = new JoValue(CONSTANT, 0);
     public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
     /**
@@ -27,7 +24,7 @@ public class JoValue {
      * Interval for the numerical derivative calculation.
      */
     public static final double NUMERICAL_DERIVATIVE_RESOLUTION = 0.1 * DEFAULT_TOLERANCE;
-
+    private static final String[] SYMBOLS = {"⏚", "🖳", "↴", "✔", "↔", "?"};
     private short status;
     private double value;
     private double stored;

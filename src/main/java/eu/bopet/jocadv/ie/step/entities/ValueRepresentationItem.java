@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.measure.MeasureValue;
 import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.measure.MeasureValue;
 
 public class ValueRepresentationItem extends StepEntityBase {
     private MeasureValue valueComponent;

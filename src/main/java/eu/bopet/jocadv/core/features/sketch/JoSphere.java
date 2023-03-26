@@ -37,6 +37,13 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
+    public boolean isOn(JoPoint point) {
+        double distance = center.getVector3D().distance(point.getVector3D());
+        double difference = Math.abs(distance - radius.get());
+        return difference < getTolerance();
+    }
+
+    @Override
     public double distance(Line pickingLine) {
         return pickingLine.distance(center.getVector().getVector3D()) - radius.get();
     }

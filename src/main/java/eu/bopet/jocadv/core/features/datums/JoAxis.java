@@ -84,4 +84,9 @@ public class JoAxis extends FeatureBase implements Selectable, JoFeature {
         if (this.getName() != null) name = this.getName();
         return name + "{" + point + ", " + direction + '}';
     }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        return getLine().contains(point.getVector3D());
+    }
 }

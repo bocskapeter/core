@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static org.apache.commons.lang3.StringUtils.isNumeric;
-
 public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
     private final int coordinatesId;
     private final int pnMax;

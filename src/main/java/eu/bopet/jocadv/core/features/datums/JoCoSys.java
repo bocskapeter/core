@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
-import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
-import eu.bopet.jocadv.core.features.JoValue;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.Set;
@@ -129,5 +129,10 @@ public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
                 ", yz=" + yz +
                 ", xz=" + xz +
                 '}';
+    }
+
+    @Override
+    public boolean isOn(JoPoint point) {
+        return origin.isOn(point);
     }
 }

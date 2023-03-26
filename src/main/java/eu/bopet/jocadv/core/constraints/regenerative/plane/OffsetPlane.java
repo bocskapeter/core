@@ -1,17 +1,17 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
-import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
+import eu.bopet.jocadv.core.features.datums.JoPlane;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class OffsetPlane implements RegenerativeLink {
-    private JoPlane referencePlane;
     private final JoValue offsetValue;
     private final JoPlane resultPlane;
+    private JoPlane referencePlane;
 
 
     public OffsetPlane(JoPlane referencePlane, JoValue offsetValue) {

@@ -10,8 +10,8 @@ public class JoPart {
     private double tolerance = JoValue.DEFAULT_TOLERANCE;
     private final Set<JoFeature> features;
 
-    public JoPart(UUID id, String name) {
-        this.id = id;
+    public JoPart(String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
         features = new LinkedHashSet<>();
     }

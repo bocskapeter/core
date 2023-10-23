@@ -6,7 +6,10 @@ import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
+import eu.bopet.jocadv.core.features.exception.ParallelVectorException;
+import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Set;
 
@@ -25,7 +28,8 @@ public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
     private final JoPlane xz;
     private RegenerativeLink regenerativeLink;
 
-    public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerativeLink) {
+    public JoCoSys(JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz,
+                   RegenerativeLink regenerativeLink) {
         this.origin = origin;
         this.x = x;
         this.y = y;
@@ -36,7 +40,8 @@ public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
         this.regenerativeLink = regenerativeLink;
     }
 
-    public JoCoSys(String name, JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz, RegenerativeLink regenerativeLink) {
+    public JoCoSys(String name, JoPoint origin, JoAxis x, JoAxis y, JoAxis z, JoPlane xy, JoPlane yz, JoPlane xz,
+                   RegenerativeLink regenerativeLink) {
         super();
         super.setName(name);
         this.origin = origin;
@@ -47,6 +52,24 @@ public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
         this.yz = yz;
         this.xz = xz;
         this.regenerativeLink = regenerativeLink;
+    }
+
+    public JoCoSys(short status, JoPoint origin, JoVector x, JoVector y) throws ParallelVectorException {
+        double crossProduct = x.getVector3D().crossProduct(y.getVector3D()).distanceSq(Vector3D.ZERO);
+        if (Math.abs(crossProduct) < JoValue.DEFAULT_TOLERANCE) {
+            throw new ParallelVectorException(x, y);
+        }
+        this.origin = origin;
+        this.x = new JoAxis(origin, x, null);
+        Vector3D vector3DZ = x.getVector3D().crossProduct(y.getVector3D());
+        JoVector joVectorZ = new JoVector(status, vector3DZ);
+        this.z = new JoAxis(origin, joVectorZ, null);
+        Vector3D vector3DY = vector3DZ.crossProduct(x.getVector3D());
+        JoVector joVectorY = new JoVector(status, vector3DY);
+        this.y = new JoAxis(origin, joVectorY, null);
+        this.xy = new JoPlane(status, origin, z.getDirection());
+        this.xz = new JoPlane(status, origin, this.y.getDirection());
+        this.yz = new JoPlane(status, origin, this.x.getDirection());
     }
 
     public JoPoint getOrigin() {

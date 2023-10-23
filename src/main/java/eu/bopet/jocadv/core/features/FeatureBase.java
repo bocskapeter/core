@@ -7,13 +7,23 @@ import java.util.UUID;
 
 public abstract class FeatureBase {
     private UUID id;
+    private int IntID;
     private String name;
     private boolean selected;
+    private boolean visible;
     private double tolerance = JoValue.DEFAULT_TOLERANCE;
 
     public UUID getId() {
         if (this.id == null) this.id = UUID.randomUUID();
         return id;
+    }
+
+    public int getIntID() {
+        return IntID;
+    }
+
+    public void setIntID(int intID) {
+        IntID = intID;
     }
 
     public String getName() {
@@ -31,6 +41,14 @@ public abstract class FeatureBase {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public double getTolerance() {

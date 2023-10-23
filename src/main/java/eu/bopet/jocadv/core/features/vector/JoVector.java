@@ -3,6 +3,7 @@ package eu.bopet.jocadv.core.features.vector;
 import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Set;
@@ -24,13 +25,17 @@ public class JoVector implements JoFeature {
         this.regenerativeLink = regenerativeLink;
     }
 
-    public JoVector(Vector3D vector3D) {
-        JoValue x = new JoValue(vector3D.getX());
-        JoValue y = new JoValue(vector3D.getY());
-        JoValue z = new JoValue(vector3D.getZ());
+    public JoVector(short status, Vector3D vector3D) {
+        JoValue x = new JoValue(status, vector3D.getX());
+        JoValue y = new JoValue(status, vector3D.getY());
+        JoValue z = new JoValue(status, vector3D.getZ());
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    public JoVector(short status, JoPoint point1, JoPoint point2) {
+        this(status, point1.getVector3D().subtract(point2.getVector3D()));
     }
 
     public JoValue getX() {

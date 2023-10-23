@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
@@ -82,19 +83,19 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
             if (t1 > 0.0 && t1 < 1.0) {
                 if (t2 > 0.0 && t2 < 1.0) {
                     if (distance >= getTolerance()) {
-                        result.add(new JoPoint(sectionPoint1));
-                        result.add(new JoPoint(sectionPoint2));
+                        result.add(new JoPoint(JoValue.VARIABLE, sectionPoint1));
+                        result.add(new JoPoint(JoValue.VARIABLE, sectionPoint2));
                     } else {
                         Vector3D sP1ToSP2 = sectionPoint2.subtract(sectionPoint1);
                         Vector3D half = sP1ToSP2.scalarMultiply(0.5);
                         Vector3D sectionPoint = sectionPoint1.add(half);
-                        result.add(new JoPoint(sectionPoint));
+                        result.add(new JoPoint(JoValue.VARIABLE, sectionPoint));
                     }
                 } else {
-                    result.add(new JoPoint(sectionPoint1));
+                    result.add(new JoPoint(JoValue.VARIABLE, sectionPoint1));
                 }
             } else if (t2 > 0.0 && t2 < 1.0) {
-                result.add(new JoPoint(sectionPoint2));
+                result.add(new JoPoint(JoValue.VARIABLE, sectionPoint2));
             }
         }
         return result;
@@ -133,7 +134,7 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
             JoLine otherLine = (JoLine) geometry;
             Vector3D sectionPoint = this.getSubLine().intersection(otherLine.getSubLine(), false);
             if (sectionPoint != null) {
-                result.add(new JoPoint(sectionPoint));
+                result.add(new JoPoint(JoValue.VARIABLE, sectionPoint));
                 return result;
             }
         }

@@ -1,7 +1,9 @@
 package eu.bopet.jocadv.core.features.sketch;
 
 import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoFeature;
 import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -13,14 +15,30 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoCircle extends FeatureBase implements SketchGeometry, Selectable {
+public class JoCircle extends FeatureBase implements SketchGeometry, Selectable, JoFeature {
     private final JoSphere sphere;
     private final JoPlane plane;
 
     public JoCircle(JoSphere sphere, JoPlane plane) throws Exception {
         this.sphere = sphere;
         if (!plane.isOn(sphere.getCenter())) {
-            throw new NotValidCircleException(sphere, plane);
+            double distance = Math.abs(plane.getPlane().getOffset(sphere.getCenter3D()));
+            double exp = (Math.log10(JoValue.DEFAULT_TOLERANCE) / 2.0);
+            double tolerance = Math.pow(10.0, exp);
+            System.out.println("---");
+            System.out.println("Center point of the circle is not on the plane in the default tolerance!");
+            System.out.println("Center point: " + sphere.getCenter());
+            System.out.println("Plane: " + plane);
+            System.out.println("Distance: " + distance);
+            System.out.println("Default tolerance: " + JoValue.DEFAULT_TOLERANCE);
+            System.out.println("New tolerance: " + tolerance);
+            if (distance > tolerance) {
+                System.out.println("Circle is not on the plane in the new tolerance!");
+                throw new NotValidCircleException(sphere, plane);
+            } else {
+                System.out.println("Custom tolerance should be considered!");
+            }
+            System.out.println("---");
         }
         this.plane = plane;
     }
@@ -60,6 +78,16 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable 
     @Override
     public double distance(Line pickingLine) {
         return sphere.distance(pickingLine);
+    }
+
+    @Override
+    public RegenerativeLink getRegenerativeLink() {
+        return null;
+    }
+
+    @Override
+    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
+
     }
 
     @Override

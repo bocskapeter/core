@@ -19,6 +19,18 @@ public class UtilIntIntInt extends StepEntityBase {
         if (isNumeric(values[2])) id3 = Integer.parseInt(values[2]);
     }
 
+    public int getId1() {
+        return id1;
+    }
+
+    public int getId2() {
+        return id2;
+    }
+
+    public int getId3() {
+        return id3;
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", id1=" + id1 + ", id2=" + id2 + ", id3=" + id3;

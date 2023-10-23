@@ -14,17 +14,11 @@ public class RegenerativeStep implements RegenerativeLink {
     private final StepFeature stepFeature;
     private File stepFile;
 
-    public RegenerativeStep(File stepFile) throws StepProcessingException {
+    public RegenerativeStep(File stepFile) throws Exception {
         this.stepFile = stepFile;
         Set<JoFeature> features = new LinkedHashSet<>();
-        stepFeature = new StepFeature(this, features);
-        List<StepEntityBase> stepEntities = ReadStepFile.readStepFile(stepFile);
-        for (StepEntityBase entity : stepEntities) {
-            if (entity instanceof StepLink) {
-                StepLink stepLink = (StepLink) entity;
-                features.add(stepLink.getResult(stepEntities));
-            }
-        }
+        stepFeature = new StepFeature(this, stepFile.getName());
+        ReadStepFile.readStepFile(stepFeature, stepFile);
     }
 
     public File getStepFile() {
@@ -39,6 +33,7 @@ public class RegenerativeStep implements RegenerativeLink {
     @Override
     public void regenerate() throws Exception {
         // TODO
+        // read step file and update all of the existing features
     }
 
     @Override

@@ -10,7 +10,9 @@ import eu.bopet.jocadv.core.features.datums.JoPlane;
 import eu.bopet.jocadv.core.features.sketch.JoLine;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LineProjectedToPlaneEdge implements RegenerativeLink {
@@ -20,7 +22,7 @@ public class LineProjectedToPlaneEdge implements RegenerativeLink {
     private JoVector referenceDirection;
     private ToPlaneWithDirectionProjectedPoint projectedPoint1;
     private ToPlaneWithDirectionProjectedPoint projectedPoint2;
-    private Set<JoPoint> points;
+    private List<JoPoint> points;
 
     public LineProjectedToPlaneEdge(JoLine referenceLine, JoPlane referencePlane, JoVector referenceDirection)
             throws Exception {
@@ -31,7 +33,7 @@ public class LineProjectedToPlaneEdge implements RegenerativeLink {
                 this.referenceLine.get1stPoint(), referenceDirection);
         projectedPoint2 = new ToPlaneWithDirectionProjectedPoint(referencePlane,
                 this.referenceLine.get2ndPoint(), referenceDirection);
-        points = new HashSet<>();
+        points = new ArrayList<>();
         points.add((JoPoint) projectedPoint1.getResult());
         points.add((JoPoint) projectedPoint2.getResult());
         resultEdge = new JoEdge(points, this);

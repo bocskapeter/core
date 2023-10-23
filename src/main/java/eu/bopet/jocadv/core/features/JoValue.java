@@ -15,7 +15,7 @@ public class JoValue {
     /**
      * Under this value the values are considered the same. Like a kind of resolution.
      */
-    public static final double DEFAULT_TOLERANCE = 1.00e-12;
+    public static final double DEFAULT_TOLERANCE = 1.00E-12;
     /**
      * Rounding the values to this number of digits. Related to the default tolerance value.
      */

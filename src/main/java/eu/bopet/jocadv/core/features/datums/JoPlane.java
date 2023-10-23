@@ -53,6 +53,18 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
         normal = new JoVector(x, y, z, null);
     }
 
+    public JoPlane(short status, JoPoint point, JoVector normal) {
+        this.x = normal.getX();
+        this.y = normal.getY();
+        this.z = normal.getZ();
+        this.normal = normal;
+        Plane planeOrigin = new Plane(Vector3D.ZERO, normal.getVector3D(), JoValue.DEFAULT_TOLERANCE);
+        Plane plane = new Plane(point.getVector3D(), normal.getVector3D(), JoValue.DEFAULT_TOLERANCE);
+        double d = planeOrigin.getOffset(plane);
+        this.d = new JoValue(status, d);
+        this.regenerativeLink = null;
+    }
+
     public JoValue getX() {
         return x;
     }

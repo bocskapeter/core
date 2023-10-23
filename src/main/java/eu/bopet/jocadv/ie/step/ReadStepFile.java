@@ -217,31 +217,78 @@ import eu.bopet.jocadv.ie.step.util.StepCode;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ReadStepFile {
+    private static final String ISO = "ISO-10303-21;";
+    private static final String END = "ENDSEC;";
 
-    public static List<StepEntityBase> readStepFile(File file) throws StepProcessingException {
-        List<StepEntityBase> result = new ArrayList<>();
-        System.out.println("Starting with file: " + file.getName());
-        String errorLine = "";
+    public static void readStepFile(StepFeature stepFeature, File file) throws Exception {
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             StringBuilder stringBuilder = new StringBuilder();
             for (String line; (line = br.readLine()) != null; ) {
                 stringBuilder.append(line);
             }
-            String[] commands = stringBuilder.toString().split(";");
-            if (Arrays.asList(commands).isEmpty()) {
-                System.out.println("Empty file!");
-                return result;
-            } else if (commands[0].startsWith("ISO-10303-21")) {
-                System.out.println("ISO-10303-21 step file found.");
-            } else {
-                System.out.println("Not ISO-10303-21 step file!");
-                return result;
+            String[] isoSections = stringBuilder.toString().split(ISO);
+            if (isoSections.length != 2) {
+                throw new StepProcessingException("File is not an " + ISO + " - File: " + file.getAbsolutePath());
             }
+
+            String[] sections = isoSections[1].split(END);
+            if (sections.length >= 2) {
+                String headerSection = sections[0];
+                processHeaderSection(stepFeature, headerSection);
+                String dataSection = sections[1];
+                processDataSection(stepFeature, dataSection);
+            } else {
+                throw new StepProcessingException("No ISO-10303-21 step file structure or not divided by " + END
+                        + " - File: " + file.getAbsolutePath());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        int entitiesCount = stepFeature.getStepEntities().size();
+        int checkedEntities = stepFeature.getStepEntities().get(stepFeature.getStepEntities().size() - 1).getId()
+                - stepFeature.getStepEntities().get(0).getId() + 1;
+        if (entitiesCount == checkedEntities) {
+            System.out.println("All " + entitiesCount + " entities have been processed.");
+        } else {
+            System.out.println("Entities processed: " + entitiesCount);
+            System.out.println("Id check: " + checkedEntities);
+        }
+        stepFeature.generateJoFeatures();
+
+    }
+
+    private static void processHeaderSection(StepFeature stepFeature, String head) throws StepProcessingException {
+        String[] commands = head.split(";");
+        String errorLine = "";
+        try {
+            for (String command : commands) {
+                errorLine = command;
+                if (command.startsWith("FILE_DESCRIPTION")) {
+                    stepFeature.setStepDescription(command);
+                }
+                if (command.startsWith("FILE_NAME")) {
+                    stepFeature.setStepFileName(command);
+                }
+                if (command.startsWith("FILE_SCHEMA")) {
+                    stepFeature.setStepFileSchema(command);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new StepProcessingException(errorLine);
+        }
+    }
+
+    private static void processDataSection(StepFeature stepFeature, String data) throws StepProcessingException {
+        List<StepEntityBase> result = stepFeature.getStepEntities();
+        String[] commands = data.split(";");
+        String errorLine = "";
+        try {
             for (String command : commands) {
                 errorLine = command;
                 if (command.startsWith("#")) {
@@ -459,7 +506,8 @@ public class ReadStepFile {
                     }
                     if (secondTag.startsWith(StepCode.B_SPLINE_SURFACE_WITH_KNOTS)) {
                         BSplineSurfaceWithKnots bSplineSurfaceWithKnots =
-                                new BSplineSurfaceWithKnots(id, name, false, att[1].replace(" ", ""));
+                                new BSplineSurfaceWithKnots(id, name,
+                                        false, att[1].replace(" ", ""));
                         result.add(bSplineSurfaceWithKnots);
                         continue;
                     }
@@ -470,13 +518,16 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.PRODUCT_RELATED_PRODUCT_CATEGORY)) {
-                        ProductRelatedProductCategory productRelatedProductCategory = new ProductRelatedProductCategory(id, name, attributes);
+                        ProductRelatedProductCategory productRelatedProductCategory =
+                                new ProductRelatedProductCategory(id, name, attributes);
                         result.add(productRelatedProductCategory);
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.MECHANICAL_DESIGN_GEOMETRIC_PRESENTATION_REPRESENTATION)) {
-                        MechanicalDesignGeometricPresentationRepresentation mechanicalDesignGeometricPresentationRepresentation =
-                                new MechanicalDesignGeometricPresentationRepresentation(id, name, att[1].replace(" ", ""));
+                        MechanicalDesignGeometricPresentationRepresentation
+                                mechanicalDesignGeometricPresentationRepresentation =
+                                new MechanicalDesignGeometricPresentationRepresentation(id, name,
+                                        att[1].replace(" ", ""));
                         result.add(mechanicalDesignGeometricPresentationRepresentation);
                         continue;
                     }
@@ -591,7 +642,8 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.PRESENTATION_LAYER_ASSIGNMENT)) {
-                        PresentationLayerAssignment presentationLayerAssignment = new PresentationLayerAssignment(id, name, att[1]);
+                        PresentationLayerAssignment presentationLayerAssignment =
+                                new PresentationLayerAssignment(id, name, att[1]);
                         result.add(presentationLayerAssignment);
                         continue;
                     }
@@ -601,7 +653,8 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.PLANE_ANGLE_MEASURE_WITH_UNIT)) {
-                        PlaneAngleMeasureWithUnit planeAngleMeasureWithUnit = new PlaneAngleMeasureWithUnit(id, "", attributes);
+                        PlaneAngleMeasureWithUnit planeAngleMeasureWithUnit =
+                                new PlaneAngleMeasureWithUnit(id, "", attributes);
                         result.add(planeAngleMeasureWithUnit);
                         continue;
                     }
@@ -611,7 +664,8 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.LENGTH_MEASURE_WITH_UNIT)) {
-                        LengthMeasureWithUnit lengthMeasureWithUnit = new LengthMeasureWithUnit(id, "", attributes);
+                        LengthMeasureWithUnit lengthMeasureWithUnit =
+                                new LengthMeasureWithUnit(id, "", attributes);
                         result.add(lengthMeasureWithUnit);
                         continue;
                     }
@@ -637,7 +691,8 @@ public class ReadStepFile {
                         continue;
                     }
                     if (secondTag.startsWith(StepCode.APPROVAL_STATUS)) {
-                        ApprovalStatus approvalStatus = new ApprovalStatus(id, attributes.replace("'", ""));
+                        ApprovalStatus approvalStatus =
+                                new ApprovalStatus(id, attributes.replace("'", ""));
                         result.add(approvalStatus);
                         continue;
                     }
@@ -1408,22 +1463,11 @@ public class ReadStepFile {
                     } else {
                         System.out.println(" !!! Code not found!");
                     }
-
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new StepProcessingException(errorLine);
         }
-        int entitiesCount = result.size();
-        int checkedEntities = result.get(result.size() - 1).getId() - result.get(0).getId() + 1;
-        if (entitiesCount == checkedEntities) {
-            System.out.println("All " + entitiesCount + " entities have been processed.");
-        } else {
-            System.out.println("Entities processed: " + entitiesCount);
-            System.out.println("Id check: " + checkedEntities);
-        }
-        return result;
     }
 }

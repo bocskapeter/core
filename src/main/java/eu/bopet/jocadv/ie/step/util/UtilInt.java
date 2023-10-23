@@ -10,6 +10,11 @@ public class UtilInt extends StepEntityBase {
         this.id = Integer.parseInt(attribute.replace("#", ""));
     }
 
+
+    public int getIntId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", id=" + id;

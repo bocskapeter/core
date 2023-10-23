@@ -31,8 +31,12 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
         this.regenerativeLink = regenerativeLink;
     }
 
+    public JoPoint(short status, Vector3D vector3D) {
+        this.vector = new JoVector(status, vector3D);
+    }
+
     public JoPoint(Vector3D vector3D) {
-        this.vector = new JoVector(vector3D);
+        this.vector = new JoVector(JoValue.AUTO, vector3D);
     }
 
     public JoVector getVector() {

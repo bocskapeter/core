@@ -1,19 +1,19 @@
 package eu.bopet.jocadv.ie.step.context;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Contexts extends StepEntityBase {
+public class Contexts extends StepEntity {
     private Set<Context> contexts;
 
     public Contexts(int id, String name, String set) {
         super(id, name);
         this.contexts = new LinkedHashSet<>();
-        List<String> contextStringList = StepEntityBase.getSets(set);
+        List<String> contextStringList = StepEntity.getSets(set);
         for (String contextString : contextStringList) {
             String code = contextString.substring(0, contextString.indexOf("(")).replace(" ", "");
             String attribute = contextString.substring(contextString.indexOf("(") + 1, contextString.lastIndexOf(")"));

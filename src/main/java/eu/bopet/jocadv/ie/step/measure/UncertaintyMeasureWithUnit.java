@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class UncertaintyMeasureWithUnit extends StepEntityBase {
+public class UncertaintyMeasureWithUnit extends StepEntity {
     private MeasureWithUnitInSet measureWithUnitInSet;
     private String description;
 

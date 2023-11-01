@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Person extends StepEntityBase {
+public class Person extends StepEntity {
     private String lastName;
     private String firstName;
     private List<String> middleNames;

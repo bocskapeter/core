@@ -1,25 +1,17 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.core.features.JoValue;
-import eu.bopet.jocadv.core.features.basic.JoEdge;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
+import eu.bopet.jocadv.core.features.basic.curve.JoStraightCurve;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import eu.bopet.jocadv.ie.step.StepFeature;
 import eu.bopet.jocadv.ie.step.StepLink;
 import eu.bopet.jocadv.ie.step.util.UtilIntInt;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Line extends UtilIntInt implements StepLink {
-    private CartesianPoint point;
-    private Vector vector;
-    private Direction direction;
-    private Vector3D direction3D;
-    private Set<JoPoint> points;
-
 
     public Line(int id, String name, String attribute) {
         super(id, name, attribute);
@@ -42,14 +34,14 @@ public class Line extends UtilIntInt implements StepLink {
         }
         JoPoint firstPoint = (JoPoint) feature.getFeatureMap().get(cartesianPoint);
         JoVector lineVector = (JoVector) feature.getFeatureMap().get(vector);
-        JoPoint secondPoint = new JoPoint(JoValue.IMPORTED, firstPoint.getVector3D().add(lineVector.getVector3D()));
+        JoPoint secondPoint = new JoPoint(JoSValue.AUTO, firstPoint.getVector3D().add(lineVector.getVector3D()));
         List<JoPoint> points = new ArrayList<>();
         points.add(firstPoint);
         points.add(secondPoint);
-        JoEdge joEdge = new JoEdge(points, null);
-        joEdge.setIntID(super.getId());
-        joEdge.setName(super.getName());
-        feature.getFeatureMap().put(this, joEdge);
+        JoStraightCurve joStraightCurve = new JoStraightCurve(points, null);
+        joStraightCurve.setIntID(super.getId());
+        joStraightCurve.setName(super.getName());
+        feature.getFeatureMap().put(this, joStraightCurve);
     }
 
     @Override

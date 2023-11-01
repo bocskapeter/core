@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class ViewVolume extends StepEntityBase {
+public class ViewVolume extends StepEntity {
     private final CentralOrParallel centralOrParallel;
     private final int point;
     private final double viewDistance;

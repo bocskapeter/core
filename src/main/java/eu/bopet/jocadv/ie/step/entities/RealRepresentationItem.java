@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class RealRepresentationItem extends StepEntityBase {
+public class RealRepresentationItem extends StepEntity {
     private double value;
 
     public RealRepresentationItem(int id, String name, String attribute) {

@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.core.features;
 
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
+
 import java.util.Set;
 
 public interface RegenerativeLink {
@@ -16,5 +18,5 @@ public interface RegenerativeLink {
     /**
      * @return list of values used as reference for this regenerative link
      */
-    Set<JoValue> getValues();
+    Set<JoSValue> getValues();
 }

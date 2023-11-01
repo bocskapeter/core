@@ -1,17 +1,17 @@
-package eu.bopet.jocadv.core.features;
+package eu.bopet.jocadv.core.features.sketch;
 
 
 import org.apache.commons.math3.util.Precision;
 
-public class JoValue {
+public class JoSValue {
     public final static short CONSTANT = 0;   // no status no value change can be done
     public final static short USER = 1;       // no status          change can be done
     public final static short IMPORTED = 2;   // no status          change can be done
     public final static short FIX = 3;        //           no value change can be done
     public final static short VARIABLE = 4;   //                    change can be done
     public final static short AUTO = 5;       //                    change can be done
-    public final static JoValue ZERO = new JoValue(CONSTANT, 0);
-    public final static JoValue ONE = new JoValue(CONSTANT, 1.0);
+    public final static JoSValue ZERO = new JoSValue(CONSTANT, 0.0);
+    public final static JoSValue ONE = new JoSValue(CONSTANT, 1.0);
     /**
      * Under this value the values are considered the same. Like a kind of resolution.
      */
@@ -29,13 +29,13 @@ public class JoValue {
     private double value;
     private double stored;
 
-    public JoValue(short status, double value) {
+    public JoSValue(short status, double value) {
         this.status = status;
         this.value = value;
         this.stored = value;
     }
 
-    public JoValue(double value) {
+    public JoSValue(double value) {
         this.status = AUTO;
         this.value = value;
         this.stored = value;
@@ -48,7 +48,7 @@ public class JoValue {
     public void set(double newValue) {
         if (status == USER || status == IMPORTED || status == AUTO || status == VARIABLE) {
             double difference = Math.abs(newValue - value);
-            if (difference > JoValue.DEFAULT_TOLERANCE) {
+            if (difference > JoSValue.DEFAULT_TOLERANCE) {
                 this.value = Precision.round(newValue, NUMBER_OF_DIGITS_TO_SCALE);
             }
         }

@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -12,31 +11,31 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
-    private final JoCircle circle;
+public class JoSArc extends JoBaseFeature implements SketchGeometry, Selectable {
+    private final JoSCircle circle;
     private final JoPoint point1;
     private final JoPoint point2;
-    private final JoLine line1;
-    private final JoLine line2;
+    private final JoSLine line1;
+    private final JoSLine line2;
 
-    public JoArc(JoCircle circle, JoPoint point1, JoPoint point2) {
+    public JoSArc(JoSCircle circle, JoPoint point1, JoPoint point2) {
         this.circle = circle;
         this.point1 = point1;
         this.point2 = point2;
-        this.line1 = new JoLine(circle.getCenter(), point1, true);
-        this.line2 = new JoLine(circle.getCenter(), point2, true);
+        this.line1 = new JoSLine(circle.getCenter(), point1, true);
+        this.line2 = new JoSLine(circle.getCenter(), point2, true);
     }
 
-    public JoArc(JoPoint center, JoValue radius, JoPlane plane, JoPoint point1, JoPoint point2) throws Exception {
-        JoSphere sphere = new JoSphere(center, radius);
-        this.circle = new JoCircle(sphere, plane);
+    public JoSArc(JoPoint center, JoSValue radius, JoPlane plane, JoPoint point1, JoPoint point2) throws Exception {
+        JoSSphere sphere = new JoSSphere(center, radius);
+        this.circle = new JoSCircle(sphere, plane);
         this.point1 = point1;
         this.point2 = point2;
-        this.line1 = new JoLine(circle.getCenter(), point1, true);
-        this.line2 = new JoLine(circle.getCenter(), point2, true);
+        this.line1 = new JoSLine(circle.getCenter(), point1, true);
+        this.line2 = new JoSLine(circle.getCenter(), point2, true);
     }
 
-    public JoValue getRadius() {
+    public JoSValue getRadius() {
         return circle.getSphere().getRadius();
     }
 
@@ -44,7 +43,7 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         return circle.getRadiusD();
     }
 
-    public JoCircle getCircle() {
+    public JoSCircle getCircle() {
         return circle;
     }
 
@@ -64,11 +63,11 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
         return point2;
     }
 
-    public JoLine getLine1() {
+    public JoSLine getLine1() {
         return line1;
     }
 
-    public JoLine getLine2() {
+    public JoSLine getLine2() {
         return line2;
     }
 
@@ -88,8 +87,8 @@ public class JoArc extends FeatureBase implements SketchGeometry, Selectable {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new LinkedHashSet<>(circle.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new LinkedHashSet<>(circle.getValues());
         result.addAll(point1.getValues());
         result.addAll(point2.getValues());
         return result;

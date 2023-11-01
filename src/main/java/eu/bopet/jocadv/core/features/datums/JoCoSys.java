@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
@@ -13,7 +13,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Set;
 
-public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
+public class JoCoSys extends JoBaseFeature implements Selectable, JoFeature {
     public static final JoCoSys DEFAULT_COORDINATE_SYSTEM =
             new JoCoSys("Default", JoPoint.ORIGIN,
                     JoAxis.X, JoAxis.Y, JoAxis.Z,
@@ -56,7 +56,7 @@ public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
 
     public JoCoSys(short status, JoPoint origin, JoVector x, JoVector y) throws ParallelVectorException {
         double crossProduct = x.getVector3D().crossProduct(y.getVector3D()).distanceSq(Vector3D.ZERO);
-        if (Math.abs(crossProduct) < JoValue.DEFAULT_TOLERANCE) {
+        if (Math.abs(crossProduct) < JoSValue.DEFAULT_TOLERANCE) {
             throw new ParallelVectorException(x, y);
         }
         this.origin = origin;
@@ -115,8 +115,8 @@ public class JoCoSys extends FeatureBase implements Selectable, JoFeature {
         this.regenerativeLink = newRegenerativeLink;
     }
 
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = JoFeature.super.getValues();
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = JoFeature.super.getValues();
         result.addAll(origin.getValues());
         result.addAll(x.getValues());
         result.addAll(y.getValues());

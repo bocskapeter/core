@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class AllAroundShapeAspect extends StepEntityBase {
+public class AllAroundShapeAspect extends StepEntity {
     private final String description;
     private final int shape;
     private final boolean producltDefinitional;

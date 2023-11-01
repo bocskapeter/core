@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class CCDesignApproval extends StepEntityBase {
+public class CCDesignApproval extends StepEntity {
     private int approval;
     private Set<Integer> items;
 

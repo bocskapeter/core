@@ -19,4 +19,6 @@ module eu.bopet.jocadv.core.core {
     exports eu.bopet.jocadv.core.features.sketch;
     exports eu.bopet.jocadv.ie.step;
     exports eu.bopet.jocadv.ie.step.exception;
+    exports eu.bopet.jocadv.core.features.basic.curve;
+    exports eu.bopet.jocadv.core.features.surface;
 }

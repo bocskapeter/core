@@ -1,18 +1,18 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
-import eu.bopet.jocadv.core.features.sketch.JoLine;
+import eu.bopet.jocadv.core.features.sketch.JoSLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PointToLineDistance extends ConstraintBase implements SketchConstraint {
-    private final JoLine line;
+    private final JoSLine line;
     private final JoPoint point;
-    private final JoValue distance;
+    private final JoSValue distance;
 
-    public PointToLineDistance(JoLine line, JoPoint point, JoValue distance, short status) {
+    public PointToLineDistance(JoSLine line, JoPoint point, JoSValue distance, short status) {
         super(status);
         this.line = line;
         this.point = point;
@@ -29,8 +29,8 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
     }
 
     @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
+    public List<JoSValue> getValues() {
+        List<JoSValue> result = new ArrayList<>();
         result.addAll(line.getValues());
         result.addAll(point.getValues());
         result.add(distance);
@@ -68,7 +68,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
     }
 
     @Override
-    public double getDerivative(JoValue joValue) {
+    public double getDerivative(JoSValue joSValue) {
         double x1 = line.get1stPoint().getVector().getX().get();
         double y1 = line.get1stPoint().getVector().getY().get();
         double z1 = line.get1stPoint().getVector().getZ().get();
@@ -109,7 +109,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         //
         // (a1sqrt((c3)^2+(c2)^2+c1)) / (a2^2+a3^2+(a1)^2)^(3/2) + (2(-a2-b2)(c3)+2(a3+b3)(c2)) / (2sqrt(a2^2+a3^2+(a1)^2)sqrt((c3)^2+(c2)^2+c1))
         // (a1 sqrt(c3^2 + c2^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2) + (2 (-a2 - b2) c3 + 2 (a3 + b3) c2)/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt(c3^2 + c2^2 + c1^2))
-        if (joValue == line.get1stPoint().getVector().getX()) {
+        if (joSValue == line.get1stPoint().getVector().getX()) {
             result = (a1 * sqrt) / Math.pow(v, 1.5) +
                     (2.0 * (-a2 - b2) * c3 + 2.0 * (a3 + b3) * c2) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
@@ -125,7 +125,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (    a2   sqrt((a1    b2    - b1     a2  )^2 + (b3     a2   - a3    b2   )^2 + c2^2))/(a1^2 + a3^2 +     a2  ^2)^(3/2) + (2 (a1 + b1) (a1    b2    - b1     a2  ) + 2 (-a3 - b3) (b3     a2   - a3    b2   ))/(2 sqrt(a1^2 + a3^2 +     a2  ^2) sqrt((a1    b2    - b1     a2  )^2 + (b3     a2   - a3    b2   )^2 + c2^2))
         // (    a2   sqrt(             c3^2             +              c1^2             + c2^2))/(a1^2 + a3^2 +     a2  ^2)^(3/2) + (2 (a1 + b1)              c3             + 2 (-a3 - b3)               c1           )/(2 sqrt(a1^2 + a3^2 +     a2  ^2) sqrt(             c3^2             +              c1^2             + c2^2))
         // (a2sqrt(c3^2+c1^2+c2^2)) / (a1^2+a3^2+a2^2)^(3/2) + (2(a1+b1)c3+2(-a3-b3)c1) / (2sqrt(a1^2+a3^2+a2^2)sqrt(c3^2+c1^2+c2^2))
-        if (joValue == line.get1stPoint().getVector().getY()) {
+        if (joSValue == line.get1stPoint().getVector().getY()) {
             result = (a2 * sqrt) / Math.pow(v, 1.5) +
                     (2.0 * (a1 + b1) * c3 + 2.0 * (-a3 - b3) * c1) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
@@ -142,7 +142,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (a3 sqrt((b1 a3 - a1 (z1 - z3))^2 + (a2 (z1 - z3) - b2 a3)^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2) + (2 (-a1 - b1) (b1 a3 - a1 (z1 - z3)) + 2 (a2 + b2) (a2 (z1 - z3) - b2 a3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((b1 a3 - a1 (z1 - z3))^2 + (a2 (z1 - z3) - b2 a3)^2 + c3^2))
         // (a3 sqrt((b1 a3 - a1 b3)^2 + (a2 b3 - b2 a3)^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2) + (2 (-a1 - b1) (b1 a3 - a1 b3) + 2 (a2 + b2) (a2 b3 - b2 a3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((b1 a3 - a1 b3)^2 + (a2 b3 - b2 a3)^2 + c3^2))
         //(a3 sqrt(c2^2 + c1^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2) + (2 (-a1 - b1) c2 + 2 (a2 + b2) c1)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c2^2 + c1^2 + c3^2))
-        if (joValue == line.get1stPoint().getVector().getZ()) {
+        if (joSValue == line.get1stPoint().getVector().getZ()) {
             result = (a3 * sqrt) / Math.pow(v, 1.5) +
                     (2.0 * (-a1 - b1) * c2 + 2.0 * (a2 + b2) * c1) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
@@ -159,7 +159,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (2 b2 (b2 a1 - a2 b1) - 2 b3 (a3 b1 - b3 a1))/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2)) - (a1 sqrt((b2 a1 - a2 b1)^2 + (a3 b1 - b3 a1)^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
         // (2 b2 c3 - 2 b3 c2)/(2 sqrt(a2^2 + a3^2 + a1^2) sqrt(c3^2 + c2^2 + c1^2)) - (a1 sqrt(c3^2 + c2^2 + c1^2))/(a2^2 + a3^2 + a1^2)^(3/2)
 
-        if (joValue == line.get2ndPoint().getVector().getX()) {
+        if (joSValue == line.get2ndPoint().getVector().getX()) {
             result = (2.0 * b2 * b3 - 2.0 * b3 * c2) / (2.0 * Math.sqrt(v) * sqrt) -
                     (a1 * sqrt) / Math.pow(v, 1.5);
             return result;
@@ -174,7 +174,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (2 b3 (b3 (y2 - y1) - a3 b2) - 2 b1 (a1 b2 - b1 (y2 - y1)))/(2 sqrt(a1^2 + a3^2 + (y2 - y1)^2) sqrt((a1 b2 - b1 (y2 - y1))^2 + (b3 (y2 - y1) - a3 b2)^2 + c2^2)) - ((y2 - y1) sqrt((a1 b2 - b1 (y2 - y1))^2 + (b3 (y2 - y1) - a3 b2)^2 + c2^2))/(a1^2 + a3^2 + (y2 - y1)^2)^(3/2)
         // (2 b3 c1 - 2 b1 c3)/(2 sqrt(a1^2 + a3^2 + a2^2) sqrt(c3^2 + c1^2 + c2^2)) - (a2 sqrt(c3^2 + c1^2 + c2^2))/(a1^2 + a3^2 + a2^2)^(3/2)
 
-        if (joValue == line.get2ndPoint().getVector().getY()) {
+        if (joSValue == line.get2ndPoint().getVector().getY()) {
             result = (2.0 * b3 * c1 - 2.0 * b1 * c3) / (2.0 * Math.sqrt(v) * sqrt) -
                     (a2 * sqrt) / Math.pow(v, 1.5);
             return result;
@@ -193,7 +193,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (2 b1 c2 - 2 b2 c1)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c2^2 + c1^2 + c3^2)) - (a3 sqrt(c2^2 + c1^2 + c3^2))/(a1^2 + a2^2 + a3^2)^(3/2)
         // (2b1c2-2b2c1)/(2sqrt(a1^2+a2^2+a3^2)sqrt(c2^2+c1^2+c3^2))-(a3sqrt(c2^2+c1^2+c3^2))/(a1^2+a2^2+a3^2)^(3/2)
 
-        if (joValue == line.get2ndPoint().getVector().getZ()) {
+        if (joSValue == line.get2ndPoint().getVector().getZ()) {
             result = (2.0 * b1 * c2 - 2.0 * b2 * c1) / (2.0 * Math.sqrt(v) * sqrt) -
                     (a3 * sqrt) / Math.pow(v, 1.5);
             return result;
@@ -210,7 +210,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (2 a2 (a1 b2 - a2 (x1 - x3)) - 2 a3 (a3 (x1 - x3) - a1 b3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 (x1 - x3))^2 + (a3 (x1 - x3) - a1 b3)^2 + c1^2))
         // (2 a2 (a1 b2 - a2 b1) - 2 a3 (a3 b1 - a1 b3))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 b1)^2 + (a3 b1 - a1 b3)^2 + c1^2))
         // (2 a2 c3 - 2 a3 c2)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c3^2 + c2^2 + c1^2))
-        if (joValue == point.getVector().getX()) {
+        if (joSValue == point.getVector().getX()) {
             result = (2.0 * a2 * c3 - 2.0 * a3 * c2) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
         }
@@ -226,7 +226,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (2 a3 (a2 b3 - a3 (y1 - y3)) - 2 a1 (a1 (y1 - y3) - a2 b1))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 (y1 - y3) - a2 b1)^2 + (a2 b3 - a3 (y1 - y3))^2 + c2^2))
         // (2 a3 (a2 b3 - a3 b2) - 2 a1 (a1 b2 - a2 b1))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a1 b2 - a2 b1)^2 + (a2 b3 - a3 b2)^2 + c2^2))
         // (2 a3 c1 - 2 a1 c3)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c3^2 + c1^2 + c2^2))
-        if (joValue == point.getVector().getY()) {
+        if (joSValue == point.getVector().getY()) {
             result = (2.0 * a3 * c1 - 2.0 * a1 * c3) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
         }
@@ -242,7 +242,7 @@ public class PointToLineDistance extends ConstraintBase implements SketchConstra
         // (2 a1 (a3 b1 - a1 (z1 - z3)) - 2 a2 (a2 (z1 - z3) - a3 b2))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a3 b1 - a1 (z1 - z3))^2 + (a2 (z1 - z3) - a3 b2)^2 + c3^2))
         // (2 a1 (a3 b1 - a1 b3) - 2 a2 (a2 b3 - a3 b2))/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt((a3 b1 - a1 b3)^2 + (a2 b3 - a3 b2)^2 + c3^2))
         // (2 a1 c2 - 2 a2 c1)/(2 sqrt(a1^2 + a2^2 + a3^2) sqrt(c2^2 + c1^2 + c3^2))
-        if (joValue == point.getVector().getZ()) {
+        if (joSValue == point.getVector().getZ()) {
             result = (2.0 * a1 * c2 - 2.0 * a2 * c1) / (2.0 * Math.sqrt(v) * sqrt);
             return result;
         }

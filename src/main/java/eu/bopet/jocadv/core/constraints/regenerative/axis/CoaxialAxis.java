@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -18,14 +18,14 @@ public class CoaxialAxis implements RegenerativeLink {
         this.referenceAxis = referenceAxis;
         this.resultAxis = new JoAxis(
                 new JoPoint(new JoVector(
-                        new JoValue(JoValue.USER, referenceAxis.getPoint().getVector().getX().get()),
-                        new JoValue(JoValue.USER, referenceAxis.getPoint().getVector().getY().get()),
-                        new JoValue(JoValue.USER, referenceAxis.getPoint().getVector().getZ().get()), null),
+                        new JoSValue(JoSValue.USER, referenceAxis.getPoint().getVector().getX().get()),
+                        new JoSValue(JoSValue.USER, referenceAxis.getPoint().getVector().getY().get()),
+                        new JoSValue(JoSValue.USER, referenceAxis.getPoint().getVector().getZ().get()), null),
                         null),
                 new JoVector(
-                        new JoValue(JoValue.USER, referenceAxis.getDirection().getX().get()),
-                        new JoValue(JoValue.USER, referenceAxis.getDirection().getY().get()),
-                        new JoValue(JoValue.USER, referenceAxis.getDirection().getZ().get()), null),
+                        new JoSValue(JoSValue.USER, referenceAxis.getDirection().getX().get()),
+                        new JoSValue(JoSValue.USER, referenceAxis.getDirection().getY().get()),
+                        new JoSValue(JoSValue.USER, referenceAxis.getDirection().getZ().get()), null),
                 this);
     }
 
@@ -57,7 +57,7 @@ public class CoaxialAxis implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return new HashSet<>(referenceAxis.getValues());
     }
 

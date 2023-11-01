@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class PersonAndOrganizationRole extends StepEntityBase {
+public class PersonAndOrganizationRole extends StepEntity {
     public PersonAndOrganizationRole(int id, String name) {
         super(id, name);
     }

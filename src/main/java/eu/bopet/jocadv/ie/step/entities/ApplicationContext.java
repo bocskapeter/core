@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class ApplicationContext extends StepEntityBase {
+public class ApplicationContext extends StepEntity {
 
     public ApplicationContext(int id, String name) {
         super(id, name);

@@ -4,7 +4,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.point.ToPlaneProjectedPoint
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +14,7 @@ class ToPlaneProjectedPointTest {
     @Test
     void createProjectedPoint() throws Exception {
         System.out.println(" init ");
-        JoValue offset = new JoValue(JoValue.USER, 0.0);
+        JoSValue offset = new JoSValue(JoSValue.USER, 0.0);
         OffsetPlane offsetPlane = new OffsetPlane(JoPlane.XY, offset);
         ToPlaneProjectedPoint toPlaneProjectedPoint = new ToPlaneProjectedPoint((JoPlane) offsetPlane.getResult(), JoPoint.ORIGIN);
         System.out.println(" change offset ");

@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class TypeQualifier extends StepEntityBase {
+public class TypeQualifier extends StepEntity {
     public TypeQualifier(int id, String name) {
         super(id, name);
     }

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.exception.ParallelVectorException;
@@ -47,7 +47,7 @@ public class Axis2Placement3D extends UtilIntIntInt implements StepLink {
         JoPoint origin = (JoPoint) feature.getFeatureMap().get(cartesianPoint);
         JoVector joVectorX = (JoVector) feature.getFeatureMap().get(directionX);
         JoVector joVectorY = (JoVector) feature.getFeatureMap().get(directionY);
-        JoCoSys joCoSys = new JoCoSys(JoValue.IMPORTED, origin, joVectorX, joVectorY);
+        JoCoSys joCoSys = new JoCoSys(JoSValue.IMPORTED, origin, joVectorX, joVectorY);
         joCoSys.setIntID(super.getId());
         joCoSys.setName(super.getName());
         feature.getFeatureMap().put(this, joCoSys);

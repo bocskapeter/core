@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class MassMeasureWithUnit extends StepEntityBase {
+public class MassMeasureWithUnit extends StepEntity {
     private MeasureWithUnitInSet measure;
 
     public MassMeasureWithUnit(int id, String name, String attribute) {

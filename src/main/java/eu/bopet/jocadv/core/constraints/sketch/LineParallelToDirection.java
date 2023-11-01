@@ -1,17 +1,17 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.JoValue;
-import eu.bopet.jocadv.core.features.sketch.JoLine;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
+import eu.bopet.jocadv.core.features.sketch.JoSLine;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LineParallelToDirection extends ConstraintBase implements SketchConstraint {
-    private final JoLine line;
+    private final JoSLine line;
     private final JoVector vector;
 
-    public LineParallelToDirection(short status, JoLine line, JoVector vector) {
+    public LineParallelToDirection(short status, JoSLine line, JoVector vector) {
         super(status);
         this.line = line;
         this.vector = vector;
@@ -26,8 +26,8 @@ public class LineParallelToDirection extends ConstraintBase implements SketchCon
     }
 
     @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
+    public List<JoSValue> getValues() {
+        List<JoSValue> result = new ArrayList<>();
         result.addAll(line.getValues());
         result.addAll(vector.getValues());
         return result;
@@ -50,7 +50,7 @@ public class LineParallelToDirection extends ConstraintBase implements SketchCon
     }
 
     @Override
-    public double getDerivative(JoValue joValue) {
+    public double getDerivative(JoSValue joSValue) {
         double x1 = line.get1stPoint().getVector().getX().get();
         double y1 = line.get1stPoint().getVector().getY().get();
         double z1 = line.get1stPoint().getVector().getZ().get();
@@ -60,31 +60,31 @@ public class LineParallelToDirection extends ConstraintBase implements SketchCon
         double x3 = vector.getX().get();
         double y3 = vector.getY().get();
         double z3 = vector.getZ().get();
-        if (joValue == line.get1stPoint().getVector().getX()) {
+        if (joSValue == line.get1stPoint().getVector().getX()) {
             return z3 - y3;
         }
-        if (joValue == line.get1stPoint().getVector().getY()) {
+        if (joSValue == line.get1stPoint().getVector().getY()) {
             return -z3 + x3;
         }
-        if (joValue == line.get1stPoint().getVector().getZ()) {
+        if (joSValue == line.get1stPoint().getVector().getZ()) {
             return y3 - x3;
         }
-        if (joValue == line.get2ndPoint().getVector().getX()) {
+        if (joSValue == line.get2ndPoint().getVector().getX()) {
             return -z3 + y3;
         }
-        if (joValue == line.get2ndPoint().getVector().getY()) {
+        if (joSValue == line.get2ndPoint().getVector().getY()) {
             return z3 - x3;
         }
-        if (joValue == line.get2ndPoint().getVector().getZ()) {
+        if (joSValue == line.get2ndPoint().getVector().getZ()) {
             return -y3 + x3;
         }
-        if (joValue == vector.getX()) {
+        if (joSValue == vector.getX()) {
             return z2 - z1 - y2 + y1;
         }
-        if (joValue == vector.getY()) {
+        if (joSValue == vector.getY()) {
             return -z2 + z1 + x2 - x1;
         }
-        if (joValue == vector.getZ()) {
+        if (joSValue == vector.getZ()) {
             return y2 - y1 - x2 + x1;
         }
         return 0.0;

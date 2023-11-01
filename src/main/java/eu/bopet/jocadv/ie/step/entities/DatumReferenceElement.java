@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
-public class DatumReferenceElement extends StepEntityBase {
+public class DatumReferenceElement extends StepEntity {
     private final String description;
     private final int shape;
     private final boolean productDefinitional;

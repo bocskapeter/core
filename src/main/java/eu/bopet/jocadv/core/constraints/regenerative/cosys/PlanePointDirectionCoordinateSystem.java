@@ -5,7 +5,7 @@ import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalExce
 import eu.bopet.jocadv.core.constraints.regenerative.plane.PointNormalPlane;
 import eu.bopet.jocadv.core.constraints.regenerative.vector.CrossVector;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -54,7 +54,7 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
 
     private void checkOrthogonality() throws NotOrthogonalException {
         double dotProduct = referencePlane.getNormal().getVector3D().dotProduct(referenceDirection.getVector3D());
-        if (dotProduct > JoValue.DEFAULT_TOLERANCE)
+        if (dotProduct > JoSValue.DEFAULT_TOLERANCE)
             throw new NotOrthogonalException(referencePlane.getNormal(), referenceDirection);
     }
 
@@ -112,8 +112,8 @@ public class PlanePointDirectionCoordinateSystem implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referencePlane.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referencePlane.getValues());
         result.addAll(referencePoint.getValues());
         return result;
     }

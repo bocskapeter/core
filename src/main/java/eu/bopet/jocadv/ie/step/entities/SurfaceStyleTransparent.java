@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class SurfaceStyleTransparent extends StepEntityBase {
+public class SurfaceStyleTransparent extends StepEntity {
     private double value;
 
     public SurfaceStyleTransparent(int id, String name, String attribute) {

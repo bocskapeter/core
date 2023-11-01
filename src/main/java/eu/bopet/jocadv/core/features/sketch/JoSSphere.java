@@ -1,7 +1,6 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
@@ -11,11 +10,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoSphere extends FeatureBase implements SketchGeometry, Selectable {
+public class JoSSphere extends JoBaseFeature implements SketchGeometry, Selectable {
     private final JoPoint center;
-    private final JoValue radius;
+    private final JoSValue radius;
 
-    public JoSphere(JoPoint center, JoValue radius) {
+    public JoSSphere(JoPoint center, JoSValue radius) {
         this.center = center;
         this.radius = radius;
     }
@@ -28,7 +27,7 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
         return center.getVector3D();
     }
 
-    public JoValue getRadius() {
+    public JoSValue getRadius() {
         return radius;
     }
 
@@ -49,8 +48,8 @@ public class JoSphere extends FeatureBase implements SketchGeometry, Selectable 
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new LinkedHashSet<>(center.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new LinkedHashSet<>(center.getValues());
         result.add(radius);
         return result;
     }

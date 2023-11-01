@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class CoordinatesList extends StepEntityBase {
+public class CoordinatesList extends StepEntity {
 
     private List<List<Double>> coordinates;
 

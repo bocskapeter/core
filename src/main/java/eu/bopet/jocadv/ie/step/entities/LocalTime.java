@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class LocalTime extends StepEntityBase {
+public class LocalTime extends StepEntity {
     private int hour;
     private int minute;
     private double sec;

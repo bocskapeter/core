@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class SurfaceStyleParameterLine extends StepEntityBase {
+public class SurfaceStyleParameterLine extends StepEntity {
     private int style;
     private int UDirectionCount;
     private int VDirectionCount;

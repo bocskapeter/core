@@ -2,16 +2,17 @@ package eu.bopet.jocadv.core.features;
 
 
 import eu.bopet.jocadv.core.features.basic.JoPoint;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 
 import java.util.UUID;
 
-public abstract class FeatureBase {
+public abstract class JoBaseFeature {
     private UUID id;
     private int IntID;
     private String name;
     private boolean selected;
     private boolean visible;
-    private double tolerance = JoValue.DEFAULT_TOLERANCE;
+    private double tolerance = JoSValue.DEFAULT_TOLERANCE;
 
     public UUID getId() {
         if (this.id == null) this.id = UUID.randomUUID();

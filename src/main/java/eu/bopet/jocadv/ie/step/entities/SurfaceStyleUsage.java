@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class SurfaceStyleUsage extends StepEntityBase {
+public class SurfaceStyleUsage extends StepEntity {
     private SurfaceSide side;
     private int style;
 

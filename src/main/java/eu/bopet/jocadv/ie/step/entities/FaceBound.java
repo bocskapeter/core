@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class FaceBound extends StepEntityBase {
+public class FaceBound extends StepEntity {
     private int loopId;
     private boolean orientation;
 

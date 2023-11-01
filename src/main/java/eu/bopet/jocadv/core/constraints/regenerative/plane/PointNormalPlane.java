@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -19,10 +19,10 @@ public class PointNormalPlane implements RegenerativeLink {
         this.referencePoint = referencePoint;
         this.referenceNormal = referenceNormal;
         this.resultPlane = new JoPlane(
-                new JoValue(JoValue.USER, this.referenceNormal.getX().get()),
-                new JoValue(JoValue.USER, this.referenceNormal.getY().get()),
-                new JoValue(JoValue.USER, this.referenceNormal.getZ().get()),
-                new JoValue(JoValue.USER, getD()),
+                new JoSValue(JoSValue.USER, this.referenceNormal.getX().get()),
+                new JoSValue(JoSValue.USER, this.referenceNormal.getY().get()),
+                new JoSValue(JoSValue.USER, this.referenceNormal.getZ().get()),
+                new JoSValue(JoSValue.USER, getD()),
                 this
         );
     }
@@ -67,8 +67,8 @@ public class PointNormalPlane implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referencePoint.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referencePoint.getValues());
         result.addAll(referenceNormal.getValues());
         return result;
     }

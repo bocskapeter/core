@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class PreDefinedPointMarkerSymbol extends StepEntityBase {
+public class PreDefinedPointMarkerSymbol extends StepEntity {
     private MarkerType markerType;
 
     public PreDefinedPointMarkerSymbol(int id, String name, String attribute) {

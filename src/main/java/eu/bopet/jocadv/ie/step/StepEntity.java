@@ -3,11 +3,11 @@ package eu.bopet.jocadv.ie.step;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class StepEntityBase {
+public abstract class StepEntity {
     private int id;
     private String name;
 
-    public StepEntityBase(int id, String name) {
+    public StepEntity(int id, String name) {
         this.id = id;
         this.name = name;
     }

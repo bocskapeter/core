@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class DefaultModelGeometricView extends StepEntityBase {
+public class DefaultModelGeometricView extends StepEntity {
     private final String description;
     private final int item;
     private final int rep;

@@ -13,7 +13,6 @@ import eu.bopet.jocadv.core.constraints.sketch.PointToLineDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -30,7 +29,7 @@ class JoSketchTest {
     @Test
     void addConstraint() throws Exception {
         System.out.println(" init sketch ");
-        JoValue offset = new JoValue(JoValue.USER, 0.5);
+        JoSValue offset = new JoSValue(JoSValue.USER, 0.5);
         OffsetPlane offsetPlane = new OffsetPlane(JoPlane.XY, offset);
         JoPlane sketchPlane = (JoPlane) offsetPlane.getResult();
         ToPlaneProjectedPoint toPlaneProjectedPoint = new ToPlaneProjectedPoint(sketchPlane, JoPoint.ORIGIN);
@@ -43,33 +42,33 @@ class JoSketchTest {
         CoordinateSystemSketch coordinateSystemSketch = new CoordinateSystemSketch(sketchCoordinateSystem);
         JoSketch sketch = (JoSketch) coordinateSystemSketch.getResult();
 
-        JoValue x1 = new JoValue(JoValue.VARIABLE, 1.26);
-        JoValue y1 = new JoValue(JoValue.VARIABLE, 2.59);
-        JoValue z1 = new JoValue(JoValue.VARIABLE, 0.015);
+        JoSValue x1 = new JoSValue(JoSValue.VARIABLE, 1.26);
+        JoSValue y1 = new JoSValue(JoSValue.VARIABLE, 2.59);
+        JoSValue z1 = new JoSValue(JoSValue.VARIABLE, 0.015);
 
-        JoValue x2 = new JoValue(JoValue.VARIABLE, 8.1);
-        JoValue y2 = new JoValue(JoValue.VARIABLE, 2.95);
-        JoValue z2 = new JoValue(JoValue.VARIABLE, 0.06);
+        JoSValue x2 = new JoSValue(JoSValue.VARIABLE, 8.1);
+        JoSValue y2 = new JoSValue(JoSValue.VARIABLE, 2.95);
+        JoSValue z2 = new JoSValue(JoSValue.VARIABLE, 0.06);
 
-        JoValue x3 = new JoValue(JoValue.VARIABLE, 0.956);
-        JoValue y3 = new JoValue(JoValue.VARIABLE, 9.59);
-        JoValue z3 = new JoValue(JoValue.VARIABLE, -0.089);
+        JoSValue x3 = new JoSValue(JoSValue.VARIABLE, 0.956);
+        JoSValue y3 = new JoSValue(JoSValue.VARIABLE, 9.59);
+        JoSValue z3 = new JoSValue(JoSValue.VARIABLE, -0.089);
 
-        JoValue x4 = new JoValue(JoValue.VARIABLE, 6.3);
-        JoValue y4 = new JoValue(JoValue.VARIABLE, 10.29);
-        JoValue z4 = new JoValue(JoValue.VARIABLE, -0.2089);
+        JoSValue x4 = new JoSValue(JoSValue.VARIABLE, 6.3);
+        JoSValue y4 = new JoSValue(JoSValue.VARIABLE, 10.29);
+        JoSValue z4 = new JoSValue(JoSValue.VARIABLE, -0.2089);
 
-        JoValue x5 = new JoValue(JoValue.VARIABLE, 8.16);
-        JoValue y5 = new JoValue(JoValue.VARIABLE, 7.892);
-        JoValue z5 = new JoValue(JoValue.VARIABLE, 0.2089);
+        JoSValue x5 = new JoSValue(JoSValue.VARIABLE, 8.16);
+        JoSValue y5 = new JoSValue(JoSValue.VARIABLE, 7.892);
+        JoSValue z5 = new JoSValue(JoSValue.VARIABLE, 0.2089);
 
-        JoValue x6 = new JoValue(JoValue.VARIABLE, 6.86);
-        JoValue y6 = new JoValue(JoValue.VARIABLE, 7.89);
-        JoValue z6 = new JoValue(JoValue.VARIABLE, -0.5);
+        JoSValue x6 = new JoSValue(JoSValue.VARIABLE, 6.86);
+        JoSValue y6 = new JoSValue(JoSValue.VARIABLE, 7.89);
+        JoSValue z6 = new JoSValue(JoSValue.VARIABLE, -0.5);
 
-        JoValue x7 = new JoValue(JoValue.VARIABLE, 2.86);
-        JoValue y7 = new JoValue(JoValue.VARIABLE, 3.49);
-        JoValue z7 = new JoValue(JoValue.VARIABLE, -1.09);
+        JoSValue x7 = new JoSValue(JoSValue.VARIABLE, 2.86);
+        JoSValue y7 = new JoSValue(JoSValue.VARIABLE, 3.49);
+        JoSValue z7 = new JoSValue(JoSValue.VARIABLE, -1.09);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         point1.setName("P1");
@@ -85,22 +84,22 @@ class JoSketchTest {
         point6.setName("P6");
         JoPoint point7 = new JoPoint(new JoVector(x7, y7, z7, null), null);
         point7.setName("P7");
-        JoLine line1 = new JoLine(point1, point2);
+        JoSLine line1 = new JoSLine(point1, point2);
         line1.setName("L1");
-        JoLine line2 = new JoLine(point1, point3);
+        JoSLine line2 = new JoSLine(point1, point3);
         line2.setName("L2");
-        JoLine line3 = new JoLine(point3, point4);
+        JoSLine line3 = new JoSLine(point3, point4);
         line3.setName("L3");
-        JoLine line4 = new JoLine(point5, point2);
+        JoSLine line4 = new JoSLine(point5, point2);
         line4.setName("L4");
         double r = (point5.distance(point6) + point4.distance(point6)) / 2.0;
-        JoValue radius = new JoValue(JoValue.USER, r);
+        JoSValue radius = new JoSValue(JoSValue.USER, r);
         sketch.addGeometry(line1);
         sketch.addGeometry(line2);
         sketch.addGeometry(line3);
         sketch.addGeometry(line4);
 
-        JoArc arc = new JoArc(point6, radius, sketchCoordinateSystem.getXy(), point5, point4);
+        JoSArc arc = new JoSArc(point6, radius, sketchCoordinateSystem.getXy(), point5, point4);
         arc.setName("A1");
 
         sketch.addGeometry(arc);
@@ -109,11 +108,11 @@ class JoSketchTest {
         radius.set(2.0);
         sketch.regenerate();
 
-        JoValue distance1 = new JoValue(JoValue.USER, 7.0);
+        JoSValue distance1 = new JoSValue(JoSValue.USER, 7.0);
         PointToPointDistance pointToPointDistance1 = new PointToPointDistance(
                 point1, point2, distance1, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPointDistance1);
-        JoValue distance2 = new JoValue(JoValue.USER, 7.5);
+        JoSValue distance2 = new JoSValue(JoSValue.USER, 7.5);
         PointToPointDistance pointToPointDistance2 = new PointToPointDistance(
                 point1, point3, distance2, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPointDistance2);
@@ -143,21 +142,21 @@ class JoSketchTest {
         sketch.regenerate();
         System.out.println("--regenerate compete");
 
-        JoValue distance3 = new JoValue(JoValue.USER, 1.0);
+        JoSValue distance3 = new JoSValue(JoSValue.USER, 1.0);
 
         PointToPlaneDistance pointToPlaneDistance1 = new PointToPlaneDistance(sketchCoordinateSystem.getYz(), point1, distance3, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance1);
 
-        JoValue distance4 = new JoValue(JoValue.USER, 2.0);
+        JoSValue distance4 = new JoSValue(JoSValue.USER, 2.0);
 
         PointToPlaneDistance pointToPlaneDistance2 = new PointToPlaneDistance(sketchCoordinateSystem.getXz(), point1, distance4, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToPlaneDistance2);
 
-        JoValue distance5 = new JoValue(JoValue.USER, 1.0);
+        JoSValue distance5 = new JoSValue(JoSValue.USER, 1.0);
         PointToLineDistance pointToLineDistance3 = new PointToLineDistance(line2, point7, distance5, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance3);
 
-        JoValue distance6 = new JoValue(JoValue.USER, 1.5);
+        JoSValue distance6 = new JoSValue(JoSValue.USER, 1.5);
         PointToLineDistance pointToLineDistance4 = new PointToLineDistance(line1, point7, distance6, SketchConstraint.USER_DEFINED);
         sketch.addConstraint(pointToLineDistance4);
 
@@ -196,21 +195,21 @@ class JoSketchTest {
         CoordinateSystemSketch coordinateSystemSketch = new CoordinateSystemSketch(JoCoSys.DEFAULT_COORDINATE_SYSTEM);
         JoSketch sketch = (JoSketch) coordinateSystemSketch.getResult();
 
-        JoValue x1 = new JoValue(JoValue.VARIABLE, 0.0);
-        JoValue y1 = new JoValue(JoValue.VARIABLE, 0.0);
-        JoValue z1 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x1 = new JoSValue(JoSValue.VARIABLE, 0.0);
+        JoSValue y1 = new JoSValue(JoSValue.VARIABLE, 0.0);
+        JoSValue z1 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
-        JoValue x2 = new JoValue(JoValue.VARIABLE, 5.0);
-        JoValue y2 = new JoValue(JoValue.VARIABLE, 0.0);
-        JoValue z2 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x2 = new JoSValue(JoSValue.VARIABLE, 5.0);
+        JoSValue y2 = new JoSValue(JoSValue.VARIABLE, 0.0);
+        JoSValue z2 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
-        JoValue x3 = new JoValue(JoValue.VARIABLE, 5.0);
-        JoValue y3 = new JoValue(JoValue.VARIABLE, 5.);
-        JoValue z3 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x3 = new JoSValue(JoSValue.VARIABLE, 5.0);
+        JoSValue y3 = new JoSValue(JoSValue.VARIABLE, 5.);
+        JoSValue z3 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
-        JoValue x4 = new JoValue(JoValue.VARIABLE, 0.0);
-        JoValue y4 = new JoValue(JoValue.VARIABLE, 5.0);
-        JoValue z4 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x4 = new JoSValue(JoSValue.VARIABLE, 0.0);
+        JoSValue y4 = new JoSValue(JoSValue.VARIABLE, 5.0);
+        JoSValue z4 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         point1.setName("P1");
@@ -221,13 +220,13 @@ class JoSketchTest {
         JoPoint point4 = new JoPoint(new JoVector(x4, y4, z4, null), null);
         point4.setName("P4");
 
-        JoLine line1 = new JoLine(point1, point3);
+        JoSLine line1 = new JoSLine(point1, point3);
         line1.setName("L1");
-        JoLine line2 = new JoLine(point3, point2);
+        JoSLine line2 = new JoSLine(point3, point2);
         line2.setName("L2");
-        JoLine line3 = new JoLine(point2, point4);
+        JoSLine line3 = new JoSLine(point2, point4);
         line3.setName("L3");
-        JoLine line4 = new JoLine(point4, point1);
+        JoSLine line4 = new JoSLine(point4, point1);
         line4.setName("L4");
         sketch.addGeometry(line1);
         sketch.addGeometry(line2);
@@ -240,19 +239,19 @@ class JoSketchTest {
         CoordinateSystemSketch coordinateSystemSketch = new CoordinateSystemSketch(JoCoSys.DEFAULT_COORDINATE_SYSTEM);
         JoSketch sketch = (JoSketch) coordinateSystemSketch.getResult();
 
-        JoValue x1 = new JoValue(JoValue.VARIABLE, 8.000000000001);
-        JoValue y1 = new JoValue(JoValue.VARIABLE, 0.0);
-        JoValue z1 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x1 = new JoSValue(JoSValue.VARIABLE, 8.000000000001);
+        JoSValue y1 = new JoSValue(JoSValue.VARIABLE, 0.0);
+        JoSValue z1 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
-        JoValue x2 = new JoValue(JoValue.VARIABLE, -0.00000000000000001);
-        JoValue y2 = new JoValue(JoValue.VARIABLE, 0.0);
-        JoValue z2 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x2 = new JoSValue(JoSValue.VARIABLE, -0.00000000000000001);
+        JoSValue y2 = new JoSValue(JoSValue.VARIABLE, 0.0);
+        JoSValue z2 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
-        JoValue x3 = new JoValue(JoValue.VARIABLE, 4.0);
-        JoValue y3 = new JoValue(JoValue.VARIABLE, 3.0);
-        JoValue z3 = new JoValue(JoValue.VARIABLE, 0.0);
+        JoSValue x3 = new JoSValue(JoSValue.VARIABLE, 4.0);
+        JoSValue y3 = new JoSValue(JoSValue.VARIABLE, 3.0);
+        JoSValue z3 = new JoSValue(JoSValue.VARIABLE, 0.0);
 
-        JoValue radius = new JoValue(JoValue.USER, 5.0);
+        JoSValue radius = new JoSValue(JoSValue.USER, 5.0);
 
         JoPoint point1 = new JoPoint(new JoVector(x1, y1, z1, null), null);
         point1.setName("P1");
@@ -261,9 +260,9 @@ class JoSketchTest {
         JoPoint centerPoint = new JoPoint(new JoVector(x3, y3, z3, null), null);
         centerPoint.setName("Center");
 
-        JoLine line1 = new JoLine(point1, point2);
+        JoSLine line1 = new JoSLine(point1, point2);
         line1.setName("L1");
-        JoCircle circle = new JoCircle(new JoSphere(centerPoint, radius), sketch.getSketchPlane());
+        JoSCircle circle = new JoSCircle(new JoSSphere(centerPoint, radius), sketch.getSketchPlane());
         sketch.addGeometry(line1);
         Throwable exception = assertThrows(SelfIntersectionException.class, () -> sketch.addGeometry(circle));
         assertEquals(SelfIntersectionException.class, exception.getClass());

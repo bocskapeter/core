@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.sketch;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
@@ -40,7 +40,7 @@ public class CoordinateSystemSketch implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return new HashSet<>(referenceCoordinateSystem.getValues());
     }
 

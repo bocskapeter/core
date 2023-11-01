@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -20,17 +20,17 @@ public class TwoPointAxis implements RegenerativeLink {
         this.referencePoint2 = point2;
         this.resultAxis = new JoAxis(
                 new JoPoint(new JoVector(
-                        new JoValue(JoValue.USER, point1.getVector().getX().get()),
-                        new JoValue(JoValue.USER, point1.getVector().getY().get()),
-                        new JoValue(JoValue.USER, point1.getVector().getZ().get()), null),
+                        new JoSValue(JoSValue.USER, point1.getVector().getX().get()),
+                        new JoSValue(JoSValue.USER, point1.getVector().getY().get()),
+                        new JoSValue(JoSValue.USER, point1.getVector().getZ().get()), null),
                         null),
                 new JoVector(
-                        new JoValue(
-                                JoValue.USER, point2.getVector().getX().get() - point1.getVector().getX().get()),
-                        new JoValue(
-                                JoValue.USER, point2.getVector().getY().get() - point1.getVector().getY().get()),
-                        new JoValue(
-                                JoValue.USER, point2.getVector().getZ().get() - point1.getVector().getZ().get()),
+                        new JoSValue(
+                                JoSValue.USER, point2.getVector().getX().get() - point1.getVector().getX().get()),
+                        new JoSValue(
+                                JoSValue.USER, point2.getVector().getY().get() - point1.getVector().getY().get()),
+                        new JoSValue(
+                                JoSValue.USER, point2.getVector().getZ().get() - point1.getVector().getZ().get()),
                         null),
                 this);
     }
@@ -73,8 +73,8 @@ public class TwoPointAxis implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referencePoint1.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referencePoint1.getValues());
         result.addAll(referencePoint2.getValues());
         return result;
     }

@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.Arrays;
 
-public class DraughtingPreDefinedCurveFont extends StepEntityBase {
+public class DraughtingPreDefinedCurveFont extends StepEntity {
     public static String[] PRE_DEFINED_ITEMS = {
             "continuous",
             "chain",

@@ -1,6 +1,5 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public interface SketchGeometry {
     /**
      * @return List of Values
      */
-    Set<JoValue> getValues();
+    Set<JoSValue> getValues();
 
     /**
      * @return List of Points

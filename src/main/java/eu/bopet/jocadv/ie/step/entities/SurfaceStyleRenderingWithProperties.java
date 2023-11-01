@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class SurfaceStyleRenderingWithProperties extends StepEntityBase {
+public class SurfaceStyleRenderingWithProperties extends StepEntity {
     private ShadingSurfaceMethod renderingMethod;
     private int colour;
     private Set<Integer> properties;

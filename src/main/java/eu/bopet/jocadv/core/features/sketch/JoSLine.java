@@ -1,8 +1,6 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import org.apache.commons.math3.geometry.euclidean.threed.Line;
@@ -14,18 +12,18 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
+public class JoSLine extends JoBaseFeature implements SketchGeometry, Selectable {
     private final JoPoint point1;
     private final JoPoint point2;
     private final boolean construction;
 
-    public JoLine(JoPoint point1, JoPoint point2) {
+    public JoSLine(JoPoint point1, JoPoint point2) {
         this.point1 = point1;
         this.point2 = point2;
         this.construction = false;
     }
 
-    public JoLine(JoPoint point1, JoPoint point2, boolean construction) {
+    public JoSLine(JoPoint point1, JoPoint point2, boolean construction) {
         this.point1 = point1;
         this.point2 = point2;
         this.construction = construction;
@@ -51,7 +49,7 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
         return new Line(point1.getVector().getVector3D(), point2.getVector().getVector3D(), this.getTolerance());
     }
 
-    private List<JoPoint> getLineCircleIntersection(JoCircle circle) {
+    private List<JoPoint> getLineCircleIntersection(JoSCircle circle) {
         List<JoPoint> result = new ArrayList<>();
         double difference = getLine().distance(circle.getCenter3D()) - circle.getRadiusD();
         if (difference <= 0.0) {
@@ -83,19 +81,19 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
             if (t1 > 0.0 && t1 < 1.0) {
                 if (t2 > 0.0 && t2 < 1.0) {
                     if (distance >= getTolerance()) {
-                        result.add(new JoPoint(JoValue.VARIABLE, sectionPoint1));
-                        result.add(new JoPoint(JoValue.VARIABLE, sectionPoint2));
+                        result.add(new JoPoint(JoSValue.VARIABLE, sectionPoint1));
+                        result.add(new JoPoint(JoSValue.VARIABLE, sectionPoint2));
                     } else {
                         Vector3D sP1ToSP2 = sectionPoint2.subtract(sectionPoint1);
                         Vector3D half = sP1ToSP2.scalarMultiply(0.5);
                         Vector3D sectionPoint = sectionPoint1.add(half);
-                        result.add(new JoPoint(JoValue.VARIABLE, sectionPoint));
+                        result.add(new JoPoint(JoSValue.VARIABLE, sectionPoint));
                     }
                 } else {
-                    result.add(new JoPoint(JoValue.VARIABLE, sectionPoint1));
+                    result.add(new JoPoint(JoSValue.VARIABLE, sectionPoint1));
                 }
             } else if (t2 > 0.0 && t2 < 1.0) {
-                result.add(new JoPoint(JoValue.VARIABLE, sectionPoint2));
+                result.add(new JoPoint(JoSValue.VARIABLE, sectionPoint2));
             }
         }
         return result;
@@ -112,8 +110,8 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new LinkedHashSet<>();
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new LinkedHashSet<>();
         result.addAll(point1.getValues());
         result.addAll(point2.getValues());
         return result;
@@ -130,20 +128,20 @@ public class JoLine extends FeatureBase implements SketchGeometry, Selectable {
     @Override
     public List<JoPoint> getIntersection(SketchGeometry geometry) {
         List<JoPoint> result = new ArrayList<>();
-        if (geometry instanceof JoLine) {
-            JoLine otherLine = (JoLine) geometry;
+        if (geometry instanceof JoSLine) {
+            JoSLine otherLine = (JoSLine) geometry;
             Vector3D sectionPoint = this.getSubLine().intersection(otherLine.getSubLine(), false);
             if (sectionPoint != null) {
-                result.add(new JoPoint(JoValue.VARIABLE, sectionPoint));
+                result.add(new JoPoint(JoSValue.VARIABLE, sectionPoint));
                 return result;
             }
         }
-        if (geometry instanceof JoCircle) {
-            JoCircle circle = (JoCircle) geometry;
+        if (geometry instanceof JoSCircle) {
+            JoSCircle circle = (JoSCircle) geometry;
             return getLineCircleIntersection(circle);
         }
-        if (geometry instanceof JoArc) {
-            JoArc arc = (JoArc) geometry;
+        if (geometry instanceof JoSArc) {
+            JoSArc arc = (JoSArc) geometry;
             result = getLineCircleIntersection(arc.getCircle());
             if (!result.isEmpty()) {
                 if (result.size() == 1) {

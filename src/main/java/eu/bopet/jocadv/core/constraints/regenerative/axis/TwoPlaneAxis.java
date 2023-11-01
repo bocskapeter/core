@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.axis;
 
 import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -29,12 +29,12 @@ public class TwoPlaneAxis implements RegenerativeLink {
         if (line == null) throw new ParallelFeatureException(referencePlane1, referencePlane2);
         Vector3D point3D = line.getOrigin();
         Vector3D direction3D = line.getDirection();
-        JoValue pointX = new JoValue(JoValue.USER, point3D.getX());
-        JoValue pointY = new JoValue(JoValue.USER, point3D.getY());
-        JoValue pointZ = new JoValue(JoValue.USER, point3D.getZ());
-        JoValue directionX = new JoValue(JoValue.USER, direction3D.getX());
-        JoValue directionY = new JoValue(JoValue.USER, direction3D.getY());
-        JoValue directionZ = new JoValue(JoValue.USER, direction3D.getZ());
+        JoSValue pointX = new JoSValue(JoSValue.USER, point3D.getX());
+        JoSValue pointY = new JoSValue(JoSValue.USER, point3D.getY());
+        JoSValue pointZ = new JoSValue(JoSValue.USER, point3D.getZ());
+        JoSValue directionX = new JoSValue(JoSValue.USER, direction3D.getX());
+        JoSValue directionY = new JoSValue(JoSValue.USER, direction3D.getY());
+        JoSValue directionZ = new JoSValue(JoSValue.USER, direction3D.getZ());
         JoVector joVector = new JoVector(pointX, pointY, pointZ, null);
         JoPoint joPoint = new JoPoint(joVector, null);
         JoVector joDirection = new JoVector(directionX, directionY, directionZ, null);
@@ -80,8 +80,8 @@ public class TwoPlaneAxis implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referencePlane1.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referencePlane1.getValues());
         result.addAll(referencePlane2.getValues());
         return result;
     }

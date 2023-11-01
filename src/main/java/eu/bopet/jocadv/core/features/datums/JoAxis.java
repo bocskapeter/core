@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
@@ -11,7 +11,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Line;
 
 import java.util.Set;
 
-public class JoAxis extends FeatureBase implements Selectable, JoFeature {
+public class JoAxis extends JoBaseFeature implements Selectable, JoFeature {
     public static final JoAxis X = new JoAxis("X", JoPoint.ORIGIN, JoVector.I, null);
     public static final JoAxis Y = new JoAxis("Y", JoPoint.ORIGIN, JoVector.J, null);
     public static final JoAxis Z = new JoAxis("Z", JoPoint.ORIGIN, JoVector.K, null);
@@ -64,8 +64,8 @@ public class JoAxis extends FeatureBase implements Selectable, JoFeature {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = JoFeature.super.getValues();
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = JoFeature.super.getValues();
         result.addAll(point.getValues());
         result.addAll(direction.getValues());
         return result;

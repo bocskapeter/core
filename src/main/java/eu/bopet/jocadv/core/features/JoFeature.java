@@ -1,6 +1,7 @@
 package eu.bopet.jocadv.core.features;
 
 import eu.bopet.jocadv.core.features.exception.NotCompatibleRegenerativeLinkException;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -26,8 +27,8 @@ public interface JoFeature {
     /**
      * @return list of values used in this feature
      */
-    default Set<JoValue> getValues() {
-        Set<JoValue> result = new LinkedHashSet<>();
+    default Set<JoSValue> getValues() {
+        Set<JoSValue> result = new LinkedHashSet<>();
         if (getRegenerativeLink() != null) {
             result.addAll(getRegenerativeLink().getValues());
         }
@@ -38,10 +39,10 @@ public interface JoFeature {
      * store all values
      */
     default void store() {
-        Set<JoValue> values = new LinkedHashSet<>();
+        Set<JoSValue> values = new LinkedHashSet<>();
         if (getRegenerativeLink() != null) {
             values.addAll(getRegenerativeLink().getValues());
         }
-        for (JoValue value : values) value.store();
+        for (JoSValue value : values) value.store();
     }
 }

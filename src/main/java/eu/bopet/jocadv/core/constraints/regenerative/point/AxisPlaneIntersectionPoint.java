@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.constraints.regenerative.exception.NoIntersectionException;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
@@ -24,9 +24,9 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
         Vector3D intersectionPoint = referencePlane.getPlane().intersection(referenceAxis.getLine());
         if (intersectionPoint == null)
             throw new NoIntersectionException(referenceAxis, referencePlane);
-        JoValue x = new JoValue(JoValue.USER, intersectionPoint.getX());
-        JoValue y = new JoValue(JoValue.USER, intersectionPoint.getY());
-        JoValue z = new JoValue(JoValue.USER, intersectionPoint.getZ());
+        JoSValue x = new JoSValue(JoSValue.USER, intersectionPoint.getX());
+        JoSValue y = new JoSValue(JoSValue.USER, intersectionPoint.getY());
+        JoSValue z = new JoSValue(JoSValue.USER, intersectionPoint.getZ());
         JoVector vector = new JoVector(x, y, z, null);
         this.resultPoint = new JoPoint(vector, this);
     }
@@ -66,8 +66,8 @@ public class AxisPlaneIntersectionPoint implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referenceAxis.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referenceAxis.getValues());
         result.addAll(referencePlane.getValues());
         return result;
     }

@@ -1,10 +1,10 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.measure.Measure;
 import eu.bopet.jocadv.ie.step.measure.MeasureValue;
 
-public class MeasureRepresentationItem extends StepEntityBase implements Measure {
+public class MeasureRepresentationItem extends StepEntity implements Measure {
     private MeasureValue valueComponent;
     private int unit = -1;
 

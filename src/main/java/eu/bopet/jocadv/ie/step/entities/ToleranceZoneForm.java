@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class ToleranceZoneForm extends StepEntityBase {
+public class ToleranceZoneForm extends StepEntity {
     public ToleranceZoneForm(int id, String name) {
         super(id, name);
     }

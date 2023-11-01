@@ -1,13 +1,11 @@
 package eu.bopet.jocadv.ie.step;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
-import eu.bopet.jocadv.ie.step.exception.StepProcessingException;
 
 import java.io.File;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 public class RegenerativeStep implements RegenerativeLink {
@@ -42,7 +40,7 @@ public class RegenerativeStep implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return null;
     }
 }

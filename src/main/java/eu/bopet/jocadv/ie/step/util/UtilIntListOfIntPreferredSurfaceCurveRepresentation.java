@@ -1,15 +1,16 @@
 package eu.bopet.jocadv.ie.step.util;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.core.features.basic.curve.JoPreferredSurfaceCurveRepresentation;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.curve.PreferredSurfaceCurveRepresentation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilIntListOfIntPreferredSurfaceCurveRepresentation extends StepEntityBase {
+public class UtilIntListOfIntPreferredSurfaceCurveRepresentation extends StepEntity {
     private int curveId;
     private List<Integer> associatedGeometryIds;
-    private PreferredSurfaceCurveRepresentation masterRep;
+    private JoPreferredSurfaceCurveRepresentation masterRep;
 
     public UtilIntListOfIntPreferredSurfaceCurveRepresentation(int id, String name, String attribute) {
         super(id, name);
@@ -26,7 +27,19 @@ public class UtilIntListOfIntPreferredSurfaceCurveRepresentation extends StepEnt
         }
         String masterRepString = attribute.substring(attribute.lastIndexOf(",") + 1)
                 .replace(".", "");
-        masterRep = PreferredSurfaceCurveRepresentation.valueOf(masterRepString);
+        masterRep = JoPreferredSurfaceCurveRepresentation.valueOf(masterRepString);
+    }
+
+    public int getCurveId() {
+        return curveId;
+    }
+
+    public List<Integer> getAssociatedGeometryIds() {
+        return associatedGeometryIds;
+    }
+
+    public JoPreferredSurfaceCurveRepresentation getMasterRep() {
+        return masterRep;
     }
 
     @Override

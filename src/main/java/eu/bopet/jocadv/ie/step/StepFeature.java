@@ -16,8 +16,8 @@ public class StepFeature implements JoFeature {
     private String stepFileName;
     private String stepFileSchema;
     private RegenerativeLink regenerativeLink;
-    private List<StepEntityBase> stepEntities;
-    private Map<StepEntityBase, JoFeature> featureMap;
+    private List<StepEntity> stepEntities;
+    private Map<StepEntity, JoFeature> featureMap;
 
     public StepFeature(RegenerativeLink regenerativeLink, String filename) {
         this.filename = filename;
@@ -29,7 +29,7 @@ public class StepFeature implements JoFeature {
         this.stepFileSchema = "";
     }
 
-    public List<StepEntityBase> getStepEntities() {
+    public List<StepEntity> getStepEntities() {
         return stepEntities;
     }
 
@@ -71,12 +71,12 @@ public class StepFeature implements JoFeature {
         this.stepFileSchema = stepFileSchema;
     }
 
-    public Map<StepEntityBase, JoFeature> getFeatureMap() {
+    public Map<StepEntity, JoFeature> getFeatureMap() {
         return featureMap;
     }
 
     public void generateJoFeatures() throws Exception {
-        for (StepEntityBase entityBase : stepEntities) {
+        for (StepEntity entityBase : stepEntities) {
             if (entityBase instanceof StepLink) {
                 StepLink stepLink = (StepLink) entityBase;
                 stepLink.generateJoFeature(this);
@@ -84,8 +84,8 @@ public class StepFeature implements JoFeature {
         }
     }
 
-    public StepEntityBase getStepEntityByID(int id) {
-        for (StepEntityBase entity : stepEntities) {
+    public StepEntity getStepEntityByID(int id) {
+        for (StepEntity entity : stepEntities) {
             if (entity.getId() == id) return entity;
         }
         return null;

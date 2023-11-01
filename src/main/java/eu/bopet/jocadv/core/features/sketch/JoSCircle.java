@@ -1,9 +1,6 @@
 package eu.bopet.jocadv.core.features.sketch;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
-import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
-import eu.bopet.jocadv.core.features.RegenerativeLink;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -15,22 +12,22 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoCircle extends FeatureBase implements SketchGeometry, Selectable, JoFeature {
-    private final JoSphere sphere;
+public class JoSCircle extends JoBaseFeature implements SketchGeometry, Selectable {
+    private final JoSSphere sphere;
     private final JoPlane plane;
 
-    public JoCircle(JoSphere sphere, JoPlane plane) throws Exception {
+    public JoSCircle(JoSSphere sphere, JoPlane plane) throws Exception {
         this.sphere = sphere;
         if (!plane.isOn(sphere.getCenter())) {
             double distance = Math.abs(plane.getPlane().getOffset(sphere.getCenter3D()));
-            double exp = (Math.log10(JoValue.DEFAULT_TOLERANCE) / 2.0);
+            double exp = (Math.log10(JoSValue.DEFAULT_TOLERANCE) / 2.0);
             double tolerance = Math.pow(10.0, exp);
             System.out.println("---");
             System.out.println("Center point of the circle is not on the plane in the default tolerance!");
             System.out.println("Center point: " + sphere.getCenter());
             System.out.println("Plane: " + plane);
             System.out.println("Distance: " + distance);
-            System.out.println("Default tolerance: " + JoValue.DEFAULT_TOLERANCE);
+            System.out.println("Default tolerance: " + JoSValue.DEFAULT_TOLERANCE);
             System.out.println("New tolerance: " + tolerance);
             if (distance > tolerance) {
                 System.out.println("Circle is not on the plane in the new tolerance!");
@@ -43,7 +40,7 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable,
         this.plane = plane;
     }
 
-    public JoSphere getSphere() {
+    public JoSSphere getSphere() {
         return sphere;
     }
 
@@ -55,7 +52,7 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable,
         return sphere.getCenter3D();
     }
 
-    public JoValue getRadius() {
+    public JoSValue getRadius() {
         return sphere.getRadius();
     }
 
@@ -81,17 +78,7 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable,
     }
 
     @Override
-    public RegenerativeLink getRegenerativeLink() {
-        return null;
-    }
-
-    @Override
-    public void setRegenerativeLink(RegenerativeLink newRegenerativeLink) {
-
-    }
-
-    @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return new LinkedHashSet<>(sphere.getValues());
     }
 
@@ -102,8 +89,8 @@ public class JoCircle extends FeatureBase implements SketchGeometry, Selectable,
 
     @Override
     public List<JoPoint> getIntersection(SketchGeometry geometry) {
-        if (geometry instanceof JoLine) {
-            JoLine line = (JoLine) geometry;
+        if (geometry instanceof JoSLine) {
+            JoSLine line = (JoSLine) geometry;
             return line.getIntersection(this);
         }
         // TODO calculate intersection with arc, circle

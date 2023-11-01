@@ -1,19 +1,19 @@
 package eu.bopet.jocadv.ie.step.tolerance;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Tolerances extends StepEntityBase {
+public class Tolerances extends StepEntity {
     private Set<Tolerance> tolerances;
 
     public Tolerances(int id, String name, String set) {
         super(id, name);
         tolerances = new LinkedHashSet<>();
-        List<String> toleranceListString = StepEntityBase.getSets(set);
+        List<String> toleranceListString = StepEntity.getSets(set);
         for (String s : toleranceListString) {
             String attributes = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
             if (s.startsWith(StepCode.GEOMETRIC_TOLERANCE_WITH_DATUM_REFERENCE)) {

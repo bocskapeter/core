@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.surface;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.representation.GeometricRepresentationItem;
 import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
@@ -9,13 +9,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Surfaces extends StepEntityBase {
+public class Surfaces extends StepEntity {
     private Set<Surface> surfaces;
 
     public Surfaces(int id, String name, String set) {
         super(id, name);
         surfaces = new LinkedHashSet<>();
-        List<String> surfaceStringList = StepEntityBase.getSets(set);
+        List<String> surfaceStringList = StepEntity.getSets(set);
         for (String s : surfaceStringList) {
             for (String code : StepCode.SURFACES) {
                 if (s.startsWith(code)) {

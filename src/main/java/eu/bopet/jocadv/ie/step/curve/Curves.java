@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.curve;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.representation.GeometricRepresentationItem;
 import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
@@ -9,13 +9,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Curves extends StepEntityBase {
+public class Curves extends StepEntity {
     private Set<Curve> curves;
 
     public Curves(int id, String name, String set) {
         super(id, name);
         curves = new LinkedHashSet<>();
-        List<String> curveStringList = StepEntityBase.getSets(set);
+        List<String> curveStringList = StepEntity.getSets(set);
         for (String s : curveStringList) {
             for (String code : StepCode.CURVES) {
                 if (s.startsWith(code)) {

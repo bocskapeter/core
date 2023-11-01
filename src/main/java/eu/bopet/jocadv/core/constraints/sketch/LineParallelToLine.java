@@ -1,16 +1,16 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.JoValue;
-import eu.bopet.jocadv.core.features.sketch.JoLine;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
+import eu.bopet.jocadv.core.features.sketch.JoSLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LineParallelToLine extends ConstraintBase implements SketchConstraint {
-    private final JoLine line1;
-    private final JoLine line2;
+    private final JoSLine line1;
+    private final JoSLine line2;
 
-    public LineParallelToLine(short status, JoLine line1, JoLine line2) {
+    public LineParallelToLine(short status, JoSLine line1, JoSLine line2) {
         super(status);
         this.line1 = line1;
         this.line2 = line2;
@@ -25,8 +25,8 @@ public class LineParallelToLine extends ConstraintBase implements SketchConstrai
     }
 
     @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
+    public List<JoSValue> getValues() {
+        List<JoSValue> result = new ArrayList<>();
         result.addAll(line1.getValues());
         result.addAll(line2.getValues());
         return result;
@@ -54,7 +54,7 @@ public class LineParallelToLine extends ConstraintBase implements SketchConstrai
     }
 
     @Override
-    public double getDerivative(JoValue joValue) {
+    public double getDerivative(JoSValue joSValue) {
         double x1 = line1.get1stPoint().getVector().getX().get();
         double y1 = line1.get1stPoint().getVector().getY().get();
         double z1 = line1.get1stPoint().getVector().getZ().get();
@@ -70,51 +70,51 @@ public class LineParallelToLine extends ConstraintBase implements SketchConstrai
         double z4 = line2.get2ndPoint().getVector().getZ().get();
 
         //dx1
-        if (joValue == line1.get1stPoint().getVector().getX()) {
+        if (joSValue == line1.get1stPoint().getVector().getX()) {
             return z4 - z3 - y4 + y3;
         }
         //dy1
-        if (joValue == line1.get1stPoint().getVector().getY()) {
+        if (joSValue == line1.get1stPoint().getVector().getY()) {
             return -z4 + z3 + x4 - x3;
         }
         //dz1
-        if (joValue == line1.get1stPoint().getVector().getZ()) {
+        if (joSValue == line1.get1stPoint().getVector().getZ()) {
             return y4 - y3 - x4 + x3;
         }
         //dx2
-        if (joValue == line1.get2ndPoint().getVector().getX()) {
+        if (joSValue == line1.get2ndPoint().getVector().getX()) {
             return -z4 + z3 + y4 - y3;
         }
         //dy2
-        if (joValue == line1.get2ndPoint().getVector().getY()) {
+        if (joSValue == line1.get2ndPoint().getVector().getY()) {
             return z4 - z3 - x4 + x3;
         }
         //dz2
-        if (joValue == line1.get2ndPoint().getVector().getZ()) {
+        if (joSValue == line1.get2ndPoint().getVector().getZ()) {
             return -y4 + y3 + x4 - x3;
         }
         //dx3
-        if (joValue == line2.get1stPoint().getVector().getX()) {
+        if (joSValue == line2.get1stPoint().getVector().getX()) {
             return -z2 + z1 + y2 - y1;
         }
         //dy3
-        if (joValue == line2.get1stPoint().getVector().getY()) {
+        if (joSValue == line2.get1stPoint().getVector().getY()) {
             return -z2 + z1 + x2 - x1;
         }
         //dz3
-        if (joValue == line2.get1stPoint().getVector().getZ()) {
+        if (joSValue == line2.get1stPoint().getVector().getZ()) {
             return y2 - y1 - x2 + x1;
         }
         //dx4
-        if (joValue == line2.get2ndPoint().getVector().getX()) {
+        if (joSValue == line2.get2ndPoint().getVector().getX()) {
             return z2 - z1 + y2 - y1;
         }
         //dy4
-        if (joValue == line2.get2ndPoint().getVector().getY()) {
+        if (joSValue == line2.get2ndPoint().getVector().getY()) {
             return -z2 + z1 + x2 - x1;
         }
         //dz4
-        if (joValue == line2.get2ndPoint().getVector().getZ()) {
+        if (joSValue == line2.get2ndPoint().getVector().getZ()) {
             return y2 - y1 - x2 + x1;
         }
         return 0.0;

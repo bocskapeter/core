@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import eu.bopet.jocadv.ie.step.StepFeature;
 import eu.bopet.jocadv.ie.step.StepLink;
@@ -24,7 +24,7 @@ public class Vector extends UtilIntDouble implements StepLink {
             direction.generateJoFeature(feature);
         }
         JoVector joDirectionVector = (JoVector) feature.getFeatureMap().get(direction);
-        JoVector joVector = new JoVector(JoValue.IMPORTED,
+        JoVector joVector = new JoVector(JoSValue.IMPORTED,
                 joDirectionVector.getVector3D().scalarMultiply(super.get2nd()));
         feature.getFeatureMap().put(this, joVector);
     }

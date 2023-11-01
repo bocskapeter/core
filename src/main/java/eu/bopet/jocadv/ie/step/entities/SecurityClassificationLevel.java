@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class SecurityClassificationLevel extends StepEntityBase {
+public class SecurityClassificationLevel extends StepEntity {
     public SecurityClassificationLevel(int id, String name) {
         super(id, name);
     }

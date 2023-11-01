@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class ApprovalStatus extends StepEntityBase {
+public class ApprovalStatus extends StepEntity {
     public ApprovalStatus(int id, String name) {
         super(id, name);
     }

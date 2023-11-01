@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.features.vector;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
@@ -9,16 +9,16 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.Set;
 
 public class JoVector implements JoFeature {
-    public final static JoVector ZERO = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
-    public static final JoVector I = new JoVector(JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
-    public static final JoVector J = new JoVector(JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
-    public static final JoVector K = new JoVector(JoValue.ZERO, JoValue.ZERO, JoValue.ONE, null);
-    private final JoValue x;
-    private final JoValue y;
-    private final JoValue z;
+    public final static JoVector ZERO = new JoVector(JoSValue.ZERO, JoSValue.ZERO, JoSValue.ZERO, null);
+    public static final JoVector I = new JoVector(JoSValue.ONE, JoSValue.ZERO, JoSValue.ZERO, null);
+    public static final JoVector J = new JoVector(JoSValue.ZERO, JoSValue.ONE, JoSValue.ZERO, null);
+    public static final JoVector K = new JoVector(JoSValue.ZERO, JoSValue.ZERO, JoSValue.ONE, null);
+    private final JoSValue x;
+    private final JoSValue y;
+    private final JoSValue z;
     private RegenerativeLink regenerativeLink;
 
-    public JoVector(JoValue x, JoValue y, JoValue z, RegenerativeLink regenerativeLink) {
+    public JoVector(JoSValue x, JoSValue y, JoSValue z, RegenerativeLink regenerativeLink) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -26,9 +26,9 @@ public class JoVector implements JoFeature {
     }
 
     public JoVector(short status, Vector3D vector3D) {
-        JoValue x = new JoValue(status, vector3D.getX());
-        JoValue y = new JoValue(status, vector3D.getY());
-        JoValue z = new JoValue(status, vector3D.getZ());
+        JoSValue x = new JoSValue(status, vector3D.getX());
+        JoSValue y = new JoSValue(status, vector3D.getY());
+        JoSValue z = new JoSValue(status, vector3D.getZ());
         this.x = x;
         this.y = y;
         this.z = z;
@@ -38,15 +38,15 @@ public class JoVector implements JoFeature {
         this(status, point1.getVector3D().subtract(point2.getVector3D()));
     }
 
-    public JoValue getX() {
+    public JoSValue getX() {
         return x;
     }
 
-    public JoValue getY() {
+    public JoSValue getY() {
         return y;
     }
 
-    public JoValue getZ() {
+    public JoSValue getZ() {
         return z;
     }
 
@@ -82,8 +82,8 @@ public class JoVector implements JoFeature {
         }
     }
 
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = JoFeature.super.getValues();
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = JoFeature.super.getValues();
         result.add(x);
         result.add(y);
         result.add(z);

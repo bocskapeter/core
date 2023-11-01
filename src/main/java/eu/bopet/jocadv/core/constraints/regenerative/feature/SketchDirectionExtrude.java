@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.feature;
 
 import eu.bopet.jocadv.core.constraints.regenerative.plane.OffsetPlane;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.protrusion.JoExtrude;
 import eu.bopet.jocadv.core.features.sketch.JoSketch;
@@ -13,15 +13,15 @@ import java.util.Set;
 public class SketchDirectionExtrude implements RegenerativeLink {
     private JoSketch referenceSketch;
     private JoVector referenceDirection;
-    private JoValue referenceStart;
-    private JoValue referenceEnd;
+    private JoSValue referenceStart;
+    private JoSValue referenceEnd;
 
     private OffsetPlane statPlane;
     private OffsetPlane endPlane;
 
     private JoExtrude resultExtrude;
 
-    public SketchDirectionExtrude(JoSketch referenceSketch, JoVector referenceDirection, JoValue referenceStart, JoValue referenceEnd) {
+    public SketchDirectionExtrude(JoSketch referenceSketch, JoVector referenceDirection, JoSValue referenceStart, JoSValue referenceEnd) {
         this.referenceSketch = referenceSketch;
         this.referenceDirection = referenceDirection;
         this.referenceStart = referenceStart;
@@ -44,7 +44,7 @@ public class SketchDirectionExtrude implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public interface SketchConstraint {
     /**
      * @return list of values - xn
      */
-    List<JoValue> getValues();
+    List<JoSValue> getValues();
 
     /**
      * @return function value - f(xn)
@@ -32,16 +32,16 @@ public interface SketchConstraint {
     /**
      * @return partial derivative - ∂f(xn)/∂xn - default is numerical derivative
      */
-    default double getDerivative(JoValue joValue) {
-        if (getValues().contains(joValue)) {
-            double originalValue = joValue.get();
-            joValue.set(originalValue + JoValue.NUMERICAL_DERIVATIVE_RESOLUTION);
+    default double getDerivative(JoSValue joSValue) {
+        if (getValues().contains(joSValue)) {
+            double originalValue = joSValue.get();
+            joSValue.set(originalValue + JoSValue.NUMERICAL_DERIVATIVE_RESOLUTION);
             double functionValuePositiveDirection = getFunctionValue();
-            joValue.set(originalValue - JoValue.NUMERICAL_DERIVATIVE_RESOLUTION);
+            joSValue.set(originalValue - JoSValue.NUMERICAL_DERIVATIVE_RESOLUTION);
             double functionValueNegativeDirection = getFunctionValue();
-            joValue.set(originalValue);
+            joSValue.set(originalValue);
             return (functionValuePositiveDirection - functionValueNegativeDirection)
-                    / (2.0 * JoValue.NUMERICAL_DERIVATIVE_RESOLUTION);
+                    / (2.0 * JoSValue.NUMERICAL_DERIVATIVE_RESOLUTION);
         }
         return 0.0;
     }

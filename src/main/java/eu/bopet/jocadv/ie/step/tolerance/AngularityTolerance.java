@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step.tolerance;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class AngularityTolerance extends StepEntityBase {
+public class AngularityTolerance extends StepEntity {
     private String description;
     private int magnitude;
     private int toleranceShapeAspect;

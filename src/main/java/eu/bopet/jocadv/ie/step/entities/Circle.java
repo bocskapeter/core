@@ -1,13 +1,14 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.basic.JoCircle;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
-import eu.bopet.jocadv.core.features.sketch.JoCircle;
-import eu.bopet.jocadv.core.features.sketch.JoSphere;
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.StepFeature;
 import eu.bopet.jocadv.ie.step.StepLink;
 import eu.bopet.jocadv.ie.step.util.UtilIntDouble;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 public class Circle extends UtilIntDouble implements StepLink {
 
@@ -22,22 +23,21 @@ public class Circle extends UtilIntDouble implements StepLink {
 
     @Override
     public void generateJoFeature(StepFeature feature) throws Exception {
-        StepEntityBase stepEntityBase = feature.getStepEntityByID(super.get1st());
-        if (stepEntityBase instanceof Axis2Placement3D) {
+        StepEntity stepEntity = feature.getStepEntityByID(super.get1st());
+        if (stepEntity instanceof Axis2Placement3D) {
             Axis2Placement3D placement3D = (Axis2Placement3D) feature.getStepEntityByID(super.get1st());
             double r = this.get2nd();
             if (!feature.getFeatureMap().containsKey(placement3D)) {
                 placement3D.generateJoFeature(feature);
             }
             JoCoSys joCoSys = (JoCoSys) feature.getFeatureMap().get(placement3D);
-            JoValue radius = new JoValue(JoValue.IMPORTED, r);
-            JoSphere joSphere = new JoSphere(joCoSys.getOrigin(), radius);
-            JoCircle joCircle = new JoCircle(joSphere, joCoSys.getXy());
-            joCircle.setIntID(super.getId());
-            joCircle.setName(super.getName());
+            Vector3D radius = joCoSys.getX().getDirection().getVector3D().scalarMultiply(super.get2nd());
+            Vector3D vector3D = joCoSys.getOrigin().getVector3D().add(radius);
+            JoPoint joPoint = new JoPoint(JoSValue.IMPORTED, vector3D);
+            JoCircle joCircle = new JoCircle(joCoSys.getOrigin(), joPoint, joCoSys.getXy());
             feature.getFeatureMap().put(this, joCircle);
         }
-        if (stepEntityBase instanceof Axis2Placement2D) {
+        if (stepEntity instanceof Axis2Placement2D) {
             // TODO
         }
     }

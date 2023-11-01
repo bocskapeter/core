@@ -1,18 +1,18 @@
 package eu.bopet.jocadv.ie.step.characterizedObject;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterizedObjects extends StepEntityBase {
+public class CharacterizedObjects extends StepEntity {
     private List<CharacterObject> objects;
 
     public CharacterizedObjects(int id, String name, String set) {
         super(id, name);
         objects = new ArrayList<>();
-        List<String> objectStringList = StepEntityBase.getSets(set);
+        List<String> objectStringList = StepEntity.getSets(set);
         for (String s : objectStringList) {
             String attribute = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
             if (s.startsWith(StepCode.CHARACTERIZED_OBJECT)) {

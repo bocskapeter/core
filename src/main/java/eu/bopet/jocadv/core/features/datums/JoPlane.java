@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.datums;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
@@ -13,18 +13,18 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Set;
 
-public class JoPlane extends FeatureBase implements Selectable, JoFeature {
-    public final static JoPlane XY = new JoPlane("XY", JoValue.ZERO, JoValue.ZERO, JoValue.ONE, JoValue.ZERO, null);
-    public final static JoPlane XZ = new JoPlane("XZ", JoValue.ZERO, JoValue.ONE, JoValue.ZERO, JoValue.ZERO, null);
-    public final static JoPlane YZ = new JoPlane("YZ", JoValue.ONE, JoValue.ZERO, JoValue.ZERO, JoValue.ZERO, null);
-    private final JoValue x;
-    private final JoValue y;
-    private final JoValue z;
-    private final JoValue d;
+public class JoPlane extends JoBaseFeature implements Selectable, JoFeature {
+    public final static JoPlane XY = new JoPlane("XY", JoSValue.ZERO, JoSValue.ZERO, JoSValue.ONE, JoSValue.ZERO, null);
+    public final static JoPlane XZ = new JoPlane("XZ", JoSValue.ZERO, JoSValue.ONE, JoSValue.ZERO, JoSValue.ZERO, null);
+    public final static JoPlane YZ = new JoPlane("YZ", JoSValue.ONE, JoSValue.ZERO, JoSValue.ZERO, JoSValue.ZERO, null);
+    private final JoSValue x;
+    private final JoSValue y;
+    private final JoSValue z;
+    private final JoSValue d;
     private final JoVector normal;
     private RegenerativeLink regenerativeLink;
 
-    public JoPlane(JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
+    public JoPlane(JoSValue x, JoSValue y, JoSValue z, JoSValue d, RegenerativeLink regenerativeLink) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -34,15 +34,15 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
     }
 
     public JoPlane(double x, double y, double z, double d) {
-        this.x = new JoValue(x);
-        this.y = new JoValue(y);
-        this.z = new JoValue(z);
-        this.d = new JoValue(d);
+        this.x = new JoSValue(x);
+        this.y = new JoSValue(y);
+        this.z = new JoSValue(z);
+        this.d = new JoSValue(d);
         this.regenerativeLink = null;
         normal = new JoVector(this.x, this.y, this.z, null);
     }
 
-    public JoPlane(String name, JoValue x, JoValue y, JoValue z, JoValue d, RegenerativeLink regenerativeLink) {
+    public JoPlane(String name, JoSValue x, JoSValue y, JoSValue z, JoSValue d, RegenerativeLink regenerativeLink) {
         super();
         super.setName(name);
         this.x = x;
@@ -58,26 +58,26 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
         this.y = normal.getY();
         this.z = normal.getZ();
         this.normal = normal;
-        Plane planeOrigin = new Plane(Vector3D.ZERO, normal.getVector3D(), JoValue.DEFAULT_TOLERANCE);
-        Plane plane = new Plane(point.getVector3D(), normal.getVector3D(), JoValue.DEFAULT_TOLERANCE);
+        Plane planeOrigin = new Plane(Vector3D.ZERO, normal.getVector3D(), JoSValue.DEFAULT_TOLERANCE);
+        Plane plane = new Plane(point.getVector3D(), normal.getVector3D(), JoSValue.DEFAULT_TOLERANCE);
         double d = planeOrigin.getOffset(plane);
-        this.d = new JoValue(status, d);
+        this.d = new JoSValue(status, d);
         this.regenerativeLink = null;
     }
 
-    public JoValue getX() {
+    public JoSValue getX() {
         return x;
     }
 
-    public JoValue getY() {
+    public JoSValue getY() {
         return y;
     }
 
-    public JoValue getZ() {
+    public JoSValue getZ() {
         return z;
     }
 
-    public JoValue getD() {
+    public JoSValue getD() {
         return d;
     }
 
@@ -117,8 +117,8 @@ public class JoPlane extends FeatureBase implements Selectable, JoFeature {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = JoFeature.super.getValues();
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = JoFeature.super.getValues();
         result.add(x);
         result.add(y);
         result.add(z);

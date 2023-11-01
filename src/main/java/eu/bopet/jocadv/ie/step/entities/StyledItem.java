@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class StyledItem extends StepEntityBase {
+public class StyledItem extends StepEntity {
     private Set<Integer> styles;
     private int item;
 

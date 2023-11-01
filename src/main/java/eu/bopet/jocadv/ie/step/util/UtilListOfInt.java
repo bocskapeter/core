@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step.util;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilListOfInt extends StepEntityBase {
+public class UtilListOfInt extends StepEntity {
     private List<Integer> list;
 
     public UtilListOfInt(int id, String name, String attribute) {
@@ -19,6 +19,10 @@ public class UtilListOfInt extends StepEntityBase {
             int anId = Integer.parseInt(value.replace("#", ""));
             list.add(anId);
         }
+    }
+
+    public List<Integer> getList() {
+        return list;
     }
 
     @Override

@@ -1,13 +1,13 @@
 package eu.bopet.jocadv.ie.step.surface;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.curve.KnotType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class BSplineSurfaceWithKnots extends StepEntityBase implements Surface {
+public class BSplineSurfaceWithKnots extends StepEntity implements Surface {
     private BSplineSurface bSplineSurface;
     private List<Integer> uMultiplicities;
     private List<Integer> vMultiplicities;

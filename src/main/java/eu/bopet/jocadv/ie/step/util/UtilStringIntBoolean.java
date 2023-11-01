@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.util;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class UtilStringIntBoolean extends StepEntityBase {
+public class UtilStringIntBoolean extends StepEntity {
     private String description;
     private int shape;
     private boolean productDefinitional;

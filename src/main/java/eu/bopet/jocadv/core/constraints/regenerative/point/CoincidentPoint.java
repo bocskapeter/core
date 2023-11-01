@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.vector.JoVector;
@@ -16,9 +16,9 @@ public class CoincidentPoint implements RegenerativeLink {
     public CoincidentPoint(JoPoint referencePoint) {
         this.referencePoint = referencePoint;
         this.resultPoint = new JoPoint(new JoVector(
-                new JoValue(JoValue.USER, referencePoint.getVector().getX().get()),
-                new JoValue(JoValue.USER, referencePoint.getVector().getY().get()),
-                new JoValue(JoValue.USER, referencePoint.getVector().getZ().get()), null),
+                new JoSValue(JoSValue.USER, referencePoint.getVector().getX().get()),
+                new JoSValue(JoSValue.USER, referencePoint.getVector().getY().get()),
+                new JoSValue(JoSValue.USER, referencePoint.getVector().getZ().get()), null),
                 this);
     }
 
@@ -47,7 +47,7 @@ public class CoincidentPoint implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return new HashSet<>(referencePoint.getValues());
     }
 

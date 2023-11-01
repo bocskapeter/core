@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step.util;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class UtilSetOFIntIntBoolean extends StepEntityBase {
+public class UtilSetOFIntIntBoolean extends StepEntity {
     private Set<Integer> set;
     private int id;
     private boolean aBoolean;

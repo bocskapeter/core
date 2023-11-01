@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.tolerance;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class GeometricTolerance extends StepEntityBase {
+public class GeometricTolerance extends StepEntity {
     private String description;
     private int magnitude;
     private int toleranceShapeAspect;

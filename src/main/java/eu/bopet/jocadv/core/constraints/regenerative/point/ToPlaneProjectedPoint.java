@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -22,9 +22,9 @@ public class ToPlaneProjectedPoint implements RegenerativeLink {
         Vector3D projectedPoint = (Vector3D)
                 referencePlane.getPlane().project(referencePoint.getVector().getVector3D());
         this.resultPoint = new JoPoint(new JoVector(
-                new JoValue(JoValue.USER, projectedPoint.getX()),
-                new JoValue(JoValue.USER, projectedPoint.getY()),
-                new JoValue(JoValue.USER, projectedPoint.getZ()), null),
+                new JoSValue(JoSValue.USER, projectedPoint.getX()),
+                new JoSValue(JoSValue.USER, projectedPoint.getY()),
+                new JoSValue(JoSValue.USER, projectedPoint.getZ()), null),
                 this);
     }
 
@@ -62,8 +62,8 @@ public class ToPlaneProjectedPoint implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referencePlane.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referencePlane.getValues());
         result.addAll(referencePoint.getValues());
         return result;
     }

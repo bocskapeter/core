@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
 import eu.bopet.jocadv.core.constraints.regenerative.exception.NotOrthogonalException;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.datums.JoAxis;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -20,24 +20,24 @@ public class AxisAngleToPlanePlane implements RegenerativeLink {
     private final JoPlane resultPlane;
     private JoAxis referenceAxis;
     private JoPlane referencePlane;
-    private JoValue referenceAngle;
+    private JoSValue referenceAngle;
 
     public AxisAngleToPlanePlane(JoAxis referenceAxis,
-                                 JoPlane referencePlane, JoValue referenceAngle) throws Exception {
+                                 JoPlane referencePlane, JoSValue referenceAngle) throws Exception {
         this.referenceAxis = referenceAxis;
         this.referencePlane = referencePlane;
         this.referenceAngle = referenceAngle;
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
         Vector3D vector = referencePlane.getNormal().getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
-        if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
+        if (crossProductLength < JoSValue.DEFAULT_TOLERANCE) {
             throw new NotOrthogonalException(referenceAxis, referencePlane);
         }
         Rotation rotation = new Rotation(rotationAxis, this.referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
-        JoValue x = new JoValue(JoValue.USER, newVector.getX());
-        JoValue y = new JoValue(JoValue.USER, newVector.getY());
-        JoValue z = new JoValue(JoValue.USER, newVector.getZ());
+        JoSValue x = new JoSValue(JoSValue.USER, newVector.getX());
+        JoSValue y = new JoSValue(JoSValue.USER, newVector.getY());
+        JoSValue z = new JoSValue(JoSValue.USER, newVector.getZ());
         normal = new JoVector(x, y, z, null);
         pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(), normal);
         JoPlane result = (JoPlane) pointNormalPlane.getResult();
@@ -46,21 +46,21 @@ public class AxisAngleToPlanePlane implements RegenerativeLink {
 
     public AxisAngleToPlanePlane(JoAxis referenceAxis,
                                  JoPlane referencePlane,
-                                 JoValue referenceAngle, JoPlane resultPlane) throws Exception {
+                                 JoSValue referenceAngle, JoPlane resultPlane) throws Exception {
         this.referenceAxis = referenceAxis;
         this.referencePlane = referencePlane;
         this.referenceAngle = referenceAngle;
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
         Vector3D vector = referencePlane.getNormal().getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
-        if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
+        if (crossProductLength < JoSValue.DEFAULT_TOLERANCE) {
             throw new NotOrthogonalException(referenceAxis, referencePlane);
         }
         Rotation rotation = new Rotation(rotationAxis, referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
         Vector3D newVector = rotation.applyTo(vector);
-        JoValue x = new JoValue(JoValue.USER, newVector.getX());
-        JoValue y = new JoValue(JoValue.USER, newVector.getY());
-        JoValue z = new JoValue(JoValue.USER, newVector.getZ());
+        JoSValue x = new JoSValue(JoSValue.USER, newVector.getX());
+        JoSValue y = new JoSValue(JoSValue.USER, newVector.getY());
+        JoSValue z = new JoSValue(JoSValue.USER, newVector.getZ());
         normal = new JoVector(x, y, z, null);
         pointNormalPlane = new PointNormalPlane(referenceAxis.getPoint(), normal);
         this.resultPlane = resultPlane;
@@ -77,7 +77,7 @@ public class AxisAngleToPlanePlane implements RegenerativeLink {
         regenerate();
     }
 
-    public void setReferenceAngle(JoValue referenceAngle) throws Exception {
+    public void setReferenceAngle(JoSValue referenceAngle) throws Exception {
         this.referenceAngle = referenceAngle;
         regenerate();
     }
@@ -89,7 +89,7 @@ public class AxisAngleToPlanePlane implements RegenerativeLink {
         Vector3D rotationAxis = referenceAxis.getDirection().getVector3D();
         Vector3D vector = referencePlane.getNormal().getVector3D();
         double crossProductLength = rotationAxis.crossProduct(vector).getNormSq();
-        if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
+        if (crossProductLength < JoSValue.DEFAULT_TOLERANCE) {
             throw new NotOrthogonalException(referenceAxis, referencePlane);
         }
         Rotation rotation = new Rotation(rotationAxis, referenceAngle.get(), RotationConvention.VECTOR_OPERATOR);
@@ -106,8 +106,8 @@ public class AxisAngleToPlanePlane implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referenceAxis.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referenceAxis.getValues());
         result.addAll(referencePlane.getValues());
         result.add(referenceAngle);
         return result;

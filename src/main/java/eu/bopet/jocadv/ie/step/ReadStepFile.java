@@ -285,7 +285,7 @@ public class ReadStepFile {
     }
 
     private static void processDataSection(StepFeature stepFeature, String data) throws StepProcessingException {
-        List<StepEntityBase> result = stepFeature.getStepEntities();
+        List<StepEntity> result = stepFeature.getStepEntities();
         String[] commands = data.split(";");
         String errorLine = "";
         try {

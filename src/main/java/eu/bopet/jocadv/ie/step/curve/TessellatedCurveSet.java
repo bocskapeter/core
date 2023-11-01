@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.ie.step.curve;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class TessellatedCurveSet extends StepEntityBase {
+public class TessellatedCurveSet extends StepEntity {
     private final int coordinates;
     private final List<List<Integer>> strips;
 

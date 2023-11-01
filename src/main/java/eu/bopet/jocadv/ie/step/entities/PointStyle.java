@@ -1,13 +1,13 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.measure.PositiveLengthMeasure;
 import eu.bopet.jocadv.ie.step.measure.SelectedSize;
 import eu.bopet.jocadv.ie.step.measure.SizeSelect;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
-public class PointStyle extends StepEntityBase {
+public class PointStyle extends StepEntity {
     private int markerId;
     private MarkerType markerType;
     private SizeSelect sizeSelect;

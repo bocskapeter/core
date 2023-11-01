@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.util;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class UtilIntIntIntBoolean extends StepEntityBase {
+public class UtilIntIntIntBoolean extends StepEntity {
     private int id1;
     private int id2;
     private int id3;
@@ -19,6 +19,22 @@ public class UtilIntIntIntBoolean extends StepEntityBase {
         else id2 = Integer.parseInt(id2String);
         id3 = Integer.parseInt(values[2].replace("#", ""));
         aBoolean = values[3].contains("T");
+    }
+
+    public int getId1() {
+        return id1;
+    }
+
+    public int getId2() {
+        return id2;
+    }
+
+    public int getId3() {
+        return id3;
+    }
+
+    public boolean isaBoolean() {
+        return aBoolean;
     }
 
     @Override

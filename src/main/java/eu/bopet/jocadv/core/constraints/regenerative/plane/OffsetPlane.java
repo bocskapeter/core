@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.plane;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
 
@@ -9,19 +9,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class OffsetPlane implements RegenerativeLink {
-    private final JoValue offsetValue;
+    private final JoSValue offsetValue;
     private final JoPlane resultPlane;
     private JoPlane referencePlane;
 
 
-    public OffsetPlane(JoPlane referencePlane, JoValue offsetValue) {
+    public OffsetPlane(JoPlane referencePlane, JoSValue offsetValue) {
         this.referencePlane = referencePlane;
         this.offsetValue = offsetValue;
         this.resultPlane = new JoPlane(referencePlane.getX(), referencePlane.getY(), referencePlane.getZ(),
-                new JoValue(JoValue.USER, referencePlane.getD().get() + offsetValue.get()), this);
+                new JoSValue(JoSValue.USER, referencePlane.getD().get() + offsetValue.get()), this);
     }
 
-    public OffsetPlane(JoPlane referencePlane, JoValue offsetValue, JoPlane resultPlane) throws Exception {
+    public OffsetPlane(JoPlane referencePlane, JoSValue offsetValue, JoPlane resultPlane) throws Exception {
         this.referencePlane = referencePlane;
         this.offsetValue = offsetValue;
         this.resultPlane = resultPlane;
@@ -48,8 +48,8 @@ public class OffsetPlane implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referencePlane.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referencePlane.getValues());
         result.add(offsetValue);
         return result;
     }

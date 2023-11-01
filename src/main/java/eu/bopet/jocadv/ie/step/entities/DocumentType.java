@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class DocumentType extends StepEntityBase {
+public class DocumentType extends StepEntity {
     public DocumentType(int id, String name) {
         super(id, name);
     }

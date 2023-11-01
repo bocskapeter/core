@@ -4,9 +4,8 @@ import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureEx
 import eu.bopet.jocadv.core.constraints.sketch.PointToPlaneDistance;
 import eu.bopet.jocadv.core.constraints.sketch.PointToPointDistance;
 import eu.bopet.jocadv.core.constraints.sketch.SketchConstraint;
-import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -25,7 +24,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink {
+public class JoSketch extends JoBaseFeature implements JoFeature, RegenerativeLink {
 
     private static final int MAX_ITERATIONS = 31;
 
@@ -36,8 +35,8 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     private final Set<SketchConstraint> canBeRemoved;
     private final Set<JoPoint> points;
     private final JoCoSys coSys;
-    private final Set<JoValue> valueList;
-    private final Set<JoValue> variables;
+    private final Set<JoSValue> valueList;
+    private final Set<JoSValue> variables;
     private RegenerativeLink regenerativeLink;
     private int difference;
     private SketchConstraint lastConstraint;
@@ -85,8 +84,8 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     public void edit() {
         if (edit) return;
         for (SketchGeometry geometry : geometries) {
-            for (JoValue value : geometry.getValues()) {
-                value.setStatus(JoValue.VARIABLE);
+            for (JoSValue value : geometry.getValues()) {
+                value.setStatus(JoSValue.VARIABLE);
             }
         }
         edit = true;
@@ -95,8 +94,8 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     public void close() {
         if (edit) {
             for (SketchGeometry geometry : geometries) {
-                for (JoValue value : geometry.getValues()) {
-                    value.setStatus(JoValue.FIX);
+                for (JoSValue value : geometry.getValues()) {
+                    value.setStatus(JoSValue.FIX);
                 }
             }
         }
@@ -117,8 +116,8 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
 
         }
         geometries.add(newGeometry);
-        for (JoValue value : newGeometry.getValues()) {
-            value.setStatus(JoValue.VARIABLE);
+        for (JoSValue value : newGeometry.getValues()) {
+            value.setStatus(JoSValue.VARIABLE);
         }
         if (newGeometry instanceof JoPoint) {
             JoPoint point = (JoPoint) newGeometry;
@@ -127,18 +126,18 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
             PointToPlaneDistance pointToPlaneDistance = new PointToPlaneDistance(
                     coSys.getXy(),
                     point,
-                    new JoValue(JoValue.CONSTANT, 0.0),
+                    new JoSValue(JoSValue.CONSTANT, 0.0),
                     SketchConstraint.SYSTEM);
             addConstraint(pointToPlaneDistance);
             // X
-            JoValue distanceX = new JoValue(JoValue.AUTO, 0.0);
+            JoSValue distanceX = new JoSValue(JoSValue.AUTO, 0.0);
             PointToPlaneDistance pointToPlaneDistanceYZ = new PointToPlaneDistance(
                     this.coSys.getYz(), point, distanceX, SketchConstraint.AUTO_CONSTRAINT);
             double realDistanceX = pointToPlaneDistanceYZ.getFunctionValue();
             distanceX.set(realDistanceX);
             addConstraint(pointToPlaneDistanceYZ);
             // Y
-            JoValue distanceY = new JoValue(JoValue.AUTO, 0.0);
+            JoSValue distanceY = new JoSValue(JoSValue.AUTO, 0.0);
             PointToPlaneDistance pointToPlaneDistanceXZ = new PointToPlaneDistance(
                     this.coSys.getXz(), point, distanceY, SketchConstraint.AUTO_CONSTRAINT);
             double realDistanceY = pointToPlaneDistanceXZ.getFunctionValue();
@@ -150,8 +149,8 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
             addGeometry(point);
             points.add(point);
         }
-        if (newGeometry instanceof JoArc) {
-            JoArc arc = (JoArc) newGeometry;
+        if (newGeometry instanceof JoSArc) {
+            JoSArc arc = (JoSArc) newGeometry;
             JoPoint point1 = arc.get1stPoint();
             JoPoint point2 = arc.get2ndPoint();
             JoPoint center = arc.getCircle().getCenter();
@@ -184,7 +183,7 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
                         if (referencePlane != coSys.getXy()) {
                             double crossProductLength = this.coSys.getXy().getNormal().getVector3D().crossProduct(
                                     referencePlane.getNormal().getVector3D()).getNormSq();
-                            if (crossProductLength < JoValue.DEFAULT_TOLERANCE) {
+                            if (crossProductLength < JoSValue.DEFAULT_TOLERANCE) {
                                 throw new ParallelFeatureException(this.coSys.getXy(), referencePlane);
                             }
                         }
@@ -225,14 +224,14 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     }
 
     public void store() {
-        for (JoValue value : valueList) {
+        for (JoSValue value : valueList) {
             value.store();
         }
         System.out.println("Valid solution stored in values.");
     }
 
     private void restore() {
-        for (JoValue value : valueList) {
+        for (JoSValue value : valueList) {
             value.restore();
         }
         System.out.println("Values have been restored.");
@@ -293,8 +292,8 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
             valueList.addAll(constraint.getValues());
         }
         variables.clear();
-        for (JoValue value : valueList) {
-            if (!variables.contains(value) && value.getStatus() == JoValue.VARIABLE) {
+        for (JoSValue value : valueList) {
+            if (!variables.contains(value) && value.getStatus() == JoSValue.VARIABLE) {
                 variables.add(value);
             }
         }
@@ -303,9 +302,9 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
         return constraints.size() - variables.size();
     }
 
-    private boolean solveEquations(Set<SketchConstraint> co, Set<JoValue> va) {
+    private boolean solveEquations(Set<SketchConstraint> co, Set<JoSValue> va) {
         List<SketchConstraint> c = new ArrayList<>(co);
-        List<JoValue> v = new ArrayList<>(va);
+        List<JoSValue> v = new ArrayList<>(va);
         // Newton's method to solve systems of equations
         double[] fx = new double[c.size()];
         double[][] dfx = new double[c.size()][c.size()];
@@ -327,7 +326,7 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
             solution = solver.solve(constants);
             boolean isSolved = true;
             for (int i = 0; i < solution.getDimension(); i++) {
-                if (Math.abs(solution.getEntry(i)) > JoValue.DEFAULT_TOLERANCE) {
+                if (Math.abs(solution.getEntry(i)) > JoSValue.DEFAULT_TOLERANCE) {
                     isSolved = false;
                 }
             }
@@ -344,7 +343,7 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
 
     private boolean doubleCheck(List<SketchConstraint> c) {
         for (SketchConstraint constraint : c) {
-            if (Math.abs(constraint.getFunctionValue()) > JoValue.DEFAULT_TOLERANCE) {
+            if (Math.abs(constraint.getFunctionValue()) > JoSValue.DEFAULT_TOLERANCE) {
                 System.out.println("Constrain with unsatisfied function!");
                 System.out.println("Value: " + constraint.getFunctionValue());
                 System.out.println("Constrain: " + constraint);
@@ -379,7 +378,7 @@ public class JoSketch extends FeatureBase implements JoFeature, RegenerativeLink
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return valueList;
     }
 

@@ -1,11 +1,11 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-public class TessellatedFace extends StepEntityBase {
+public class TessellatedFace extends StepEntity {
     private int coordinates;
     private int pnmax;
     private double[][] normals;

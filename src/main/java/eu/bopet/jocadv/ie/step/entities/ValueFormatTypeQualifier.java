@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class ValueFormatTypeQualifier extends StepEntityBase {
+public class ValueFormatTypeQualifier extends StepEntity {
     public ValueFormatTypeQualifier(int id, String name) {
         super(id, name);
     }

@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.core.features.basic;
 
-import eu.bopet.jocadv.core.features.FeatureBase;
+import eu.bopet.jocadv.core.features.JoBaseFeature;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.Selectable;
 import eu.bopet.jocadv.core.features.sketch.SketchGeometry;
@@ -14,7 +14,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, JoFeature {
+public class JoPoint extends JoBaseFeature implements SketchGeometry, Selectable, JoFeature {
     public final static JoPoint ORIGIN = new JoPoint("Origin", JoVector.ZERO, null);
     private final JoVector vector;
     private RegenerativeLink regenerativeLink;
@@ -36,7 +36,7 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     }
 
     public JoPoint(Vector3D vector3D) {
-        this.vector = new JoVector(JoValue.AUTO, vector3D);
+        this.vector = new JoVector(JoSValue.AUTO, vector3D);
     }
 
     public JoVector getVector() {
@@ -57,8 +57,8 @@ public class JoPoint extends FeatureBase implements SketchGeometry, Selectable, 
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = JoFeature.super.getValues();
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = JoFeature.super.getValues();
         result.addAll(vector.getValues());
         return result;
     }

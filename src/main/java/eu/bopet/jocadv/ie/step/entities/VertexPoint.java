@@ -1,5 +1,6 @@
 package eu.bopet.jocadv.ie.step.entities;
 
+import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.ie.step.StepFeature;
 import eu.bopet.jocadv.ie.step.StepLink;
 import eu.bopet.jocadv.ie.step.util.UtilInt;
@@ -17,11 +18,12 @@ public class VertexPoint extends UtilInt implements StepLink {
 
     @Override
     public void generateJoFeature(StepFeature feature) throws Exception {
-        CartesianPoint point = (CartesianPoint) feature.getStepEntityByID(super.getIntId());
-        if (!feature.getFeatureMap().containsKey(point)) {
-            point.generateJoFeature(feature);
+        CartesianPoint cartesianPoint = (CartesianPoint) feature.getStepEntityByID(super.getIntId());
+        if (!feature.getFeatureMap().containsKey(cartesianPoint)) {
+            cartesianPoint.generateJoFeature(feature);
         }
-        feature.getFeatureMap().put(this, feature.getFeatureMap().get(point));
+        JoPoint point = (JoPoint) feature.getFeatureMap().get(cartesianPoint);
+        feature.getFeatureMap().put(this, point);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class ProductRelatedProductCategory extends StepEntityBase {
+public class ProductRelatedProductCategory extends StepEntity {
     private ProductCategory productCategory;
     private Set<Integer> products;
 

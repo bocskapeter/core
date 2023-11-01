@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class CompositeCurveSegment extends StepEntityBase {
+public class CompositeCurveSegment extends StepEntity {
     private TransitionCode transition;
     private boolean sameSense;
     private int curve;

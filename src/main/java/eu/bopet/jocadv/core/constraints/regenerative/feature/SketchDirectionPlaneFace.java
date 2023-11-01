@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.feature;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoFace;
 import eu.bopet.jocadv.core.features.datums.JoPlane;
@@ -39,7 +39,7 @@ public class SketchDirectionPlaneFace implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
+    public Set<JoSValue> getValues() {
         return null;
     }
 }

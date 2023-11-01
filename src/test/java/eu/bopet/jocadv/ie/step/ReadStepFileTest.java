@@ -19,11 +19,11 @@ class ReadStepFileTest {
                 System.out.println("-->File: " + f.getName());
                 RegenerativeStep regenerativeStep = new RegenerativeStep(f);
                 StepFeature feature = (StepFeature) regenerativeStep.getResult();
-                List<StepEntityBase> entityList = feature.getStepEntities();
+                List<StepEntity> entityList = feature.getStepEntities();
                 if (!entityList.isEmpty()) {
                     System.out.println("Entities: " + entityList.size());
                 }
-                Map<StepEntityBase, JoFeature> fetrureMap = feature.getFeatureMap();
+                Map<StepEntity, JoFeature> fetrureMap = feature.getFeatureMap();
                 if (!fetrureMap.isEmpty()) {
                     System.out.println("Mapped features: " + fetrureMap.size());
                 }

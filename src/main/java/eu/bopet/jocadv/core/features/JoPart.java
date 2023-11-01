@@ -1,5 +1,7 @@
 package eu.bopet.jocadv.core.features;
 
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -7,7 +9,7 @@ import java.util.UUID;
 public class JoPart {
     private final UUID id;
     private final String name;
-    private double tolerance = JoValue.DEFAULT_TOLERANCE;
+    private double tolerance = JoSValue.DEFAULT_TOLERANCE;
     private final Set<JoFeature> features;
 
     public JoPart(String name) {

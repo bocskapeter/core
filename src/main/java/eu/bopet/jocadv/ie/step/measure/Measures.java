@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.measure;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.entities.MeasureRepresentationItem;
 import eu.bopet.jocadv.ie.step.representation.RepresentationItem;
 import eu.bopet.jocadv.ie.step.util.StepCode;
@@ -9,13 +9,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Measures extends StepEntityBase {
+public class Measures extends StepEntity {
     Set<Measure> measures;
 
     public Measures(int id, String name, String set) {
         super(id, name);
         measures = new LinkedHashSet<>();
-        List<String> measureListString = StepEntityBase.getSets(set);
+        List<String> measureListString = StepEntity.getSets(set);
         for (String s : measureListString) {
             for (String code : StepCode.MEASURES) {
                 if (s.startsWith(code)) {

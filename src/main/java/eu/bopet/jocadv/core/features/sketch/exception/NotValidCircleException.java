@@ -1,13 +1,13 @@
 package eu.bopet.jocadv.core.features.sketch.exception;
 
 import eu.bopet.jocadv.core.features.datums.JoPlane;
-import eu.bopet.jocadv.core.features.sketch.JoSphere;
+import eu.bopet.jocadv.core.features.sketch.JoSSphere;
 
 public class NotValidCircleException extends Exception {
-    private final JoSphere sphere;
+    private final JoSSphere sphere;
     private final JoPlane plane;
 
-    public NotValidCircleException(JoSphere sphere, JoPlane plane) {
+    public NotValidCircleException(JoSSphere sphere, JoPlane plane) {
         this.sphere = sphere;
         this.plane = plane;
     }

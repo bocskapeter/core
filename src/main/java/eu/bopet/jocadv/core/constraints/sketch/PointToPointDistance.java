@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.core.constraints.sketch;
 
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import java.util.List;
 public class PointToPointDistance extends ConstraintBase implements SketchConstraint {
     private final JoPoint point1;
     private final JoPoint point2;
-    private final JoValue distance;
+    private final JoSValue distance;
 
-    public PointToPointDistance(JoPoint point1, JoPoint point2, JoValue distance, short status) {
+    public PointToPointDistance(JoPoint point1, JoPoint point2, JoSValue distance, short status) {
         super(status);
         this.point1 = point1;
         this.point2 = point2;
@@ -28,8 +28,8 @@ public class PointToPointDistance extends ConstraintBase implements SketchConstr
     }
 
     @Override
-    public List<JoValue> getValues() {
-        List<JoValue> result = new ArrayList<>();
+    public List<JoSValue> getValues() {
+        List<JoSValue> result = new ArrayList<>();
         result.addAll(point1.getValues());
         result.addAll(point2.getValues());
         result.add(distance);
@@ -49,20 +49,20 @@ public class PointToPointDistance extends ConstraintBase implements SketchConstr
     }
 
     @Override
-    public double getDerivative(JoValue joValue) {
-        if (joValue == point1.getVector().getX())
+    public double getDerivative(JoSValue joSValue) {
+        if (joSValue == point1.getVector().getX())
             return -1.0 * (point2.getVector().getX().get() - point1.getVector().getX().get()) / distance();
-        if (joValue == point2.getVector().getX())
+        if (joSValue == point2.getVector().getX())
             return -1.0 * (point1.getVector().getX().get() - point2.getVector().getX().get()) / distance();
-        if (joValue == point1.getVector().getY())
+        if (joSValue == point1.getVector().getY())
             return -1.0 * (point2.getVector().getY().get() - point1.getVector().getY().get()) / distance();
-        if (joValue == point2.getVector().getY())
+        if (joSValue == point2.getVector().getY())
             return -1.0 * (point1.getVector().getY().get() - point2.getVector().getY().get()) / distance();
-        if (joValue == point1.getVector().getZ())
+        if (joSValue == point1.getVector().getZ())
             return -1.0 * (point2.getVector().getZ().get() - point1.getVector().getZ().get()) / distance();
-        if (joValue == point2.getVector().getZ())
+        if (joSValue == point2.getVector().getZ())
             return -1.0 * (point1.getVector().getZ().get() - point2.getVector().getZ().get()) / distance();
-        if (joValue == distance) return -1.0;
+        if (joSValue == distance) return -1.0;
         return 0.0;
     }
 

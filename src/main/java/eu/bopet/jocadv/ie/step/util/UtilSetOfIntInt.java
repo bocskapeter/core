@@ -1,13 +1,13 @@
 package eu.bopet.jocadv.ie.step.util;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
-public class UtilSetOfIntInt extends StepEntityBase {
+public class UtilSetOfIntInt extends StepEntity {
     private final Set<Integer> set;
     private final int id;
 

@@ -1,6 +1,6 @@
 package eu.bopet.jocadv.ie.step.shapeAspect;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 import eu.bopet.jocadv.ie.step.entities.DatumFeature;
 import eu.bopet.jocadv.ie.step.util.StepCode;
 
@@ -8,13 +8,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ShapeAspects extends StepEntityBase {
+public class ShapeAspects extends StepEntity {
     private Set<ShapeAspect> shapeAspects;
 
     public ShapeAspects(int id, String name, String set) {
         super(id, name);
         shapeAspects = new LinkedHashSet<>();
-        List<String> shapeAspectListString = StepEntityBase.getSets(set);
+        List<String> shapeAspectListString = StepEntity.getSets(set);
         for (String s : shapeAspectListString) {
             String attributes = s.substring(s.indexOf("(") + 1, s.lastIndexOf(")"));
             if (s.startsWith(StepCode.COMPOSITE_SHAPE_ASPECT)) {

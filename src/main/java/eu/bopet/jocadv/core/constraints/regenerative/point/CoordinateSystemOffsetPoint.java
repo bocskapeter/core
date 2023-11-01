@@ -1,7 +1,7 @@
 package eu.bopet.jocadv.core.constraints.regenerative.point;
 
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.basic.JoPoint;
 import eu.bopet.jocadv.core.features.datums.JoCoSys;
@@ -12,13 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CoordinateSystemOffsetPoint implements RegenerativeLink {
-    private final JoValue x;
-    private final JoValue y;
-    private final JoValue z;
+    private final JoSValue x;
+    private final JoSValue y;
+    private final JoSValue z;
     private final JoPoint resultPoint;
     private JoCoSys referenceCoordinateSystem;
 
-    public CoordinateSystemOffsetPoint(JoCoSys referenceCoordinateSystem, JoValue x, JoValue y, JoValue z) {
+    public CoordinateSystemOffsetPoint(JoCoSys referenceCoordinateSystem, JoSValue x, JoSValue y, JoSValue z) {
         this.referenceCoordinateSystem = referenceCoordinateSystem;
         this.x = x;
         this.y = y;
@@ -32,15 +32,15 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
                 referenceCoordinateSystem.getZ().getDirection().getVector3D().normalize().scalarMultiply(z.get());
         Vector3D vector3D = (vectorX.add(vectorY)).add(vectorZ);
         Vector3D newPoint = origin.add(vector3D);
-        JoValue newX = new JoValue(JoValue.USER, newPoint.getX());
-        JoValue newY = new JoValue(JoValue.USER, newPoint.getY());
-        JoValue newZ = new JoValue(JoValue.USER, newPoint.getZ());
+        JoSValue newX = new JoSValue(JoSValue.USER, newPoint.getX());
+        JoSValue newY = new JoSValue(JoSValue.USER, newPoint.getY());
+        JoSValue newZ = new JoSValue(JoSValue.USER, newPoint.getZ());
         JoVector joVector = new JoVector(newX, newY, newZ, null);
         this.resultPoint = new JoPoint(joVector, this);
     }
 
     public CoordinateSystemOffsetPoint(JoCoSys referenceCoordinateSystem,
-                                       JoValue x, JoValue y, JoValue z, JoPoint resultPoint) throws Exception {
+                                       JoSValue x, JoSValue y, JoSValue z, JoPoint resultPoint) throws Exception {
         this.referenceCoordinateSystem = referenceCoordinateSystem;
         this.x = x;
         this.y = y;
@@ -78,8 +78,8 @@ public class CoordinateSystemOffsetPoint implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referenceCoordinateSystem.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referenceCoordinateSystem.getValues());
         result.add(x);
         result.add(y);
         result.add(z);

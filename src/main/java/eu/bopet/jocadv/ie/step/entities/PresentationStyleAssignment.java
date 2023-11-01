@@ -1,13 +1,13 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
-public class PresentationStyleAssignment extends StepEntityBase {
+public class PresentationStyleAssignment extends StepEntity {
     private Set<Integer> styles;
 
     public PresentationStyleAssignment(int id, String name, String attribute) {

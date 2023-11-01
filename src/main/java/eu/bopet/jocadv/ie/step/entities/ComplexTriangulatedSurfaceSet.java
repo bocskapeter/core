@@ -1,12 +1,12 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
+public class ComplexTriangulatedSurfaceSet extends StepEntity {
     private final int coordinatesId;
     private final int pnMax;
     private final List<List<Double>> normals;
@@ -21,7 +21,7 @@ public class ComplexTriangulatedSurfaceSet extends StepEntityBase {
         pnMax = Integer.parseInt(attribute.substring(attribute.indexOf(",") + 1, attribute.indexOf(",(")));
         normals = new ArrayList<>();
         String rest = attribute.substring(attribute.indexOf(",(") + 1);
-        List<String> sets = StepEntityBase.getSets(rest);
+        List<String> sets = StepEntity.getSets(rest);
         String[] coordinatesString = sets.get(0).substring(sets.get(0).indexOf("(") + 1,
                 sets.get(0).lastIndexOf(")")).split(Pattern.quote("),("));
         for (String c : coordinatesString) {

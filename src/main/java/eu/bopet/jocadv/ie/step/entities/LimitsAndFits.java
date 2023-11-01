@@ -1,8 +1,8 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
+import eu.bopet.jocadv.ie.step.StepEntity;
 
-public class LimitsAndFits extends StepEntityBase {
+public class LimitsAndFits extends StepEntity {
     private String form;
     private String zone;
     private String grade;

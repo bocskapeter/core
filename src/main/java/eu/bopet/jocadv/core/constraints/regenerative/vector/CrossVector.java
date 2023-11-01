@@ -2,7 +2,7 @@ package eu.bopet.jocadv.core.constraints.regenerative.vector;
 
 import eu.bopet.jocadv.core.constraints.regenerative.exception.ParallelFeatureException;
 import eu.bopet.jocadv.core.features.JoFeature;
-import eu.bopet.jocadv.core.features.JoValue;
+import eu.bopet.jocadv.core.features.sketch.JoSValue;
 import eu.bopet.jocadv.core.features.RegenerativeLink;
 import eu.bopet.jocadv.core.features.vector.JoVector;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
@@ -19,12 +19,12 @@ public class CrossVector implements RegenerativeLink {
         this.referenceVector1 = referenceVector1;
         this.referenceVector2 = referenceVector2;
         Vector3D vector3D = referenceVector1.getVector3D().crossProduct(referenceVector2.getVector3D());
-        if (vector3D.getNormSq() < JoValue.DEFAULT_TOLERANCE)
+        if (vector3D.getNormSq() < JoSValue.DEFAULT_TOLERANCE)
             throw new ParallelFeatureException(referenceVector1, referenceVector2);
         resultVector = new JoVector(
-                new JoValue(JoValue.USER, vector3D.getX()),
-                new JoValue(JoValue.USER, vector3D.getY()),
-                new JoValue(JoValue.USER, vector3D.getZ()),
+                new JoSValue(JoSValue.USER, vector3D.getX()),
+                new JoSValue(JoSValue.USER, vector3D.getY()),
+                new JoSValue(JoSValue.USER, vector3D.getZ()),
                 this
         );
     }
@@ -51,7 +51,7 @@ public class CrossVector implements RegenerativeLink {
         if (referenceVector1.getRegenerativeLink() != null) referenceVector1.getRegenerativeLink().regenerate();
         if (referenceVector2.getRegenerativeLink() != null) referenceVector2.getRegenerativeLink().regenerate();
         Vector3D vector3D = referenceVector1.getVector3D().crossProduct(referenceVector2.getVector3D());
-        if (vector3D.getNormSq() < JoValue.DEFAULT_TOLERANCE)
+        if (vector3D.getNormSq() < JoSValue.DEFAULT_TOLERANCE)
             throw new ParallelFeatureException(referenceVector1, referenceVector2);
         resultVector.getX().set(vector3D.getX());
         resultVector.getY().set(vector3D.getY());
@@ -64,8 +64,8 @@ public class CrossVector implements RegenerativeLink {
     }
 
     @Override
-    public Set<JoValue> getValues() {
-        Set<JoValue> result = new HashSet<>(referenceVector1.getValues());
+    public Set<JoSValue> getValues() {
+        Set<JoSValue> result = new HashSet<>(referenceVector1.getValues());
         result.addAll(referenceVector2.getValues());
         return result;
     }

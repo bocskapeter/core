@@ -1,21 +1,26 @@
 package eu.bopet.jocadv.ie.step.entities;
 
-import eu.bopet.jocadv.ie.step.StepEntityBase;
-import eu.bopet.jocadv.ie.step.curve.BSplineCurveForm;
-import eu.bopet.jocadv.ie.step.curve.KnotType;
+import eu.bopet.jocadv.core.features.JoFeature;
+import eu.bopet.jocadv.core.features.basic.JoPoint;
+import eu.bopet.jocadv.core.features.basic.curve.JoBSplineCurveForm;
+import eu.bopet.jocadv.core.features.basic.curve.JoBSplineCurveKnotType;
+import eu.bopet.jocadv.core.features.basic.curve.JoBSplineCurveWithKnots;
+import eu.bopet.jocadv.ie.step.StepEntity;
+import eu.bopet.jocadv.ie.step.StepFeature;
+import eu.bopet.jocadv.ie.step.StepLink;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BSplineCurveWithKnots extends StepEntityBase {
+public class BSplineCurveWithKnots extends StepEntity implements StepLink {
     private int degree;
     private List<Integer> pointIdList;
-    private BSplineCurveForm curveForm;
+    private JoBSplineCurveForm curveForm;
     private boolean closedCurve;
     private boolean selfIntersect;
     private List<Integer> knotMultiplicities;
     private List<Double> knots;
-    private KnotType knotType;
+    private JoBSplineCurveKnotType knotType;
 
     public BSplineCurveWithKnots(int id, String name, String attribute) {
         super(id, name);
@@ -32,7 +37,7 @@ public class BSplineCurveWithKnots extends StepEntityBase {
         substring = attribute.substring(attribute.indexOf(")") + 1);
         String[] parts = substring.split(",");
         curveForm =
-                BSplineCurveForm.valueOf(parts[1].replace(".", "").stripLeading().stripTrailing());
+                JoBSplineCurveForm.valueOf(parts[1].replace(".", "").stripLeading().stripTrailing());
         closedCurve = parts[2].contains("T");
         selfIntersect = parts[3].contains("T");
         String knotStrings = substring.substring(substring.indexOf("(") + 1, substring.indexOf(")"));
@@ -52,7 +57,41 @@ public class BSplineCurveWithKnots extends StepEntityBase {
         }
         substring = substring.substring(substring.indexOf(")") + 1);
         parts = substring.split(",");
-        knotType = KnotType.valueOf(parts[1].replace(".", "").stripLeading().stripTrailing());
+        knotType = JoBSplineCurveKnotType.valueOf(parts[1].replace(".", "")
+                .stripLeading().stripTrailing());
+    }
+
+    @Override
+    public void generateJoFeature(StepFeature feature) throws Exception {
+        List<JoPoint> joPointList = new ArrayList<>();
+        for (int i : pointIdList) {
+            StepEntity stepEntity = feature.getStepEntityByID(i);
+            if (stepEntity instanceof StepLink) {
+                if (!feature.getFeatureMap().containsKey(stepEntity)) {
+                    ((StepLink) stepEntity).generateJoFeature(feature);
+                }
+                JoFeature joFeature = feature.getFeatureMap().get(stepEntity);
+                if (joFeature instanceof JoPoint) {
+                    joPointList.add((JoPoint) joFeature);
+                } else {
+                    System.out.println("Unknown feature here: " + joFeature);
+                    System.out.println("--- : " + this);
+                }
+            } else {
+                System.out.println("Unknown Step Entity: " + stepEntity);
+                System.out.println("--- : " + this);
+            }
+        }
+        JoBSplineCurveWithKnots spline = new JoBSplineCurveWithKnots(degree, joPointList, curveForm, closedCurve,
+                selfIntersect, knotMultiplicities, knots, knotType);
+        spline.setIntID(super.getId());
+        spline.setName(super.getName());
+        feature.getFeatureMap().put(this, spline);
+    }
+
+    @Override
+    public void regenerate() throws Exception {
+
     }
 
     @Override
@@ -68,4 +107,6 @@ public class BSplineCurveWithKnots extends StepEntityBase {
                 ", knotType=" + knotType +
                 '}';
     }
+
+
 }
